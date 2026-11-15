@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion | ADDIBA</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #101f3c;
+      padding: 20px;
+    }
+
+    .login-box {
+      background: white;
+      width: 100%;
+      max-width: 420px;
+      padding: 40px 30px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .logo {
+      color: #101f3c;
+      font-size: 34px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #68758a;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #101f3c;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      color: #27364d;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d5dce5;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #20a875;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #16875d;
+    }
+
+    #message {
+      margin-top: 18px;
+      color: #c0392b;
+      font-size: 14px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      color: #101f3c;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <div class="logo">ADDIBA</div>
+    <p class="subtitle">Un groupe. Plusieurs marques. Une vision commune.</p>
+
+    <h2>Espace de connexion</h2>
+
+    <form id="login-form">
+      <label for="email">Adresse e-mail</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Votre adresse e-mail"
+        required
+      >
+
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Votre mot de passe"
+        required
+      >
+
+      <button type="submit">Se connecter</button>
+    </form>
+
+    <p id="message"></p>
+
+    <a href="index.html" class="back">Retour à l'accueil</a>
+  </div>
+
+  <script>
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      document.getElementById("message").textContent =
+        "La connexion sécurisée sera activée lors de la configuration de Supabase.";
+    });
+  </script>
+
+</body>
+</html>
