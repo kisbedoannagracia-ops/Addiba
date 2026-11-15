@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord | ADDIBA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f2f5f9;
+      color: #17243b;
+    }
+
+    header {
+      background: #101f3c;
+      color: white;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      color: #36c98a;
+      font-size: 27px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .founder {
+      font-size: 14px;
+    }
+
+    .container {
+      padding: 35px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .welcome {
+      margin-bottom: 30px;
+    }
+
+    .welcome h1 {
+      margin-bottom: 10px;
+      color: #101f3c;
+    }
+
+    .welcome p {
+      color: #68758a;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px #0000000b;
+    }
+
+    .stat-card h3 {
+      color: #68758a;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .stat-card strong {
+      color: #101f3c;
+      font-size: 28px;
+    }
+
+    .section-title {
+      margin-bottom: 20px;
+      color: #101f3c;
+    }
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .module {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 4px solid #36c98a;
+      box-shadow: 0 3px 12px #0000000b;
+    }
+
+    .module h3 {
+      margin-bottom: 12px;
+      color: #101f3c;
+    }
+
+    .module p {
+      color: #68758a;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .module a {
+      display: inline-block;
+      margin-top: 18px;
+      color: #16875d;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .brands {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-top: 35px;
+    }
+
+    .brand-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .brand-tag {
+      background: #e7f8f0;
+      color: #147a54;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #68758a;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">ADDIBA</div>
+    <div class="founder">Espace Fondateur</div>
+  </header>
+
+  <main class="container">
+
+    <section class="welcome">
+      <h1>Tableau de bord</h1>
+      <p>Bienvenue dans l'espace de gestion de ADDIBA.</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <h3>Marques du groupe</h3>
+        <strong>3</strong>
+      </div>
+
+      <div class="stat-card">
+        <h3>Projets en cours</h3>
+        <strong>0</strong>
+      </div>
+
+      <div class="stat-card">
+        <h3>Employés</h3>
+        <strong>0</strong>
+      </div>
+
+      <div class="stat-card">
+        <h3>Filiales enregistrées</h3>
+        <strong>0</strong>
+      </div>
+    </section>
+
+    <h2 class="section-title">Gestion de ADDIBA</h2>
+
+    <section class="modules">
+
+      <div class="module">
+        <h3>Gestion des marques</h3>
+        <p>Suivre et organiser les marques de ADDIBA.</p>
+        <a href="#marques">Voir les marques</a>
+      </div>
+
+      <div class="module">
+        <h3>Direction</h3>
+        <p>Organiser les responsables et les fonctions de direction.</p>
+        <a href="#">Accéder</a>
+      </div>
+
+      <div class="module">
+        <h3>Finances</h3>
+        <p>Préparer le suivi financier de la société mère.</p>
+        <a href="#">Accéder</a>
+      </div>
+
+      <div class="module">
+        <h3>Ressources humaines</h3>
+        <p>Préparer la gestion des employés et collaborateurs.</p>
+        <a href="#">Accéder</a>
+      </div>
+
+      <div class="module">
+        <h3>Projets</h3>
+        <p>Suivre les projets et leur évolution.</p>
+        <a href="#">Accéder</a>
+      </div>
+
+      <div class="module">
+        <h3>Documents</h3>
+        <p>Organiser les documents administratifs du groupe.</p>
+        <a href="#">Accéder</a>
+      </div>
+
+    </section>
+
+    <section class="brands" id="marques">
+      <h2>Les marques de ADDIBA</h2>
+
+      <div class="brand-list">
+        <span class="brand-tag">ZAAMARKET</span>
+        <span class="brand-tag">ALTEVA</span>
+        <span class="brand-tag">TURINEX</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 ADDIBA — Espace de gestion
+  </footer>
+
+</body>
+</html>
