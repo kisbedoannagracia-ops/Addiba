@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADDIBA | Société mère</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fa;
+      color: #17243b;
+    }
+
+    header {
+      background: #101f3c;
+      color: white;
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #36c98a;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .hero {
+      background: #101f3c;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #36c98a;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .section {
+      padding: 65px 8%;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      line-height: 1.7;
+    }
+
+    .brands {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+      margin-top: 35px;
+    }
+
+    .brand {
+      background: white;
+      padding: 35px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px #00000012;
+      border-bottom: 4px solid #36c98a;
+    }
+
+    .brand h3 {
+      color: #101f3c;
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      background: #101f3c;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      nav a {
+        margin-left: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">ADDIBA</div>
+    <nav>
+      <a href="#accueil">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#marques">Nos marques</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="accueil">
+    <h1>Bienvenue chez <span>ADDIBA</span></h1>
+    <p>
+      Une vision ambitieuse, plusieurs marques,
+      un même engagement : construire l'avenir
+      à travers l'innovation et l'entrepreneuriat.
+    </p>
+  </section>
+
+  <section class="section" id="apropos">
+    <h2>À propos de ADDIBA</h2>
+    <p>
+      ADDIBA est une société mère destinée à développer,
+      accompagner et coordonner plusieurs marques
+      dans différents secteurs d'activité.
+    </p>
+  </section>
+
+  <section class="section" id="marques">
+    <h2>Nos marques</h2>
+    <p>Découvrez les marques de l'univers ADDIBA.</p>
+
+    <div class="brands">
+      <div class="brand">
+        <h3>ZAAMARKET</h3>
+        <p>Commerce et marketplace.</p>
+      </div>
+
+      <div class="brand">
+        <h3>ALTEVA</h3>
+        <p>Une future marque du groupe.</p>
+      </div>
+
+      <div class="brand">
+        <h3>TURINEX</h3>
+        <p>Une future marque du groupe.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 ADDIBA. Tous droits réservés.</p>
+    <p>Un groupe. Plusieurs marques. Une vision commune.</p>
+  </footer>
+
+</body>
+</html>
