@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -39,6 +38,16 @@
 
     .founder {
       font-size: 14px;
+    }
+
+    #logout {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 7px;
+      background: #20a875;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
     }
 
     .container {
@@ -115,12 +124,12 @@
       font-size: 14px;
     }
 
-    .module a {
+    .module span {
       display: inline-block;
       margin-top: 18px;
       color: #16875d;
       font-weight: bold;
-      text-decoration: none;
+      font-size: 14px;
     }
 
     .brands {
@@ -145,6 +154,11 @@
       font-weight: bold;
     }
 
+    #message {
+      margin: 15px 0;
+      color: #b33a32;
+    }
+
     footer {
       text-align: center;
       padding: 25px;
@@ -163,7 +177,11 @@
 
   <header>
     <div class="logo">ADDIBA</div>
-    <div class="founder">Espace Fondateur</div>
+    <div class="founder">
+      Espace Fondateur
+      <span id="founder-name"></span>
+    </div>
+    <button id="logout">Déconnexion</button>
   </header>
 
   <main class="container">
@@ -171,28 +189,31 @@
     <section class="welcome">
       <h1>Tableau de bord</h1>
       <p>Bienvenue dans l'espace de gestion de ADDIBA.</p>
+      <p id="message">Chargement des informations...</p>
     </section>
 
     <section class="stats">
+
       <div class="stat-card">
         <h3>Marques du groupe</h3>
-        <strong>3</strong>
+        <strong id="brands-count">—</strong>
       </div>
 
       <div class="stat-card">
-        <h3>Projets en cours</h3>
-        <strong>0</strong>
+        <h3>Projets enregistrés</h3>
+        <strong id="projects-count">—</strong>
       </div>
 
       <div class="stat-card">
-        <h3>Employés</h3>
-        <strong>0</strong>
+        <h3>Employés enregistrés</h3>
+        <strong id="employees-count">—</strong>
       </div>
 
       <div class="stat-card">
-        <h3>Filiales enregistrées</h3>
-        <strong>0</strong>
+        <h3>Documents enregistrés</h3>
+        <strong id="documents-count">—</strong>
       </div>
+
     </section>
 
     <h2 class="section-title">Gestion de ADDIBA</h2>
@@ -202,37 +223,37 @@
       <div class="module">
         <h3>Gestion des marques</h3>
         <p>Suivre et organiser les marques de ADDIBA.</p>
-        <a href="#marques">Voir les marques</a>
+        <span>Voir les marques ci-dessous</span>
       </div>
 
       <div class="module">
         <h3>Direction</h3>
         <p>Organiser les responsables et les fonctions de direction.</p>
-        <a href="#">Accéder</a>
+        <span>Module à construire</span>
       </div>
 
       <div class="module">
         <h3>Finances</h3>
         <p>Préparer le suivi financier de la société mère.</p>
-        <a href="#">Accéder</a>
+        <span>Module à construire</span>
       </div>
 
       <div class="module">
         <h3>Ressources humaines</h3>
-        <p>Préparer la gestion des employés et collaborateurs.</p>
-        <a href="#">Accéder</a>
+        <p>Gérer les employés et les collaborateurs.</p>
+        <span>Module à construire</span>
       </div>
 
       <div class="module">
         <h3>Projets</h3>
         <p>Suivre les projets et leur évolution.</p>
-        <a href="#">Accéder</a>
+        <span>Module à construire</span>
       </div>
 
       <div class="module">
         <h3>Documents</h3>
         <p>Organiser les documents administratifs du groupe.</p>
-        <a href="#">Accéder</a>
+        <span>Module à construire</span>
       </div>
 
     </section>
@@ -240,10 +261,8 @@
     <section class="brands" id="marques">
       <h2>Les marques de ADDIBA</h2>
 
-      <div class="brand-list">
-        <span class="brand-tag">ZAAMARKET</span>
-        <span class="brand-tag">ALTEVA</span>
-        <span class="brand-tag">TURINEX</span>
+      <div class="brand-list" id="brand-list">
+        Chargement des marques...
       </div>
     </section>
 
@@ -252,6 +271,135 @@
   <footer>
     © 2026 ADDIBA — Espace de gestion
   </footer>
+
+  <script type="module">
+
+    import { supabase } from "./supabase.js";
+
+    const message = document.getElementById("message");
+
+    function afficherErreur(texte) {
+      message.textContent = texte;
+    }
+
+    function afficherNombre(elementId, nombre) {
+      document.getElementById(elementId).textContent = nombre;
+    }
+
+    function securiserTexte(texte) {
+      return String(texte).replace(/[&<>"']/g, function(caractere) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        }[caractere];
+      });
+    }
+
+    async function chargerTableauDeBord() {
+
+      try {
+
+        const { data: userData, error: userError } =
+          await supabase.auth.getUser();
+
+        if (userError || !userData.user) {
+          window.location.href = "connexion.html";
+          return;
+        }
+
+        const { data: profil, error: profilError } = await supabase
+          .from("profils")
+          .select("nom_complet, role")
+          .eq("id", userData.user.id)
+          .single();
+
+        if (profilError || !profil || profil.role !== "fondateur") {
+          await supabase.auth.signOut();
+          window.location.href = "connexion.html";
+          return;
+        }
+
+        document.getElementById("founder-name").textContent =
+          " — " + (profil.nom_complet || "Fondateur");
+
+        const resultats = await Promise.all([
+
+          supabase.from("marques").select("*", {
+            count: "exact",
+            head: true
+          }),
+
+          supabase.from("projets").select("*", {
+            count: "exact",
+            head: true
+          }),
+
+          supabase.from("employes").select("*", {
+            count: "exact",
+            head: true
+          }),
+
+          supabase.from("documents").select("*", {
+            count: "exact",
+            head: true
+          }),
+
+          supabase.from("marques").select("nom").order("nom")
+        ]);
+
+        const erreurs = resultats.filter(resultat => resultat.error);
+
+        if (erreurs.length > 0) {
+          throw new Error(
+            "Impossible de charger certaines données. Vérifie les autorisations Supabase."
+          );
+        }
+
+        afficherNombre("brands-count", resultats[0].count ?? 0);
+        afficherNombre("projects-count", resultats[1].count ?? 0);
+        afficherNombre("employees-count", resultats[2].count ?? 0);
+        afficherNombre("documents-count", resultats[3].count ?? 0);
+
+        const brandList = document.getElementById("brand-list");
+        const marques = resultats[4].data || [];
+
+        if (marques.length === 0) {
+          brandList.textContent = "Aucune marque enregistrée.";
+        } else {
+          brandList.innerHTML = marques.map(marque =>
+            `<span class="brand-tag">${securiserTexte(marque.nom)}</span>`
+          ).join("");
+        }
+
+        message.textContent = "Les informations ADDIBA sont à jour.";
+
+      } catch (error) {
+
+        afficherErreur(error.message || "Erreur de chargement.");
+
+      }
+
+    }
+
+    document.getElementById("logout").addEventListener("click", async () => {
+
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        afficherErreur("Impossible de se déconnecter. Réessaie.");
+        return;
+      }
+
+      window.location.href = "connexion.html";
+
+    });
+
+    chargerTableauDeBord();
+
+  </script>
 
 </body>
 </html>
