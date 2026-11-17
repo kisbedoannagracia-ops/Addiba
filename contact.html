@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#11213f">
+<title>Contact | ADDIBA</title>
+<meta name="description" content="Contactez ADDIBA pour vos demandes d'information, partenariats et collaborations.">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #17233b;
+  line-height: 1.7;
+}
+
+header {
+  background: #11213f;
+  padding: 18px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 29px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.logo span { color: #20bd83; }
+
+nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover { color: #20bd83; }
+
+.hero {
+  background: linear-gradient(135deg, #11213f, #1b365c);
+  color: white;
+  text-align: center;
+  padding: 75px 20px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  color: #dce5f3;
+  font-size: 17px;
+}
+
+section { padding: 65px 7%; }
+
+.section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-title h2 {
+  color: #11213f;
+  font-size: 30px;
+}
+
+.section-title span {
+  display: block;
+  width: 55px;
+  height: 4px;
+  background: #20bd83;
+  margin: 12px auto;
+  border-radius: 5px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.contact-card {
+  background: white;
+  padding: 28px;
+  border-radius: 13px;
+  border-bottom: 4px solid #20bd83;
+  box-shadow: 0 5px 22px rgba(17,33,63,.07);
+}
+
+.contact-card h3 {
+  color: #11213f;
+  margin-bottom: 10px;
+}
+
+.contact-card p { color: #647087; }
+
+.form-section { background: #edf1f7; }
+
+.contact-form {
+  max-width: 750px;
+  margin: auto;
+  background: white;
+  padding: 32px;
+  border-radius: 14px;
+  box-shadow: 0 5px 22px rgba(17,33,63,.07);
+}
+
+.form-group { margin-bottom: 20px; }
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: bold;
+  color: #11213f;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d6deea;
+  border-radius: 7px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 7px;
+  background: #20bd83;
+  color: #10213f;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover { background: #18a873; }
+
+.notice {
+  margin-top: 15px;
+  color: #647087;
+  font-size: 13px;
+}
+
+.back {
+  text-align: center;
+}
+
+.back a {
+  display: inline-block;
+  padding: 13px 25px;
+  background: #11213f;
+  color: white;
+  text-decoration: none;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+footer {
+  background: #0b172d;
+  color: #dce5f3;
+  text-align: center;
+  padding: 30px 15px;
+  font-size: 14px;
+}
+
+footer strong { color: #20bd83; }
+
+@media(max-width: 650px) {
+  header { justify-content: center; }
+  nav { justify-content: center; }
+  .hero h1 { font-size: 32px; }
+  section { padding: 50px 6%; }
+  .contact-form { padding: 22px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="logo">ADDI<span>BA</span></a>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="zaamarket.html">ZAAMARKET</a>
+    <a href="alteva.html">ALTEVA</a>
+    <a href="turinex.html">TURINEX</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <h1>Contactez ADDIBA</h1>
+  <p>
+    Nous sommes ouverts aux échanges, aux collaborations
+    et aux opportunités qui contribuent à construire l'avenir.
+  </p>
+</section>
+
+<section>
+  <div class="section-title">
+    <h2>Entrons en contact</h2>
+    <span></span>
+    <p>Choisissez le domaine correspondant à votre demande.</p>
+  </div>
+
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <h3>Informations générales</h3>
+      <p>Pour toute question concernant le groupe ADDIBA et ses activités.</p>
+    </div>
+
+    <div class="contact-card">
+      <h3>Partenariats</h3>
+      <p>Pour les propositions de collaboration et les opportunités stratégiques.</p>
+    </div>
+
+    <div class="contact-card">
+      <h3>Relations commerciales</h3>
+      <p>Pour les échanges commerciaux et les opportunités d'affaires.</p>
+    </div>
+
+    <div class="contact-card">
+      <h3>Relations institutionnelles</h3>
+      <p>Pour les organisations, institutions et projets de développement.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="section-title">
+    <h2>Envoyer un message</h2>
+    <span></span>
+  </div>
+
+  <form class="contact-form"
+        action="mailto:"
+        method="post"
+        enctype="text/plain">
+
+    <div class="form-group">
+      <label for="nom">Nom complet</label>
+      <input type="text" id="nom" name="Nom" placeholder="Votre nom complet" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Adresse e-mail</label>
+      <input type="email" id="email" name="Email" placeholder="Votre adresse e-mail" required>
+    </div>
+
+    <div class="form-group">
+      <label for="sujet">Objet de votre demande</label>
+      <select id="sujet" name="Objet" required>
+        <option value="">Choisir un sujet</option>
+        <option>Informations générales</option>
+        <option>Partenariat</option>
+        <option>Demande commerciale</option>
+        <option>Relations institutionnelles</option>
+        <option>Autre demande</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Votre message</label>
+      <textarea id="message" name="Message" placeholder="Écrivez votre message..." required></textarea>
+    </div>
+
+    <button type="submit">Préparer mon message</button>
+
+    <p class="notice">
+      Ce formulaire utilise votre application de messagerie.
+      L'envoi dépend de sa configuration et de votre validation.
+    </p>
+
+  </form>
+</section>
+
+<section class="back">
+  <a href="index.html">Retourner sur ADDIBA</a>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 <strong>ADDIBA</strong>. Tous droits réservés.</p>
+  <p>Un groupe. Plusieurs marques. Une vision commune.</p>
+</footer>
+
+</body>
+  </html>
+  
