@@ -105,17 +105,25 @@ body {
   border-radius: 3px;
 }
 
-/* ACCUEIL */
+/* ACCUEIL - NOUVELLE BANNIÈRE */
 .hero {
-  background: linear-gradient(135deg, #171717, #303030);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(245,166,35,.16), transparent 35%),
+    linear-gradient(135deg, #080808, #202020);
   color: white;
   text-align: center;
-  padding: 90px 20px;
+  padding: 110px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero h1 {
-  font-size: 43px;
-  margin-bottom: 15px;
+  font-size: 52px;
+  line-height: 1.2;
+  max-width: 850px;
+  margin: 0 auto 22px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
 }
 
 .hero h1 span {
@@ -125,19 +133,40 @@ body {
 .hero p {
   max-width: 650px;
   margin: auto;
-  color: #eeeeee;
-  font-size: 17px;
+  color: #dddddd;
+  font-size: 18px;
+  line-height: 1.8;
 }
 
 .hero a {
   display: inline-block;
-  margin-top: 28px;
+  margin: 32px 7px 0;
   background: #f5a623;
   color: #111111;
-  padding: 13px 28px;
-  border-radius: 6px;
+  padding: 15px 30px;
+  border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  transition: .3s;
+}
+
+.hero a:hover {
+  background: white;
+  transform: translateY(-3px);
+}
+
+@media(max-width: 850px) {
+  .hero {
+    padding: 75px 18px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
 }
 
 /* SECTIONS */
