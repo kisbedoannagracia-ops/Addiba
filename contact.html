@@ -33,15 +33,28 @@ header {
   gap: 15px;
 }
 
-.logo {
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: white;
   text-decoration: none;
-  font-size: 29px;
-  font-weight: 900;
+}
+
+.brand-logo svg {
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+}
+
+.brand-logo strong {
+  font-size: 27px;
   letter-spacing: 2px;
 }
 
-.logo span { color: #20bd83; }
+.brand-logo strong span {
+  color: #20bd83;
+}
 
 nav {
   display: flex;
