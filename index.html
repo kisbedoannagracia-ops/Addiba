@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#101f3c">
 
 <title>ADDIBA | Un groupe. Plusieurs marques.</title>
-
 <meta name="description" content="ADDIBA, une société mère ambitieuse qui développe plusieurs marques et construit l'avenir à travers l'innovation et l'entrepreneuriat.">
 
 <style>
@@ -42,7 +41,6 @@ a {
 }
 
 /* HEADER */
-
 header {
   background: var(--navy);
   color: white;
@@ -94,7 +92,6 @@ nav a:hover {
 }
 
 /* HERO */
-
 .hero {
   background: linear-gradient(135deg, var(--navy), var(--navy-light));
   color: white;
@@ -131,7 +128,6 @@ nav a:hover {
 }
 
 /* SECTIONS */
-
 .section {
   padding: 75px 7%;
   text-align: center;
@@ -149,8 +145,7 @@ nav a:hover {
   color: var(--muted);
 }
 
-/* BRANDS */
-
+/* MARQUES */
 .brands {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -183,8 +178,20 @@ nav a:hover {
   color: var(--muted);
 }
 
-/* FOUNDER */
+/* LIEN DE LA MARQUE ZAAMARKET */
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
 
+.brand-link:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 5px;
+}
+
+/* FONDATEUR */
 .founder {
   background: var(--navy);
   color: white;
@@ -217,7 +224,6 @@ nav a:hover {
 }
 
 /* CONTACT */
-
 .contact {
   padding: 65px 20px;
   text-align: center;
@@ -244,7 +250,6 @@ nav a:hover {
 }
 
 /* FOOTER */
-
 footer {
   background: #0b172d;
   color: #dce5f3;
@@ -258,7 +263,6 @@ footer strong {
 }
 
 /* MOBILE */
-
 @media(max-width: 650px) {
   header {
     justify-content: center;
@@ -313,107 +317,58 @@ footer strong {
 <body>
 
 <!-- HEADER -->
-
 <header>
 
   <a href="#accueil" class="brand-logo" aria-label="ADDIBA - Accueil">
-
     <svg viewBox="0 0 300 220"
          xmlns="http://www.w3.org/2000/svg"
          role="img"
          aria-label="Emblème ADDIBA">
 
-      <!-- A blanc -->
-      <path
-        d="M18 195 L112 24
-           Q130 -8 149 25
-           L285 195 H237
-           L132 65 L62 195 Z"
+      <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z"
         fill="#ffffff"/>
 
-      <!-- Ruban vert -->
-      <path
-        d="M18 157
-           C64 189 115 181 155 142
-           C196 103 219 54 285 34
-           C240 63 211 105 184 147
-           C152 198 91 216 42 188
-           C31 181 23 169 18 157 Z"
+      <path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z"
         fill="#20bd83"/>
 
-      <!-- Cercle vert -->
-      <path
-        d="M193 148
-           C221 133 257 145 270 174
-           C282 201 261 224 231 218
-           C202 213 180 183 193 148 Z
-           M213 160
-           C203 179 220 199 240 199
-           C258 198 264 183 253 168
-           C242 153 225 151 213 160 Z"
-        fill="#20bd83"
-        fill-rule="evenodd"/>
-
+      <path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z"
+        fill="#20bd83" fill-rule="evenodd"/>
     </svg>
 
     <strong>ADDI<span>BA</span></strong>
-
   </a>
 
   <nav>
-  <a href="#accueil">Accueil</a>
-  <a href="#marques">Nos marques</a>
-  <a href="#apropos">À propos</a>
-  <a href="#vision-mission">Vision et mission</a>
-  <a href="#fondateur">Espace fondateur</a>
-  <a href="contact.html">Contact</a>
+    <a href="#accueil">Accueil</a>
+    <a href="#marques">Nos marques</a>
+    <a href="#apropos">À propos</a>
+    <a href="#vision-mission">Vision et mission</a>
+    <a href="#fondateur">Espace fondateur</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
 </header>
 
-<!-- ACCUEIL -->
-
 <main>
 
+<!-- ACCUEIL -->
 <section class="hero" id="accueil">
 
   <div class="hero-logo">
-
     <svg viewBox="0 0 300 220"
          xmlns="http://www.w3.org/2000/svg"
          role="img"
          aria-label="Logo officiel ADDIBA">
 
-      <path
-        d="M18 195 L112 24
-           Q130 -8 149 25
-           L285 195 H237
-           L132 65 L62 195 Z"
+      <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z"
         fill="#ffffff"/>
 
-      <path
-        d="M18 157
-           C64 189 115 181 155 142
-           C196 103 219 54 285 34
-           C240 63 211 105 184 147
-           C152 198 91 216 42 188
-           C31 181 23 169 18 157 Z"
+      <path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z"
         fill="#20bd83"/>
 
-      <path
-        d="M193 148
-           C221 133 257 145 270 174
-           C282 201 261 224 231 218
-           C202 213 180 183 193 148 Z
-           M213 160
-           C203 179 220 199 240 199
-           C258 198 264 183 253 168
-           C242 153 225 151 213 160 Z"
-        fill="#20bd83"
-        fill-rule="evenodd"/>
-
+      <path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z"
+        fill="#20bd83" fill-rule="evenodd"/>
     </svg>
-
   </div>
 
   <h1>Bienvenue chez <span>ADDIBA</span></h1>
@@ -425,8 +380,8 @@ footer strong {
   </p>
 
 </section>
-<!-- NOTRE VISION ET NOTRE MISSION -->
 
+<!-- VISION ET MISSION -->
 <section class="section" id="vision-mission">
 
   <h2 class="section-title">Notre vision et notre mission</h2>
@@ -470,7 +425,6 @@ footer strong {
 </section>
 
 <!-- A PROPOS -->
-
 <section class="section" id="apropos">
 
   <h2 class="section-title">À propos de ADDIBA</h2>
@@ -486,7 +440,6 @@ footer strong {
 </section>
 
 <!-- NOS MARQUES -->
-
 <section class="section" id="marques">
 
   <h2 class="section-title">Nos marques</h2>
@@ -498,9 +451,9 @@ footer strong {
   <div class="brands">
 
     <a href="zaamarket.html" class="brand-card brand-link">
-  <h3>ZAAMARKET</h3>
-  <p>Commerce et marketplace.</p>
-</a>
+      <h3>ZAAMARKET</h3>
+      <p>Commerce et marketplace.</p>
+    </a>
 
     <div class="brand-card">
       <h3>ALTEVA</h3>
@@ -517,7 +470,6 @@ footer strong {
 </section>
 
 <!-- ESPACE FONDATEUR -->
-
 <section class="founder" id="fondateur">
 
   <h2>Espace fondateur</h2>
@@ -534,7 +486,6 @@ footer strong {
 </section>
 
 <!-- CONTACT -->
-
 <section class="contact">
 
   <h2>Contact</h2>
@@ -553,7 +504,6 @@ footer strong {
 </main>
 
 <!-- FOOTER -->
-
 <footer>
 
   <p>
@@ -568,5 +518,4 @@ footer strong {
 </footer>
 
 </body>
-  </html>
-  
+</html>
