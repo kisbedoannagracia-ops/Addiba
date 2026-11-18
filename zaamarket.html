@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#111111">
 
 <title>ZAAMARKET | Le commerce sans frontières</title>
-
 <meta name="description" content="ZAAMARKET, la marketplace africaine qui connecte les vendeurs et les acheteurs.">
 
 <style>
@@ -27,57 +26,86 @@ body {
   line-height: 1.6;
 }
 
-header {
+/* EN-TÊTE */
+.main-header {
   background: #111111;
   color: white;
-  padding: 16px 7%;
+  padding: 12px 5%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
+  min-height: 78px;
 }
 
-.brand-logo {
+.addiba-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: white;
   text-decoration: none;
-}
-
-.brand-logo svg {
-  width: 55px;
-  height: 55px;
   flex-shrink: 0;
 }
 
-.brand-logo strong {
-  font-size: 27px;
-  letter-spacing: 1px;
-  font-weight: 900;
+.addiba-logo svg {
+  width: 52px;
+  height: 52px;
 }
 
-.brand-logo strong span {
+.header-divider {
+  width: 2px;
+  height: 45px;
+  background: #555555;
+  flex-shrink: 0;
+}
+
+.zaamarket-logo {
+  color: white;
+  text-decoration: none;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  margin-right: auto;
+}
+
+.zaamarket-logo span {
   color: #f5a623;
 }
 
-nav {
+/* NAVIGATION */
+.main-header nav {
   display: flex;
+  align-items: center;
   gap: 20px;
-  flex-wrap: wrap;
 }
 
-nav a {
+.main-header nav a {
   color: white;
   text-decoration: none;
   font-size: 14px;
 }
 
-nav a:hover {
+.main-header nav a:hover {
   color: #f5a623;
 }
 
+/* MENU HAMBURGER */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 27px;
+  height: 3px;
+  background: white;
+  margin: 5px 0;
+  border-radius: 3px;
+}
+
+/* ACCUEIL */
 .hero {
   background: linear-gradient(135deg, #171717, #303030);
   color: white;
@@ -112,6 +140,7 @@ nav a:hover {
   font-weight: bold;
 }
 
+/* SECTIONS */
 section {
   padding: 70px 7%;
 }
@@ -142,6 +171,7 @@ section {
   font-size: 17px;
 }
 
+/* CATÉGORIES */
 .categories {
   background: #f6f6f6;
 }
@@ -171,6 +201,7 @@ section {
   margin-top: 8px;
 }
 
+/* AVANTAGES */
 .advantages {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -192,6 +223,7 @@ section {
   font-size: 14px;
 }
 
+/* BLOC FINAL */
 .cta {
   background: #171717;
   color: white;
@@ -214,6 +246,7 @@ section {
   font-weight: bold;
 }
 
+/* PIED DE PAGE */
 footer {
   background: #0b0b0b;
   color: white;
@@ -227,13 +260,33 @@ footer a {
   text-decoration: none;
 }
 
-@media(max-width: 650px) {
-  header {
-    justify-content: center;
+/* VERSION MOBILE */
+@media(max-width: 850px) {
+  .main-header {
+    flex-wrap: wrap;
+    padding: 12px 5%;
   }
 
-  nav {
-    justify-content: center;
+  .zaamarket-logo {
+    margin-right: auto;
+    font-size: 23px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-header nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px 5px;
+  }
+
+  .main-header nav.active {
+    display: flex;
   }
 
   .hero {
@@ -248,41 +301,68 @@ footer a {
     padding: 55px 6%;
   }
 }
+
+@media(max-width: 380px) {
+  .addiba-logo svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .zaamarket-logo {
+    font-size: 19px;
+  }
+
+  .header-divider {
+    height: 38px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<header>
-  <a href="#accueil" class="brand-logo" aria-label="ZAAMARKET">
+<header class="main-header">
+
+  <a href="index.html" class="addiba-logo" aria-label="ADDIBA">
     <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
       <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z" fill="#ffffff"/>
       <path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z" fill="#20bd83"/>
       <path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z" fill="#20bd83" fill-rule="evenodd"/>
     </svg>
-    <strong>ZAA<span>MARKET</span></strong>
   </a>
-  <nav>
+
+  <span class="header-divider"></span>
+
+  <a href="#accueil" class="zaamarket-logo">
+    ZAA<span>MARKET</span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav id="mainNav">
     <a href="#accueil">Accueil</a>
     <a href="#apropos">À propos</a>
     <a href="#categories">Catégories</a>
     <a href="#avantages">Nos avantages</a>
     <a href="index.html">Groupe ADDIBA</a>
   </nav>
+
 </header>
 
 <main>
 
 <section class="hero" id="accueil">
   <h1>Bienvenue chez <span>ZAAMARKET</span></h1>
-
   <p>
     La marketplace africaine qui rapproche
     les vendeurs et les acheteurs.
     Découvrez un univers de produits,
     de possibilités et d'opportunités.
   </p>
-
   <a href="#categories">Explorer nos catégories</a>
 </section>
 
@@ -387,5 +467,30 @@ footer a {
   <p>Une marque du groupe <a href="index.html">ADDIBA</a>.</p>
 </footer>
 
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", function() {
+  mainNav.classList.toggle("active");
+
+  const isOpen = mainNav.classList.contains("active");
+  menuToggle.setAttribute("aria-expanded", isOpen);
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Fermer le menu" : "Ouvrir le menu"
+  );
+});
+
+mainNav.querySelectorAll("a").forEach(function(link) {
+  link.addEventListener("click", function() {
+    mainNav.classList.remove("active");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+  });
+});
+</script>
+
 </body>
-</html>
+  </html>
+  
