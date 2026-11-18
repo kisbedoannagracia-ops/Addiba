@@ -105,7 +105,7 @@ body {
   border-radius: 3px;
 }
 
-/* ACCUEIL - NOUVELLE BANNIÈRE */
+/* BANNIÈRE D'ACCUEIL */
 .hero {
   background:
     radial-gradient(circle at 85% 20%, rgba(245,166,35,.16), transparent 35%),
@@ -153,20 +153,6 @@ body {
 .hero a:hover {
   background: white;
   transform: translateY(-3px);
-}
-
-@media(max-width: 850px) {
-  .hero {
-    padding: 75px 18px;
-  }
-
-  .hero h1 {
-    font-size: 36px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
 }
 
 /* SECTIONS */
@@ -218,6 +204,18 @@ section {
   border-radius: 12px;
   border-bottom: 4px solid #f5a623;
   box-shadow: 0 4px 18px rgba(0,0,0,.05);
+  transition: transform .3s, box-shadow .3s;
+}
+
+.category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 9px 22px rgba(0,0,0,.09);
+}
+
+.category-icon {
+  font-size: 34px;
+  display: block;
+  margin-bottom: 12px;
 }
 
 .category h3 {
@@ -326,6 +324,10 @@ footer a {
     font-size: 32px;
   }
 
+  .hero p {
+    font-size: 16px;
+  }
+
   section {
     padding: 55px 6%;
   }
@@ -350,12 +352,15 @@ footer a {
 
 <body>
 
+<!-- EN-TÊTE -->
 <header class="main-header">
 
-  <a href="index.html" class="addiba-logo" aria-label="ADDIBA">
+  <a href="index.html" class="addiba-logo" aria-label="Retour au site ADDIBA">
     <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
       <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z" fill="#ffffff"/>
+
       <path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z" fill="#20bd83"/>
+
       <path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z" fill="#20bd83" fill-rule="evenodd"/>
     </svg>
   </a>
@@ -384,8 +389,13 @@ footer a {
 
 <main>
 
+<!-- ACCUEIL -->
 <section class="hero" id="accueil">
-  <h1>Le commerce africain entre dans une nouvelle dimension avec <span>ZAAMARKET</span>.</h1>
+
+  <h1>
+    Le commerce africain entre dans une nouvelle dimension avec
+    <span>ZAAMARKET</span>.
+  </h1>
 
   <p>
     Découvrez une marketplace qui connecte les vendeurs
@@ -395,9 +405,12 @@ footer a {
 
   <a href="#categories">Découvrir nos catégories</a>
   <a href="#apropos">En savoir plus</a>
+
 </section>
 
+<!-- À PROPOS -->
 <section id="apropos">
+
   <div class="section-title">
     <h2>À propos de ZAAMARKET</h2>
     <span></span>
@@ -410,9 +423,12 @@ footer a {
     rendre les produits plus accessibles
     et connecter les opportunités à travers l'Afrique.
   </p>
+
 </section>
 
+<!-- CATÉGORIES -->
 <section class="categories" id="categories">
+
   <div class="section-title">
     <h2>Nos catégories</h2>
     <span></span>
@@ -422,39 +438,48 @@ footer a {
   <div class="category-grid">
 
     <div class="category">
+      <span class="category-icon">👗</span>
       <h3>Mode et vêtements</h3>
       <p>Vêtements et accessoires.</p>
     </div>
 
     <div class="category">
+      <span class="category-icon">👟</span>
       <h3>Chaussures</h3>
       <p>Des styles pour tous.</p>
     </div>
 
     <div class="category">
+      <span class="category-icon">✨</span>
       <h3>Beauté et soins</h3>
       <p>Beauté et bien-être.</p>
     </div>
 
     <div class="category">
+      <span class="category-icon">📱</span>
       <h3>Téléphones</h3>
       <p>Téléphones et accessoires.</p>
     </div>
 
     <div class="category">
+      <span class="category-icon">🏠</span>
       <h3>Maison et cuisine</h3>
       <p>Équipez votre quotidien.</p>
     </div>
 
     <div class="category">
+      <span class="category-icon">💻</span>
       <h3>Électronique</h3>
       <p>Technologies et équipements.</p>
     </div>
 
   </div>
+
 </section>
 
+<!-- AVANTAGES -->
 <section id="avantages">
+
   <div class="section-title">
     <h2>Pourquoi ZAAMARKET ?</h2>
     <span></span>
@@ -483,21 +508,35 @@ footer a {
     </div>
 
   </div>
+
 </section>
 
+<!-- RETOUR VERS ADDIBA -->
 <section class="cta">
+
   <h2>Le commerce sans frontières.</h2>
+
   <p>ZAAMARKET, une marque du groupe ADDIBA.</p>
+
   <a href="index.html">Découvrir ADDIBA</a>
+
 </section>
 
 </main>
 
+<!-- PIED DE PAGE -->
 <footer>
+
   <p>© 2026 ZAAMARKET. Tous droits réservés.</p>
-  <p>Une marque du groupe <a href="index.html">ADDIBA</a>.</p>
+
+  <p>
+    Une marque du groupe
+    <a href="index.html">ADDIBA</a>.
+  </p>
+
 </footer>
 
+<!-- MENU MOBILE -->
 <script>
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
@@ -506,6 +545,7 @@ menuToggle.addEventListener("click", function() {
   mainNav.classList.toggle("active");
 
   const isOpen = mainNav.classList.contains("active");
+
   menuToggle.setAttribute("aria-expanded", isOpen);
   menuToggle.setAttribute(
     "aria-label",
@@ -524,4 +564,4 @@ mainNav.querySelectorAll("a").forEach(function(link) {
 
 </body>
   </html>
-  
+      
