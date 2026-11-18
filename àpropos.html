@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101f3c">
+
+<title>À propos | ADDIBA</title>
+<meta name="description" content="Découvrez ADDIBA, sa vision, sa mission, ses valeurs et son ambition de développer plusieurs marques.">
+
+<style>
+:root {
+  --navy: #101f3c;
+  --navy-light: #1b365c;
+  --green: #20bd83;
+  --white: #fff;
+  --background: #f5f7fb;
+  --text: #17243b;
+  --muted: #657187;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* HEADER */
+header {
+  background: var(--navy);
+  padding: 12px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 18px rgba(0,0,0,.12);
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.brand-logo svg {
+  width: 45px;
+  height: 45px;
+}
+
+.brand-logo strong {
+  font-size: 26px;
+  letter-spacing: 2px;
+}
+
+.brand-logo strong span {
+  color: var(--green);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+nav a {
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  transition: .3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--green);
+}
+
+.menu-toggle {
+  display: none;
+  color: white;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.4);
+  padding: 6px 11px;
+  font-size: 23px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(32,189,131,.15), transparent 30%),
+    linear-gradient(135deg, var(--navy), var(--navy-light));
+  color: white;
+  text-align: center;
+  padding: 85px 20px;
+}
+
+.hero .label {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 48px);
+  margin: 15px 0;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero p {
+  max-width: 750px;
+  margin: auto;
+  color: #dce5f3;
+  font-size: 17px;
+}
+
+/* GENERAL SECTIONS */
+.section {
+  padding: 75px 7%;
+}
+
+.section-title {
+  color: var(--navy);
+  font-size: clamp(27px, 4vw, 34px);
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.section-label {
+  text-align: center;
+  color: #159c6b;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-intro {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* PRESENTATION */
+.presentation {
+  background: white;
+}
+
+.presentation-content {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.presentation-content p {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* OBJECTIFS */
+.objectives {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  max-width: 1050px;
+  margin: 40px auto 0;
+}
+
+.objective-card {
+  background: white;
+  border-radius: 13px;
+  padding: 30px 23px;
+  text-align: center;
+  border-bottom: 4px solid var(--green);
+  box-shadow: 0 6px 22px rgba(16,31,60,.05);
+  transition: .3s;
+}
+
+.objective-card:hover {
+  transform: translateY(-6px);
+}
+
+.symbol {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(32,189,131,.12);
+  color: #159c6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.objective-card h3 {
+  color: var(--navy);
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.objective-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ROLE */
+.role {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+}
+
+.role .section-title {
+  color: white;
+}
+
+.role .section-intro {
+  color: #dce5f3;
+}
+
+.role-list {
+  max-width: 800px;
+  margin: 30px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.role-item {
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.05);
+  padding: 20px;
+  border-radius: 10px;
+  color: #e5edf8;
+}
+
+.role-item span {
+  color: var(--green);
+  font-weight: bold;
+  margin-right: 7px;
+}
+
+/* VALEURS */
+.values {
+  background: white;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+  margin: 35px auto 0;
+}
+
+.value-item {
+  text-align: center;
+  padding: 22px 12px;
+  border: 1px solid #e8edf3;
+  border-radius: 10px;
+  color: var(--navy);
+  font-weight: bold;
+}
+
+.value-item span {
+  display: block;
+  color: var(--green);
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+/* CONCLUSION */
+.conclusion {
+  text-align: center;
+  padding: 70px 20px;
+  background: #edf7f3;
+}
+
+.conclusion h2 {
+  color: var(--navy);
+  font-size: 29px;
+  margin-bottom: 12px;
+}
+
+.conclusion p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+  color: var(--muted);
+}
+
+.button {
+  display: inline-block;
+  padding: 13px 26px;
+  background: var(--green);
+  color: var(--navy);
+  border-radius: 7px;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.button:hover {
+  background: var(--navy);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* FOOTER */
+footer {
+  background: #0b172d;
+  color: #dce5f3;
+  text-align: center;
+  padding: 30px 15px;
+  font-size: 14px;
+}
+
+footer strong {
+  color: var(--green);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 15px 0;
+}
+
+.footer-links a {
+  color: #dce5f3;
+}
+
+.footer-links a:hover {
+  color: var(--green);
+}
+
+footer .slogan {
+  color: #9eabc0;
+  font-size: 13px;
+}
+
+/* MOBILE */
+@media(max-width: 850px) {
+  header {
+    padding: 12px 5%;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    padding: 12px 5% 20px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav a {
+    padding: 12px 5px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+}
+
+@media(max-width: 600px) {
+  .brand-logo svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-logo strong {
+    font-size: 23px;
+  }
+
+  .hero {
+    padding: 65px 18px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .section {
+    padding: 55px 6%;
+  }
+
+  .objectives {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <a href="index.html" class="brand-logo" aria-label="ADDIBA - Accueil">
+    <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Emblème ADDIBA">
+      <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z" fill="#ffffff"/>
+      <path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z" fill="#20bd83"/>
+      <path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z" fill="#20bd83" fill-rule="evenodd"/>
+    </svg>
+    <strong>ADDI<span>BA</span></strong>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+
+  <nav id="mainNav">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#marques">Nos marques</a>
+    <a href="apropos.html" class="active">À propos</a>
+    <a href="index.html#vision-mission">Vision et mission</a>
+    <a href="connexion.html">Espace fondateur</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="label">Découvrez notre groupe</div>
+  <h1>À propos de <span>ADDIBA</span></h1>
+  <p>
+    Un groupe. Plusieurs marques. Une vision commune.
+    Découvrez notre identité, notre ambition et les principes
+    qui guident notre développement.
+  </p>
+</section>
+
+<section class="section presentation">
+  <div class="presentation-content">
+    <div class="section-label">Notre identité</div>
+    <h2 class="section-title">Qui sommes-nous ?</h2>
+
+    <p>
+      ADDIBA est une société mère qui porte une ambition :
+      construire et développer un ensemble de marques
+      complémentaires dans différents secteurs d'activité.
+    </p>
+
+    <p>
+      À travers son organisation et ses projets, ADDIBA souhaite
+      favoriser l'innovation, l'esprit d'entreprise et la création
+      de solutions répondant aux besoins des populations.
+    </p>
+
+    <p>
+      Notre approche repose sur une vision à long terme :
+      développer progressivement des activités solides,
+      responsables et tournées vers l'avenir.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">Notre ambition</div>
+  <h2 class="section-title">Ce qui nous anime</h2>
+  <p class="section-intro">
+    Nous avançons avec des objectifs clairs pour construire
+    un groupe cohérent et durable.
+  </p>
+
+  <div class="objectives">
+
+    <div class="objective-card">
+      <div class="symbol">◎</div>
+      <h3>Développer</h3>
+      <p>
+        Faire grandir plusieurs marques et accompagner
+        leur évolution dans leurs domaines respectifs.
+      </p>
+    </div>
+
+    <div class="objective-card">
+      <div class="symbol">✦</div>
+      <h3>Innover</h3>
+      <p>
+        Encourager les idées nouvelles et rechercher
+        des solutions utiles et adaptées.
+      </p>
+    </div>
+
+    <div class="objective-card">
+      <div class="symbol">◇</div>
+      <h3>Construire</h3>
+      <p>
+        Poser des bases solides pour bâtir un groupe
+        ambitieux et durable.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section role">
+  <div class="section-label">Notre organisation</div>
+  <h2 class="section-title">Le rôle de ADDIBA</h2>
+  <p class="section-intro">
+    En tant que société mère, ADDIBA a vocation à donner
+    une direction commune à ses marques et à accompagner
+    leur développement.
+  </p>
+
+  <div class="role-list">
+    <div class="role-item"><span>01.</span> Définir une vision commune</div>
+    <div class="role-item"><span>02.</span> Coordonner les projets du groupe</div>
+    <div class="role-item"><span>03.</span> Accompagner les marques</div>
+    <div class="role-item"><span>04.</span> Encourager l'innovation</div>
+  </div>
+</section>
+
+<section class="section values">
+  <div class="section-label">Nos principes</div>
+  <h2 class="section-title">Les valeurs qui nous guident</h2>
+  <p class="section-intro">
+    Nos valeurs constituent le socle de notre vision
+    et orientent notre manière de construire l'avenir.
+  </p>
+
+  <div class="values-grid">
+    <div class="value-item"><span>✦</span>Innovation</div>
+    <div class="value-item"><span>◆</span>Excellence</div>
+    <div class="value-item"><span>◎</span>Confiance</div>
+    <div class="value-item"><span>↗</span>Ambition</div>
+    <div class="value-item"><span>◇</span>Responsabilité</div>
+  </div>
+</section>
+
+<section class="conclusion">
+  <h2>Construisons l'avenir ensemble</h2>
+  <p>
+    ADDIBA est une ambition en construction.
+    Nous croyons au potentiel des idées, à la force
+    de l'innovation et à la valeur des projets durables.
+  </p>
+  <a href="index.html#marques" class="button">Découvrir nos marques</a>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 <strong>ADDIBA</strong>. Tous droits réservés.</p>
+
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="apropos.html">À propos</a>
+    <a href="index.html#marques">Nos marques</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p class="slogan">Un groupe. Plusieurs marques. Une vision commune.</p>
+</footer>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", function() {
+  const isOpen = mainNav.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", isOpen);
+  menuToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+  menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+mainNav.querySelectorAll("a").forEach(function(link) {
+  link.addEventListener("click", function() {
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+    menuToggle.textContent = "☰";
+  });
+});
+</script>
+
+</body>
+</html>
+
