@@ -1,405 +1,664 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tableau de bord | ADDIBA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101f3c">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<title>Administration | ADDIBA</title>
 
-    body {
-      background: #f2f5f9;
-      color: #17243b;
-    }
+<style>
+:root {
+  --navy:#101f3c;
+  --navy2:#192e50;
+  --green:#20bd83;
+  --bg:#f3f6fa;
+  --white:#fff;
+  --text:#19263d;
+  --muted:#718096;
+  --border:#e7ecf2;
+}
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+body {
+  background:var(--bg);
+  color:var(--text);
+}
+button,a { font:inherit; }
+a { text-decoration:none; }
 
-    header {
-      background: #101f3c;
-      color: white;
-      padding: 20px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
+/* BARRE LATERALE */
+.sidebar {
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:255px;
+  background:var(--navy);
+  color:white;
+  padding:25px 17px;
+  display:flex;
+  flex-direction:column;
+  z-index:100;
+}
+.logo {
+  font-size:27px;
+  font-weight:bold;
+  letter-spacing:2px;
+  padding:5px 12px 30px;
+}
+.logo span { color:var(--green); }
+.sidebar-label {
+  color:#91a1b9;
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:1.5px;
+  padding:12px;
+  text-transform:uppercase;
+}
+.menu {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.menu a {
+  color:#dce5f2;
+  padding:12px;
+  border-radius:8px;
+  font-size:14px;
+  transition:.2s;
+}
+.menu a:hover,
+.menu a.active {
+  background:rgba(32,189,131,.16);
+  color:var(--green);
+}
+.sidebar-bottom {
+  margin-top:auto;
+  border-top:1px solid #34445e;
+  padding-top:18px;
+}
+#logout {
+  width:100%;
+  padding:12px;
+  background:rgba(255,255,255,.08);
+  color:white;
+  border:0;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+#logout:hover { background:#9e3434; }
 
-    .logo {
-      color: #36c98a;
-      font-size: 27px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
+/* CONTENU */
+.main {
+  margin-left:255px;
+  min-height:100vh;
+}
+.topbar {
+  background:white;
+  padding:18px 35px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  border-bottom:1px solid var(--border);
+}
+.topbar h2 {
+  color:var(--navy);
+  font-size:20px;
+}
+.topbar small { color:var(--muted); }
+.profile {
+  background:#e8f8f1;
+  color:#147a54;
+  padding:9px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+}
+.content {
+  max-width:1400px;
+  padding:32px;
+  margin:auto;
+}
+.welcome {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:25px;
+}
+.welcome h1 {
+  color:var(--navy);
+  font-size:28px;
+  margin-bottom:7px;
+}
+.welcome p { color:var(--muted); }
+.date-label {
+  color:#16875d;
+  background:#e5f8ef;
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:bold;
+}
+.notice {
+  background:#e8f8f1;
+  color:#147a54;
+  padding:14px 17px;
+  border-radius:9px;
+  margin-bottom:27px;
+  font-size:14px;
+}
+.notice.error {
+  background:#fff0ef;
+  color:#a52f2a;
+}
 
-    .founder {
-      font-size: 14px;
-    }
+/* STATISTIQUES */
+.section-heading {
+  color:var(--navy);
+  font-size:19px;
+  margin-bottom:18px;
+}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:17px;
+  margin-bottom:35px;
+}
+.stat-card {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:23px;
+  box-shadow:0 3px 12px rgba(16,31,60,.035);
+}
+.stat-icon {
+  width:39px;
+  height:39px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#e8f8f1;
+  color:#16875d;
+  border-radius:9px;
+  font-size:19px;
+  margin-bottom:17px;
+}
+.stat-card p {
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:9px;
+}
+.stat-card strong {
+  color:var(--navy);
+  font-size:29px;
+}
 
-    #logout {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 7px;
-      background: #20a875;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
+/* BLOCS */
+.panel {
+  background:white;
+  padding:24px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  margin-bottom:27px;
+  box-shadow:0 3px 12px rgba(16,31,60,.035);
+}
+.panel-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+.panel-header h2 {
+  color:var(--navy);
+  font-size:18px;
+}
+.panel-header span {
+  color:var(--muted);
+  font-size:12px;
+}
+.brand-list {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+}
+.brand-card {
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:20px;
+}
+.brand-letter {
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--navy);
+  color:var(--green);
+  font-size:20px;
+  font-weight:bold;
+  border-radius:9px;
+  margin-bottom:13px;
+}
+.brand-card h3 {
+  color:var(--navy);
+  font-size:17px;
+  margin-bottom:6px;
+}
+.brand-card p {
+  color:var(--muted);
+  font-size:13px;
+}
+.brand-tag {
+  display:inline-block;
+  margin-top:14px;
+  color:#147a54;
+  background:#e8f8f1;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+.empty {
+  color:var(--muted);
+  padding:15px 0;
+  font-size:14px;
+}
 
-    .container {
-      padding: 35px;
-      max-width: 1200px;
-      margin: auto;
-    }
+/* MODULES */
+.modules {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:17px;
+}
+.module {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:21px;
+  transition:.2s;
+}
+.module:hover {
+  transform:translateY(-3px);
+  border-color:#b7e9d4;
+}
+.module-icon {
+  font-size:23px;
+  margin-bottom:13px;
+}
+.module h3 {
+  color:var(--navy);
+  font-size:16px;
+  margin-bottom:8px;
+}
+.module p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  min-height:42px;
+}
+.module-status {
+  display:inline-block;
+  margin-top:15px;
+  color:#9a6a18;
+  background:#fff5df;
+  padding:6px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+.module-status.ready {
+  color:#147a54;
+  background:#e8f8f1;
+}
+footer {
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  font-size:12px;
+}
 
-    .welcome {
-      margin-bottom: 30px;
-    }
-
-    .welcome h1 {
-      margin-bottom: 10px;
-      color: #101f3c;
-    }
-
-    .welcome p {
-      color: #68758a;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 35px;
-    }
-
-    .stat-card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px #0000000b;
-    }
-
-    .stat-card h3 {
-      color: #68758a;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-
-    .stat-card strong {
-      color: #101f3c;
-      font-size: 28px;
-    }
-
-    .section-title {
-      margin-bottom: 20px;
-      color: #101f3c;
-    }
-
-    .modules {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .module {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      border-left: 4px solid #36c98a;
-      box-shadow: 0 3px 12px #0000000b;
-    }
-
-    .module h3 {
-      margin-bottom: 12px;
-      color: #101f3c;
-    }
-
-    .module p {
-      color: #68758a;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .module span {
-      display: inline-block;
-      margin-top: 18px;
-      color: #16875d;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .brands {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      margin-top: 35px;
-    }
-
-    .brand-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .brand-tag {
-      background: #e7f8f0;
-      color: #147a54;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-
-    #message {
-      margin: 15px 0;
-      color: #b33a32;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #68758a;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-    }
-  </style>
+/* MOBILE */
+.mobile-top {
+  display:none;
+}
+@media(max-width:1050px) {
+  .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .modules { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:700px) {
+  .sidebar {
+    width:100%;
+    height:auto;
+    bottom:auto;
+    position:relative;
+    padding:13px 15px;
+  }
+  .logo { padding:3px 5px 12px; }
+  .menu {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .menu a { padding:10px; font-size:13px; }
+  .sidebar-label { padding:8px 5px; }
+  .sidebar-bottom {
+    margin-top:12px;
+    padding-top:10px;
+  }
+  .main { margin-left:0; }
+  .topbar { padding:15px 18px; }
+  .content { padding:20px 15px; }
+  .welcome {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .welcome h1 { font-size:24px; }
+  .stats { gap:11px; }
+  .stat-card { padding:16px; }
+  .stat-card strong { font-size:24px; }
+  .brand-list { grid-template-columns:1fr; }
+  .modules { grid-template-columns:1fr; }
+  .panel { padding:18px; }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">ADDIBA</div>
-    <div class="founder">
-      Espace Fondateur
-      <span id="founder-name"></span>
+<aside class="sidebar">
+
+  <div class="logo">ADDI<span>BA</span></div>
+
+  <div class="sidebar-label">Administration</div>
+
+  <nav class="menu">
+    <a href="#overview" class="active">▦ Vue générale</a>
+    <a href="#marques">◇ Marques</a>
+    <a href="#direction">♙ Direction</a>
+    <a href="#finances">◉ Finances</a>
+    <a href="#rh">♧ Ressources humaines</a>
+    <a href="#projets">▤ Projets</a>
+    <a href="#documents">▣ Documents</a>
+    <a href="#messages">✉ Messages</a>
+    <a href="#parametres">⚙ Paramètres</a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <button id="logout">↪ Déconnexion</button>
+  </div>
+
+</aside>
+
+<div class="main">
+
+  <header class="topbar">
+    <div>
+      <h2>ADDIBA | Administration</h2>
+      <small>Espace réservé au fondateur</small>
     </div>
-    <button id="logout">Déconnexion</button>
+    <div class="profile" id="founder-name">Fondateur</div>
   </header>
 
-  <main class="container">
+  <main class="content">
 
-    <section class="welcome">
-      <h1>Tableau de bord</h1>
-      <p>Bienvenue dans l'espace de gestion de ADDIBA.</p>
-      <p id="message">Chargement des informations...</p>
+    <section class="welcome" id="overview">
+      <div>
+        <h1>Tableau de bord</h1>
+        <p>Bienvenue dans votre espace de gestion ADDIBA.</p>
+      </div>
+      <div class="date-label">Espace fondateur</div>
     </section>
+
+    <div id="message" class="notice">
+      Chargement des informations...
+    </div>
+
+    <h2 class="section-heading">Vue générale du groupe</h2>
 
     <section class="stats">
 
       <div class="stat-card">
-        <h3>Marques du groupe</h3>
+        <div class="stat-icon">◇</div>
+        <p>Marques enregistrées</p>
         <strong id="brands-count">—</strong>
       </div>
 
       <div class="stat-card">
-        <h3>Projets enregistrés</h3>
+        <div class="stat-icon">▤</div>
+        <p>Projets enregistrés</p>
         <strong id="projects-count">—</strong>
       </div>
 
       <div class="stat-card">
-        <h3>Employés enregistrés</h3>
+        <div class="stat-icon">♙</div>
+        <p>Employés enregistrés</p>
         <strong id="employees-count">—</strong>
       </div>
 
       <div class="stat-card">
-        <h3>Documents enregistrés</h3>
+        <div class="stat-icon">▣</div>
+        <p>Documents enregistrés</p>
         <strong id="documents-count">—</strong>
       </div>
 
     </section>
 
-    <h2 class="section-title">Gestion de ADDIBA</h2>
+    <section class="panel" id="marques">
+      <div class="panel-header">
+        <h2>Les marques du groupe</h2>
+        <span>Informations issues de Supabase</span>
+      </div>
+
+      <div class="brand-list" id="brand-list">
+        <p class="empty">Chargement des marques...</p>
+      </div>
+    </section>
+
+    <h2 class="section-heading">Gestion de ADDIBA</h2>
 
     <section class="modules">
 
-      <div class="module">
-        <h3>Gestion des marques</h3>
-        <p>Suivre et organiser les marques de ADDIBA.</p>
-        <span>Voir les marques ci-dessous</span>
-      </div>
-
-      <div class="module">
+      <article class="module" id="direction">
+        <div class="module-icon">♙</div>
         <h3>Direction</h3>
-        <p>Organiser les responsables et les fonctions de direction.</p>
-        <span>Module à construire</span>
-      </div>
+        <p>Organisation de la direction, des responsables et des fonctions du groupe.</p>
+        <span class="module-status">À développer</span>
+      </article>
 
-      <div class="module">
+      <article class="module" id="finances">
+        <div class="module-icon">◉</div>
         <h3>Finances</h3>
-        <p>Préparer le suivi financier de la société mère.</p>
-        <span>Module à construire</span>
-      </div>
+        <p>Suivi des recettes, dépenses, budgets et indicateurs financiers.</p>
+        <span class="module-status">À développer</span>
+      </article>
 
-      <div class="module">
+      <article class="module" id="rh">
+        <div class="module-icon">♧</div>
         <h3>Ressources humaines</h3>
-        <p>Gérer les employés et les collaborateurs.</p>
-        <span>Module à construire</span>
-      </div>
+        <p>Organisation des employés, collaborateurs et responsabilités.</p>
+        <span class="module-status">À développer</span>
+      </article>
 
-      <div class="module">
+      <article class="module" id="projets">
+        <div class="module-icon">▤</div>
         <h3>Projets</h3>
-        <p>Suivre les projets et leur évolution.</p>
-        <span>Module à construire</span>
-      </div>
+        <p>Suivi des projets, des étapes et de leur progression.</p>
+        <span class="module-status">À développer</span>
+      </article>
 
-      <div class="module">
+      <article class="module" id="documents">
+        <div class="module-icon">▣</div>
         <h3>Documents</h3>
-        <p>Organiser les documents administratifs du groupe.</p>
-        <span>Module à construire</span>
-      </div>
+        <p>Organisation des documents administratifs et institutionnels.</p>
+        <span class="module-status">À développer</span>
+      </article>
 
-    </section>
+      <article class="module" id="messages">
+        <div class="module-icon">✉</div>
+        <h3>Messages et partenariats</h3>
+        <p>Centralisation des demandes, propositions et communications.</p>
+        <span class="module-status">À développer</span>
+      </article>
 
-    <section class="brands" id="marques">
-      <h2>Les marques de ADDIBA</h2>
+      <article class="module" id="parametres">
+        <div class="module-icon">⚙</div>
+        <h3>Paramètres</h3>
+        <p>Configuration et informations du compte fondateur.</p>
+        <span class="module-status">À développer</span>
+      </article>
 
-      <div class="brand-list" id="brand-list">
-        Chargement des marques...
-      </div>
     </section>
 
   </main>
 
   <footer>
-    © 2026 ADDIBA — Espace de gestion
+    © 2026 ADDIBA — Un groupe. Plusieurs marques. Une vision commune.
   </footer>
 
-  <script type="module">
+</div>
 
-    import { supabase } from "./supabase.js";
+<script type="module">
+import { supabase } from "./supabase.js";
 
-    const message = document.getElementById("message");
+const message = document.getElementById("message");
 
-    function afficherErreur(texte) {
-      message.textContent = texte;
-    }
+function afficherErreur(texte) {
+  message.textContent = texte;
+  message.classList.add("error");
+}
 
-    function afficherNombre(elementId, nombre) {
-      document.getElementById(elementId).textContent = nombre;
-    }
+function afficherNombre(id, nombre) {
+  document.getElementById(id).textContent = nombre;
+}
 
-    function securiserTexte(texte) {
-      return String(texte).replace(/[&<>"']/g, function(caractere) {
-        return {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#039;"
-        }[caractere];
-      });
-    }
+function securiserTexte(texte) {
+  return String(texte).replace(/[&<>"']/g, function(c) {
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[c];
+  });
+}
 
-    async function chargerTableauDeBord() {
+async function chargerTableauDeBord() {
+  try {
+    const { data:userData, error:userError } =
+      await supabase.auth.getUser();
 
-      try {
-
-        const { data: userData, error: userError } =
-          await supabase.auth.getUser();
-
-        if (userError || !userData.user) {
-          window.location.href = "connexion.html";
-          return;
-        }
-
-        const { data: profil, error: profilError } = await supabase
-          .from("profils")
-          .select("nom_complet, role")
-          .eq("id", userData.user.id)
-          .single();
-
-        if (profilError || !profil || profil.role !== "fondateur") {
-          await supabase.auth.signOut();
-          window.location.href = "connexion.html";
-          return;
-        }
-
-        document.getElementById("founder-name").textContent =
-          " — " + (profil.nom_complet || "Fondateur");
-
-        const resultats = await Promise.all([
-
-          supabase.from("marques").select("*", {
-            count: "exact",
-            head: true
-          }),
-
-          supabase.from("projets").select("*", {
-            count: "exact",
-            head: true
-          }),
-
-          supabase.from("employes").select("*", {
-            count: "exact",
-            head: true
-          }),
-
-          supabase.from("documents").select("*", {
-            count: "exact",
-            head: true
-          }),
-
-          supabase.from("marques").select("nom").order("nom")
-        ]);
-
-        const erreurs = resultats.filter(resultat => resultat.error);
-
-        if (erreurs.length > 0) {
-          throw new Error(
-            "Impossible de charger certaines données. Vérifie les autorisations Supabase."
-          );
-        }
-
-        afficherNombre("brands-count", resultats[0].count ?? 0);
-        afficherNombre("projects-count", resultats[1].count ?? 0);
-        afficherNombre("employees-count", resultats[2].count ?? 0);
-        afficherNombre("documents-count", resultats[3].count ?? 0);
-
-        const brandList = document.getElementById("brand-list");
-        const marques = resultats[4].data || [];
-
-        if (marques.length === 0) {
-          brandList.textContent = "Aucune marque enregistrée.";
-        } else {
-          brandList.innerHTML = marques.map(marque =>
-            `<span class="brand-tag">${securiserTexte(marque.nom)}</span>`
-          ).join("");
-        }
-
-        message.textContent = "Les informations ADDIBA sont à jour.";
-
-      } catch (error) {
-
-        afficherErreur(error.message || "Erreur de chargement.");
-
-      }
-
-    }
-
-    document.getElementById("logout").addEventListener("click", async () => {
-
-      const { error } = await supabase.auth.signOut();
-
-      if (error) {
-        afficherErreur("Impossible de se déconnecter. Réessaie.");
-        return;
-      }
-
+    if (userError || !userData.user) {
       window.location.href = "connexion.html";
+      return;
+    }
 
+    const { data:profil, error:profilError } = await supabase
+      .from("profils")
+      .select("nom_complet, role")
+      .eq("id", userData.user.id)
+      .single();
+
+    if (profilError || !profil || profil.role !== "fondateur") {
+      await supabase.auth.signOut();
+      window.location.href = "connexion.html";
+      return;
+    }
+
+    document.getElementById("founder-name").textContent =
+      profil.nom_complet || "Fondateur";
+
+    const resultats = await Promise.all([
+      supabase.from("marques").select("*", {
+        count:"exact", head:true
+      }),
+      supabase.from("projets").select("*", {
+        count:"exact", head:true
+      }),
+      supabase.from("employes").select("*", {
+        count:"exact", head:true
+      }),
+      supabase.from("documents").select("*", {
+        count:"exact", head:true
+      }),
+      supabase.from("marques").select("nom").order("nom")
+    ]);
+
+    const erreurs = resultats.filter(r => r.error);
+
+    if (erreurs.length > 0) {
+      throw new Error(
+        "Impossible de charger certaines données. Vérifie les autorisations Supabase."
+      );
+    }
+
+    afficherNombre("brands-count", resultats[0].count ?? 0);
+    afficherNombre("projects-count", resultats[1].count ?? 0);
+    afficherNombre("employees-count", resultats[2].count ?? 0);
+    afficherNombre("documents-count", resultats[3].count ?? 0);
+
+    const brandList = document.getElementById("brand-list");
+    const marques = resultats[4].data || [];
+
+    if (marques.length === 0) {
+      brandList.innerHTML =
+        '<p class="empty">Aucune marque enregistrée.</p>';
+    } else {
+      brandList.innerHTML = marques.map(marque => `
+        <article class="brand-card">
+          <div class="brand-letter">
+            ${securiserTexte(String(marque.nom || "?").charAt(0).toUpperCase())}
+          </div>
+          <h3>${securiserTexte(marque.nom || "Sans nom")}</h3>
+          <p>Marque enregistrée dans le groupe ADDIBA.</p>
+          <span class="brand-tag">Enregistrée</span>
+        </article>
+      `).join("");
+    }
+
+    message.textContent =
+      "Les informations du groupe ADDIBA sont à jour.";
+    message.classList.remove("error");
+
+  } catch(error) {
+    afficherErreur(error.message || "Erreur de chargement.");
+  }
+}
+
+document.getElementById("logout").addEventListener(
+  "click",
+  async function() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      afficherErreur("Impossible de se déconnecter. Réessaie.");
+      return;
+    }
+
+    window.location.href = "connexion.html";
+  }
+);
+
+document.querySelectorAll(".menu a").forEach(link => {
+  link.addEventListener("click", function() {
+    document.querySelectorAll(".menu a").forEach(item => {
+      item.classList.remove("active");
     });
+    this.classList.add("active");
+  });
+});
 
-    chargerTableauDeBord();
-
-  </script>
+chargerTableauDeBord();
+</script>
 
 </body>
-</html>
+  </html>
+      
