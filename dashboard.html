@@ -926,10 +926,166 @@ function preparerModification(marque){
     behavior:"smooth"
   });
 }
-
 brandForm.addEventListener("submit",async function(evenement){
   evenement.preventDefault();
   effacerMessage();
 
   if(!utilisateurAutorise){
-    afficherMessage("Accès non autoris
+    afficherMessage("Accès non autorisé.",true);
+    return;
+  }
+
+  const nom = brandName.value.trim();
+  const description = brandDescription.value.trim();
+  const statut = brandStatus.value;
+
+  if(!nom){
+    afficherMessage("Veuillez saisir le nom de la marque.",true);
+    return;
+  }
+
+  const modification = marqueEnModification !== null;
+
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Enregistrement...";
+
+  try{
+    let resultat;
+
+    if(modification){
+      resultat = await supabase
+        .from("marques")
+        .update({nom,description,statut})
+        .eq("id",marqueEnModification);
+    }else{
+      resultat = await supabase
+        .from("marques")
+        .insert([{nom,description,statut}]);
+    }
+
+    if(resultat.error) throw resultat.error;
+
+    viderFormulaire();
+
+    afficherMessage(
+      modification
+        ? "Marque modifiée avec succès."
+        : "Marque ajoutée avec succès."
+    );
+
+    await chargerMarques();
+    await chargerStatistiques();
+
+  }catch(error){
+    afficherMessage("Erreur : "+error.message,true);
+  }finally{
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Enregistrer la marque";
+  }
+});
+
+cancelBtn.addEventListener("click",function(){
+  viderFormulaire();
+  effacerMessage();
+});
+
+brandList.addEventListener("click",async function(evenement){
+  const bouton = evenement.target.closest("button[data-action]");
+  if(!bouton || !utilisateurAutorise) return;
+
+  const id = bouton.dataset.id;
+  const action = bouton.dataset.action;
+
+  const marque = marquesActuelles.find(function(m){
+    return String(m.id) === String(id);
+  });
+
+  if(!marque) return;
+
+  try{
+    if(action === "edit"){
+      preparerModification(marque);
+      return;
+    }
+
+    if(action === "toggle"){
+      const nouveauStatut =
+        marque.statut === "active" ? "inactive" : "active";
+
+      const {error} = await supabase
+        .from("marques")
+        .update({statut:nouveauStatut})
+        .eq("id",id);
+
+      if(error) throw error;
+
+      afficherMessage("Statut de la marque modifié.");
+    }
+
+    if(action === "delete"){
+      if(!confirm("Voulez-vous vraiment supprimer cette marque ?")){
+        return;
+      }
+
+      const {error} = await supabase
+        .from("marques")
+        .delete()
+        .eq("id",id);
+
+      if(error) throw error;
+
+      afficherMessage("Marque supprimée avec succès.");
+    }
+
+    await chargerMarques();
+    await chargerStatistiques();
+
+  }catch(error){
+    afficherMessage("Erreur : "+error.message,true);
+  }
+});
+
+document.getElementById("sidebarLogout").addEventListener("click",async function(){
+  if(!confirm("Voulez-vous vraiment vous déconnecter ?")) return;
+
+  const {error} = await supabase.auth.signOut();
+
+  if(error){
+    afficherMessage("Erreur de déconnexion : "+error.message,true);
+    return;
+  }
+
+  window.location.href = "connexion.html";
+});
+
+async function initialiserDashboard(){
+  brandList.innerHTML =
+    '<div class="empty">Vérification de la connexion...</div>';
+
+  try{
+    const autorise = await verifierFondateur();
+
+    if(!autorise) return;
+
+    await Promise.all([
+      chargerMarques(),
+      chargerStatistiques()
+    ]);
+
+  }catch(error){
+    console.error("Erreur ADDIBA :",error);
+
+    brandList.innerHTML =
+      '<div class="empty">Erreur : '+
+      securiserTexte(error.message)+
+      '</div>';
+
+    afficherMessage(
+      "Impossible de charger le tableau de bord : "+error.message,
+      true
+    );
+  }
+}
+
+initialiserDashboard();
+</script>
