@@ -84,7 +84,7 @@ button,input,textarea,select{font:inherit}
   box-shadow:0 3px 12px rgba(16,31,60,.04);
 }
 .stat-card p{color:var(--muted);font-size:13px;margin-bottom:13px}
-.stat-card h2{color:var(--navy);font-size:27px;overflow-wrap:anywhere}
+.stat-card h2{color:var(--navy);font-size:24px;overflow-wrap:anywhere}
 
 .section{
   background:white;padding:25px;border-radius:12px;
@@ -116,7 +116,6 @@ button,input,textarea,select{font:inherit}
 .btn-primary{background:var(--green);color:var(--navy)}
 .btn-secondary{background:#e8edf4;color:var(--navy)}
 .btn-edit{background:#e7f0ff;color:#2055a0}
-.btn-toggle{background:#fff4df;color:#95600b}
 .btn-delete{background:#ffe8e9;color:#b52c37}
 .btn:disabled{opacity:.6;cursor:not-allowed}
 
@@ -131,7 +130,7 @@ button,input,textarea,select{font:inherit}
 .status-active{background:#e1f8ed;color:#13784e}
 .status-inactive{background:#ffe8e9;color:#b52c37}
 .status-preparation{background:#fff2d9;color:#93600b}
-.brand-description{color:var(--muted);font-size:13px;line-height:1.6;min-height:40px}
+.brand-description{color:var(--muted);font-size:13px;line-height:1.6;min-height:30px}
 .brand-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .brand-actions .btn{font-size:12px;padding:9px 11px}
 
@@ -140,7 +139,6 @@ button,input,textarea,select{font:inherit}
   color:var(--muted);border:1px dashed var(--border);
   border-radius:9px;overflow-wrap:anywhere;
 }
-
 .finance-stats{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:15px;margin-bottom:25px;
@@ -218,7 +216,7 @@ button,input,textarea,select{font:inherit}
   .welcome h1{font-size:23px}
   .stats{gap:10px}
   .stat-card{padding:16px}
-  .stat-card h2{font-size:22px}
+  .stat-card h2{font-size:19px}
   .modules,.brand-list,.form-grid{grid-template-columns:1fr}
   .finance-stats{grid-template-columns:1fr}
   .section{padding:18px}
@@ -303,9 +301,7 @@ button,input,textarea,select{font:inherit}
 
 <!-- MARQUES -->
 <section class="section" id="marques">
-  <div class="section-heading">
-    <h2>Gestion des marques</h2>
-  </div>
+  <div class="section-heading"><h2>Gestion des marques</h2></div>
 
   <h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
     Ajouter une marque
@@ -339,15 +335,13 @@ button,input,textarea,select{font:inherit}
   <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
   <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
   <div id="brandList" class="brand-list">
-    <div class="empty">Connexion à Supabase...</div>
+    <div class="empty">Chargement des marques...</div>
   </div>
 </section>
 
 <!-- DIRECTION -->
 <section class="section" id="direction">
-  <div class="section-heading">
-    <h2>Gestion de la direction</h2>
-  </div>
+  <div class="section-heading"><h2>Gestion de la direction</h2></div>
 
   <h3 id="leaderFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
     Ajouter un dirigeant
@@ -365,9 +359,7 @@ button,input,textarea,select{font:inherit}
       </div>
       <div class="field">
         <label for="leaderBrand">Marque associée</label>
-        <select id="leaderBrand">
-          <option value="">Groupe ADDIBA</option>
-        </select>
+        <select id="leaderBrand"><option value="">Groupe ADDIBA</option></select>
       </div>
       <div class="field">
         <label for="leaderStatus">Statut</label>
@@ -433,17 +425,14 @@ button,input,textarea,select{font:inherit}
           <option value="depense">Dépense</option>
         </select>
       </div>
-
       <div class="field">
         <label for="financeLabel">Libellé *</label>
         <input id="financeLabel" type="text" required placeholder="Ex : Vente de produits">
       </div>
-
       <div class="field">
         <label for="financeAmount">Montant en FCFA *</label>
         <input id="financeAmount" type="number" min="1" step="1" required placeholder="Ex : 25000">
       </div>
-
       <div class="field">
         <label for="financeCategory">Catégorie *</label>
         <select id="financeCategory" required>
@@ -458,25 +447,19 @@ button,input,textarea,select{font:inherit}
           <option value="Autres">Autres</option>
         </select>
       </div>
-
       <div class="field">
         <label for="financeBrand">Marque concernée</label>
-        <select id="financeBrand">
-          <option value="">Groupe ADDIBA</option>
-        </select>
+        <select id="financeBrand"><option value="">Groupe ADDIBA</option></select>
       </div>
-
       <div class="field">
         <label for="financeDate">Date de l'opération *</label>
         <input id="financeDate" type="date" required>
       </div>
-
       <div class="field full">
         <label for="financeDescription">Description complémentaire</label>
         <textarea id="financeDescription" placeholder="Informations complémentaires (facultatif)"></textarea>
       </div>
     </div>
-
     <div class="actions">
       <button class="btn btn-primary" id="financeSaveBtn" type="submit">Enregistrer l'opération</button>
       <button class="btn btn-secondary" id="financeCancelBtn" type="button" hidden>Annuler</button>
@@ -484,10 +467,7 @@ button,input,textarea,select{font:inherit}
   </form>
 
   <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-
-  <div class="section-heading">
-    <h2>Historique financier</h2>
-  </div>
+  <div class="section-heading"><h2>Historique financier</h2></div>
 
   <div class="field" style="max-width:350px;margin-bottom:17px">
     <label for="financeFilter">Filtrer les opérations</label>
@@ -502,17 +482,12 @@ button,input,textarea,select{font:inherit}
     <table class="finance-table">
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Libellé</th>
-          <th>Catégorie</th>
-          <th>Marque</th>
-          <th>Type</th>
-          <th>Montant</th>
-          <th>Actions</th>
+          <th>Date</th><th>Libellé</th><th>Catégorie</th>
+          <th>Marque</th><th>Type</th><th>Montant</th><th>Actions</th>
         </tr>
       </thead>
       <tbody id="financeList">
-        <tr><td colspan="7" class="empty">Chargement des opérations...</td></tr>
+        <tr><td colspan="7">Chargement des opérations...</td></tr>
       </tbody>
     </table>
   </div>
@@ -520,10 +495,7 @@ button,input,textarea,select{font:inherit}
 
 <!-- AUTRES MODULES -->
 <section class="section" id="autres-modules">
-  <div class="section-heading">
-    <h2>Autres modules de gestion</h2>
-  </div>
-
+  <div class="section-heading"><h2>Autres modules de gestion</h2></div>
   <div class="modules">
     <article class="module-card" id="rh">
       <div class="module-icon">♧</div>
@@ -531,28 +503,24 @@ button,input,textarea,select{font:inherit}
       <p>Gestion du personnel, recrutements et informations des employés.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="projets">
       <div class="module-icon">◈</div>
       <h3>Projets</h3>
       <p>Création, organisation et suivi des projets du groupe.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="documents">
       <div class="module-icon">▧</div>
       <h3>Documents</h3>
       <p>Centralisation des documents administratifs et professionnels.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="messages">
       <div class="module-icon">✉</div>
       <h3>Messages</h3>
       <p>Communication interne et gestion des messages du groupe.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="parametres">
       <div class="module-icon">⚙</div>
       <h3>Paramètres</h3>
@@ -569,28 +537,35 @@ button,input,textarea,select{font:inherit}
 </footer>
 </div>
 
-<!-- MENU MOBILE -->
-<script>
-(function(){
-  const sidebar=document.getElementById("sidebar");
-  const bouton=document.getElementById("mobileMenu");
-  const fermeture=document.getElementById("sidebarClose");
-  const overlay=document.getElementById("overlay");
+<script type="module">
+import { supabase } from "./supabase.js";
 
-  function ouvrirMenu(){
-    sidebar.classList.add("open");
-    overlay.classList.add("show");
-  }
-  function fermerMenu(){
-    sidebar.classList.remove("open");
-    overlay.classList.remove("show");
-  }
+const $ = id => document.getElementById(id);
 
-  bouton.addEventListener("click",function(){
-    sidebar.classList.contains("open") ? fermerMenu() : ouvrirMenu();
-  });
-  fermeture.addEventListener("click",fermerMenu);
-  overlay.addEventListener("click",fermerMenu);
+let utilisateurAutorise = false;
+let marques = [];
+let dirigeants = [];
+let transactions = [];
+let marqueEnEdition = null;
+let dirigeantEnEdition = null;
+let transactionEnEdition = null;
 
-  document.addEventListener("keydown",function(e){
-    if(e.key=
+function message(texte, type="success"){
+  const zone = $("message");
+  zone.textContent = texte;
+  zone.className = "message " + type;
+  zone.style.display = "block";
+  zone.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+function effacerMessage(){
+  $("message").textContent = "";
+  $("message").className = "message";
+  $("message").style.display = "none";
+}
+function echapper(valeur){
+  return String(valeur ?? "").replace(/[&<>"']/g, caractere => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  })[caractere]);
+}
+function formatMontant(valeur){
+  return new Intl.NumberFormat("fr-FR").format(Number(valeur)||0) + " FC
