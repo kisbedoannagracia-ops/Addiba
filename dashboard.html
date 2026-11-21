@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -584,6 +585,7 @@ button,input,textarea,select{font:inherit}
   </div>
 </section>
 
+<!-- GESTION DES MARQUES -->
 <section class="section" id="marques">
   <div class="section-heading">
     <h2>Gestion des marques</h2>
@@ -630,18 +632,84 @@ button,input,textarea,select{font:inherit}
   </div>
 </section>
 
-<section class="section">
+<!-- GESTION DE LA DIRECTION -->
+<section class="section" id="direction">
   <div class="section-heading">
-    <h2>Modules de gestion du groupe</h2>
+    <h2>Gestion de la direction</h2>
+  </div>
+
+  <h3 id="leaderFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
+    Ajouter un dirigeant
+  </h3>
+
+  <form id="leaderForm">
+    <div class="form-grid">
+
+      <div class="field">
+        <label for="leaderName">Nom et prénom *</label>
+        <input id="leaderName" type="text" required placeholder="Nom complet">
+      </div>
+
+      <div class="field">
+        <label for="leaderPost">Poste occupé *</label>
+        <input id="leaderPost" type="text" required placeholder="Ex : Directeur général">
+      </div>
+
+      <div class="field">
+        <label for="leaderBrand">Marque associée</label>
+        <select id="leaderBrand">
+          <option value="">Groupe ADDIBA</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="leaderStatus">Statut</label>
+        <select id="leaderStatus">
+          <option value="actif">Actif</option>
+          <option value="inactif">Inactif</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="leaderEmail">Adresse e-mail</label>
+        <input id="leaderEmail" type="email" placeholder="exemple@email.com">
+      </div>
+
+      <div class="field">
+        <label for="leaderPhone">Téléphone</label>
+        <input id="leaderPhone" type="tel" placeholder="Numéro de téléphone">
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="leaderSaveBtn" type="submit">
+        Enregistrer le dirigeant
+      </button>
+      <button class="btn btn-secondary" id="leaderCancelBtn" type="button" hidden>
+        Annuler
+      </button>
+    </div>
+  </form>
+
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+
+  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">
+    Dirigeants du groupe
+  </h3>
+
+  <div id="leaderList" class="brand-list">
+    <div class="empty">Chargement des dirigeants...</div>
+  </div>
+</section>
+
+<!-- AUTRES MODULES -->
+<section class="section" id="autres-modules">
+  <div class="section-heading">
+    <h2>Autres modules de gestion</h2>
   </div>
 
   <div class="modules">
-    <article class="module-card" id="direction">
-      <div class="module-icon">♙</div>
-      <h3>Direction</h3>
-      <p>Organisation, décisions stratégiques et pilotage général du groupe.</p>
-      <span class="module-status">À développer</span>
-    </article>
 
     <article class="module-card" id="finances">
       <div class="module-icon">▤</div>
@@ -684,6 +752,7 @@ button,input,textarea,select{font:inherit}
       <p>Configuration et gestion des paramètres de l'administration.</p>
       <span class="module-status">À développer</span>
     </article>
+
   </div>
 </section>
 
@@ -744,7 +813,10 @@ button,input,textarea,select{font:inherit}
 <script type="module">
 import { supabase } from "./supabase.js";
 
+/* ELEMENTS GENERAUX */
 const message = document.getElementById("message");
+
+/* ELEMENTS MARQUES */
 const brandList = document.getElementById("brandList");
 const brandForm = document.getElementById("brandForm");
 const brandName = document.getElementById("brandName");
@@ -754,13 +826,30 @@ const formTitle = document.getElementById("formTitle");
 const saveBtn = document.getElementById("saveBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 
+/* ELEMENTS DIRECTION */
+const leaderForm = document.getElementById("leaderForm");
+const leaderName = document.getElementById("leaderName");
+const leaderPost = document.getElementById("leaderPost");
+const leaderBrand = document.getElementById("leaderBrand");
+const leaderStatus = document.getElementById("leaderStatus");
+const leaderEmail = document.getElementById("leaderEmail");
+const leaderPhone = document.getElementById("leaderPhone");
+const leaderList = document.getElementById("leaderList");
+const leaderFormTitle = document.getElementById("leaderFormTitle");
+const leaderSaveBtn = document.getElementById("leaderSaveBtn");
+const leaderCancelBtn = document.getElementById("leaderCancelBtn");
+
 let utilisateurAutorise = false;
 let marqueEnModification = null;
+let dirigeantEnModification = null;
 let marquesActuelles = [];
+let dirigeantsActuels = [];
 
+/* MESSAGES */
 function afficherMessage(texte,erreur=false){
   message.textContent = texte;
   message.className = erreur ? "message error" : "message success";
+  message.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
 function effacerMessage(){
@@ -768,6 +857,7 @@ function effacerMessage(){
   message.className = "message";
 }
 
+/* SECURITE TEXTE */
 function securiserTexte(texte){
   return String(texte ?? "").replace(/[&<>"']/g,function(c){
     return {
@@ -780,26 +870,20 @@ function securiserTexte(texte){
   });
 }
 
+/* STATUTS */
 function statutTexte(statut){
-  if(statut === "active") return "Active";
-  if(statut === "inactive") return "Inactive";
+  if(statut === "active" || statut === "actif") return "Actif";
+  if(statut === "inactive" || statut === "inactif") return "Inactif";
   return "En préparation";
 }
 
 function statutClasse(statut){
-  if(statut === "active") return "status-active";
-  if(statut === "inactive") return "status-inactive";
+  if(statut === "active" || statut === "actif") return "status-active";
+  if(statut === "inactive" || statut === "inactif") return "status-inactive";
   return "status-preparation";
 }
 
-function viderFormulaire(){
-  brandForm.reset();
-  marqueEnModification = null;
-  formTitle.textContent = "Ajouter une marque";
-  saveBtn.textContent = "Enregistrer la marque";
-  cancelBtn.hidden = true;
-}
-
+/* VERIFICATION DU FONDATEUR */
 async function verifierFondateur(){
   const {data,error} = await supabase.auth.getUser();
 
@@ -831,6 +915,7 @@ async function verifierFondateur(){
   return true;
 }
 
+/* STATISTIQUES */
 async function chargerStatistique(table,elementId){
   const {count,error} = await supabase
     .from(table)
@@ -853,6 +938,18 @@ async function chargerStatistiques(){
   ]);
 }
 
+/* =================================
+   GESTION DES MARQUES
+================================= */
+
+function viderFormulaireMarque(){
+  brandForm.reset();
+  marqueEnModification = null;
+  formTitle.textContent = "Ajouter une marque";
+  saveBtn.textContent = "Enregistrer la marque";
+  cancelBtn.hidden = true;
+}
+
 async function chargerMarques(){
   brandList.innerHTML =
     '<div class="empty">Chargement des marques...</div>';
@@ -862,14 +959,25 @@ async function chargerMarques(){
     .select("id, nom, description, statut, created_at")
     .order("id",{ascending:true});
 
-  if(error){
-    brandList.innerHTML =
-      '<div class="empty">Erreur de chargement : '+
-      securiserTexte(error.message)+'</div>';
-    throw error;
-  }
+  if(error) throw error;
 
   marquesActuelles = data || [];
+
+  /* Mettre à jour la liste des marques dans le formulaire Direction */
+  const ancienneSelection = leaderBrand.value;
+
+  leaderBrand.innerHTML = '<option value="">Groupe ADDIBA</option>';
+
+  marquesActuelles.forEach(function(marque){
+    const option = document.createElement("option");
+    option.value = marque.id;
+    option.textContent = marque.nom;
+    leaderBrand.appendChild(option);
+  });
+
+  if(ancienneSelection){
+    leaderBrand.value = ancienneSelection;
+  }
 
   if(!marquesActuelles.length){
     brandList.innerHTML =
@@ -912,7 +1020,7 @@ async function chargerMarques(){
   }).join("");
 }
 
-function preparerModification(marque){
+function preparerModificationMarque(marque){
   marqueEnModification = marque.id;
   brandName.value = marque.nom || "";
   brandDescription.value = marque.description || "";
@@ -926,6 +1034,7 @@ function preparerModification(marque){
     behavior:"smooth"
   });
 }
+
 brandForm.addEventListener("submit",async function(evenement){
   evenement.preventDefault();
   effacerMessage();
@@ -965,7 +1074,7 @@ brandForm.addEventListener("submit",async function(evenement){
 
     if(resultat.error) throw resultat.error;
 
-    viderFormulaire();
+    viderFormulaireMarque();
 
     afficherMessage(
       modification
@@ -985,12 +1094,13 @@ brandForm.addEventListener("submit",async function(evenement){
 });
 
 cancelBtn.addEventListener("click",function(){
-  viderFormulaire();
+  viderFormulaireMarque();
   effacerMessage();
 });
 
 brandList.addEventListener("click",async function(evenement){
   const bouton = evenement.target.closest("button[data-action]");
+
   if(!bouton || !utilisateurAutorise) return;
 
   const id = bouton.dataset.id;
@@ -1004,7 +1114,7 @@ brandList.addEventListener("click",async function(evenement){
 
   try{
     if(action === "edit"){
-      preparerModification(marque);
+      preparerModificationMarque(marque);
       return;
     }
 
@@ -1023,9 +1133,7 @@ brandList.addEventListener("click",async function(evenement){
     }
 
     if(action === "delete"){
-      if(!confirm("Voulez-vous vraiment supprimer cette marque ?")){
-        return;
-      }
+      if(!confirm("Voulez-vous vraiment supprimer cette marque ?")) return;
 
       const {error} = await supabase
         .from("marques")
@@ -1045,6 +1153,237 @@ brandList.addEventListener("click",async function(evenement){
   }
 });
 
+/* =================================
+   GESTION DES DIRIGEANTS
+================================= */
+
+function viderFormulaireDirigeant(){
+  leaderForm.reset();
+  dirigeantEnModification = null;
+
+  leaderFormTitle.textContent = "Ajouter un dirigeant";
+  leaderSaveBtn.textContent = "Enregistrer le dirigeant";
+  leaderCancelBtn.hidden = true;
+}
+
+async function chargerDirigeants(){
+  leaderList.innerHTML =
+    '<div class="empty">Chargement des dirigeants...</div>';
+
+  const {data,error} = await supabase
+    .from("dirigeants")
+    .select("id, nom_complet, poste, marque_id, email, telephone, statut, created_at")
+    .order("id",{ascending:true});
+
+  if(error) throw error;
+
+  dirigeantsActuels = data || [];
+
+  if(!dirigeantsActuels.length){
+    leaderList.innerHTML =
+      '<div class="empty">Aucun dirigeant enregistré pour le moment.</div>';
+    return;
+  }
+
+  leaderList.innerHTML = dirigeantsActuels.map(function(dirigeant){
+
+    const marque = marquesActuelles.find(function(m){
+      return String(m.id) === String(dirigeant.marque_id);
+    });
+
+    const nomMarque = marque ? marque.nom : "Groupe ADDIBA";
+
+    return `
+      <article class="brand-card">
+        <div class="brand-head">
+          <h3>${securiserTexte(dirigeant.nom_complet)}</h3>
+          <span class="status ${statutClasse(dirigeant.statut)}">
+            ${statutTexte(dirigeant.statut)}
+          </span>
+        </div>
+
+        <p class="brand-description">
+          <strong>Poste :</strong> ${securiserTexte(dirigeant.poste)}<br>
+          <strong>Structure :</strong> ${securiserTexte(nomMarque)}<br>
+          <strong>E-mail :</strong> ${securiserTexte(dirigeant.email || "Non renseigné")}<br>
+          <strong>Téléphone :</strong> ${securiserTexte(dirigeant.telephone || "Non renseigné")}
+        </p>
+
+        <div class="brand-actions">
+          <button class="btn btn-edit" type="button"
+            data-action="edit-leader" data-id="${securiserTexte(dirigeant.id)}">
+            Modifier
+          </button>
+
+          <button class="btn btn-toggle" type="button"
+            data-action="toggle-leader" data-id="${securiserTexte(dirigeant.id)}">
+            ${dirigeant.statut === "actif" ? "Désactiver" : "Activer"}
+          </button>
+
+          <button class="btn btn-delete" type="button"
+            data-action="delete-leader" data-id="${securiserTexte(dirigeant.id)}">
+            Supprimer
+          </button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function preparerModificationDirigeant(dirigeant){
+  dirigeantEnModification = dirigeant.id;
+
+  leaderName.value = dirigeant.nom_complet || "";
+  leaderPost.value = dirigeant.poste || "";
+  leaderBrand.value = dirigeant.marque_id ?? "";
+  leaderStatus.value = dirigeant.statut || "actif";
+  leaderEmail.value = dirigeant.email || "";
+  leaderPhone.value = dirigeant.telephone || "";
+
+  leaderFormTitle.textContent = "Modifier le dirigeant";
+  leaderSaveBtn.textContent = "Enregistrer les modifications";
+  leaderCancelBtn.hidden = false;
+
+  document.getElementById("direction").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+leaderForm.addEventListener("submit",async function(evenement){
+  evenement.preventDefault();
+  effacerMessage();
+
+  if(!utilisateurAutorise){
+    afficherMessage("Accès non autorisé.",true);
+    return;
+  }
+
+  const nom_complet = leaderName.value.trim();
+  const poste = leaderPost.value.trim();
+  const marque_id = leaderBrand.value
+    ? Number(leaderBrand.value)
+    : null;
+  const statut = leaderStatus.value;
+  const email = leaderEmail.value.trim() || null;
+  const telephone = leaderPhone.value.trim() || null;
+
+  if(!nom_complet || !poste){
+    afficherMessage("Le nom et le poste sont obligatoires.",true);
+    return;
+  }
+
+  const modification = dirigeantEnModification !== null;
+
+  leaderSaveBtn.disabled = true;
+  leaderSaveBtn.textContent = "Enregistrement...";
+
+  try{
+    const informations = {
+      nom_complet,
+      poste,
+      marque_id,
+      statut,
+      email,
+      telephone
+    };
+
+    let resultat;
+
+    if(modification){
+      resultat = await supabase
+        .from("dirigeants")
+        .update(informations)
+        .eq("id",dirigeantEnModification);
+    }else{
+      resultat = await supabase
+        .from("dirigeants")
+        .insert([informations]);
+    }
+
+    if(resultat.error) throw resultat.error;
+
+    viderFormulaireDirigeant();
+
+    afficherMessage(
+      modification
+        ? "Dirigeant modifié avec succès."
+        : "Dirigeant ajouté avec succès."
+    );
+
+    await chargerDirigeants();
+
+  }catch(error){
+    afficherMessage("Erreur : "+error.message,true);
+  }finally{
+    leaderSaveBtn.disabled = false;
+    leaderSaveBtn.textContent = "Enregistrer le dirigeant";
+  }
+});
+
+leaderCancelBtn.addEventListener("click",function(){
+  viderFormulaireDirigeant();
+  effacerMessage();
+});
+
+leaderList.addEventListener("click",async function(evenement){
+  const bouton = evenement.target.closest("button[data-action]");
+
+  if(!bouton || !utilisateurAutorise) return;
+
+  const id = bouton.dataset.id;
+  const action = bouton.dataset.action;
+
+  const dirigeant = dirigeantsActuels.find(function(d){
+    return String(d.id) === String(id);
+  });
+
+  if(!dirigeant) return;
+
+  try{
+
+    if(action === "edit-leader"){
+      preparerModificationDirigeant(dirigeant);
+      return;
+    }
+
+    if(action === "toggle-leader"){
+      const nouveauStatut =
+        dirigeant.statut === "actif" ? "inactif" : "actif";
+
+      const {error} = await supabase
+        .from("dirigeants")
+        .update({statut:nouveauStatut})
+        .eq("id",id);
+
+      if(error) throw error;
+
+      afficherMessage("Statut du dirigeant modifié.");
+    }
+
+    if(action === "delete-leader"){
+      if(!confirm("Voulez-vous vraiment supprimer ce dirigeant ?")) return;
+
+      const {error} = await supabase
+        .from("dirigeants")
+        .delete()
+        .eq("id",id);
+
+      if(error) throw error;
+
+      afficherMessage("Dirigeant supprimé avec succès.");
+    }
+
+    await chargerDirigeants();
+
+  }catch(error){
+    afficherMessage("Erreur : "+error.message,true);
+  }
+});
+
+/* =================================
+   DECONNEXION
+================================= */
+
 document.getElementById("sidebarLogout").addEventListener("click",async function(){
   if(!confirm("Voulez-vous vraiment vous déconnecter ?")) return;
 
@@ -1058,8 +1397,15 @@ document.getElementById("sidebarLogout").addEventListener("click",async function
   window.location.href = "connexion.html";
 });
 
+/* =================================
+   INITIALISATION DU TABLEAU DE BORD
+================================= */
+
 async function initialiserDashboard(){
   brandList.innerHTML =
+    '<div class="empty">Vérification de la connexion...</div>';
+
+  leaderList.innerHTML =
     '<div class="empty">Vérification de la connexion...</div>';
 
   try{
@@ -1067,8 +1413,10 @@ async function initialiserDashboard(){
 
     if(!autorise) return;
 
+    await chargerMarques();
+
     await Promise.all([
-      chargerMarques(),
+      chargerDirigeants(),
       chargerStatistiques()
     ]);
 
@@ -1076,9 +1424,10 @@ async function initialiserDashboard(){
     console.error("Erreur ADDIBA :",error);
 
     brandList.innerHTML =
-      '<div class="empty">Erreur : '+
-      securiserTexte(error.message)+
-      '</div>';
+      '<div class="empty">Erreur : '+securiserTexte(error.message)+'</div>';
+
+    leaderList.innerHTML =
+      '<div class="empty">Erreur : '+securiserTexte(error.message)+'</div>';
 
     afficherMessage(
       "Impossible de charger le tableau de bord : "+error.message,
@@ -1088,4 +1437,8 @@ async function initialiserDashboard(){
 }
 
 initialiserDashboard();
+
 </script>
+
+</body>
+</html>
