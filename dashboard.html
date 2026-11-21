@@ -300,6 +300,81 @@ padding:12px;text-align:left;border-bottom:1px solid var(--border);font-size:13p
 <div id="leaderList" class="brand-list"><div class="empty">Chargement des dirigeants...</div></div>
 </section>
 
+<section class="section" id="finances">
+  <div class="section-heading">
+    <h2>Gestion financière</h2>
+  </div>
+
+  <div class="finance-summary">
+    <div class="finance-card">
+      <p>Total des revenus</p>
+      <h3 id="financeRevenus">0 FCFA</h3>
+    </div>
+    <div class="finance-card">
+      <p>Total des dépenses</p>
+      <h3 id="financeDepenses">0 FCFA</h3>
+    </div>
+    <div class="finance-card">
+      <p>Solde disponible</p>
+      <h3 id="financeSolde">0 FCFA</h3>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:16px;color:#101f3c">
+    Enregistrer une opération
+  </h3>
+
+  <form id="financeForm">
+    <div class="form-grid">
+      <div class="field">
+        <label for="financeType">Type d'opération</label>
+        <select id="financeType" required>
+          <option value="revenu">Revenu</option>
+          <option value="depense">Dépense</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="financeCategorie">Catégorie</label>
+        <input id="financeCategorie" required
+          placeholder="Exemple : Vente, salaire...">
+      </div>
+
+      <div class="field">
+        <label for="financeMontant">Montant (FCFA)</label>
+        <input id="financeMontant" type="number"
+          min="1" step="0.01" required>
+      </div>
+
+      <div class="field">
+        <label for="financeDate">Date</label>
+        <input id="financeDate" type="date" required>
+      </div>
+
+      <div class="field full">
+        <label for="financeDescription">Description</label>
+        <textarea id="financeDescription"
+          placeholder="Détails de l'opération"></textarea>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="financeSaveBtn"
+        type="submit">Enregistrer l'opération</button>
+    </div>
+  </form>
+
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+
+  <h3 style="color:#101f3c;margin-bottom:16px">
+    Historique des opérations
+  </h3>
+
+  <div id="financeList" class="finance-list">
+    Chargement des opérations...
+  </div>
+ </section>
+  
 <section class="section" id="autres-modules">
 <div class="section-heading"><h2>Autres modules de gestion</h2></div>
 <div class="modules">
