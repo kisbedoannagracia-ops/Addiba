@@ -4,447 +4,447 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101f3c">
-<titre>Espace fondateur | ADDIBA</titre>
+<title>Espace fondateur | ADDIBA</title>
 
 <style>
-:racine{
-  --marine:#101f3c;
+:root{
+  --navy:#101f3c;
   --navy2:#192e50;
-  --vert:#20bd83;
+  --green:#20bd83;
   --bg:#f3f6fa;
-  --blanc:#fff;
-  --texte:#24334b;
+  --white:#fff;
+  --text:#24334b;
   --muted:#718096;
-  --bordure:#e5eaf1;
+  --border:#e5eaf1;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 
-corps{
-  police-family:Arial,sans-serif;
-  arrière-plan:var(--bg);
-  couleur:var(--texte);
+body{
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
+button,input,textarea,select{font:inherit}
 
 .sidebar{
-  position:fixe;
-  haut:0;
-  gauche:0;
-  largeur : 255 px ;
-  hauteur : 100vh ;
-  arrière-plan:var(--marine);
-  couleur : blanc ;
-  marge intérieure : 25 px 17 px ;
-  débordement-y:auto;
+  position:fixed;
+  top:0;
+  left:0;
+  width:255px;
+  height:100vh;
+  background:var(--navy);
+  color:white;
+  padding:25px 17px;
+  overflow-y:auto;
   z-index:1000;
   transition:transform .3s ease;
 }
 
 .logo{
-  taille de police : 27 px ;
-  police-weight:800;
-  espacement des lettres : 1 px ;
-  marge intérieure : 0 12px ;
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:1px;
+  padding:0 12px;
 }
 
 .logo span{color:var(--green)}
 
 .sidebar-subtitle{
-  taille de police : 12 px ;
-  couleur:#aebbd0;
-  marge intérieure : 5px 12px 28px ;
+  font-size:12px;
+  color:#aebbd0;
+  padding:5px 12px 28px;
 }
 
 .menu-title{
-  taille de police : 11 px ;
-  couleur : #8999b2 ;
+  font-size:11px;
+  color:#8999b2;
   text-transform:uppercase;
-  espacement des lettres : 1 px ;
-  marge intérieure : 12 px ;
+  letter-spacing:1px;
+  padding:12px;
 }
 
 .menu{
-  affichage : flexible ;
-  direction flexible : colonne ;
-  écart : 5 px ;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
 }
 
 .menu a{
   text-decoration:none;
-  couleur : #c9d3e1 ;
-  marge intérieure : 13px 14px ;
-  bordure-radius:8px;
-  taille de police : 14 px ;
+  color:#c9d3e1;
+  padding:13px 14px;
+  border-radius:8px;
+  font-size:14px;
   transition:.2s;
 }
 
 .menu a:hover,.menu a.active{
-  arrière-plan : rgba(32,189,131,.15);
-  couleur:var(--vert);
+  background:rgba(32,189,131,.15);
+  color:var(--green);
 }
 
-.menu un span{
-  affichage : bloc en ligne ;
-  largeur : 27 px ;
+.menu a span{
+  display:inline-block;
+  width:27px;
 }
 
 .sidebar-bottom{
-  marge supérieure : 35 px ;
-  bordure supérieure : 1px solide rgba(255,255,255,.12);
-  marge intérieure supérieure : 18 px ;
+  margin-top:35px;
+  border-top:1px solid rgba(255,255,255,.12);
+  padding-top:18px;
 }
 
-.sidebar-bottom bouton{
-  largeur : 100 % ;
-  marge intérieure : 12 px ;
-  bordure:0;
-  arrière-plan : transparent ;
-  couleur :#ffb5b5;
-  alignement du texte : gauche ;
-  curseur : pointeur ;
-  bordure-radius:8px;
+.sidebar-bottom button{
+  width:100%;
+  padding:12px;
+  border:0;
+  background:transparent;
+  color:#ffb5b5;
+  text-align:left;
+  cursor:pointer;
+  border-radius:8px;
 }
 
 .sidebar-close{display:none}
 .overlay{display:none}
 
-.principal{
-  marge gauche : 255 px ;
-  hauteur minimale : 100vh ;
+.main{
+  margin-left:255px;
+  min-height:100vh;
 }
 
 .topbar{
-  fond : blanc ;
-  hauteur minimale : 75 px ;
-  marge intérieure : 15px 32px ;
-  affichage : flexible ;
-  justifier-contenu:espace-entre;
-  aligner-éléments:centre;
-  écart : 15 px ;
+  background:white;
+  min-height:75px;
+  padding:15px 32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
   border-bottom:1px solid var(--border);
-  position:collante;
-  haut:0;
+  position:sticky;
+  top:0;
   z-index:50;
 }
 
 .topbar h2{
-  taille de police : 19 px ;
-  couleur:var(--marine);
+  font-size:19px;
+  color:var(--navy);
 }
 
-.topbar petit{
-  affichage : bloc ;
-  couleur:var(--muted);
-  marge supérieure : 5 px ;
+.topbar small{
+  display:block;
+  color:var(--muted);
+  margin-top:5px;
 }
 
-.fondateur{
-  affichage : flexible ;
-  aligner-éléments:centre;
-  écart : 12 px ;
+.founder{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .avatar{
-  largeur : 40 px ;
-  hauteur : 40 px ;
-  rayon de bordure : 50 % ;
-  affichage : grille ;
-  placer-éléments:centre;
-  arrière-plan : #e3f8ef ;
-  couleur : #11865b ;
-  police-weight:bold;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#e3f8ef;
+  color:#11865b;
+  font-weight:bold;
 }
 
-.fondateur fort{
-  couleur:var(--marine);
-  taille de police : 13 px ;
+.founder strong{
+  color:var(--navy);
+  font-size:13px;
 }
 
-.fondateur petit{taille de police:11px}
+.founder small{font-size:11px}
 
-.contenu{
-  largeur maximale : 1400 px ;
-  marge:auto;
-  marge intérieure : 32 px ;
+.content{
+  max-width:1400px;
+  margin:auto;
+  padding:32px;
 }
 
-.bienvenue{marge-bas:25px}
+.welcome{margin-bottom:25px}
 
-.bienvenue h1{
-  couleur:var(--marine);
-  taille de police : 27 px ;
-  marge inférieure : 9 px ;
+.welcome h1{
+  color:var(--navy);
+  font-size:27px;
+  margin-bottom:9px;
 }
 
-.bienvenue p{
-  couleur:var(--muted);
-  hauteur de ligne : 1,5 ;
+.welcome p{
+  color:var(--muted);
+  line-height:1.5;
 }
 
 .message{
-  affichage : aucun ;
-  marge intérieure : 14 px ;
-  marge inférieure : 20 px ;
-  bordure-radius:8px;
-  débordement-wrap:n'importe où;
+  display:none;
+  padding:14px;
+  margin-bottom:20px;
+  border-radius:8px;
+  overflow-wrap:anywhere;
 }
 
-.message.succès{
-  affichage : bloc ;
-  arrière-plan : #e5f8ef ;
-  couleur : #13784e ;
+.message.success{
+  display:block;
+  background:#e5f8ef;
+  color:#13784e;
 }
 
-.message.erreur{
-  affichage : bloc ;
-  arrière-plan : #fff0f0 ;
-  couleur :#a52a35;
+.message.error{
+  display:block;
+  background:#fff0f0;
+  color:#a52a35;
 }
 
 .stats{
-  affichage : grille ;
+  display:grid;
   grid-template-columns:repeat(4,1fr);
-  écart : 17 px ;
-  marge inférieure : 30 px ;
+  gap:17px;
+  margin-bottom:30px;
 }
 
 .stat-card{
-  fond : blanc ;
-  marge intérieure : 22 px ;
-  bordure-radius:12px;
+  background:white;
+  padding:22px;
+  border-radius:12px;
   border:1px solid var(--border);
   box-shadow:0 3px 12px rgba(16,31,60,.04);
 }
 
 .stat-card p{
-  couleur:var(--muted);
-  taille de police : 13 px ;
-  marge inférieure : 13 px ;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:13px;
 }
 
 .stat-card h2{
-  couleur:var(--marine);
-  taille de police : 30 px ;
+  color:var(--navy);
+  font-size:30px;
 }
 
 .section{
-  fond : blanc ;
-  marge intérieure : 25 px ;
-  bordure-radius:12px;
+  background:white;
+  padding:25px;
+  border-radius:12px;
   border:1px solid var(--border);
-  marge inférieure : 25 px ;
-  marge de défilement supérieure : 95 px ;
+  margin-bottom:25px;
+  scroll-margin-top:95px;
 }
 
 .section-heading{
-  affichage : flexible ;
-  justifier-contenu:espace-entre;
-  aligner-éléments:centre;
-  écart : 12 px ;
-  marge inférieure : 20 px ;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
   flex-wrap:wrap;
 }
 
 .section-heading h2{
-  couleur:var(--marine);
-  taille de police : 20 px ;
+  color:var(--navy);
+  font-size:20px;
 }
 
 .form-grid{
-  affichage : grille ;
-  grille-template-columns:1fr 1fr;
-  écart : 16 px ;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
 }
 
-.champ{
-  affichage : flexible ;
-  direction flexible : colonne ;
-  écart : 8 px ;
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
 .field.full{grid-column:1/-1}
 
 .field label{
-  taille de police : 13 px ;
-  police-weight:bold;
+  font-size:13px;
+  font-weight:bold;
 }
 
 .field input,.field textarea,.field select{
-  largeur : 100 % ;
-  marge intérieure : 13 px ;
-  bordure:1px solide #d9e1eb;
-  bordure-radius:8px;
-  contour : aucun ;
-  fond : blanc ;
+  width:100%;
+  padding:13px;
+  border:1px solid #d9e1eb;
+  border-radius:8px;
+  outline:none;
+  background:white;
 }
 
 .field input:focus,.field textarea:focus,.field select:focus{
-  couleur de bordure : var(--vert);
+  border-color:var(--green);
 }
 
-.champ zone de texte{
-  hauteur minimale : 85 px ;
-  redimensionner : vertical ;
+.field textarea{
+  min-height:85px;
+  resize:vertical;
 }
 
-.actes{
-  affichage : flexible ;
+.actions{
+  display:flex;
   flex-wrap:wrap;
-  écart : 10px ;
-  marge supérieure : 17px ;
+  gap:10px;
+  margin-top:17px;
 }
 
 .btn{
-  bordure:0;
-  bordure-radius:8px;
-  marge intérieure : 11px 15px ;
-  police-weight:bold;
-  curseur : pointeur ;
+  border:0;
+  border-radius:8px;
+  padding:11px 15px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.btn-primary{fond:var(--vert);couleur:var(--marine)}
+.btn-primary{background:var(--green);color:var(--navy)}
 .btn-secondary{background:#e8edf4;color:var(--navy)}
 .btn-edit{background:#e7f0ff;color:#2055a0}
 .btn-toggle{background:#fff4df;color:#95600b}
 .btn-delete{background:#ffe8e9;color:#b52c37}
 
-.btn:désactivé{
-  opacité : 0,6 ;
-  curseur : non autorisé ;
+.btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
-.liste-marques{
-  affichage : grille ;
+.brand-list{
+  display:grid;
   grid-template-columns:repeat(2,1fr);
-  écart : 17 px ;
+  gap:17px;
 }
 
-.carte-de-marque{
+.brand-card{
   border:1px solid var(--border);
-  bordure-radius:11px;
-  marge intérieure : 20 px ;
+  border-radius:11px;
+  padding:20px;
 }
 
 .brand-head{
-  affichage : flexible ;
-  justifier-contenu:espace-entre;
-  aligner-éléments:centre;
-  écart : 10px ;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
   flex-wrap:wrap;
-  marge inférieure : 12 px ;
+  margin-bottom:12px;
 }
 
 .brand-head h3{
-  couleur:var(--marine);
-  taille de police : 18 px ;
+  color:var(--navy);
+  font-size:18px;
 }
 
-.statut{
-  marge intérieure : 6px 10px ;
-  bordure-radius:30px;
-  taille de police : 11 px ;
-  police-weight:bold;
+.status{
+  padding:6px 10px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:bold;
 }
 
 .status-active{background:#e1f8ed;color:#13784e}
 .status-inactive{background:#ffe8e9;color:#b52c37}
 .status-preparation{background:#fff2d9;color:#93600b}
 
-.description-de-marque{
-  couleur:var(--muted);
-  taille de police : 13 px ;
-  hauteur de ligne : 1,6 ;
-  hauteur minimale : 40 px ;
+.brand-description{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  min-height:40px;
 }
 
-.actions-de-marque{
-  affichage : flexible ;
+.brand-actions{
+  display:flex;
   flex-wrap:wrap;
-  écart : 8 px ;
-  marge supérieure : 16 px ;
+  gap:8px;
+  margin-top:16px;
 }
 
 .brand-actions .btn{
-  taille de police : 12 px ;
-  marge intérieure : 9px 11px ;
+  font-size:12px;
+  padding:9px 11px;
 }
 
-.vider{
-  colonne de grille : 1/-1 ;
-  marge intérieure : 25 px ;
-  alignement du texte : centré ;
-  couleur:var(--muted);
-  border:1px var en pointillés(--border);
-  bordure-radius:9px;
-  débordement-wrap:n'importe où;
+.empty{
+  grid-column:1/-1;
+  padding:25px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--border);
+  border-radius:9px;
+  overflow-wrap:anywhere;
 }
 
 .modules{
-  affichage : grille ;
+  display:grid;
   grid-template-columns:repeat(3,1fr);
-  écart : 17 px ;
+  gap:17px;
 }
 
 .module-card{
   border:1px solid var(--border);
-  marge intérieure : 21 px ;
-  bordure-radius:11px;
-  fond : blanc ;
-  marge de défilement supérieure : 100 px ;
+  padding:21px;
+  border-radius:11px;
+  background:white;
+  scroll-margin-top:100px;
 }
 
 .module-icon{
-  largeur : 43 px ;
-  hauteur : 43 px ;
-  bordure-radius:10px;
-  affichage : grille ;
-  placer-éléments:centre;
-  arrière-plan : #e3f8ef ;
-  taille de police : 21 px ;
-  marge inférieure : 14 px ;
+  width:43px;
+  height:43px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:#e3f8ef;
+  font-size:21px;
+  margin-bottom:14px;
 }
 
 .module-card h3{
-  couleur:var(--marine);
-  taille de police : 16 px ;
-  marge inférieure : 8 px ;
+  color:var(--navy);
+  font-size:16px;
+  margin-bottom:8px;
 }
 
 .module-card p{
-  couleur:var(--muted);
-  taille de police : 13 px ;
-  hauteur de ligne : 1,5 ;
-  marge inférieure : 13 px ;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:13px;
 }
 
 .module-status{
-  affichage : bloc en ligne ;
-  marge intérieure : 6px 9px ;
-  bordure-radius:20px;
-  arrière-plan : #fff3dc ;
-  couleur : #93600b ;
-  taille de police : 11 px ;
-  police-weight:bold;
+  display:inline-block;
+  padding:6px 9px;
+  border-radius:20px;
+  background:#fff3dc;
+  color:#93600b;
+  font-size:11px;
+  font-weight:bold;
 }
 
 .footer{
-  alignement du texte : centré ;
-  marge intérieure : 25 px ;
-  couleur:var(--muted);
-  taille de police : 12 px ;
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  font-size:12px;
 }
 
 .mobile-menu{
-  affichage : aucun ;
-  bordure:0;
-  arrière-plan:var(--marine);
-  couleur : blanc ;
-  marge intérieure : 10px 14px ;
-  bordure-radius:7px;
-  taille de police : 22 px ;
-  curseur : pointeur ;
+  display:none;
+  border:0;
+  background:var(--navy);
+  color:white;
+  padding:10px 14px;
+  border-radius:7px;
+  font-size:22px;
+  cursor:pointer;
 }
 
 @media(max-width:1050px){
@@ -454,41 +454,41 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
 
 @media(max-width:700px){
   .sidebar{
-    largeur:min(290px,85vw);
-    transformer:translateX(-105%) ;
+    width:min(290px,85vw);
+    transform:translateX(-105%);
   }
 
   .sidebar.open{transform:translateX(0)}
 
   .sidebar-close{
-    affichage : bloc ;
+    display:block;
     position:absolute;
-    haut:15px;
-    droite : 15px ;
-    largeur : 38 px ;
-    hauteur : 38 px ;
-    bordure:0;
-    bordure-radius:8px;
-    arrière-plan : rgba(255,255,255,.15);
-    couleur : blanc ;
-    taille de police : 25 px ;
-    curseur : pointeur ;
+    top:15px;
+    right:15px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:8px;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:25px;
+    cursor:pointer;
   }
 
-  .recouvrir{
-    affichage : bloc ;
-    position:fixe;
-    incrustation : 0 ;
-    arrière-plan : rgba(0,0,0,.45);
+  .overlay{
+    display:block;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
     z-index:900;
-    opacité : 0 ;
-    visibilité : cachée ;
-    transition : 0,25 s ;
+    opacity:0;
+    visibility:hidden;
+    transition:.25s;
   }
 
   .overlay.show{
-    opacité : 1 ;
-    visibilité : visible ;
+    opacity:1;
+    visibility:visible;
   }
 
   .main{margin-left:0}
@@ -496,18 +496,18 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
   .mobile-menu{display:block}
   .topbar h2{font-size:16px}
   .content{padding:20px 15px}
-  .bienvenue h1{font-size:23px}
+  .welcome h1{font-size:23px}
   .stats{gap:10px}
   .stat-card{padding:16px}
   .stat-card h2{font-size:25px}
   .modules,.brand-list,.form-grid{grid-template-columns:1fr}
   .section{padding:18px}
-  .fondateur div:last-child{display:none}
+  .founder div:last-child{display:none}
 }
 </style>
 </head>
 
-<corps>
+<body>
 
 <div class="overlay" id="overlay"></div>
 
@@ -528,7 +528,7 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
     <a href="#projets"><span>◈</span> Projets</a>
     <a href="#documents"><span>▧</span> Documents</a>
     <a href="#messages"><span>✉</span> Messages</a>
-    <a href="#paramètres"><span>⚙</span> Paramètres</a>
+    <a href="#parametres"><span>⚙</span> Paramètres</a>
   </nav>
 
   <div class="sidebar-bottom">
@@ -547,7 +547,7 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
     </div>
   </div>
 
-  <div class="fondateur">
+  <div class="founder">
     <div class="avatar">F</div>
     <div>
       <strong id="founderName">Fondateur ADDIBA</strong>
@@ -558,7 +558,7 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
 
 <main class="content">
 
-<section class="bienvenue" id="aperçu">
+<section class="welcome" id="overview">
   <h1>Vue générale</h1>
   <p>Bienvenue dans votre espace de direction. Pilotez les activités et les marques du groupe ADDIBA.</p>
 </section>
@@ -576,7 +576,7 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
   </div>
   <div class="stat-card">
     <p>Employés</p>
-    <h2 id="statEmployees">—</h2>
+    <h2 id="statEmployes">—</h2>
   </div>
   <div class="stat-card">
     <p>Documents</p>
@@ -605,12 +605,12 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
         <label for="brandStatus">Statut</label>
         <select id="brandStatus">
           <option value="en_preparation">En préparation</option>
-          <option value="active">Actif</option>
-          <option value="inactive">Inactif</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
         </select>
       </div>
 
-      <div class="champ plein">
+      <div class="field full">
         <label for="brandDescription">Description</label>
         <textarea id="brandDescription" placeholder="Description de la marque"></textarea>
       </div>
@@ -651,7 +651,7 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
 
       <div class="field">
         <label for="leaderPost">Poste occupé *</label>
-        <input id="leaderPost" type="text" obligatoire placeholder="Ex : Directeur général">
+        <input id="leaderPost" type="text" required placeholder="Ex : Directeur général">
       </div>
 
       <div class="field">
@@ -683,10 +683,10 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
 
     <div class="actions">
       <button class="btn btn-primary" id="leaderSaveBtn" type="submit">
-        Économisez le dirigeant
+        Enregistrer le dirigeant
       </button>
       <button class="btn btn-secondary" id="leaderCancelBtn" type="button" hidden>
-        Annuleur
+        Annuler
       </button>
     </div>
   </form>
@@ -694,7 +694,7 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
   <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
 
   <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">
-    Dirigants du groupe
+    Dirigeants du groupe
   </h3>
 
   <div id="leaderList" class="brand-list">
@@ -765,26 +765,26 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
 
 <!-- MENU MOBILE -->
 <script>
-(fonction(){
+(function(){
   const sidebar = document.getElementById("sidebar");
   const bouton = document.getElementById("mobileMenu");
   const fermeture = document.getElementById("sidebarClose");
   const overlay = document.getElementById("overlay");
 
-  fonction ouvrirMenu(){
+  function ouvrirMenu(){
     sidebar.classList.add("open");
     overlay.classList.add("show");
   }
 
-  fonction fermerMenu(){
+  function fermerMenu(){
     sidebar.classList.remove("open");
     overlay.classList.remove("show");
   }
 
   bouton.addEventListener("click",function(){
-    si (sidebar.classList.contains("open")){
+    if(sidebar.classList.contains("open")){
       fermerMenu();
-    }autre{
+    }else{
       ouvrirMenu();
     }
   });
@@ -793,7 +793,7 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
   overlay.addEventListener("click",fermerMenu);
 
   document.addEventListener("keydown",function(e){
-    if(e.key === "Échap") fermerMenu();
+    if(e.key === "Escape") fermerMenu();
   });
 
   document.querySelectorAll(".menu a").forEach(function(lien){
@@ -812,10 +812,10 @@ bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
 <script type="module">
 import { supabase } from "./supabase.js";
 
-/* ÉLÉMENTS GÉNÉRAUX */
+/* ELEMENTS GENERAUX */
 const message = document.getElementById("message");
 
-/* ÉLÉMENTS MARQUES */
+/* ELEMENTS MARQUES */
 const brandList = document.getElementById("brandList");
 const brandForm = document.getElementById("brandForm");
 const brandName = document.getElementById("brandName");
@@ -825,7 +825,7 @@ const formTitle = document.getElementById("formTitle");
 const saveBtn = document.getElementById("saveBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 
-/* DIRECTION DES ÉLÉMENTS */
+/* ELEMENTS DIRECTION */
 const leaderForm = document.getElementById("leaderForm");
 const leaderName = document.getElementById("leaderName");
 const leaderPost = document.getElementById("leaderPost");
@@ -838,24 +838,86 @@ const leaderFormTitle = document.getElementById("leaderFormTitle");
 const leaderSaveBtn = document.getElementById("leaderSaveBtn");
 const leaderCancelBtn = document.getElementById("leaderCancelBtn");
 
-laissez utilisateurAutorise = false;
-soit marqueEnModification = null;
-soit dirigeantEnModification = null;
-soit marquesActuelles = [];
-soit dirigeantsActuels = [];
+let utilisateurAutorise = false;
+let marqueEnModification = null;
+let dirigeantEnModification = null;
+let marquesActuelles = [];
+let dirigeantsActuels = [];
 
 /* MESSAGES */
 function afficherMessage(texte,erreur=false){
   message.textContent = texte;
-  message.className = erreur ? "erreur de message" : "message réussi";
+  message.className = erreur ? "message error" : "message success";
   message.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
-fonction effacerMessage(){
+function effacerMessage(){
   message.textContent = "";
   message.className = "message";
 }
 
-/* TEXTE SÉCURISÉ */
-fonction securiserTexte(texte){
-  retou
+/* SECURITE TEXTE */
+function securiserTexte(texte){
+  return String(texte ?? "").replace(/[&<>"']/g,function(c){
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[c];
+  });
+}
+
+/* STATUTS */
+function statutTexte(statut){
+  if(statut === "active" || statut === "actif") return "Actif";
+  if(statut === "inactive" || statut === "inactif") return "Inactif";
+  return "En préparation";
+}
+
+function statutClasse(statut){
+  if(statut === "active" || statut === "actif") return "status-active";
+  if(statut === "inactive" || statut === "inactif") return "status-inactive";
+  return "status-preparation";
+}
+
+/* VERIFICATION DU FONDATEUR */
+async function verifierFondateur(){
+  const {data,error} = await supabase.auth.getUser();
+
+  if(error) throw error;
+
+  if(!data.user){
+    window.location.href = "connexion.html";
+    return false;
+  }
+
+  const {data:profil,error:profilError} = await supabase
+    .from("profils")
+    .select("nom_complet, role")
+    .eq("id",data.user.id)
+    .single();
+
+  if(profilError) throw profilError;
+
+  if(!profil || profil.role !== "fondateur"){
+    await supabase.auth.signOut();
+    window.location.href = "connexion.html";
+    return false;
+  }
+
+  document.getElementById("founderName").textContent =
+    profil.nom_complet || "Fondateur ADDIBA";
+
+  utilisateurAutorise = true;
+  return true;
+}
+
+/* STATISTIQUES */
+async function chargerStatistique(table,elementId){
+  const {count,error} = await supabase
+    .from(table)
+    .select("*",{count:"exact",head:true});
+
+  document.getElementById(elementId).textContent 
