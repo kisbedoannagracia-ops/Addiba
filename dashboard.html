@@ -479,6 +479,62 @@ viderFormulaireMarque();
 afficherMessage(modification?"Marque modifiée avec succès.":"Marque ajoutée avec succès.");
 await chargerMarques();
 await chargerStatistiques();
+
+}catch(error){
+afficherMessage("Erreur : "+error.message,true);
+}finally{
+$("saveBtn").disabled=false;
+$("saveBtn").textContent="Enregistrer la marque";
+}
+});
+
+$("cancelBtn").addEventListener("click",()=>{
+viderFormulaireMarque();
+effacerMessage();
+});
+
+brandList.addEventListener("click",async evenement=>{
+const bouton=evenement.target.closest("button[data-action]");
+if(!bouton||!utilisateurAutorise)return;
+
+const id=bouton.dataset.id;
+const action=bouton.dataset.action;
+const marque=marquesActuelles.find(m=>String(m.id)===String(id));
+if(!marque)return;
+
+try{
+if(action==="edit"){
+preparerModificationMarque(marque);
+return;
+}
+
+if(action==="toggle"){
+const nouveauStatut=marque.statut==="active"?"inactive":"active";
+const {error}=await supabase.from("marques").update({statut:nouveauStatut}).eq("id",id);
+if(error)throw error;
+afficherMessage("Statut de la marque modifié.");
+}
+
+if(action==="delete"){
+if(!confirm("Voulez-vous vraiment supprimer cette marque ?"))return;
+const {error}=await supabase.from("marques").delete().eq("id",id);
+if(error)throw error;
+afficherMessage("Marque supprimée avec succès.");
+}
+
+await chargerMarques();
+await chargerStatistiques();
+}catch(error){
+afficherMessage("Erreur : "+error.message,true);
+}
+});
+}
+if(resultat.error)throw resultat.error;
+
+viderFormulaireMarque();
+afficherMessage(modification?"Marque modifiée avec succès.":"Marque ajoutée avec succès.");
+await chargerMarques();
+await chargerStatistiques();
 }catch(error){
 afficherMessage("Erreur : "+error.message,true);
 }finally{
