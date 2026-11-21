@@ -8,39 +8,51 @@
 
 <style>
 :root{
-  --navy:#101f3c;
-  --navy2:#192e50;
-  --green:#20bd83;
-  --bg:#f3f6fa;
-  --white:#fff;
-  --text:#24334b;
-  --muted:#718096;
-  --border:#e5eaf1;
+--navy:#101f3c;--navy2:#192e50;--green:#20bd83;
+--bg:#f3f6fa;--white:#fff;--text:#24334b;
+--muted:#718096;--border:#e5eaf1;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
 button,input,textarea,select{font:inherit}
-.sidebar{position:fixed;top:0;left:0;width:255px;height:100vh;background:var(--navy);color:white;padding:25px 17px;overflow-y:auto;z-index:1000;transition:transform .3s ease}
-.logo{font-size:27px;font-weight:800;letter-spacing:1px;padding:0 12px}
+.sidebar{
+position:fixed;top:0;left:0;width:255px;height:100vh;
+background:var(--navy);color:white;padding:25px 17px;
+overflow-y:auto;z-index:1000;transition:transform .3s
+}
+.logo{font-size:27px;font-weight:800;padding:0 12px}
 .logo span{color:var(--green)}
 .sidebar-subtitle{font-size:12px;color:#aebbd0;padding:5px 12px 28px}
-.menu-title{font-size:11px;color:#8999b2;text-transform:uppercase;letter-spacing:1px;padding:12px}
+.menu-title{font-size:11px;color:#8999b2;text-transform:uppercase;padding:12px}
 .menu{display:flex;flex-direction:column;gap:5px}
-.menu a{text-decoration:none;color:#c9d3e1;padding:13px 14px;border-radius:8px;font-size:14px;transition:.2s}
+.menu a{
+text-decoration:none;color:#c9d3e1;padding:13px 14px;
+border-radius:8px;font-size:14px
+}
 .menu a:hover,.menu a.active{background:rgba(32,189,131,.15);color:var(--green)}
 .menu a span{display:inline-block;width:27px}
-.sidebar-bottom{margin-top:35px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
-.sidebar-bottom button{width:100%;padding:12px;border:0;background:transparent;color:#ffb5b5;text-align:left;cursor:pointer;border-radius:8px}
+.sidebar-bottom{margin-top:35px;border-top:1px solid #ffffff20;padding-top:18px}
+.sidebar-bottom button{
+width:100%;padding:12px;border:0;background:transparent;
+color:#ffb5b5;text-align:left;cursor:pointer
+}
 .sidebar-close{display:none}
 .overlay{display:none}
 .main{margin-left:255px;min-height:100vh}
-.topbar{background:white;min-height:75px;padding:15px 32px;display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.topbar{
+background:white;min-height:75px;padding:15px 32px;
+display:flex;justify-content:space-between;align-items:center;
+gap:15px;border-bottom:1px solid var(--border);
+position:sticky;top:0;z-index:50
+}
 .topbar h2{font-size:19px;color:var(--navy)}
 .topbar small{display:block;color:var(--muted);margin-top:5px}
 .founder{display:flex;align-items:center;gap:12px}
-.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#e3f8ef;color:#11865b;font-weight:bold}
+.avatar{
+width:40px;height:40px;border-radius:50%;display:grid;
+place-items:center;background:#e3f8ef;color:#11865b;font-weight:bold
+}
 .founder strong{color:var(--navy);font-size:13px}
-.founder small{font-size:11px}
 .content{max-width:1400px;margin:auto;padding:32px}
 .welcome{margin-bottom:25px}
 .welcome h1{color:var(--navy);font-size:27px;margin-bottom:9px}
@@ -49,17 +61,24 @@ button,input,textarea,select{font:inherit}
 .message.success{display:block;background:#e5f8ef;color:#13784e}
 .message.error{display:block;background:#fff0f0;color:#a52a35}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:17px;margin-bottom:30px}
-.stat-card{background:white;padding:22px;border-radius:12px;border:1px solid var(--border);box-shadow:0 3px 12px rgba(16,31,60,.04)}
+.stat-card{background:white;padding:22px;border-radius:12px;border:1px solid var(--border)}
 .stat-card p{color:var(--muted);font-size:13px;margin-bottom:13px}
 .stat-card h2{color:var(--navy);font-size:30px}
-.section{background:white;padding:25px;border-radius:12px;border:1px solid var(--border);margin-bottom:25px;scroll-margin-top:95px}
-.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.section{
+background:white;padding:25px;border-radius:12px;
+border:1px solid var(--border);margin-bottom:25px;
+scroll-margin-top:95px
+}
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
 .section-heading h2{color:var(--navy);font-size:20px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{display:flex;flex-direction:column;gap:8px}
 .field.full{grid-column:1/-1}
 .field label{font-size:13px;font-weight:bold}
-.field input,.field textarea,.field select{width:100%;padding:13px;border:1px solid #d9e1eb;border-radius:8px;outline:none;background:white}
+.field input,.field textarea,.field select{
+width:100%;padding:13px;border:1px solid #d9e1eb;
+border-radius:8px;outline:none;background:white
+}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green)}
 .field textarea{min-height:85px;resize:vertical}
 .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
@@ -71,17 +90,20 @@ button,input,textarea,select{font:inherit}
 .btn-delete{background:#ffe8e9;color:#b52c37}
 .btn:disabled{opacity:.6;cursor:not-allowed}
 .brand-list{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
-.brand-card{border:1px solid var(--border);border-radius:11px;padding:20px}
+.brand-card{border:1px solid var(--border);border-radius:11px;padding:20px;min-width:0}
 .brand-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .brand-head h3{color:var(--navy);font-size:18px}
 .status{padding:6px 10px;border-radius:30px;font-size:11px;font-weight:bold}
 .status-active{background:#e1f8ed;color:#13784e}
 .status-inactive{background:#ffe8e9;color:#b52c37}
 .status-preparation{background:#fff2d9;color:#93600b}
-.brand-description{color:var(--muted);font-size:13px;line-height:1.6;min-height:40px}
+.brand-description{color:var(--muted);font-size:13px;line-height:1.6;overflow-wrap:anywhere}
 .brand-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .brand-actions .btn{font-size:12px;padding:9px 11px}
-.empty{grid-column:1/-1;padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:9px;overflow-wrap:anywhere}
+.empty{
+grid-column:1/-1;padding:25px;text-align:center;color:var(--muted);
+border:1px dashed var(--border);border-radius:9px;overflow-wrap:anywhere
+}
 .modules{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
 .module-card{border:1px solid var(--border);padding:21px;border-radius:11px;background:white;scroll-margin-top:100px}
 .module-icon{width:43px;height:43px;border-radius:10px;display:grid;place-items:center;background:#e3f8ef;font-size:21px;margin-bottom:14px}
@@ -91,204 +113,180 @@ button,input,textarea,select{font:inherit}
 .footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
 .mobile-menu{display:none;border:0;background:var(--navy);color:white;padding:10px 14px;border-radius:7px;font-size:22px;cursor:pointer}
 @media(max-width:1050px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .modules{grid-template-columns:repeat(2,1fr)}
+.stats{grid-template-columns:repeat(2,1fr)}
+.modules{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:700px){
-  .sidebar{width:min(290px,85vw);transform:translateX(-105%)}
-  .sidebar.open{transform:translateX(0)}
-  .sidebar-close{display:block;position:absolute;top:15px;right:15px;width:38px;height:38px;border:0;border-radius:8px;background:rgba(255,255,255,.15);color:white;font-size:25px;cursor:pointer}
-  .overlay{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:900;opacity:0;visibility:hidden;transition:.25s}
-  .overlay.show{opacity:1;visibility:visible}
-  .main{margin-left:0}
-  .topbar{padding:13px 16px}
-  .mobile-menu{display:block}
-  .topbar h2{font-size:16px}
-  .content{padding:20px 15px}
-  .welcome h1{font-size:23px}
-  .stats{gap:10px}
-  .stat-card{padding:16px}
-  .stat-card h2{font-size:25px}
-  .modules,.brand-list,.form-grid{grid-template-columns:1fr}
-  .section{padding:18px}
-  .founder div:last-child{display:none}
+.sidebar{width:min(290px,85vw);transform:translateX(-105%)}
+.sidebar.open{transform:translateX(0)}
+.sidebar-close{display:block;position:absolute;top:15px;right:15px;width:38px;height:38px;border:0;border-radius:8px;background:#ffffff25;color:white;font-size:25px}
+.overlay{display:block;position:fixed;inset:0;background:#0007;z-index:900;opacity:0;visibility:hidden;transition:.25s}
+.overlay.show{opacity:1;visibility:visible}
+.main{margin-left:0}
+.topbar{padding:13px 16px}
+.mobile-menu{display:block}
+.topbar h2{font-size:16px}
+.content{padding:20px 15px}
+.welcome h1{font-size:23px}
+.stats{gap:10px}
+.stat-card{padding:16px}
+.stat-card h2{font-size:25px}
+.modules,.brand-list,.form-grid{grid-template-columns:1fr}
+.section{padding:18px}
+.founder div:last-child{display:none}
 }
 </style>
 </head>
-<body>
 
+<body>
 <div class="overlay" id="overlay"></div>
 
 <aside class="sidebar" id="sidebar">
-  <button class="sidebar-close" id="sidebarClose" type="button">×</button>
-  <div class="logo">ADDI<span>BA</span></div>
-  <div class="sidebar-subtitle">Administration du groupe</div>
-  <div class="menu-title">Menu principal</div>
+<button class="sidebar-close" id="sidebarClose" type="button">×</button>
+<div class="logo">ADDI<span>BA</span></div>
+<div class="sidebar-subtitle">Administration du groupe</div>
+<div class="menu-title">Menu principal</div>
 
-  <nav class="menu">
-    <a href="#overview" class="active"><span>⌂</span> Vue générale</a>
-    <a href="#marques"><span>▣</span> Marques</a>
-    <a href="#direction"><span>♙</span> Direction</a>
-    <a href="#finances"><span>▤</span> Finances</a>
-    <a href="#rh"><span>♧</span> Ressources humaines</a>
-    <a href="#projets"><span>◈</span> Projets</a>
-    <a href="#documents"><span>▧</span> Documents</a>
-    <a href="#messages"><span>✉</span> Messages</a>
-    <a href="contact.html"><span>✉</span> Contact</a>
-    <a href="#parametres"><span>⚙</span> Paramètres</a>
-  </nav>
+<nav class="menu">
+<a href="#overview" class="active"><span>⌂</span> Vue générale</a>
+<a href="#marques"><span>▣</span> Marques</a>
+<a href="#direction"><span>♙</span> Direction</a>
+<a href="#finances"><span>▤</span> Finances</a>
+<a href="#rh"><span>♧</span> Ressources humaines</a>
+<a href="#projets"><span>◈</span> Projets</a>
+<a href="#documents"><span>▧</span> Documents</a>
+<a href="#messages"><span>✉</span> Messages</a>
+<a href="contact.html"><span>✉</span> Contact</a>
+<a href="#parametres"><span>⚙</span> Paramètres</a>
+</nav>
 
-  <div class="sidebar-bottom">
-    <button type="button" id="sidebarLogout">↪ Déconnexion</button>
-  </div>
+<div class="sidebar-bottom">
+<button type="button" id="sidebarLogout">↪ Déconnexion</button>
+</div>
 </aside>
 
 <div class="main">
 <header class="topbar">
-  <div style="display:flex;align-items:center;gap:13px">
-    <button class="mobile-menu" id="mobileMenu" type="button">☰</button>
-    <div>
-      <h2>Administration ADDIBA</h2>
-      <small>Espace réservé au fondateur</small>
-    </div>
-  </div>
-  <div class="founder">
-    <div class="avatar">F</div>
-    <div>
-      <strong id="founderName">Fondateur ADDIBA</strong>
-      <small>Fondateur</small>
-    </div>
-  </div>
+<div style="display:flex;align-items:center;gap:13px">
+<button class="mobile-menu" id="mobileMenu" type="button">☰</button>
+<div>
+<h2>Administration ADDIBA</h2>
+<small>Espace réservé au fondateur</small>
+</div>
+</div>
+<div class="founder">
+<div class="avatar">F</div>
+<div>
+<strong id="founderName">Fondateur ADDIBA</strong>
+<small>Fondateur</small>
+</div>
+</div>
 </header>
 
 <main class="content">
 <section class="welcome" id="overview">
-  <h1>Vue générale</h1>
-  <p>Bienvenue dans votre espace de direction. Pilotez les activités et les marques du groupe ADDIBA.</p>
+<h1>Vue générale</h1>
+<p>Bienvenue dans votre espace de direction. Pilotez les activités et les marques du groupe ADDIBA.</p>
 </section>
 
 <div id="message" class="message" role="status"></div>
 
 <section class="stats">
-  <div class="stat-card"><p>Marques enregistrées</p><h2 id="statMarques">—</h2></div>
-  <div class="stat-card"><p>Projets</p><h2 id="statProjets">—</h2></div>
-  <div class="stat-card"><p>Employés</p><h2 id="statEmployes">—</h2></div>
-  <div class="stat-card"><p>Documents</p><h2 id="statDocuments">—</h2></div>
+<div class="stat-card"><p>Marques enregistrées</p><h2 id="statMarques">—</h2></div>
+<div class="stat-card"><p>Projets</p><h2 id="statProjets">—</h2></div>
+<div class="stat-card"><p>Employés</p><h2 id="statEmployes">—</h2></div>
+<div class="stat-card"><p>Documents</p><h2 id="statDocuments">—</h2></div>
 </section>
 
 <section class="section" id="marques">
-  <div class="section-heading"><h2>Gestion des marques</h2></div>
-  <h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter une marque</h3>
+<div class="section-heading"><h2>Gestion des marques</h2></div>
+<h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter une marque</h3>
 
-  <form id="brandForm">
-    <div class="form-grid">
-      <div class="field">
-        <label for="brandName">Nom de la marque *</label>
-        <input id="brandName" type="text" required placeholder="Nom de la marque">
-      </div>
-      <div class="field">
-        <label for="brandStatus">Statut</label>
-        <select id="brandStatus">
-          <option value="en_preparation">En préparation</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
-      </div>
-      <div class="field full">
-        <label for="brandDescription">Description</label>
-        <textarea id="brandDescription" placeholder="Description de la marque"></textarea>
-      </div>
-    </div>
-    <div class="actions">
-      <button class="btn btn-primary" id="saveBtn" type="submit">Enregistrer la marque</button>
-      <button class="btn btn-secondary" id="cancelBtn" type="button" hidden>Annuler</button>
-    </div>
-  </form>
+<form id="brandForm">
+<div class="form-grid">
+<div class="field">
+<label for="brandName">Nom de la marque *</label>
+<input id="brandName" type="text" required placeholder="Nom de la marque">
+</div>
+<div class="field">
+<label for="brandStatus">Statut</label>
+<select id="brandStatus">
+<option value="en_preparation">En préparation</option>
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+</select>
+</div>
+<div class="field full">
+<label for="brandDescription">Description</label>
+<textarea id="brandDescription" placeholder="Description de la marque"></textarea>
+</div>
+</div>
+<div class="actions">
+<button class="btn btn-primary" id="saveBtn" type="submit">Enregistrer la marque</button>
+<button class="btn btn-secondary" id="cancelBtn" type="button" hidden>Annuler</button>
+</div>
+</form>
 
-  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
-  <div id="brandList" class="brand-list"><div class="empty">Connexion à Supabase...</div></div>
+<div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+<h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
+<div id="brandList" class="brand-list"><div class="empty">Connexion à Supabase...</div></div>
 </section>
 
 <section class="section" id="direction">
-  <div class="section-heading"><h2>Gestion de la direction</h2></div>
-  <h3 id="leaderFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter un dirigeant</h3>
+<div class="section-heading"><h2>Gestion de la direction</h2></div>
+<h3 id="leaderFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter un dirigeant</h3>
 
-  <form id="leaderForm">
-    <div class="form-grid">
-      <div class="field">
-        <label for="leaderName">Nom et prénom *</label>
-        <input id="leaderName" type="text" required placeholder="Nom complet">
-      </div>
-      <div class="field">
-        <label for="leaderPost">Poste occupé *</label>
-        <input id="leaderPost" type="text" required placeholder="Ex : Directeur général">
-      </div>
-      <div class="field">
-        <label for="leaderBrand">Marque associée</label>
-        <select id="leaderBrand"><option value="">Groupe ADDIBA</option></select>
-      </div>
-      <div class="field">
-        <label for="leaderStatus">Statut</label>
-        <select id="leaderStatus">
-          <option value="actif">Actif</option>
-          <option value="inactif">Inactif</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="leaderEmail">Adresse e-mail</label>
-        <input id="leaderEmail" type="email" placeholder="exemple@email.com">
-      </div>
-      <div class="field">
-        <label for="leaderPhone">Téléphone</label>
-        <input id="leaderPhone" type="tel" placeholder="Numéro de téléphone">
-      </div>
-    </div>
-    <div class="actions">
-      <button class="btn btn-primary" id="leaderSaveBtn" type="submit">Enregistrer le dirigeant</button>
-      <button class="btn btn-secondary" id="leaderCancelBtn" type="button" hidden>Annuler</button>
-    </div>
-  </form>
+<form id="leaderForm">
+<div class="form-grid">
+<div class="field">
+<label for="leaderName">Nom et prénom *</label>
+<input id="leaderName" type="text" required placeholder="Nom complet">
+</div>
+<div class="field">
+<label for="leaderPost">Poste occupé *</label>
+<input id="leaderPost" type="text" required placeholder="Ex : Directeur général">
+</div>
+<div class="field">
+<label for="leaderBrand">Marque associée</label>
+<select id="leaderBrand"><option value="">Groupe ADDIBA</option></select>
+</div>
+<div class="field">
+<label for="leaderStatus">Statut</label>
+<select id="leaderStatus">
+<option value="actif">Actif</option>
+<option value="inactif">Inactif</option>
+</select>
+</div>
+<div class="field">
+<label for="leaderEmail">Adresse e-mail</label>
+<input id="leaderEmail" type="email" placeholder="exemple@email.com">
+</div>
+<div class="field">
+<label for="leaderPhone">Téléphone</label>
+<input id="leaderPhone" type="tel" placeholder="Numéro de téléphone">
+</div>
+</div>
+<div class="actions">
+<button class="btn btn-primary" id="leaderSaveBtn" type="submit">Enregistrer le dirigeant</button>
+<button class="btn btn-secondary" id="leaderCancelBtn" type="button" hidden>Annuler</button>
+</div>
+</form>
 
-  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Dirigeants du groupe</h3>
-  <div id="leaderList" class="brand-list"><div class="empty">Chargement des dirigeants...</div></div>
+<div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+<h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Dirigeants du groupe</h3>
+<div id="leaderList" class="brand-list"><div class="empty">Chargement des dirigeants...</div></div>
 </section>
 
 <section class="section" id="autres-modules">
-  <div class="section-heading"><h2>Autres modules de gestion</h2></div>
-  <div class="modules">
-    <article class="module-card" id="finances">
-      <div class="module-icon">▤</div><h3>Finances</h3>
-      <p>Suivi des revenus, dépenses, budgets et performances financières.</p>
-      <span class="module-status">À développer</span>
-    </article>
-    <article class="module-card" id="rh">
-      <div class="module-icon">♧</div><h3>Ressources humaines</h3>
-      <p>Gestion du personnel, recrutements et informations des employés.</p>
-      <span class="module-status">À développer</span>
-    </article>
-    <article class="module-card" id="projets">
-      <div class="module-icon">◈</div><h3>Projets</h3>
-      <p>Création, organisation et suivi des projets du groupe.</p>
-      <span class="module-status">À développer</span>
-    </article>
-    <article class="module-card" id="documents">
-      <div class="module-icon">▧</div><h3>Documents</h3>
-      <p>Centralisation des documents administratifs et professionnels.</p>
-      <span class="module-status">À développer</span>
-    </article>
-    <article class="module-card" id="messages">
-      <div class="module-icon">✉</div><h3>Messages</h3>
-      <p>Communication interne et gestion des messages du groupe.</p>
-      <span class="module-status">À développer</span>
-    </article>
-    <article class="module-card" id="parametres">
-      <div class="module-icon">⚙</div><h3>Paramètres</h3>
-      <p>Configuration et gestion des paramètres de l'administration.</p>
-      <span class="module-status">À développer</span>
-    </article>
-  </div>
+<div class="section-heading"><h2>Autres modules de gestion</h2></div>
+<div class="modules">
+<article class="module-card" id="finances"><div class="module-icon">▤</div><h3>Finances</h3><p>Suivi des revenus, dépenses, budgets et performances financières.</p><span class="module-status">À développer</span></article>
+<article class="module-card" id="rh"><div class="module-icon">♧</div><h3>Ressources humaines</h3><p>Gestion du personnel, recrutements et informations des employés.</p><span class="module-status">À développer</span></article>
+<article class="module-card" id="projets"><div class="module-icon">◈</div><h3>Projets</h3><p>Création, organisation et suivi des projets du groupe.</p><span class="module-status">À développer</span></article>
+<article class="module-card" id="documents"><div class="module-icon">▧</div><h3>Documents</h3><p>Centralisation des documents administratifs et professionnels.</p><span class="module-status">À développer</span></article>
+<article class="module-card" id="messages"><div class="module-icon">✉</div><h3>Messages</h3><p>Communication interne et gestion des messages du groupe.</p><span class="module-status">À développer</span></article>
+<article class="module-card" id="parametres"><div class="module-icon">⚙</div><h3>Paramètres</h3><p>Configuration et gestion des paramètres de l'administration.</p><span class="module-status">À développer</span></article>
+</div>
 </section>
 </main>
 
@@ -297,56 +295,34 @@ button,input,textarea,select{font:inherit}
 
 <script>
 (function(){
-  const sidebar=document.getElementById("sidebar");
-  const bouton=document.getElementById("mobileMenu");
-  const fermeture=document.getElementById("sidebarClose");
-  const overlay=document.getElementById("overlay");
+const sidebar=document.getElementById("sidebar");
+const overlay=document.getElementById("overlay");
 
-  function ouvrirMenu(){sidebar.classList.add("open");overlay.classList.add("show")}
-  function fermerMenu(){sidebar.classList.remove("open");overlay.classList.remove("show")}
+function ouvrirMenu(){sidebar.classList.add("open");overlay.classList.add("show")}
+function fermerMenu(){sidebar.classList.remove("open");overlay.classList.remove("show")}
 
-  bouton.addEventListener("click",function(){
-    if(sidebar.classList.contains("open")) fermerMenu();
-    else ouvrirMenu();
-  });
-  fermeture.addEventListener("click",fermerMenu);
-  overlay.addEventListener("click",fermerMenu);
-  document.addEventListener("keydown",function(e){if(e.key==="Escape") fermerMenu()});
+document.getElementById("mobileMenu").addEventListener("click",ouvrirMenu);
+document.getElementById("sidebarClose").addEventListener("click",fermerMenu);
+overlay.addEventListener("click",fermerMenu);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")fermerMenu()});
 
-  document.querySelectorAll(".menu a").forEach(function(lien){
-    lien.addEventListener("click",function(){
-      document.querySelectorAll(".menu a").forEach(function(item){item.classList.remove("active")});
-      lien.classList.add("active");
-      fermerMenu();
-    });
-  });
+document.querySelectorAll(".menu a").forEach(lien=>{
+lien.addEventListener("click",()=>{
+document.querySelectorAll(".menu a").forEach(a=>a.classList.remove("active"));
+lien.classList.add("active");
+fermerMenu();
+});
+});
 })();
 </script>
 
 <script type="module">
 import { supabase } from "./supabase.js";
 
-const message=document.getElementById("message");
-const brandList=document.getElementById("brandList");
-const brandForm=document.getElementById("brandForm");
-const brandName=document.getElementById("brandName");
-const brandDescription=document.getElementById("brandDescription");
-const brandStatus=document.getElementById("brandStatus");
-const formTitle=document.getElementById("formTitle");
-const saveBtn=document.getElementById("saveBtn");
-const cancelBtn=document.getElementById("cancelBtn");
-
-const leaderForm=document.getElementById("leaderForm");
-const leaderName=document.getElementById("leaderName");
-const leaderPost=document.getElementById("leaderPost");
-const leaderBrand=document.getElementById("leaderBrand");
-const leaderStatus=document.getElementById("leaderStatus");
-const leaderEmail=document.getElementById("leaderEmail");
-const leaderPhone=document.getElementById("leaderPhone");
-const leaderList=document.getElementById("leaderList");
-const leaderFormTitle=document.getElementById("leaderFormTitle");
-const leaderSaveBtn=document.getElementById("leaderSaveBtn");
-const leaderCancelBtn=document.getElementById("leaderCancelBtn");
+const $=id=>document.getElementById(id);
+const message=$("message");
+const brandList=$("brandList");
+const leaderList=$("leaderList");
 
 let utilisateurAutorise=false;
 let marqueEnModification=null;
@@ -355,97 +331,178 @@ let marquesActuelles=[];
 let dirigeantsActuels=[];
 
 function afficherMessage(texte,erreur=false){
-  message.textContent=texte;
-  message.className=erreur?"message error":"message success";
-  message.scrollIntoView({behavior:"smooth",block:"nearest"});
+message.textContent=texte;
+message.className=erreur?"message error":"message success";
 }
 function effacerMessage(){message.textContent="";message.className="message"}
 
 function securiserTexte(texte){
-  return String(texte??"").replace(/[&<>"']/g,function(c){
-    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c];
-  });
+return String(texte??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+}[c]));
 }
 function statutTexte(statut){
-  if(statut==="active"||statut==="actif") return "Actif";
-  if(statut==="inactive"||statut==="inactif") return "Inactif";
-  return "En préparation";
+if(statut==="active"||statut==="actif")return "Actif";
+if(statut==="inactive"||statut==="inactif")return "Inactif";
+return "En préparation";
 }
 function statutClasse(statut){
-  if(statut==="active"||statut==="actif") return "status-active";
-  if(statut==="inactive"||statut==="inactif") return "status-inactive";
-  return "status-preparation";
+if(statut==="active"||statut==="actif")return "status-active";
+if(statut==="inactive"||statut==="inactif")return "status-inactive";
+return "status-preparation";
 }
 
 async function verifierFondateur(){
-  const {data,error}=await supabase.auth.getUser();
-  if(error) throw error;
-  if(!data.user){window.location.href="connexion.html";return false}
+const {data,error}=await supabase.auth.getUser();
+if(error)throw error;
+if(!data.user){window.location.href="connexion.html";return false}
 
-  const {data:profil,error:profilError}=await supabase
-    .from("profils").select("nom_complet, role").eq("id",data.user.id).single();
+const {data:profil,error:profilError}=await supabase
+.from("profils")
+.select("nom_complet, role")
+.eq("id",data.user.id)
+.single();
 
-  if(profilError) throw profilError;
-  if(!profil||profil.role!=="fondateur"){
-    await supabase.auth.signOut();
-    window.location.href="connexion.html";
-    return false;
-  }
-  document.getElementById("founderName").textContent=profil.nom_complet||"Fondateur ADDIBA";
-  utilisateurAutorise=true;
-  return true;
+if(profilError)throw profilError;
+if(!profil||profil.role!=="fondateur"){
+await supabase.auth.signOut();
+window.location.href="connexion.html";
+return false;
+}
+$("founderName").textContent=profil.nom_complet||"Fondateur ADDIBA";
+utilisateurAutorise=true;
+return true;
 }
 
 async function chargerStatistique(table,elementId){
-  const {count,error}=await supabase.from(table).select("*",{count:"exact",head:true});
-  document.getElementById(elementId).textContent=error?"—":(count??0);
-  if(error) console.warn("Statistique indisponible :",table,error.message);
+const {count,error}=await supabase.from(table).select("*",{count:"exact",head:true});
+$(elementId).textContent=error?"—":(count??0);
+if(error)console.warn("Statistique indisponible :",table,error.message);
 }
 async function chargerStatistiques(){
-  await Promise.all([
-    chargerStatistique("marques","statMarques"),
-    chargerStatistique("projets","statProjets"),
-    chargerStatistique("employes","statEmployes"),
-    chargerStatistique("documents","statDocuments")
-  ]);
+await Promise.all([
+chargerStatistique("marques","statMarques"),
+chargerStatistique("projets","statProjets"),
+chargerStatistique("employes","statEmployes"),
+chargerStatistique("documents","statDocuments")
+]);
 }
 
-/* MARQUES */
+/* GESTION DES MARQUES */
 function viderFormulaireMarque(){
-  brandForm.reset();marqueEnModification=null;
-  formTitle.textContent="Ajouter une marque";
-  saveBtn.textContent="Enregistrer la marque";
-  cancelBtn.hidden=true;
+$("brandForm").reset();
+marqueEnModification=null;
+$("formTitle").textContent="Ajouter une marque";
+$("saveBtn").textContent="Enregistrer la marque";
+$("cancelBtn").hidden=true;
 }
 
 async function chargerMarques(){
-  brandList.innerHTML='<div class="empty">Chargement des marques...</div>';
-  const {data,error}=await supabase.from("marques")
-    .select("id, nom, description, statut, created_at").order("id",{ascending:true});
-  if(error) throw error;
+brandList.innerHTML='<div class="empty">Chargement des marques...</div>';
 
-  marquesActuelles=data||[];
-  const ancienneSelection=leaderBrand.value;
-  leaderBrand.innerHTML='<option value="">Groupe ADDIBA</option>';
+const {data,error}=await supabase.from("marques")
+.select("id, nom, description, statut, created_at")
+.order("id",{ascending:true});
 
-  marquesActuelles.forEach(function(marque){
-    const option=document.createElement("option");
-    option.value=marque.id;option.textContent=marque.nom;
-    leaderBrand.appendChild(option);
-  });
-  if(ancienneSelection) leaderBrand.value=ancienneSelection;
+if(error)throw error;
+marquesActuelles=data||[];
 
-  if(!marquesActuelles.length){
-    brandList.innerHTML='<div class="empty">Aucune marque enregistrée.</div>';
-    return;
-  }
+const ancienneSelection=$("leaderBrand").value;
+$("leaderBrand").innerHTML='<option value="">Groupe ADDIBA</option>';
 
-  brandList.innerHTML=marquesActuelles.map(function(marque){
-    return `
-      <article class="brand-card">
-        <div class="brand-head">
-          <h3>${securiserTexte(marque.nom)}</h3>
-          <span class="status ${statutClasse(marque.statut)}">${statutTexte(marque.statut)}</span>
-        </div>
-        <p class="brand-description">${securiserTexte(marque.description||"Aucune description.")}</p>
-        <div class="bra
+marquesActuelles.forEach(marque=>{
+const option=document.createElement("option");
+option.value=marque.id;
+option.textContent=marque.nom;
+$("leaderBrand").appendChild(option);
+});
+if(ancienneSelection)$("leaderBrand").value=ancienneSelection;
+
+if(!marquesActuelles.length){
+brandList.innerHTML='<div class="empty">Aucune marque enregistrée.</div>';
+return;
+}
+
+brandList.innerHTML=marquesActuelles.map(marque=>`
+<article class="brand-card">
+<div class="brand-head">
+<h3>${securiserTexte(marque.nom)}</h3>
+<span class="status ${statutClasse(marque.statut)}">${statutTexte(marque.statut)}</span>
+</div>
+<p class="brand-description">${securiserTexte(marque.description||"Aucune description.")}</p>
+<div class="brand-actions">
+<button class="btn btn-edit" type="button" data-action="edit" data-id="${securiserTexte(marque.id)}">Modifier</button>
+<button class="btn btn-toggle" type="button" data-action="toggle" data-id="${securiserTexte(marque.id)}">${marque.statut==="active"?"Désactiver":"Activer"}</button>
+<button class="btn btn-delete" type="button" data-action="delete" data-id="${securiserTexte(marque.id)}">Supprimer</button>
+</div>
+</article>`).join("");
+}
+
+function preparerModificationMarque(marque){
+marqueEnModification=marque.id;
+$("brandName").value=marque.nom||"";
+$("brandDescription").value=marque.description||"";
+$("brandStatus").value=marque.statut||"en_preparation";
+$("formTitle").textContent="Modifier la marque";
+$("saveBtn").textContent="Enregistrer les modifications";
+$("cancelBtn").hidden=false;
+$("marques").scrollIntoView({behavior:"smooth"});
+}
+
+$("brandForm").addEventListener("submit",async evenement=>{
+evenement.preventDefault();
+effacerMessage();
+if(!utilisateurAutorise){afficherMessage("Accès non autorisé.",true);return}
+
+const nom=$("brandName").value.trim();
+const description=$("brandDescription").value.trim();
+const statut=$("brandStatus").value;
+
+if(!nom){afficherMessage("Veuillez saisir le nom de la marque.",true);return}
+
+const modification=marqueEnModification!==null;
+$("saveBtn").disabled=true;
+$("saveBtn").textContent="Enregistrement...";
+
+try{
+let resultat;
+if(modification){
+resultat=await supabase.from("marques")
+.update({nom,description,statut}).eq("id",marqueEnModification);
+}else{
+resultat=await supabase.from("marques")
+.insert([{nom,description,statut}]);
+}
+if(resultat.error)throw resultat.error;
+
+viderFormulaireMarque();
+afficherMessage(modification?"Marque modifiée avec succès.":"Marque ajoutée avec succès.");
+await chargerMarques();
+await chargerStatistiques();
+}catch(error){
+afficherMessage("Erreur : "+error.message,true);
+}finally{
+$("saveBtn").disabled=false;
+$("saveBtn").textContent="Enregistrer la marque";
+}
+});
+
+$("cancelBtn").addEventListener("click",()=>{
+viderFormulaireMarque();
+effacerMessage();
+});
+
+brandList.addEventListener("click",async evenement=>{
+const bouton=evenement.target.closest("button[data-action]");
+if(!bouton||!utilisateurAutorise)return;
+
+const id=bouton.dataset.id;
+const action=bouton.dataset.action;
+const marque=marquesActuelles.find(m=>String(m.id)===String(id));
+if(!marque)return;
+
+try{
+if(action==="edit"){preparerModificationMarque(marque);return}
+
+if(action==="toggle"){
+co
