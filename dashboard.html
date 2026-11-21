@@ -626,7 +626,7 @@ button,input,textarea,select{font:inherit}
   <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
 
   <div id="brandList" class="brand-list">
-    <div class="empty">Chargement des marques...</div>
+    <div class="empty">Connexion à Supabase...</div>
   </div>
 </section>
 
@@ -742,8 +742,7 @@ button,input,textarea,select{font:inherit}
 
 <!-- GESTION SUPABASE -->
 <script type="module">
-
-let supabase = null;
+import { supabase } from "./supabase.js";
 
 const message = document.getElementById("message");
 const brandList = document.getElementById("brandList");
@@ -933,5 +932,4 @@ brandForm.addEventListener("submit",async function(evenement){
   effacerMessage();
 
   if(!utilisateurAutorise){
-    afficherMessage("Accès non autorisé.",true);
-    re
+    afficherMessage("Accès non autoris
