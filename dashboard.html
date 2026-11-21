@@ -2,326 +2,722 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101f3c">
 <title>Espace fondateur | ADDIBA</title>
+
 <style>
-:root{--navy:#101f3c;--green:#20bd83;--bg:#f3f6fa;--text:#24334b;--muted:#718096;--border:#e5eaf1}
+:root{
+  --navy:#101f3c;
+  --navy2:#192e50;
+  --green:#20bd83;
+  --bg:#f3f6fa;
+  --white:#ffffff;
+  --text:#263449;
+  --muted:#718096;
+  --red:#d93636;
+  --border:#e5eaf0;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
-button,input,textarea,select{font:inherit}
-.sidebar{position:fixed;inset:0 auto 0 0;width:255px;background:var(--navy);color:white;padding:25px 17px;overflow-y:auto;z-index:1000;transition:transform .25s}
-.logo{font-size:27px;font-weight:800;padding:0 12px}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.layout{display:flex;min-height:100vh}
+.sidebar{
+  width:250px;
+  background:var(--navy);
+  color:white;
+  padding:22px 15px;
+  position:fixed;
+  inset:0 auto 0 0;
+  z-index:20;
+  overflow-y:auto;
+  transition:transform .25s;
+}
+.logo{
+  font-size:23px;
+  font-weight:bold;
+  padding:10px 12px 25px;
+  letter-spacing:1px;
+}
 .logo span{color:var(--green)}
-.sidebar-subtitle{font-size:12px;color:#aebbd0;padding:5px 12px 28px}
-.menu-title{font-size:11px;color:#8999b2;text-transform:uppercase;padding:12px}
-.menu{display:flex;flex-direction:column;gap:5px}
-.menu a{color:#c9d3e1;text-decoration:none;padding:13px 14px;border-radius:8px;font-size:14px}
-.menu a span{display:inline-block;width:27px}
-.menu a:hover,.menu a.active{background:#203b52;color:var(--green)}
-.sidebar-bottom{margin-top:30px;border-top:1px solid #ffffff22;padding-top:15px}
-.sidebar-bottom button{width:100%;padding:12px;border:0;background:none;color:#ffb5b5;text-align:left;cursor:pointer}
-.sidebar-close{display:none}
-.overlay{display:none}
-.main{margin-left:255px;min-height:100vh}
-.topbar{background:white;min-height:75px;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
-.topbar h2{font-size:19px;color:var(--navy);margin:0}
-.topbar small{display:block;color:var(--muted);margin-top:5px}
-.founder{display:flex;align-items:center;gap:12px}
-.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#e3f8ef;color:#11865b;font-weight:bold}
-.content{max-width:1400px;margin:auto;padding:30px}
-.welcome{margin-bottom:25px}
-.welcome h1{color:var(--navy);font-size:27px;margin:0 0 9px}
-.welcome p{color:var(--muted);line-height:1.5;margin:0}
-.message{display:none;padding:14px;margin-bottom:20px;border-radius:8px;line-height:1.5;overflow-wrap:anywhere}
-.message.success{display:block;background:#e5f8ef;color:#13784e}
-.message.error{display:block;background:#fff0f0;color:#a52a35}
-.message.info{display:block;background:#eaf1ff;color:#244b88}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:25px}
-.stat-card,.section{background:white;border:1px solid var(--border);border-radius:12px}
-.stat-card{padding:21px}
-.stat-card p{color:var(--muted);font-size:13px;margin:0 0 12px}
-.stat-card h2{color:var(--navy);font-size:23px;margin:0;overflow-wrap:anywhere}
-.section{padding:24px;margin-bottom:24px;scroll-margin-top:95px}
-.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.section-heading h2{color:var(--navy);font-size:20px;margin:0}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.field{display:flex;flex-direction:column;gap:8px}
-.field.full{grid-column:1/-1}
-.field label{font-size:13px;font-weight:bold}
-.field input,.field textarea,.field select{width:100%;padding:12px;border:1px solid #d9e1eb;border-radius:8px;background:white;outline:none}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green)}
-.field textarea{min-height:80px;resize:vertical}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.btn{border:0;border-radius:8px;padding:11px 15px;font-weight:bold;cursor:pointer}
-.btn-primary{background:var(--green);color:var(--navy)}
-.btn-secondary{background:#e8edf4;color:var(--navy)}
-.btn-delete{background:#ffe8e9;color:#b52c37}
-.btn:disabled{opacity:.6}
-.brand-list{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.brand-card{border:1px solid var(--border);border-radius:10px;padding:18px;min-width:0}
-.brand-card h3{color:var(--navy);margin:0 0 12px;font-size:17px}
-.brand-description{font-size:13px;color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
-.brand-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.empty{grid-column:1/-1;text-align:center;padding:24px;border:1px dashed var(--border);border-radius:9px;color:var(--muted)}
-.finance-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
-.finance-card{background:white;border:1px solid var(--border);border-radius:10px;padding:18px}
-.finance-card p{font-size:13px;color:var(--muted);margin:0 0 10px}
-.finance-card h3{font-size:21px;color:var(--navy);margin:0;overflow-wrap:anywhere}
-.income h3{color:#138456}.expense h3{color:#b52c37}.balance h3{color:#2055a0}
+.menu-title{
+  color:#9eacc0;
+  font-size:11px;
+  margin:20px 12px 9px;
+  text-transform:uppercase;
+}
+.menu a{
+  display:block;
+  color:#dce5f1;
+  text-decoration:none;
+  padding:13px 12px;
+  margin:4px 0;
+  border-radius:8px;
+  font-size:14px;
+}
+.menu a:hover,.menu a.active{
+  background:#263d60;
+  color:white;
+}
+.sidebar-bottom{
+  margin-top:35px;
+  border-top:1px solid #344766;
+  padding-top:15px;
+}
+.main{
+  width:calc(100% - 250px);
+  margin-left:250px;
+  min-width:0;
+}
+.topbar{
+  height:70px;
+  background:white;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+}
+.topbar strong{color:var(--navy)}
+.mobile-menu{
+  display:none;
+  background:var(--navy);
+  color:white;
+  border:0;
+  border-radius:7px;
+  padding:9px 12px;
+}
+.content{padding:25px;max-width:1400px;margin:auto}
+h1{font-size:25px;color:var(--navy);margin:0 0 8px}
+.subtitle{color:var(--muted);margin:0 0 22px;font-size:14px}
+.message{
+  padding:13px 15px;
+  border-radius:8px;
+  margin:15px 0;
+  background:#eaf1fb;
+  color:var(--navy);
+  font-size:14px;
+  overflow-wrap:anywhere;
+}
+.message.error{background:#fff0f0;color:var(--red)}
+.message.success{background:#e9faf3;color:#087c50}
+.hidden{display:none!important}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+  margin:20px 0;
+}
+.stat{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  border:1px solid var(--border);
+}
+.stat small{color:var(--muted)}
+.stat strong{
+  display:block;
+  font-size:28px;
+  margin-top:10px;
+  color:var(--navy);
+}
+.panel{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  margin:18px 0;
+  min-width:0;
+}
+.panel h2{font-size:18px;color:var(--navy);margin:0 0 16px}
+.panel h3{font-size:15px;color:var(--navy)}
+.grid-two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+input,select,textarea{
+  width:100%;
+  border:1px solid #d9e0e9;
+  border-radius:7px;
+  padding:11px;
+  background:white;
+  color:var(--text);
+  min-width:0;
+}
+textarea{min-height:75px;resize:vertical}
+.field{margin-bottom:12px}
+.field label{
+  display:block;
+  font-size:13px;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+.btn{
+  border:0;
+  border-radius:7px;
+  padding:11px 16px;
+  background:var(--green);
+  color:#062d20;
+  font-weight:bold;
+}
+.btn-secondary{background:var(--navy);color:white}
+.btn-danger{background:#ffe9e9;color:#b42323}
+.btn:disabled{opacity:.5;cursor:not-allowed}
 .table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:700px}
-th,td{text-align:left;padding:12px;border-bottom:1px solid var(--border);font-size:13px}
-th{background:#f7f9fc;color:var(--navy)}
-.footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
-.mobile-menu{display:none;border:0;background:var(--navy);color:white;padding:9px 13px;border-radius:7px;font-size:22px;cursor:pointer}
-@media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){
-.sidebar{width:min(290px,85vw);transform:translateX(-105%)}
-.sidebar.open{transform:translateX(0)}
-.sidebar-close{display:block;position:absolute;top:14px;right:14px;border:0;border-radius:7px;background:#ffffff25;color:white;font-size:25px;width:38px;height:38px}
-.overlay{display:block;position:fixed;inset:0;background:#0007;z-index:900;opacity:0;visibility:hidden}
-.overlay.show{opacity:1;visibility:visible}
-.main{margin-left:0}.topbar{padding:13px 15px}
-.mobile-menu{display:block}.topbar h2{font-size:16px}
-.content{padding:20px 14px}.welcome h1{font-size:23px}
-.stat-card{padding:15px}.stat-card h2{font-size:18px}
-.brand-list,.form-grid{grid-template-columns:1fr}
-.finance-stats{grid-template-columns:1fr}
-.section{padding:17px}
-.founder-details{display:none}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+  min-width:480px;
+}
+th,td{
+  text-align:left;
+  padding:12px 10px;
+  border-bottom:1px solid var(--border);
+}
+th{color:var(--muted);font-weight:bold}
+.empty{color:var(--muted);font-size:14px;padding:15px 0}
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#eaf1fb;
+  font-size:12px;
+}
+.login-box{max-width:450px;margin:35px auto}
+.login-box .panel{padding:25px}
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:15;
+}
+.overlay.show{display:block}
+@media(max-width:850px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{width:100%;margin-left:0}
+  .mobile-menu{display:block}
+  .topbar{padding:0 15px}
+  .content{padding:18px 13px}
+}
+@media(max-width:600px){
+  .cards{grid-template-columns:1fr}
+  .grid-two{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  h1{font-size:22px}
 }
 </style>
 </head>
+
 <body>
 
 <div class="overlay" id="overlay"></div>
 
+<div class="layout">
+
 <aside class="sidebar" id="sidebar">
-<button class="sidebar-close" id="sidebarClose" type="button">×</button>
-<div class="logo">ADDI<span>BA</span></div>
-<div class="sidebar-subtitle">Administration du groupe</div>
-<div class="menu-title">Menu principal</div>
-<nav class="menu">
-<a href="#overview" class="active"><span>⌂</span>Vue générale</a>
-<a href="#marques"><span>▣</span>Marques</a>
-<a href="#direction"><span>♙</span>Direction</a>
-<a href="#finances"><span>▤</span>Finances</a>
-<a href="#rh"><span>♧</span>Ressources humaines</a>
-<a href="#projets"><span>◈</span>Projets</a>
-<a href="#documents"><span>▧</span>Documents</a>
-<a href="#messages"><span>✉</span>Messages</a>
-<a href="#parametres"><span>⚙</span>Paramètres</a>
-</nav>
-<div class="sidebar-bottom"><button id="logout" type="button">↪ Déconnexion</button></div>
+  <div class="logo">GROUPE <span>ADDIBA</span></div>
+
+  <div class="menu-title">Espace fondateur</div>
+
+  <nav class="menu">
+    <a href="#accueil" class="active">Vue générale</a>
+    <a href="#marques">Marques du groupe</a>
+    <a href="#dirigeants">Dirigeants du groupe</a>
+    <a href="#finances">Gestion financière</a>
+  </nav>
+
+  <div class="menu-title">Autres espaces</div>
+  <nav class="menu">
+    <a href="#projets">Projets</a>
+    <a href="#employes">Employés</a>
+    <a href="#documents">Documents</a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <nav class="menu">
+      <a href="./connexion.html">Déconnexion</a>
+      <a href="./index.html">Retour au site</a>
+    </nav>
+  </div>
 </aside>
 
-<div class="main">
+<main class="main">
+
 <header class="topbar">
-<div style="display:flex;align-items:center;gap:12px">
-<button class="mobile-menu" id="mobileMenu" type="button">☰</button>
-<div><h2>Administration ADDIBA</h2><small>Espace réservé au fondateur</small></div>
-</div>
-<div class="founder">
-<div class="avatar">F</div>
-<div class="founder-details"><strong id="founderName">Fondateur ADDIBA</strong><small>Fondateur</small></div>
-</div>
+  <button class="mobile-menu" id="mobileMenu">☰ Menu</button>
+  <strong>Administration ADDIBA</strong>
+  <span id="userLabel">Espace fondateur</span>
 </header>
 
-<main class="content">
-<section class="welcome" id="overview">
-<h1>Vue générale</h1>
-<p>Bienvenue dans votre espace de direction. Pilotez les activités et les marques du groupe ADDIBA.</p>
+<div class="content">
+
+<section id="accueil">
+  <h1>Vue générale</h1>
+  <p class="subtitle">Bienvenue dans votre espace d'administration du Groupe ADDIBA.</p>
+
+  <div id="message" class="message">Initialisation du tableau de bord...</div>
+
+  <div class="cards">
+    <div class="stat">
+      <small>Marques du groupe</small>
+      <strong id="statMarques">—</strong>
+    </div>
+    <div class="stat">
+      <small>Dirigeants</small>
+      <strong id="statDirigeants">—</strong>
+    </div>
+    <div class="stat">
+      <small>Transactions financières</small>
+      <strong id="statFinances">—</strong>
+    </div>
+  </div>
 </section>
 
-<div id="message" class="message" role="status"></div>
+<section id="marques" class="panel">
+  <h2>Marques du groupe</h2>
+  <p class="subtitle">Enregistrement et consultation des marques du Groupe ADDIBA.</p>
 
-<section class="stats">
-<div class="stat-card"><p>Marques enregistrées</p><h2 id="statMarques">—</h2></div>
-<div class="stat-card"><p>Dirigeants</p><h2 id="statDirigeants">—</h2></div>
-<div class="stat-card"><p>Revenus enregistrés</p><h2 id="statRevenus">—</h2></div>
-<div class="stat-card"><p>Opérations financières</p><h2 id="statOperations">—</h2></div>
+  <form id="brandForm">
+    <div class="form-grid">
+      <div class="field">
+        <label for="brandName">Nom de la marque</label>
+        <input id="brandName" required maxlength="150" placeholder="Nom de la marque">
+      </div>
+      <div class="field">
+        <label for="brandStatus">Statut</label>
+        <select id="brandStatus">
+          <option value="active">Active</option>
+          <option value="en_attente">En attente</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="brandDescription">Description</label>
+      <textarea id="brandDescription" placeholder="Description de la marque"></textarea>
+    </div>
+    <button class="btn" type="submit">Ajouter la marque</button>
+  </form>
+
+  <div id="brandMessage" class="message hidden"></div>
+
+  <h3>Liste des marques</h3>
+  <div id="brandList" class="empty">En attente de connexion...</div>
 </section>
 
-<section class="section" id="marques">
-<div class="section-heading"><h2>Gestion des marques</h2></div>
-<h3 id="brandTitle">Ajouter une marque</h3>
-<form id="brandForm">
-<div class="form-grid">
-<div class="field"><label for="brandName">Nom de la marque *</label><input id="brandName" required></div>
-<div class="field"><label for="brandStatus">Statut</label>
-<select id="brandStatus"><option value="en_preparation">En préparation</option><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
-<div class="field full"><label for="brandDescription">Description</label><textarea id="brandDescription"></textarea></div>
+<section id="dirigeants" class="panel">
+  <h2>Dirigeants du groupe</h2>
+  <p class="subtitle">Gestion des responsables et dirigeants des marques.</p>
+
+  <form id="leaderForm">
+    <div class="form-grid">
+      <div class="field">
+        <label for="leaderName">Nom complet</label>
+        <input id="leaderName" required placeholder="Nom complet">
+      </div>
+      <div class="field">
+        <label for="leaderPost">Poste occupé</label>
+        <input id="leaderPost" required placeholder="Directeur général, responsable...">
+      </div>
+      <div class="field">
+        <label for="leaderBrand">Marque associée</label>
+        <select id="leaderBrand" required>
+          <option value="">Chargement des marques...</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="leaderEmail">Adresse e-mail</label>
+        <input id="leaderEmail" type="email" placeholder="Adresse e-mail">
+      </div>
+      <div class="field">
+        <label for="leaderPhone">Téléphone</label>
+        <input id="leaderPhone" placeholder="Téléphone">
+      </div>
+      <div class="field">
+        <label for="leaderStatus">Statut</label>
+        <select id="leaderStatus">
+          <option value="actif">Actif</option>
+          <option value="en_attente">En attente</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" type="submit">Ajouter le dirigeant</button>
+  </form>
+
+  <div id="leaderMessage" class="message hidden"></div>
+
+  <h3>Liste des dirigeants</h3>
+  <div id="leaderList" class="empty">En attente de connexion...</div>
+</section>
+
+<section id="finances" class="panel">
+  <h2>Gestion financière</h2>
+  <p class="subtitle">Suivi des entrées et sorties financières du groupe.</p>
+
+  <form id="financeForm">
+    <div class="form-grid">
+      <div class="field">
+        <label for="financeLabel">Libellé</label>
+        <input id="financeLabel" required placeholder="Exemple : Vente de produits">
+      </div>
+      <div class="field">
+        <label for="financeType">Type d'opération</label>
+        <select id="financeType" required>
+          <option value="entree">Entrée</option>
+          <option value="sortie">Sortie</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="financeAmount">Montant (FCFA)</label>
+        <input id="financeAmount" type="number" min="1" step="1" required>
+      </div>
+      <div class="field">
+        <label for="financeCategory">Catégorie</label>
+        <input id="financeCategory" placeholder="Vente, dépense, investissement...">
+      </div>
+      <div class="field">
+        <label for="financeBrand">Marque concernée</label>
+        <select id="financeBrand">
+          <option value="">Groupe ADDIBA</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="financeDate">Date de l'opération</label>
+        <input id="financeDate" type="date" required>
+      </div>
+    </div>
+    <div class="field">
+      <label for="financeDescription">Description</label>
+      <textarea id="financeDescription" placeholder="Détails de l'opération"></textarea>
+    </div>
+    <button class="btn" type="submit">Enregistrer l'opération</button>
+  </form>
+
+  <div id="financeMessage" class="message hidden"></div>
+
+  <h3>Historique financier</h3>
+  <div id="financeList" class="empty">En attente de connexion...</div>
+</section>
+
+<section id="projets" class="panel">
+  <h2>Projets</h2>
+  <p class="empty">Cet espace sera connecté à la gestion des projets.</p>
+</section>
+
+<section id="employes" class="panel">
+  <h2>Employés</h2>
+  <p class="empty">Cet espace sera connecté à la gestion des employés.</p>
+</section>
+
+<section id="documents" class="panel">
+  <h2>Documents</h2>
+  <p class="empty">Cet espace sera connecté à la gestion des documents.</p>
+</section>
+
 </div>
-<div class="actions"><button class="btn btn-primary" id="brandSave">Enregistrer la marque</button><button class="btn btn-secondary" type="button" id="brandCancel" hidden>Annuler</button></div>
-</form>
-<hr style="border:0;border-top:1px solid #e5eaf1;margin:25px 0">
-<h3>Marques du groupe</h3>
-<div id="brandList" class="brand-list"><div class="empty">En attente de connexion...</div></div>
-</section>
-
-<section class="section" id="direction">
-<div class="section-heading"><h2>Gestion de la direction</h2></div>
-<h3 id="leaderTitle">Ajouter un dirigeant</h3>
-<form id="leaderForm">
-<div class="form-grid">
-<div class="field"><label for="leaderName">Nom et prénom *</label><input id="leaderName" required></div>
-<div class="field"><label for="leaderPost">Poste occupé *</label><input id="leaderPost" required></div>
-<div class="field"><label for="leaderBrand">Marque associée</label><select id="leaderBrand"><option value="">Groupe ADDIBA</option></select></div>
-<div class="field"><label for="leaderStatus">Statut</label><select id="leaderStatus"><option value="actif">Actif</option><option value="inactif">Inactif</option></select></div>
-<div class="field"><label for="leaderEmail">Adresse e-mail</label><input id="leaderEmail" type="email"></div>
-<div class="field"><label for="leaderPhone">Téléphone</label><input id="leaderPhone" type="tel"></div>
-</div>
-<div class="actions"><button class="btn btn-primary" id="leaderSave">Enregistrer le dirigeant</button><button class="btn btn-secondary" type="button" id="leaderCancel" hidden>Annuler</button></div>
-</form>
-<hr style="border:0;border-top:1px solid #e5eaf1;margin:25px 0">
-<h3>Dirigeants du groupe</h3>
-<div id="leaderList" class="brand-list"><div class="empty">En attente de connexion...</div></div>
-</section>
-
-<section class="section" id="finances">
-<div class="section-heading"><h2>Gestion financière</h2></div>
-<div class="finance-stats">
-<div class="finance-card income"><p>Total des revenus</p><h3 id="totalRevenus">0 FCFA</h3></div>
-<div class="finance-card expense"><p>Total des dépenses</p><h3 id="totalDepenses">0 FCFA</h3></div>
-<div class="finance-card balance"><p>Solde disponible</p><h3 id="soldeFinancier">0 FCFA</h3></div>
-</div>
-<h3 id="financeTitle">Enregistrer une opération</h3>
-<form id="financeForm">
-<div class="form-grid">
-<div class="field"><label for="financeType">Type *</label><select id="financeType"><option value="revenu">Revenu</option><option value="depense">Dépense</option></select></div>
-<div class="field"><label for="financeLabel">Libellé *</label><input id="financeLabel" required></div>
-<div class="field"><label for="financeAmount">Montant en FCFA *</label><input id="financeAmount" type="number" min="1" required></div>
-<div class="field"><label for="financeCategory">Catégorie</label><select id="financeCategory"><option>Ventes</option><option>Prestations</option><option>Investissement</option><option>Salaires</option><option>Achats</option><option>Transport</option><option>Factures</option><option>Marketing</option><option>Autres</option></select></div>
-<div class="field"><label for="financeBrand">Marque concernée</label><select id="financeBrand"><option value="">Groupe ADDIBA</option></select></div>
-<div class="field"><label for="financeDate">Date *</label><input id="financeDate" type="date" required></div>
-<div class="field full"><label for="financeDescription">Description</label><textarea id="financeDescription"></textarea></div>
-</div>
-<div class="actions"><button class="btn btn-primary" id="financeSave">Enregistrer l'opération</button><button class="btn btn-secondary" type="button" id="financeCancel" hidden>Annuler</button></div>
-</form>
-<hr style="border:0;border-top:1px solid #e5eaf1;margin:25px 0">
-<div class="field" style="max-width:350px;margin-bottom:15px"><label for="financeFilter">Filtrer les opérations</label><select id="financeFilter"><option value="toutes">Toutes</option><option value="revenu">Revenus</option><option value="depense">Dépenses</option></select></div>
-<div class="table-wrap"><table><thead><tr><th>Date</th><th>Libellé</th><th>Catégorie</th><th>Marque</th><th>Type</th><th>Montant</th><th>Actions</th></tr></thead><tbody id="financeList"><tr><td colspan="7">En attente de connexion...</td></tr></tbody></table></div>
-</section>
-
-<section class="section" id="autres">
-<div class="section-heading"><h2>Autres modules</h2></div>
-<div class="brand-list">
-<article class="brand-card" id="rh"><h3>Ressources humaines</h3><p class="brand-description">Gestion du personnel et des employés.</p></article>
-<article class="brand-card" id="projets"><h3>Projets</h3><p class="brand-description">Organisation et suivi des projets du groupe.</p></article>
-<article class="brand-card" id="documents"><h3>Documents</h3><p class="brand-description">Documents administratifs et professionnels.</p></article>
-<article class="brand-card" id="messages"><h3>Messages</h3><p class="brand-description">Communication interne du groupe.</p></article>
-<article class="brand-card" id="parametres"><h3>Paramètres</h3><p class="brand-description">Configuration de l'administration.</p></article>
-</div>
-</section>
 </main>
-<footer class="footer">© ADDIBA — Un groupe. Plusieurs marques. Une vision commune.</footer>
 </div>
 
 <script>
-/* MENU : fonctionne indépendamment de Supabase */
 (function(){
-const sidebar=document.getElementById("sidebar");
-const overlay=document.getElementById("overlay");
-function ouvrir(){sidebar.classList.add("open");overlay.classList.add("show");}
-function fermer(){sidebar.classList.remove("open");overlay.classList.remove("show");}
-document.getElementById("mobileMenu").addEventListener("click",ouvrir);
-document.getElementById("sidebarClose").addEventListener("click",fermer);
-overlay.addEventListener("click",fermer);
-document.addEventListener("keydown",e=>{if(e.key==="Escape")fermer();});
-document.querySelectorAll(".menu a").forEach(a=>a.addEventListener("click",()=>{
-document.querySelectorAll(".menu a").forEach(x=>x.classList.remove("active"));
-a.classList.add("active");fermer();
-}));
+  const sidebar=document.getElementById("sidebar");
+  const overlay=document.getElementById("overlay");
+
+  function fermer(){
+    sidebar.classList.remove("open");
+    overlay.classList.remove("show");
+  }
+
+  document.getElementById("mobileMenu").addEventListener("click",function(){
+    sidebar.classList.add("open");
+    overlay.classList.add("show");
+  });
+
+  overlay.addEventListener("click",fermer);
+
+  document.querySelectorAll(".menu a[href^='#']").forEach(function(a){
+    a.addEventListener("click",function(){
+      document.querySelectorAll(".menu a").forEach(function(x){
+        x.classList.remove("active");
+      });
+      a.classList.add("active");
+      fermer();
+    });
+  });
 })();
 </script>
 
 <script type="module">
-document.getElementById("message").textContent = "TEST : le script JavaScript démarre.";
-const $=id=>document.getElementById(id);
-let db=null,marques=[],dirigeants=[],operations=[];
-let editBrand=null,editLeader=null,editFinance=null;
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-function afficher(t,type="error"){
-$("message").textContent=t;$("message").className="message "+type;
-}
-function erreur(e,action){
-if(!e)return false;
-console.error(action,e);afficher(action+" : "+(e.message||String(e)));return true;
-}
-function esc(v){
-return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-}
-function fcfa(v){return new Intl.NumberFormat("fr-FR").format(Number(v)||0)+" FCFA";}
-function today(){
-const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-}
-async function avecDelai(promise,nom){
-return Promise.race([promise,new Promise((_,reject)=>setTimeout(()=>reject(new Error(nom+" : délai dépassé. Vérifie Internet puis recharge la page.")),15000))]);
+const SUPABASE_URL = "https://anvbmvrsvulcikkewzrz.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_jMVDUGXVl_9m5F0wHTyTmw_oQxNRq9-";
+
+const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const $ = id => document.getElementById(id);
+
+function afficherMessage(texte, type=""){
+  const element=$("message");
+  element.textContent=texte;
+  element.className="message"+(type ? " "+type : "");
 }
 
-/* MARQUES */
+function afficherSousMessage(id,texte,type=""){
+  const element=$(id);
+  element.textContent=texte;
+  element.className="message"+(type ? " "+type : "");
+  element.classList.remove("hidden");
+}
+
+function erreurTexte(error){
+  return error?.message || error?.details || error?.hint || String(error);
+}
+
+function echapper(value){
+  return String(value ?? "").replace(/[&<>"']/g,function(c){
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[c];
+  });
+}
+
+function dateLisible(value){
+  if(!value) return "—";
+  return new Date(value+"T00:00:00").toLocaleDateString("fr-FR");
+}
+
+let marques=[];
+
 async function chargerMarques(){
-$("brandList").innerHTML='<div class="empty">Chargement des marques...</div>';
-const r=await avecDelai(db.from("marques").select("id,nom,description,statut,created_at").order("id",{ascending:false}),"Lecture des marques");
-if(erreur(r.error,"Lecture des marques"))return;
-marques=r.data||[];$("statMarques").textContent=marques.length;
-$("brandList").innerHTML=marques.length?marques.map(m=>`
-<article class="brand-card">
-<h3>${esc(m.nom)}</h3><p class="brand-description">${esc(m.description||"Aucune description.")}<br>Statut : ${esc(m.statut||"Non défini")}</p>
-<div class="brand-actions"><button class="btn btn-secondary" data-edit-brand="${m.id}">Modifier</button><button class="btn btn-delete" data-delete-brand="${m.id}">Supprimer</button></div>
-</article>`).join(""):'<div class="empty">Aucune marque enregistrée.</div>';
-const options='<option value="">Groupe ADDIBA</option>'+marques.map(m=>`<option value="${m.id}">${esc(m.nom)}</option>`).join("");
-$("leaderBrand").innerHTML=options;$("financeBrand").innerHTML=options;
-}
-$("brandList").addEventListener("click",async e=>{
-const a=e.target.closest("[data-edit-brand]"),b=e.target.closest("[data-delete-brand]");
-if(a)modifierMarque(Number(a.dataset.editBrand));
-if(b)await supprimerMarque(Number(b.dataset.deleteBrand));
-});
-function modifierMarque(id){
-const m=marques.find(x=>Number(x.id)===id);if(!m)return;
-editBrand=id;$("brandName").value=m.nom||"";$("brandDescription").value=m.description||"";
-$("brandStatus").value=m.statut||"en_preparation";$("brandTitle").textContent="Modifier la marque";
-$("brandSave").textContent="Enregistrer les modifications";$("brandCancel").hidden=false;
-$("marques").scrollIntoView({behavior:"smooth"});
-}
-function resetBrand(){
-editBrand=null;$("brandForm").reset();$("brandTitle").textContent="Ajouter une marque";
-$("brandSave").textContent="Enregistrer la marque";$("brandCancel").hidden=true;
-}
-$("brandCancel").addEventListener("click",resetBrand);
-$("brandForm").addEventListener("submit",async e=>{
-e.preventDefault();
-const d={nom:$("brandName").value.trim(),description:$("brandDescription").value.trim(),statut:$("brandStatus").value};
-if(!d.nom)return afficher("Le nom de la marque est obligatoire.");
-$("brandSave").disabled=true;
-try{
-const r=editBrand?await db.from("marques").update(d).eq("id",editBrand):await db.from("marques").insert(d);
-if(erreur(r.error,"Enregistrement de la marque"))return;
-resetBrand();afficher("Marque enregistrée avec succès.","success");await chargerMarques();await chargerDirigeants();await chargerFinances();
-}catch(e){erreur(e,"Enregistrement de la marque");}
-finally{$("brandSave").disabled=false;}
-});
-async function supprimerMarque(id){
-if(!confirm("Supprimer cette marque ?"))return;
-const {error:e}=await db.from("marques").delete().eq("id",id);
-if(erreur(e,"Suppression de la marque"))return;
-afficher("Marque supprimée.","success");await chargerMarques();
+  $("brandList").textContent="Chargement des marques...";
+  $("leaderBrand").innerHTML='<option value="">Sélectionner une marque</option>';
+  $("financeBrand").innerHTML='<option value="">Groupe ADDIBA</option>';
+
+  const {data,error}=await db
+    .from("marques")
+    .select("id,nom,description,statut,created_at")
+    .order("id",{ascending:false});
+
+  if(error) throw new Error("Marques : "+erreurTexte(error));
+
+  marques=data || [];
+  $("statMarques").textContent=marques.length;
+
+  if(!marques.length){
+    $("brandList").innerHTML='<p class="empty">Aucune marque enregistrée.</p>';
+  }else{
+    $("brandList").innerHTML=`
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nom</th><th>Description</th><th>Statut</th></tr></thead>
+        <tbody>
+          ${marques.map(m=>`
+            <tr>
+              <td><strong>${echapper(m.nom)}</strong></td>
+              <td>${echapper(m.description || "—")}</td>
+              <td><span class="status">${echapper(m.statut || "—")}</span></td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+      </div>`;
+  }
+
+  marques.forEach(function(m){
+    const option=document.createElement("option");
+    option.value=m.id;
+    option.textContent=m.nom;
+    $("leaderBrand").appendChild(option);
+
+    const optionFinance=document.createElement("option");
+    optionFinance.value=m.id;
+    optionFinance.textContent=m.nom;
+    $("financeBrand").appendChild(optionFinance);
+  });
 }
 
-/* DIRIGEANTS */
 async function chargerDirigeants(){
-$("leaderList").innerHTML='<div class="empty">Chargement des dirigeants...</div>';
-const r=await avecDelai(db.from("dirigeants").select("id,nom_complet,poste,marque_id,email,telephone,statut").order("id",{ascending:false}),"Lecture des dirigeants");
-if(erreur(r.error,"Lecture des dirigeants"))return;
-dirigeants=r.data||[];$("statDirigeants").textContent=dirigeants.length;
-$("leaderList").innerHTML=dirigeants.length?dirigeants.map(d=>{
-const m=marques.find(x=>Number(x.id)===Number(d.marque_id));
-return `<article class="brand-card"><h3>${esc(d.nom_complet)}</h3><p class="brand-description">Poste : ${esc(d.poste)}<br>Marque : ${esc(m?.nom||"Groupe ADDIBA")}<br>E-mail : ${esc(d.email||"Non renseigné")}<br>Téléphone : ${esc(d.telephone||"Non renseigné")}<br>Statut : ${esc(d.statut||"Non défini")}</p><div class="brand-actions"><button class="btn btn-secondary" data-edit-leader="${d.id}">Modifier</button><button class="btn btn-delete" data-delete-leader="${d.id}">Supprimer</button></div></article>`;
-}).join(""):'<div class="empty">Aucun dirigeant enregistré.</div>';
+  $("leaderList").textContent="Chargement des dirigeants...";
+
+  const {data,error}=await db
+    .from("dirigeants")
+    .select("id,nom_complet,poste,marque_id,email,telephone,statut")
+    .order("id",{ascending:false});
+
+  if(error) throw new Error("Dirigeants : "+erreurTexte(error));
+
+  const lignes=data || [];
+  $("statDirigeants").textContent=lignes.length;
+
+  if(!lignes.length){
+    $("leaderList").innerHTML='<p class="empty">Aucun dirigeant enregistré.</p>';
+    return;
+  }
+
+  $("leaderList").innerHTML=`
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Nom</th><th>Poste</th><th>Marque</th><th>Contact</th><th>Statut</th></tr>
+      </thead>
+      <tbody>
+        ${lignes.map(d=>{
+          const marque=marques.find(m=>String(m.id)===String(d.marque_id));
+          return `
+            <tr>
+              <td><strong>${echapper(d.nom_complet)}</strong></td>
+              <td>${echapper(d.poste)}</td>
+              <td>${echapper(marque?.nom || "Marque non trouvée")}</td>
+              <td>${echapper(d.email || d.telephone || "—")}</td>
+              <td><span class="status">${echapper(d.statut || "—")}</span></td>
+            </tr>`;
+        }).join("")}
+      </tbody>
+    </table>
+    </div>`;
 }
-$("leaderList").addEventListener("click",async e=>{
-const a=e.target.closest("[data-edit-leader]"),b=e.target.closest("[data-delete-leader]");
-if(a)modifierDirigeant(Number(a.dataset.editLeader));
-if(b)await
+
+async function chargerFinances(){
+  $("financeList").textContent="Chargement des opérations financières...";
+
+  const {data,error}=await db
+    .from("transactions_financieres")
+    .select("id,libelle,type,montant,categorie,marque_id,date_operation,description")
+    .order("date_operation",{ascending:false})
+    .limit(100);
+
+  if(error) throw new Error("Finances : "+erreurTexte(error));
+
+  const lignes=data || [];
+  $("statFinances").textContent=lignes.length;
+
+  if(!lignes.length){
+    $("financeList").innerHTML='<p class="empty">Aucune opération financière enregistrée.</p>';
+    return;
+  }
+
+  $("financeList").innerHTML=`
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Libellé</th><th>Type</th><th>Montant</th><th>Catégorie</th><th>Marque</th></tr>
+      </thead>
+      <tbody>
+        ${lignes.map(f=>{
+          const marque=marques.find(m=>String(m.id)===String(f.marque_id));
+          return `
+            <tr>
+              <td>${dateLisible(f.date_operation)}</td>
+              <td>${echapper(f.libelle)}</td>
+              <td>${echapper(f.type)}</td>
+              <td><strong>${Number(f.montant || 0).toLocaleString("fr-FR")} FCFA</strong></td>
+              <td>${echapper(f.categorie || "—")}</td>
+              <td>${echapper(marque?.nom || "Groupe ADDIBA")}</td>
+            </tr>`;
+        }).join("")}
+      </tbody>
+    </table>
+    </div>`;
+}
+
+async function initialiser(){
+  try{
+    afficherMessage("Connexion à Supabase...");
+
+    const {data:sessionData,error:sessionError}=await db.auth.getSession();
+
+    if(sessionError) throw sessionError;
+
+    if(!sessionData.session){
+      afficherMessage("Aucune session ouverte. Connecte-toi avec ton compte fondateur.","error");
+      $("brandList").textContent="Connexion requise.";
+      $("leaderList").textContent="Connexion requise.";
+      $("financeList").textContent="Connexion requise.";
+      return;
+    }
+
+    const utilisateur=sessionData.session.user;
+    $("userLabel").textContent=utilisateur.email || "Fondateur";
+
+    afficherMessage("Vérification de votre profil fondateur...");
+
+    const {data:profil,error:profilError}=await db
+      .from("profils")
+      .select("nom_complet,role")
+      .eq("id",utilisateur.id)
+      .maybeSingle();
+
+    if(profilError) throw new Error("Lecture du profil : "+erreurTexte(profilError));
+
+    if(!profil || profil.role!=="fondateur"){
+      afficherMessage("Ce compte n'a pas le rôle fondateur. Vérifie le profil associé à ton compte.","error");
+      $("brandList").textContent="Accès fondateur requis.";
+      $("leaderList").textContent="Accès fondateur requis.";
+      $("financeList").textContent="Accès fondateur requis.";
+      return;
+    }
+
+    $("userLabel").textContent=profil.nom_complet || "Fondateur ADDIBA";
+
+    afficherMessage("Connexion réussie. Chargement des données...");
+
+    await chargerMarques();
+    await chargerDirigeants();
+    await chargerFinances();
+
+    afficherMessage("Connexion réussie. Les données du groupe sont chargées.","success");
+
+  }catch(error){
+    console.error("Erreur ADDIBA :",error);
+    afficherMessage("Erreur : "+erreurTexte(error),"error");
+
+    if($("brandList").textContent.includes("Chargement")) $("brandList").textContent="Erreur de chargement.";
+    if($("leaderList").textContent.includes("Chargement")) $("leaderList").textContent="Erreur de chargement.";
+    if($("financeList").textContent.includes("Chargement")) $("financeList").textContent="Erreur de chargement.";
+  }
+}
+
+$("brandForm").addEventListener("submit",async function(e){
+  e.preventDefault();
+  const bouton=this.querySelector("button[type=submit]");
+  bouton.disabled=true;
+
+  try{
+    const nom=$("brandName").value.trim();
+    const description=$("brandDescription").value.trim();
+    const statut=$("brandStatus").value;
+
+    const {error}=await db.from("marques").insert({
+      nom,description,statut
+    });
+
+    if(error) throw error;
+
+    this.reset();
+    afficherSousMessage("brandMessage","Marque ajoutée avec succès.","success");
+    await chargerMarques();
+    await chargerDirigeants();
+
+  }catch(error){
+    afficherSousMessage("brandMessage","Erreur : "+erreurTexte(error),"error");
+  }finally{
+    bou
