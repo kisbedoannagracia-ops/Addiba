@@ -7,7 +7,7 @@
 <title>Espace fondateur | ADDIBA</title>
 
 <style>
-:root {
+:root{
   --navy:#101f3c;
   --navy2:#192e50;
   --green:#20bd83;
@@ -713,7 +713,7 @@ button,input,textarea,select{font:inherit}
     overlay.classList.remove("show");
   }
 
-  bouton.addEventListener("click", function(){
+  bouton.addEventListener("click",function(){
     if(sidebar.classList.contains("open")){
       fermerMenu();
     }else{
@@ -721,15 +721,15 @@ button,input,textarea,select{font:inherit}
     }
   });
 
-  fermeture.addEventListener("click", fermerMenu);
-  overlay.addEventListener("click", fermerMenu);
+  fermeture.addEventListener("click",fermerMenu);
+  overlay.addEventListener("click",fermerMenu);
 
-  document.addEventListener("keydown", function(e){
+  document.addEventListener("keydown",function(e){
     if(e.key === "Escape") fermerMenu();
   });
 
   document.querySelectorAll(".menu a").forEach(function(lien){
-    lien.addEventListener("click", function(){
+    lien.addEventListener("click",function(){
       document.querySelectorAll(".menu a").forEach(function(item){
         item.classList.remove("active");
       });
@@ -742,7 +742,8 @@ button,input,textarea,select{font:inherit}
 
 <!-- GESTION SUPABASE -->
 <script type="module">
-import { supabase } from "./supabase.js";
+
+let supabase = null;
 
 const message = document.getElementById("message");
 const brandList = document.getElementById("brandList");
@@ -758,39 +759,41 @@ let utilisateurAutorise = false;
 let marqueEnModification = null;
 let marquesActuelles = [];
 
-function afficherMessage(texte, erreur = false) {
+function afficherMessage(texte,erreur=false){
   message.textContent = texte;
   message.className = erreur ? "message error" : "message success";
 }
 
-function effacerMessage() {
+function effacerMessage(){
   message.textContent = "";
   message.className = "message";
 }
 
-function securiserTexte(texte) {
-  return String(texte ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#039;"
-  })[c]);
+function securiserTexte(texte){
+  return String(texte ?? "").replace(/[&<>"']/g,function(c){
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[c];
+  });
 }
 
-function statutTexte(statut) {
-  if (statut === "active") return "Active";
-  if (statut === "inactive") return "Inactive";
+function statutTexte(statut){
+  if(statut === "active") return "Active";
+  if(statut === "inactive") return "Inactive";
   return "En préparation";
 }
 
-function statutClasse(statut) {
-  if (statut === "active") return "status-active";
-  if (statut === "inactive") return "status-inactive";
+function statutClasse(statut){
+  if(statut === "active") return "status-active";
+  if(statut === "inactive") return "status-inactive";
   return "status-preparation";
 }
 
-function viderFormulaire() {
+function viderFormulaire(){
   brandForm.reset();
   marqueEnModification = null;
   formTitle.textContent = "Ajouter une marque";
@@ -798,23 +801,25 @@ function viderFormulaire() {
   cancelBtn.hidden = true;
 }
 
-async function verifierFondateur() {
-  const { data, error } = await supabase.auth.getUser();
+async function verifierFondateur(){
+  const {data,error} = await supabase.auth.getUser();
 
-  if (error) throw error;
+  if(error) throw error;
 
-  if (!data.user) {
+  if(!data.user){
     window.location.href = "connexion.html";
     return false;
   }
 
-  const { data: profil, error: profilError } = await supabase
+  const {data:profil,error:profilError} = await supabase
     .from("profils")
     .select("nom_complet, role")
-    .eq("id", data.user.id)
+    .eq("id",data.user.id)
     .single();
 
-  if (profilError || !profil || profil.role !== "fondateur") {
+  if(profilError) throw profilError;
+
+  if(!profil || profil.role !== "fondateur"){
     await supabase.auth.signOut();
     window.location.href = "connexion.html";
     return false;
@@ -827,85 +832,88 @@ async function verifierFondateur() {
   return true;
 }
 
-async function chargerStatistique(table, elementId) {
-  const { count, error } = await supabase
+async function chargerStatistique(table,elementId){
+  const {count,error} = await supabase
     .from(table)
-    .select("*", { count:"exact", head:true });
+    .select("*",{count:"exact",head:true});
 
   document.getElementById(elementId).textContent =
     error ? "—" : (count ?? 0);
 
-  if (error) {
-    console.warn("Statistique indisponible :", table, error.message);
+  if(error){
+    console.warn("Statistique indisponible :",table,error.message);
   }
 }
 
-async function chargerStatistiques() {
+async function chargerStatistiques(){
   await Promise.all([
-    chargerStatistique("marques", "statMarques"),
-    chargerStatistique("projets", "statProjets"),
-    chargerStatistique("employes", "statEmployes"),
-    chargerStatistique("documents", "statDocuments")
+    chargerStatistique("marques","statMarques"),
+    chargerStatistique("projets","statProjets"),
+    chargerStatistique("employes","statEmployes"),
+    chargerStatistique("documents","statDocuments")
   ]);
 }
 
-async function chargerMarques() {
-  brandList.innerHTML = '<div class="empty">Chargement des marques...</div>';
+async function chargerMarques(){
+  brandList.innerHTML =
+    '<div class="empty">Chargement des marques...</div>';
 
-  const { data, error } = await supabase
+  const {data,error} = await supabase
     .from("marques")
     .select("id, nom, description, statut, created_at")
-    .order("id", { ascending:true });
+    .order("id",{ascending:true});
 
-  if (error) {
+  if(error){
     brandList.innerHTML =
-      '<div class="empty">Erreur de chargement : ' +
-      securiserTexte(error.message) + '</div>';
+      '<div class="empty">Erreur de chargement : '+
+      securiserTexte(error.message)+'</div>';
     throw error;
   }
 
   marquesActuelles = data || [];
 
-  if (!marquesActuelles.length) {
+  if(!marquesActuelles.length){
     brandList.innerHTML =
       '<div class="empty">Aucune marque enregistrée.</div>';
     return;
   }
 
-  brandList.innerHTML = marquesActuelles.map(marque => `
-    <article class="brand-card">
-      <div class="brand-head">
-        <h3>${securiserTexte(marque.nom)}</h3>
-        <span class="status ${statutClasse(marque.statut)}">
-          ${statutTexte(marque.statut)}
-        </span>
-      </div>
+  brandList.innerHTML = marquesActuelles.map(function(marque){
+    return `
+      <article class="brand-card">
+        <div class="brand-head">
+          <h3>${securiserTexte(marque.nom)}</h3>
+          <span class="status ${statutClasse(marque.statut)}">
+            ${statutTexte(marque.statut)}
+          </span>
+        </div>
 
-      <p class="brand-description">
-        ${securiserTexte(marque.description || "Aucune description.")}
-      </p>
+        <p class="brand-description">
+          ${securiserTexte(marque.description || "Aucune description.")}
+        </p>
 
-      <div class="brand-actions">
-        <button class="btn btn-edit" type="button"
-          data-action="edit" data-id="${securiserTexte(marque.id)}">
-          Modifier
-        </button>
+        <div class="brand-actions">
+          <button class="btn btn-edit" type="button"
+            data-action="edit" data-id="${securiserTexte(marque.id)}">
+            Modifier
+          </button>
 
-        <button class="btn btn-toggle" type="button"
-          data-action="toggle" data-id="${securiserTexte(marque.id)}">
-          ${marque.statut === "active" ? "Désactiver" : "Activer"}
-        </button>
+          <button class="btn btn-toggle" type="button"
+            data-action="toggle" data-id="${securiserTexte(marque.id)}">
+            ${marque.statut === "active" ? "Désactiver" : "Activer"}
+          </button>
 
-        <button class="btn btn-delete" type="button"
-          data-action="delete" data-id="${securiserTexte(marque.id)}">
-          Supprimer
-        </button>
-      </div>
-    </article>
-  `).join("");
+          <button class="btn btn-delete" type="button"
+            data-action="delete" data-id="${securiserTexte(marque.id)}">
+            Supprimer
+          </button>
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
-function preparerModification(marque) {
+function preparerModification(marque){
   marqueEnModification = marque.id;
   brandName.value = marque.nom || "";
   brandDescription.value = marque.description || "";
@@ -920,14 +928,10 @@ function preparerModification(marque) {
   });
 }
 
-brandForm.addEventListener("submit", async evenement => {
+brandForm.addEventListener("submit",async function(evenement){
   evenement.preventDefault();
   effacerMessage();
 
-  if (!utilisateurAutorise) {
-    afficherMessage("Accès non autorisé.", true);
-    return;
-  }
-
-  const donnees = {
-    nom: brandName.v
+  if(!utilisateurAutorise){
+    afficherMessage("Accès non autorisé.",true);
+    re
