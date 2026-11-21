@@ -561,4 +561,229 @@ try{
 if(action==="edit"){preparerModificationMarque(marque);return}
 
 if(action==="toggle"){
-co
+{
+const nouveauStatut=marque.statut==="active"?"inactive":"active";
+const {error}=await supabase.from("marques").update({statut:nouveauStatut}).eq("id",id);
+if(error)throw error;
+afficherMessage("Statut de la marque modifié.");
+}
+
+if(action==="delete"){
+if(!confirm("Voulez-vous vraiment supprimer cette marque ?"))return;
+const {error}=await supabase.from("marques").delete().eq("id",id);
+if(error)throw error;
+afficherMessage("Marque supprimée avec succès.");
+}
+
+await chargerMarques();
+await chargerStatistiques();
+
+}catch(error){
+afficherMessage("Erreur : "+error.message,true);
+}
+});
+
+/* GESTION DES DIRIGEANTS */
+
+function viderFormulaireDirigeant(){
+$("leaderForm").reset();
+dirigeantEnModification=null;
+$("leaderFormTitle").textContent="Ajouter un dirigeant";
+$("leaderSaveBtn").textContent="Enregistrer le dirigeant";
+$("leaderCancelBtn").hidden=true;
+}
+
+async function chargerDirigeants(){
+leaderList.innerHTML='<div class="empty">Chargement des dirigeants...</div>';
+
+const {data,error}=await supabase.from("dirigeants")
+.select("id, nom_complet, poste, marque_id, email, telephone, statut, created_at")
+.order("id",{ascending:true});
+
+if(error)throw error;
+
+dirigeantsActuels=data||[];
+
+if(!dirigeantsActuels.length){
+leaderList.innerHTML='<div class="empty">Aucun dirigeant enregistré pour le moment.</div>';
+return;
+}
+
+leaderList.innerHTML=dirigeantsActuels.map(dirigeant=>{
+const marque=marquesActuelles.find(m=>String(m.id)===String(dirigeant.marque_id));
+const nomMarque=marque?marque.nom:"Groupe ADDIBA";
+
+return `
+<article class="brand-card">
+<div class="brand-head">
+<h3>${securiserTexte(dirigeant.nom_complet)}</h3>
+<span class="status ${statutClasse(dirigeant.statut)}">${statutTexte(dirigeant.statut)}</span>
+</div>
+<p class="brand-description">
+<strong>Poste :</strong> ${securiserTexte(dirigeant.poste)}<br>
+<strong>Structure :</strong> ${securiserTexte(nomMarque)}<br>
+<strong>E-mail :</strong> ${securiserTexte(dirigeant.email||"Non renseigné")}<br>
+<strong>Téléphone :</strong> ${securiserTexte(dirigeant.telephone||"Non renseigné")}
+</p>
+<div class="brand-actions">
+<button class="btn btn-edit" type="button" data-action="edit-leader" data-id="${securiserTexte(dirigeant.id)}">Modifier</button>
+<button class="btn btn-toggle" type="button" data-action="toggle-leader" data-id="${securiserTexte(dirigeant.id)}">${dirigeant.statut==="actif"?"Désactiver":"Activer"}</button>
+<button class="btn btn-delete" type="button" data-action="delete-leader" data-id="${securiserTexte(dirigeant.id)}">Supprimer</button>
+</div>
+</article>`;
+}).join("");
+}
+
+function preparerModificationDirigeant(dirigeant){
+dirigeantEnModification=dirigeant.id;
+$("leaderName").value=dirigeant.nom_complet||"";
+$("leaderPost").value=dirigeant.poste||"";
+$("leaderBrand").value=dirigeant.marque_id??"";
+$("leaderStatus").value=dirigeant.statut||"actif";
+$("leaderEmail").value=dirigeant.email||"";
+$("leaderPhone").value=dirigeant.telephone||"";
+$("leaderFormTitle").textContent="Modifier le dirigeant";
+$("leaderSaveBtn").textContent="Enregistrer les modifications";
+$("leaderCancelBtn").hidden=false;
+$("direction").scrollIntoView({behavior:"smooth"});
+}
+
+$("leaderForm").addEventListener("submit",async evenement=>{
+evenement.preventDefault();
+effacerMessage();
+
+if(!utilisateurAutorise){
+afficherMessage("Accès non autorisé.",true);
+return;
+}
+
+const nom_complet=$("leaderName").value.trim();
+const poste=$("leaderPost").value.trim();
+const marque_id=$("leaderBrand").value?Number($("leaderBrand").value):null;
+const statut=$("leaderStatus").value;
+const email=$("leaderEmail").value.trim()||null;
+const telephone=$("leaderPhone").value.trim()||null;
+
+if(!nom_complet||!poste){
+afficherMessage("Le nom et le poste sont obligatoires.",true);
+return;
+}
+
+const modification=dirigeantEnModification!==null;
+$("leaderSaveBtn").disabled=true;
+$("leaderSaveBtn").textContent="Enregistrement...";
+
+try{
+const informations={nom_complet,poste,marque_id,statut,email,telephone};
+let resultat;
+
+if(modification){
+resultat=await supabase.from("dirigeants")
+.update(informations).eq("id",dirigeantEnModification);
+}else{
+resultat=await supabase.from("dirigeants").insert([informations]);
+}
+
+if(resultat.error)throw resultat.error;
+
+viderFormulaireDirigeant();
+afficherMessage(modification?"Dirigeant modifié avec succès.":"Dirigeant ajouté avec succès.");
+await chargerDirigeants();
+
+}catch(error){
+afficherMessage("Erreur : "+error.message,true);
+}finally{
+$("leaderSaveBtn").disabled=false;
+$("leaderSaveBtn").textContent="Enregistrer le dirigeant";
+}
+});
+
+$("leaderCancelBtn").addEventListener("click",()=>{
+viderFormulaireDirigeant();
+effacerMessage();
+});
+
+leaderList.addEventListener("click",async evenement=>{
+const bouton=evenement.target.closest("button[data-action]");
+if(!bouton||!utilisateurAutorise)return;
+
+const id=bouton.dataset.id;
+const action=bouton.dataset.action;
+const dirigeant=dirigeantsActuels.find(d=>String(d.id)===String(id));
+
+if(!dirigeant)return;
+
+try{
+if(action==="edit-leader"){
+preparerModificationDirigeant(dirigeant);
+return;
+}
+
+if(action==="toggle-leader"){
+const nouveauStatut=dirigeant.statut==="actif"?"inactif":"actif";
+const {error}=await supabase.from("dirigeants")
+.update({statut:nouveauStatut}).eq("id",id);
+if(error)throw error;
+afficherMessage("Statut du dirigeant modifié.");
+}
+
+if(action==="delete-leader"){
+if(!confirm("Voulez-vous vraiment supprimer ce dirigeant ?"))return;
+const {error}=await supabase.from("dirigeants").delete().eq("id",id);
+if(error)throw error;
+afficherMessage("Dirigeant supprimé avec succès.");
+}
+
+await chargerDirigeants();
+
+}catch(error){
+afficherMessage("Erreur : "+error.message,true);
+}
+});
+
+/* DÉCONNEXION */
+
+$("sidebarLogout").addEventListener("click",async()=>{
+if(!confirm("Voulez-vous vraiment vous déconnecter ?"))return;
+
+const {error}=await supabase.auth.signOut();
+
+if(error){
+afficherMessage("Erreur de déconnexion : "+error.message,true);
+return;
+}
+
+window.location.href="connexion.html";
+});
+
+/* INITIALISATION */
+
+async function initialiserDashboard(){
+brandList.innerHTML='<div class="empty">Vérification de la connexion...</div>';
+leaderList.innerHTML='<div class="empty">Vérification de la connexion...</div>';
+
+try{
+const autorise=await verifierFondateur();
+if(!autorise)return;
+
+await chargerMarques();
+await Promise.all([
+chargerDirigeants(),
+chargerStatistiques()
+]);
+
+}catch(error){
+console.error("Erreur ADDIBA :",error);
+
+brandList.innerHTML='<div class="empty">Erreur : '+securiserTexte(error.message)+'</div>';
+leaderList.innerHTML='<div class="empty">Erreur : '+securiserTexte(error.message)+'</div>';
+
+afficherMessage("Impossible de charger le tableau de bord : "+error.message,true);
+}
+}
+
+initialiserDashboard();
+
+</script>
+</body>
+</html>
