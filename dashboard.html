@@ -597,7 +597,10 @@ button,input,textarea,select {
 
 <header class="topbar">
   <div style="display:flex;align-items:center;gap:13px">
-    <button class="mobile-menu" id="mobileMenu" type="button">☰</button>
+   <button class="mobile-menu" id="mobileMenu" type="button"
+onclick="document.getElementById('sidebar').classList.toggle('open')">
+☰
+</button>
     <div>
       <h2>Administration ADDIBA</h2>
       <small>Espace réservé au fondateur</small>
