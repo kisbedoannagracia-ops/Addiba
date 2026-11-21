@@ -949,6 +949,206 @@ afficherMessage("Erreur : "+error.message,true);
 
 /* GESTION DES DIRIGEANTS */
 
+/* GESTION DES RESSOURCES HUMAINES */
+
+let employeEnModification = null;
+let employesActuels = [];
+
+const rhList = $("rhList");
+
+function viderFormulaireEmploye(){
+  $("rhForm").reset();
+  employeEnModification = null;
+  $("rhFormTitle").textContent = "Ajouter un employé";
+  $("rhSaveBtn").textContent = "Enregistrer l'employé";
+  $("rhCancelBtn").hidden = true;
+  $("rhSalaire").value = 0;
+}
+
+async function chargerEmployes(){
+  rhList.innerHTML = '<div class="empty">Chargement des employés...</div>';
+
+  const {data,error} = await supabase
+    .from("employes")
+    .select("id,nom_complet,email,poste,marque_id,statut,date_recrutement,salaire_mensuel")
+    .order("id",{ascending:false});
+
+  if(error) throw error;
+
+  employesActuels = data || [];
+
+  const select = $("rhMarque");
+  const ancienneSelection = select.value;
+
+  select.innerHTML = '<option value="">Groupe ADDIBA</option>';
+
+  marquesActuelles.forEach(marque=>{
+    const option = document.createElement("option");
+    option.value = marque.id;
+    option.textContent = marque.nom;
+    select.appendChild(option);
+  });
+
+  select.value = ancienneSelection;
+
+  const actifs = employesActuels.filter(e=>e.statut==="actif");
+  const masseSalariale = actifs.reduce(
+    (total,e)=>total+Number(e.salaire_mensuel||0),0
+  );
+
+  $("rhTotal").textContent = employesActuels.length;
+  $("rhActifs").textContent = actifs.length;
+  $("rhSalaires").textContent = formaterMontant(masseSalariale);
+
+  if(employesActuels.length===0){
+    rhList.innerHTML='<div class="empty">Aucun employé enregistré.</div>';
+    return;
+  }
+
+  rhList.innerHTML = employesActuels.map(employe=>{
+    const marque = marquesActuelles.find(
+      m=>String(m.id)===String(employe.marque_id)
+    );
+
+    return `
+      <article class="brand-card">
+        <div class="brand-head">
+          <h3>${securiserTexte(employe.nom_complet)}</h3>
+          <span class="status">${employe.statut==="actif"?"Actif":"Inactif"}</span>
+        </div>
+
+        <p>Poste : ${securiserTexte(employe.poste||"Non renseigné")}</p>
+        <p>E-mail : ${securiserTexte(employe.email||"Non renseigné")}</p>
+        <p>Marque : ${securiserTexte(marque?.nom||"Groupe ADDIBA")}</p>
+        <p>Salaire : ${formaterMontant(employe.salaire_mensuel)}</p>
+        <p>Recrutement : ${securiserTexte(employe.date_recrutement||"Non renseigné")}</p>
+
+        <div class="brand-actions">
+          <button class="btn btn-edit" type="button"
+            data-rh-edit="${employe.id}">Modifier</button>
+
+          <button class="btn btn-delete" type="button"
+            data-rh-delete="${employe.id}">Supprimer</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+$("rhForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+
+  if(!utilisateurAutorise){
+    afficherMessage("Accès non autorisé.",true);
+    return;
+  }
+
+  const bouton = $("rhSaveBtn");
+  bouton.disabled = true;
+  bouton.textContent = "Enregistrement...";
+
+  try{
+    const salaire = Number($("rhSalaire").value);
+
+    if(!Number.isFinite(salaire)||salaire<0){
+      throw new Error("Le salaire doit être positif ou égal à zéro.");
+    }
+
+    const employe = {
+      nom_complet:$("rhNom").value.trim(),
+      email:$("rhEmail").value.trim()||null,
+      poste:$("rhPoste").value.trim()||null,
+      marque_id:$("rhMarque").value ? Number($("rhMarque").value) : null,
+      salaire_mensuel:salaire,
+      date_recrutement:$("rhDate").value||null,
+      statut:$("rhStatut").value
+    };
+
+    let resultat;
+
+    if(employeEnModification!==null){
+      resultat = await supabase
+        .from("employes")
+        .update(employe)
+        .eq("id",employeEnModification);
+    }else{
+      resultat = await supabase
+        .from("employes")
+        .insert(employe);
+    }
+
+    if(resultat.error) throw resultat.error;
+
+    viderFormulaireEmploye();
+    afficherMessage("Employé enregistré avec succès.");
+
+    await chargerEmployes();
+    await chargerStatistiques();
+
+  }catch(error){
+    afficherMessage("Erreur : "+error.message,true);
+  }finally{
+    bouton.disabled = false;
+    bouton.textContent = employeEnModification!==null
+      ? "Enregistrer les modifications"
+      : "Enregistrer l'employé";
+  }
+});
+
+$("rhCancelBtn").addEventListener("click",()=>{
+  viderFormulaireEmploye();
+});
+
+rhList.addEventListener("click",async event=>{
+  const modifier = event.target.closest("[data-rh-edit]");
+  const supprimer = event.target.closest("[data-rh-delete]");
+
+  if(modifier){
+    const employe = employesActuels.find(
+      e=>String(e.id)===modifier.dataset.rhEdit
+    );
+
+    if(!employe)return;
+
+    employeEnModification = employe.id;
+    $("rhNom").value = employe.nom_complet||"";
+    $("rhEmail").value = employe.email||"";
+    $("rhPoste").value = employe.poste||"";
+    $("rhMarque").value = employe.marque_id||"";
+    $("rhSalaire").value = employe.salaire_mensuel||0;
+    $("rhDate").value = employe.date_recrutement||"";
+    $("rhStatut").value = employe.statut||"actif";
+
+    $("rhFormTitle").textContent = "Modifier un employé";
+    $("rhSaveBtn").textContent = "Enregistrer les modifications";
+    $("rhCancelBtn").hidden = false;
+
+    $("rhForm").scrollIntoView({behavior:"smooth"});
+  }
+
+  if(supprimer){
+    if(!utilisateurAutorise)return;
+
+    if(!confirm("Voulez-vous vraiment supprimer cet employé ?"))return;
+
+    try{
+      const {error} = await supabase
+        .from("employes")
+        .delete()
+        .eq("id",supprimer.dataset.rhDelete);
+
+      if(error)throw error;
+
+      afficherMessage("Employé supprimé avec succès.");
+      await chargerEmployes();
+      await chargerStatistiques();
+
+    }catch(error){
+      afficherMessage("Erreur : "+error.message,true);
+    }
+  }
+});
+
 function viderFormulaireDirigeant(){
 $("leaderForm").reset();
 dirigeantEnModification=null;
