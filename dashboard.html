@@ -4,720 +4,858 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101f3c">
-<title>Espace fondateur | ADDIBA</title>
+<titre>Espace fondateur | ADDIBA</titre>
 
 <style>
-:root{
-  --navy:#101f3c;
+:racine{
+  --marine:#101f3c;
   --navy2:#192e50;
-  --green:#20bd83;
+  --vert:#20bd83;
   --bg:#f3f6fa;
-  --white:#ffffff;
-  --text:#263449;
+  --blanc:#fff;
+  --texte:#24334b;
   --muted:#718096;
-  --red:#d93636;
-  --border:#e5eaf0;
+  --bordure:#e5eaf1;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+corps{
+  police-family:Arial,sans-serif;
+  arrière-plan:var(--bg);
+  couleur:var(--texte);
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.layout{display:flex;min-height:100vh}
+
+bouton, champ de saisie, zone de texte, sélecteur {police:inherit}
+
 .sidebar{
-  width:250px;
-  background:var(--navy);
-  color:white;
-  padding:22px 15px;
-  position:fixed;
-  inset:0 auto 0 0;
-  z-index:20;
-  overflow-y:auto;
-  transition:transform .25s;
+  position:fixe;
+  haut:0;
+  gauche:0;
+  largeur : 255 px ;
+  hauteur : 100vh ;
+  arrière-plan:var(--marine);
+  couleur : blanc ;
+  marge intérieure : 25 px 17 px ;
+  débordement-y:auto;
+  z-index:1000;
+  transition:transform .3s ease;
 }
+
 .logo{
-  font-size:23px;
-  font-weight:bold;
-  padding:10px 12px 25px;
-  letter-spacing:1px;
+  taille de police : 27 px ;
+  police-weight:800;
+  espacement des lettres : 1 px ;
+  marge intérieure : 0 12px ;
 }
+
 .logo span{color:var(--green)}
+
+.sidebar-subtitle{
+  taille de police : 12 px ;
+  couleur:#aebbd0;
+  marge intérieure : 5px 12px 28px ;
+}
+
 .menu-title{
-  color:#9eacc0;
-  font-size:11px;
-  margin:20px 12px 9px;
+  taille de police : 11 px ;
+  couleur : #8999b2 ;
   text-transform:uppercase;
+  espacement des lettres : 1 px ;
+  marge intérieure : 12 px ;
 }
+
+.menu{
+  affichage : flexible ;
+  direction flexible : colonne ;
+  écart : 5 px ;
+}
+
 .menu a{
-  display:block;
-  color:#dce5f1;
   text-decoration:none;
-  padding:13px 12px;
-  margin:4px 0;
-  border-radius:8px;
-  font-size:14px;
+  couleur : #c9d3e1 ;
+  marge intérieure : 13px 14px ;
+  bordure-radius:8px;
+  taille de police : 14 px ;
+  transition:.2s;
 }
+
 .menu a:hover,.menu a.active{
-  background:#263d60;
-  color:white;
+  arrière-plan : rgba(32,189,131,.15);
+  couleur:var(--vert);
 }
+
+.menu un span{
+  affichage : bloc en ligne ;
+  largeur : 27 px ;
+}
+
 .sidebar-bottom{
-  margin-top:35px;
-  border-top:1px solid #344766;
-  padding-top:15px;
+  marge supérieure : 35 px ;
+  bordure supérieure : 1px solide rgba(255,255,255,.12);
+  marge intérieure supérieure : 18 px ;
 }
-.main{
-  width:calc(100% - 250px);
-  margin-left:250px;
-  min-width:0;
+
+.sidebar-bottom bouton{
+  largeur : 100 % ;
+  marge intérieure : 12 px ;
+  bordure:0;
+  arrière-plan : transparent ;
+  couleur :#ffb5b5;
+  alignement du texte : gauche ;
+  curseur : pointeur ;
+  bordure-radius:8px;
 }
+
+.sidebar-close{display:none}
+.overlay{display:none}
+
+.principal{
+  marge gauche : 255 px ;
+  hauteur minimale : 100vh ;
+}
+
 .topbar{
-  height:70px;
-  background:white;
+  fond : blanc ;
+  hauteur minimale : 75 px ;
+  marge intérieure : 15px 32px ;
+  affichage : flexible ;
+  justifier-contenu:espace-entre;
+  aligner-éléments:centre;
+  écart : 15 px ;
   border-bottom:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 25px;
+  position:collante;
+  haut:0;
+  z-index:50;
 }
-.topbar strong{color:var(--navy)}
-.mobile-menu{
-  display:none;
-  background:var(--navy);
-  color:white;
-  border:0;
-  border-radius:7px;
-  padding:9px 12px;
+
+.topbar h2{
+  taille de police : 19 px ;
+  couleur:var(--marine);
 }
-.content{padding:25px;max-width:1400px;margin:auto}
-h1{font-size:25px;color:var(--navy);margin:0 0 8px}
-.subtitle{color:var(--muted);margin:0 0 22px;font-size:14px}
+
+.topbar petit{
+  affichage : bloc ;
+  couleur:var(--muted);
+  marge supérieure : 5 px ;
+}
+
+.fondateur{
+  affichage : flexible ;
+  aligner-éléments:centre;
+  écart : 12 px ;
+}
+
+.avatar{
+  largeur : 40 px ;
+  hauteur : 40 px ;
+  rayon de bordure : 50 % ;
+  affichage : grille ;
+  placer-éléments:centre;
+  arrière-plan : #e3f8ef ;
+  couleur : #11865b ;
+  police-weight:bold;
+}
+
+.fondateur fort{
+  couleur:var(--marine);
+  taille de police : 13 px ;
+}
+
+.fondateur petit{taille de police:11px}
+
+.contenu{
+  largeur maximale : 1400 px ;
+  marge:auto;
+  marge intérieure : 32 px ;
+}
+
+.bienvenue{marge-bas:25px}
+
+.bienvenue h1{
+  couleur:var(--marine);
+  taille de police : 27 px ;
+  marge inférieure : 9 px ;
+}
+
+.bienvenue p{
+  couleur:var(--muted);
+  hauteur de ligne : 1,5 ;
+}
+
 .message{
-  padding:13px 15px;
-  border-radius:8px;
-  margin:15px 0;
-  background:#eaf1fb;
-  color:var(--navy);
-  font-size:14px;
-  overflow-wrap:anywhere;
+  affichage : aucun ;
+  marge intérieure : 14 px ;
+  marge inférieure : 20 px ;
+  bordure-radius:8px;
+  débordement-wrap:n'importe où;
 }
-.message.error{background:#fff0f0;color:var(--red)}
-.message.success{background:#e9faf3;color:#087c50}
-.hidden{display:none!important}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:16px;
-  margin:20px 0;
+
+.message.succès{
+  affichage : bloc ;
+  arrière-plan : #e5f8ef ;
+  couleur : #13784e ;
 }
-.stat{
-  background:white;
-  padding:20px;
-  border-radius:12px;
+
+.message.erreur{
+  affichage : bloc ;
+  arrière-plan : #fff0f0 ;
+  couleur :#a52a35;
+}
+
+.stats{
+  affichage : grille ;
+  grid-template-columns:repeat(4,1fr);
+  écart : 17 px ;
+  marge inférieure : 30 px ;
+}
+
+.stat-card{
+  fond : blanc ;
+  marge intérieure : 22 px ;
+  bordure-radius:12px;
   border:1px solid var(--border);
+  box-shadow:0 3px 12px rgba(16,31,60,.04);
 }
-.stat small{color:var(--muted)}
-.stat strong{
-  display:block;
-  font-size:28px;
-  margin-top:10px;
-  color:var(--navy);
+
+.stat-card p{
+  couleur:var(--muted);
+  taille de police : 13 px ;
+  marge inférieure : 13 px ;
 }
-.panel{
-  background:white;
+
+.stat-card h2{
+  couleur:var(--marine);
+  taille de police : 30 px ;
+}
+
+.section{
+  fond : blanc ;
+  marge intérieure : 25 px ;
+  bordure-radius:12px;
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:20px;
-  margin:18px 0;
-  min-width:0;
+  marge inférieure : 25 px ;
+  marge de défilement supérieure : 95 px ;
 }
-.panel h2{font-size:18px;color:var(--navy);margin:0 0 16px}
-.panel h3{font-size:15px;color:var(--navy)}
-.grid-two{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
+
+.section-heading{
+  affichage : flexible ;
+  justifier-contenu:espace-entre;
+  aligner-éléments:centre;
+  écart : 12 px ;
+  marge inférieure : 20 px ;
+  flex-wrap:wrap;
 }
+
+.section-heading h2{
+  couleur:var(--marine);
+  taille de police : 20 px ;
+}
+
 .form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
+  affichage : grille ;
+  grille-template-columns:1fr 1fr;
+  écart : 16 px ;
 }
-input,select,textarea{
-  width:100%;
-  border:1px solid #d9e0e9;
-  border-radius:7px;
-  padding:11px;
-  background:white;
-  color:var(--text);
-  min-width:0;
+
+.champ{
+  affichage : flexible ;
+  direction flexible : colonne ;
+  écart : 8 px ;
 }
-textarea{min-height:75px;resize:vertical}
-.field{margin-bottom:12px}
+
+.field.full{grid-column:1/-1}
+
 .field label{
-  display:block;
-  font-size:13px;
-  margin-bottom:6px;
-  font-weight:bold;
+  taille de police : 13 px ;
+  police-weight:bold;
 }
+
+.field input,.field textarea,.field select{
+  largeur : 100 % ;
+  marge intérieure : 13 px ;
+  bordure:1px solide #d9e1eb;
+  bordure-radius:8px;
+  contour : aucun ;
+  fond : blanc ;
+}
+
+.field input:focus,.field textarea:focus,.field select:focus{
+  couleur de bordure : var(--vert);
+}
+
+.champ zone de texte{
+  hauteur minimale : 85 px ;
+  redimensionner : vertical ;
+}
+
+.actes{
+  affichage : flexible ;
+  flex-wrap:wrap;
+  écart : 10px ;
+  marge supérieure : 17px ;
+}
+
 .btn{
-  border:0;
-  border-radius:7px;
-  padding:11px 16px;
-  background:var(--green);
-  color:#062d20;
-  font-weight:bold;
+  bordure:0;
+  bordure-radius:8px;
+  marge intérieure : 11px 15px ;
+  police-weight:bold;
+  curseur : pointeur ;
 }
-.btn-secondary{background:var(--navy);color:white}
-.btn-danger{background:#ffe9e9;color:#b42323}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.table-wrap{overflow-x:auto}
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:13px;
-  min-width:480px;
+
+.btn-primary{fond:var(--vert);couleur:var(--marine)}
+.btn-secondary{background:#e8edf4;color:var(--navy)}
+.btn-edit{background:#e7f0ff;color:#2055a0}
+.btn-toggle{background:#fff4df;color:#95600b}
+.btn-delete{background:#ffe8e9;color:#b52c37}
+
+.btn:désactivé{
+  opacité : 0,6 ;
+  curseur : non autorisé ;
 }
-th,td{
-  text-align:left;
-  padding:12px 10px;
-  border-bottom:1px solid var(--border);
+
+.liste-marques{
+  affichage : grille ;
+  grid-template-columns:repeat(2,1fr);
+  écart : 17 px ;
 }
-th{color:var(--muted);font-weight:bold}
-.empty{color:var(--muted);font-size:14px;padding:15px 0}
-.status{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  background:#eaf1fb;
-  font-size:12px;
+
+.carte-de-marque{
+  border:1px solid var(--border);
+  bordure-radius:11px;
+  marge intérieure : 20 px ;
 }
-.login-box{max-width:450px;margin:35px auto}
-.login-box .panel{padding:25px}
-.overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#0008;
-  z-index:15;
+
+.brand-head{
+  affichage : flexible ;
+  justifier-contenu:espace-entre;
+  aligner-éléments:centre;
+  écart : 10px ;
+  flex-wrap:wrap;
+  marge inférieure : 12 px ;
 }
-.overlay.show{display:block}
-@media(max-width:850px){
-  .sidebar{transform:translateX(-100%)}
+
+.brand-head h3{
+  couleur:var(--marine);
+  taille de police : 18 px ;
+}
+
+.statut{
+  marge intérieure : 6px 10px ;
+  bordure-radius:30px;
+  taille de police : 11 px ;
+  police-weight:bold;
+}
+
+.status-active{background:#e1f8ed;color:#13784e}
+.status-inactive{background:#ffe8e9;color:#b52c37}
+.status-preparation{background:#fff2d9;color:#93600b}
+
+.description-de-marque{
+  couleur:var(--muted);
+  taille de police : 13 px ;
+  hauteur de ligne : 1,6 ;
+  hauteur minimale : 40 px ;
+}
+
+.actions-de-marque{
+  affichage : flexible ;
+  flex-wrap:wrap;
+  écart : 8 px ;
+  marge supérieure : 16 px ;
+}
+
+.brand-actions .btn{
+  taille de police : 12 px ;
+  marge intérieure : 9px 11px ;
+}
+
+.vider{
+  colonne de grille : 1/-1 ;
+  marge intérieure : 25 px ;
+  alignement du texte : centré ;
+  couleur:var(--muted);
+  border:1px var en pointillés(--border);
+  bordure-radius:9px;
+  débordement-wrap:n'importe où;
+}
+
+.modules{
+  affichage : grille ;
+  grid-template-columns:repeat(3,1fr);
+  écart : 17 px ;
+}
+
+.module-card{
+  border:1px solid var(--border);
+  marge intérieure : 21 px ;
+  bordure-radius:11px;
+  fond : blanc ;
+  marge de défilement supérieure : 100 px ;
+}
+
+.module-icon{
+  largeur : 43 px ;
+  hauteur : 43 px ;
+  bordure-radius:10px;
+  affichage : grille ;
+  placer-éléments:centre;
+  arrière-plan : #e3f8ef ;
+  taille de police : 21 px ;
+  marge inférieure : 14 px ;
+}
+
+.module-card h3{
+  couleur:var(--marine);
+  taille de police : 16 px ;
+  marge inférieure : 8 px ;
+}
+
+.module-card p{
+  couleur:var(--muted);
+  taille de police : 13 px ;
+  hauteur de ligne : 1,5 ;
+  marge inférieure : 13 px ;
+}
+
+.module-status{
+  affichage : bloc en ligne ;
+  marge intérieure : 6px 9px ;
+  bordure-radius:20px;
+  arrière-plan : #fff3dc ;
+  couleur : #93600b ;
+  taille de police : 11 px ;
+  police-weight:bold;
+}
+
+.footer{
+  alignement du texte : centré ;
+  marge intérieure : 25 px ;
+  couleur:var(--muted);
+  taille de police : 12 px ;
+}
+
+.mobile-menu{
+  affichage : aucun ;
+  bordure:0;
+  arrière-plan:var(--marine);
+  couleur : blanc ;
+  marge intérieure : 10px 14px ;
+  bordure-radius:7px;
+  taille de police : 22 px ;
+  curseur : pointeur ;
+}
+
+@media(max-width:1050px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .modules{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:700px){
+  .sidebar{
+    largeur:min(290px,85vw);
+    transformer:translateX(-105%) ;
+  }
+
   .sidebar.open{transform:translateX(0)}
-  .main{width:100%;margin-left:0}
+
+  .sidebar-close{
+    affichage : bloc ;
+    position:absolute;
+    haut:15px;
+    droite : 15px ;
+    largeur : 38 px ;
+    hauteur : 38 px ;
+    bordure:0;
+    bordure-radius:8px;
+    arrière-plan : rgba(255,255,255,.15);
+    couleur : blanc ;
+    taille de police : 25 px ;
+    curseur : pointeur ;
+  }
+
+  .recouvrir{
+    affichage : bloc ;
+    position:fixe;
+    incrustation : 0 ;
+    arrière-plan : rgba(0,0,0,.45);
+    z-index:900;
+    opacité : 0 ;
+    visibilité : cachée ;
+    transition : 0,25 s ;
+  }
+
+  .overlay.show{
+    opacité : 1 ;
+    visibilité : visible ;
+  }
+
+  .main{margin-left:0}
+  .topbar{padding:13px 16px}
   .mobile-menu{display:block}
-  .topbar{padding:0 15px}
-  .content{padding:18px 13px}
-}
-@media(max-width:600px){
-  .cards{grid-template-columns:1fr}
-  .grid-two{grid-template-columns:1fr}
-  .form-grid{grid-template-columns:1fr}
-  h1{font-size:22px}
+  .topbar h2{font-size:16px}
+  .content{padding:20px 15px}
+  .bienvenue h1{font-size:23px}
+  .stats{gap:10px}
+  .stat-card{padding:16px}
+  .stat-card h2{font-size:25px}
+  .modules,.brand-list,.form-grid{grid-template-columns:1fr}
+  .section{padding:18px}
+  .fondateur div:last-child{display:none}
 }
 </style>
 </head>
 
-<body>
+<corps>
 
 <div class="overlay" id="overlay"></div>
 
-<div class="layout">
-
 <aside class="sidebar" id="sidebar">
-  <div class="logo">GROUPE <span>ADDIBA</span></div>
+  <button class="sidebar-close" id="sidebarClose" type="button">×</button>
 
-  <div class="menu-title">Espace fondateur</div>
+  <div class="logo">ADDI<span>BA</span></div>
+  <div class="sidebar-subtitle">Administration du groupe</div>
+
+  <div class="menu-title">Menu principal</div>
 
   <nav class="menu">
-    <a href="#accueil" class="active">Vue générale</a>
-    <a href="#marques">Marques du groupe</a>
-    <a href="#dirigeants">Dirigeants du groupe</a>
-    <a href="#finances">Gestion financière</a>
-  </nav>
-
-  <div class="menu-title">Autres espaces</div>
-  <nav class="menu">
-    <a href="#projets">Projets</a>
-    <a href="#employes">Employés</a>
-    <a href="#documents">Documents</a>
+    <a href="#overview" class="active"><span>⌂</span> Vue générale</a>
+    <a href="#marques"><span>▣</span> Marques</a>
+    <a href="#direction"><span>♙</span> Direction</a>
+    <a href="#finances"><span>▤</span> Finances</a>
+    <a href="#rh"><span>♧</span> Ressources humaines</a>
+    <a href="#projets"><span>◈</span> Projets</a>
+    <a href="#documents"><span>▧</span> Documents</a>
+    <a href="#messages"><span>✉</span> Messages</a>
+    <a href="#paramètres"><span>⚙</span> Paramètres</a>
   </nav>
 
   <div class="sidebar-bottom">
-    <nav class="menu">
-      <a href="./connexion.html">Déconnexion</a>
-      <a href="./index.html">Retour au site</a>
-    </nav>
+    <button type="button" id="sidebarLogout">↪ Déconnexion</button>
   </div>
 </aside>
 
-<main class="main">
+<div class="main">
 
 <header class="topbar">
-  <button class="mobile-menu" id="mobileMenu">☰ Menu</button>
-  <strong>Administration ADDIBA</strong>
-  <span id="userLabel">Espace fondateur</span>
+  <div style="display:flex;align-items:center;gap:13px">
+    <button class="mobile-menu" id="mobileMenu" type="button">☰</button>
+    <div>
+      <h2>Administration ADDIBA</h2>
+      <small>Espace réservé au fondateur</small>
+    </div>
+  </div>
+
+  <div class="fondateur">
+    <div class="avatar">F</div>
+    <div>
+      <strong id="founderName">Fondateur ADDIBA</strong>
+      <small>Fondateur</small>
+    </div>
+  </div>
 </header>
 
-<div class="content">
+<main class="content">
 
-<section id="accueil">
+<section class="bienvenue" id="aperçu">
   <h1>Vue générale</h1>
-  <p class="subtitle">Bienvenue dans votre espace d'administration du Groupe ADDIBA.</p>
+  <p>Bienvenue dans votre espace de direction. Pilotez les activités et les marques du groupe ADDIBA.</p>
+</section>
 
-  <div id="message" class="message">Initialisation du tableau de bord...</div>
+<div id="message" class="message" role="status"></div>
 
-  <div class="cards">
-    <div class="stat">
-      <small>Marques du groupe</small>
-      <strong id="statMarques">—</strong>
-    </div>
-    <div class="stat">
-      <small>Dirigeants</small>
-      <strong id="statDirigeants">—</strong>
-    </div>
-    <div class="stat">
-      <small>Transactions financières</small>
-      <strong id="statFinances">—</strong>
-    </div>
+<section class="stats">
+  <div class="stat-card">
+    <p>Marques enregistrées</p>
+    <h2 id="statMarques">—</h2>
+  </div>
+  <div class="stat-card">
+    <p>Projets</p>
+    <h2 id="statProjets">—</h2>
+  </div>
+  <div class="stat-card">
+    <p>Employés</p>
+    <h2 id="statEmployees">—</h2>
+  </div>
+  <div class="stat-card">
+    <p>Documents</p>
+    <h2 id="statDocuments">—</h2>
   </div>
 </section>
 
-<section id="marques" class="panel">
-  <h2>Marques du groupe</h2>
-  <p class="subtitle">Enregistrement et consultation des marques du Groupe ADDIBA.</p>
+<!-- GESTION DES MARQUES -->
+<section class="section" id="marques">
+  <div class="section-heading">
+    <h2>Gestion des marques</h2>
+  </div>
+
+  <h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
+    Ajouter une marque
+  </h3>
 
   <form id="brandForm">
     <div class="form-grid">
       <div class="field">
-        <label for="brandName">Nom de la marque</label>
-        <input id="brandName" required maxlength="150" placeholder="Nom de la marque">
+        <label for="brandName">Nom de la marque *</label>
+        <input id="brandName" type="text" required placeholder="Nom de la marque">
       </div>
+
       <div class="field">
         <label for="brandStatus">Statut</label>
         <select id="brandStatus">
-          <option value="active">Active</option>
-          <option value="en_attente">En attente</option>
+          <option value="en_preparation">En préparation</option>
+          <option value="active">Actif</option>
+          <option value="inactive">Inactif</option>
         </select>
       </div>
+
+      <div class="champ plein">
+        <label for="brandDescription">Description</label>
+        <textarea id="brandDescription" placeholder="Description de la marque"></textarea>
+      </div>
     </div>
-    <div class="field">
-      <label for="brandDescription">Description</label>
-      <textarea id="brandDescription" placeholder="Description de la marque"></textarea>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="saveBtn" type="submit">Enregistrer la marque</button>
+      <button class="btn btn-secondary" id="cancelBtn" type="button" hidden>Annuler</button>
     </div>
-    <button class="btn" type="submit">Ajouter la marque</button>
   </form>
 
-  <div id="brandMessage" class="message hidden"></div>
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
 
-  <h3>Liste des marques</h3>
-  <div id="brandList" class="empty">En attente de connexion...</div>
+  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
+
+  <div id="brandList" class="brand-list">
+    <div class="empty">Connexion à Supabase...</div>
+  </div>
 </section>
 
-<section id="dirigeants" class="panel">
-  <h2>Dirigeants du groupe</h2>
-  <p class="subtitle">Gestion des responsables et dirigeants des marques.</p>
+<!-- GESTION DE LA DIRECTION -->
+<section class="section" id="direction">
+  <div class="section-heading">
+    <h2>Gestion de la direction</h2>
+  </div>
+
+  <h3 id="leaderFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
+    Ajouter un dirigeant
+  </h3>
 
   <form id="leaderForm">
     <div class="form-grid">
+
       <div class="field">
-        <label for="leaderName">Nom complet</label>
-        <input id="leaderName" required placeholder="Nom complet">
+        <label for="leaderName">Nom et prénom *</label>
+        <input id="leaderName" type="text" required placeholder="Nom complet">
       </div>
+
       <div class="field">
-        <label for="leaderPost">Poste occupé</label>
-        <input id="leaderPost" required placeholder="Directeur général, responsable...">
+        <label for="leaderPost">Poste occupé *</label>
+        <input id="leaderPost" type="text" obligatoire placeholder="Ex : Directeur général">
       </div>
+
       <div class="field">
         <label for="leaderBrand">Marque associée</label>
-        <select id="leaderBrand" required>
-          <option value="">Chargement des marques...</option>
+        <select id="leaderBrand">
+          <option value="">Groupe ADDIBA</option>
         </select>
       </div>
-      <div class="field">
-        <label for="leaderEmail">Adresse e-mail</label>
-        <input id="leaderEmail" type="email" placeholder="Adresse e-mail">
-      </div>
-      <div class="field">
-        <label for="leaderPhone">Téléphone</label>
-        <input id="leaderPhone" placeholder="Téléphone">
-      </div>
+
       <div class="field">
         <label for="leaderStatus">Statut</label>
         <select id="leaderStatus">
           <option value="actif">Actif</option>
-          <option value="en_attente">En attente</option>
+          <option value="inactif">Inactif</option>
         </select>
       </div>
+
+      <div class="field">
+        <label for="leaderEmail">Adresse e-mail</label>
+        <input id="leaderEmail" type="email" placeholder="exemple@email.com">
+      </div>
+
+      <div class="field">
+        <label for="leaderPhone">Téléphone</label>
+        <input id="leaderPhone" type="tel" placeholder="Numéro de téléphone">
+      </div>
+
     </div>
-    <button class="btn" type="submit">Ajouter le dirigeant</button>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="leaderSaveBtn" type="submit">
+        Économisez le dirigeant
+      </button>
+      <button class="btn btn-secondary" id="leaderCancelBtn" type="button" hidden>
+        Annuleur
+      </button>
+    </div>
   </form>
 
-  <div id="leaderMessage" class="message hidden"></div>
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
 
-  <h3>Liste des dirigeants</h3>
-  <div id="leaderList" class="empty">En attente de connexion...</div>
+  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">
+    Dirigants du groupe
+  </h3>
+
+  <div id="leaderList" class="brand-list">
+    <div class="empty">Chargement des dirigeants...</div>
+  </div>
 </section>
 
-<section id="finances" class="panel">
-  <h2>Gestion financière</h2>
-  <p class="subtitle">Suivi des entrées et sorties financières du groupe.</p>
+<!-- AUTRES MODULES -->
+<section class="section" id="autres-modules">
+  <div class="section-heading">
+    <h2>Autres modules de gestion</h2>
+  </div>
 
-  <form id="financeForm">
-    <div class="form-grid">
-      <div class="field">
-        <label for="financeLabel">Libellé</label>
-        <input id="financeLabel" required placeholder="Exemple : Vente de produits">
-      </div>
-      <div class="field">
-        <label for="financeType">Type d'opération</label>
-        <select id="financeType" required>
-          <option value="entree">Entrée</option>
-          <option value="sortie">Sortie</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="financeAmount">Montant (FCFA)</label>
-        <input id="financeAmount" type="number" min="1" step="1" required>
-      </div>
-      <div class="field">
-        <label for="financeCategory">Catégorie</label>
-        <input id="financeCategory" placeholder="Vente, dépense, investissement...">
-      </div>
-      <div class="field">
-        <label for="financeBrand">Marque concernée</label>
-        <select id="financeBrand">
-          <option value="">Groupe ADDIBA</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="financeDate">Date de l'opération</label>
-        <input id="financeDate" type="date" required>
-      </div>
-    </div>
-    <div class="field">
-      <label for="financeDescription">Description</label>
-      <textarea id="financeDescription" placeholder="Détails de l'opération"></textarea>
-    </div>
-    <button class="btn" type="submit">Enregistrer l'opération</button>
-  </form>
+  <div class="modules">
 
-  <div id="financeMessage" class="message hidden"></div>
+    <article class="module-card" id="finances">
+      <div class="module-icon">▤</div>
+      <h3>Finances</h3>
+      <p>Suivi des revenus, dépenses, budgets et performances financières.</p>
+      <span class="module-status">À développer</span>
+    </article>
 
-  <h3>Historique financier</h3>
-  <div id="financeList" class="empty">En attente de connexion...</div>
+    <article class="module-card" id="rh">
+      <div class="module-icon">♧</div>
+      <h3>Ressources humaines</h3>
+      <p>Gestion du personnel, recrutements et informations des employés.</p>
+      <span class="module-status">À développer</span>
+    </article>
+
+    <article class="module-card" id="projets">
+      <div class="module-icon">◈</div>
+      <h3>Projets</h3>
+      <p>Création, organisation et suivi des projets du groupe.</p>
+      <span class="module-status">À développer</span>
+    </article>
+
+    <article class="module-card" id="documents">
+      <div class="module-icon">▧</div>
+      <h3>Documents</h3>
+      <p>Centralisation des documents administratifs et professionnels.</p>
+      <span class="module-status">À développer</span>
+    </article>
+
+    <article class="module-card" id="messages">
+      <div class="module-icon">✉</div>
+      <h3>Messages</h3>
+      <p>Communication interne et gestion des messages du groupe.</p>
+      <span class="module-status">À développer</span>
+    </article>
+
+    <article class="module-card" id="parametres">
+      <div class="module-icon">⚙</div>
+      <h3>Paramètres</h3>
+      <p>Configuration et gestion des paramètres de l'administration.</p>
+      <span class="module-status">À développer</span>
+    </article>
+
+  </div>
 </section>
 
-<section id="projets" class="panel">
-  <h2>Projets</h2>
-  <p class="empty">Cet espace sera connecté à la gestion des projets.</p>
-</section>
-
-<section id="employes" class="panel">
-  <h2>Employés</h2>
-  <p class="empty">Cet espace sera connecté à la gestion des employés.</p>
-</section>
-
-<section id="documents" class="panel">
-  <h2>Documents</h2>
-  <p class="empty">Cet espace sera connecté à la gestion des documents.</p>
-</section>
-
-</div>
 </main>
+
+<footer class="footer">
+  © ADDIBA — Un groupe. Plusieurs marques. Une vision commune.
+</footer>
+
 </div>
 
+<!-- MENU MOBILE -->
 <script>
-(function(){
-  const sidebar=document.getElementById("sidebar");
-  const overlay=document.getElementById("overlay");
+(fonction(){
+  const sidebar = document.getElementById("sidebar");
+  const bouton = document.getElementById("mobileMenu");
+  const fermeture = document.getElementById("sidebarClose");
+  const overlay = document.getElementById("overlay");
 
-  function fermer(){
+  fonction ouvrirMenu(){
+    sidebar.classList.add("open");
+    overlay.classList.add("show");
+  }
+
+  fonction fermerMenu(){
     sidebar.classList.remove("open");
     overlay.classList.remove("show");
   }
 
-  document.getElementById("mobileMenu").addEventListener("click",function(){
-    sidebar.classList.add("open");
-    overlay.classList.add("show");
+  bouton.addEventListener("click",function(){
+    si (sidebar.classList.contains("open")){
+      fermerMenu();
+    }autre{
+      ouvrirMenu();
+    }
   });
 
-  overlay.addEventListener("click",fermer);
+  fermeture.addEventListener("click",fermerMenu);
+  overlay.addEventListener("click",fermerMenu);
 
-  document.querySelectorAll(".menu a[href^='#']").forEach(function(a){
-    a.addEventListener("click",function(){
-      document.querySelectorAll(".menu a").forEach(function(x){
-        x.classList.remove("active");
+  document.addEventListener("keydown",function(e){
+    if(e.key === "Échap") fermerMenu();
+  });
+
+  document.querySelectorAll(".menu a").forEach(function(lien){
+    lien.addEventListener("click",function(){
+      document.querySelectorAll(".menu a").forEach(function(item){
+        item.classList.remove("active");
       });
-      a.classList.add("active");
-      fermer();
+      lien.classList.add("active");
+      fermerMenu();
     });
   });
 })();
 </script>
 
+<!-- GESTION SUPABASE -->
 <script type="module">
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { supabase } from "./supabase.js";
 
-const SUPABASE_URL = "https://anvbmvrsvulcikkewzrz.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_jMVDUGXVl_9m5F0wHTyTmw_oQxNRq9-";
+/* ÉLÉMENTS GÉNÉRAUX */
+const message = document.getElementById("message");
 
-const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+/* ÉLÉMENTS MARQUES */
+const brandList = document.getElementById("brandList");
+const brandForm = document.getElementById("brandForm");
+const brandName = document.getElementById("brandName");
+const brandDescription = document.getElementById("brandDescription");
+const brandStatus = document.getElementById("brandStatus");
+const formTitle = document.getElementById("formTitle");
+const saveBtn = document.getElementById("saveBtn");
+const cancelBtn = document.getElementById("cancelBtn");
 
-const $ = id => document.getElementById(id);
+/* DIRECTION DES ÉLÉMENTS */
+const leaderForm = document.getElementById("leaderForm");
+const leaderName = document.getElementById("leaderName");
+const leaderPost = document.getElementById("leaderPost");
+const leaderBrand = document.getElementById("leaderBrand");
+const leaderStatus = document.getElementById("leaderStatus");
+const leaderEmail = document.getElementById("leaderEmail");
+const leaderPhone = document.getElementById("leaderPhone");
+const leaderList = document.getElementById("leaderList");
+const leaderFormTitle = document.getElementById("leaderFormTitle");
+const leaderSaveBtn = document.getElementById("leaderSaveBtn");
+const leaderCancelBtn = document.getElementById("leaderCancelBtn");
 
-function afficherMessage(texte, type=""){
-  const element=$("message");
-  element.textContent=texte;
-  element.className="message"+(type ? " "+type : "");
+laissez utilisateurAutorise = false;
+soit marqueEnModification = null;
+soit dirigeantEnModification = null;
+soit marquesActuelles = [];
+soit dirigeantsActuels = [];
+
+/* MESSAGES */
+function afficherMessage(texte,erreur=false){
+  message.textContent = texte;
+  message.className = erreur ? "erreur de message" : "message réussi";
+  message.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
-function afficherSousMessage(id,texte,type=""){
-  const element=$(id);
-  element.textContent=texte;
-  element.className="message"+(type ? " "+type : "");
-  element.classList.remove("hidden");
+fonction effacerMessage(){
+  message.textContent = "";
+  message.className = "message";
 }
 
-function erreurTexte(error){
-  return error?.message || error?.details || error?.hint || String(error);
-}
-
-function echapper(value){
-  return String(value ?? "").replace(/[&<>"']/g,function(c){
-    return {
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[c];
-  });
-}
-
-function dateLisible(value){
-  if(!value) return "—";
-  return new Date(value+"T00:00:00").toLocaleDateString("fr-FR");
-}
-
-let marques=[];
-
-async function chargerMarques(){
-  $("brandList").textContent="Chargement des marques...";
-  $("leaderBrand").innerHTML='<option value="">Sélectionner une marque</option>';
-  $("financeBrand").innerHTML='<option value="">Groupe ADDIBA</option>';
-
-  const {data,error}=await db
-    .from("marques")
-    .select("id,nom,description,statut,created_at")
-    .order("id",{ascending:false});
-
-  if(error) throw new Error("Marques : "+erreurTexte(error));
-
-  marques=data || [];
-  $("statMarques").textContent=marques.length;
-
-  if(!marques.length){
-    $("brandList").innerHTML='<p class="empty">Aucune marque enregistrée.</p>';
-  }else{
-    $("brandList").innerHTML=`
-      <div class="table-wrap">
-      <table>
-        <thead><tr><th>Nom</th><th>Description</th><th>Statut</th></tr></thead>
-        <tbody>
-          ${marques.map(m=>`
-            <tr>
-              <td><strong>${echapper(m.nom)}</strong></td>
-              <td>${echapper(m.description || "—")}</td>
-              <td><span class="status">${echapper(m.statut || "—")}</span></td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-      </div>`;
-  }
-
-  marques.forEach(function(m){
-    const option=document.createElement("option");
-    option.value=m.id;
-    option.textContent=m.nom;
-    $("leaderBrand").appendChild(option);
-
-    const optionFinance=document.createElement("option");
-    optionFinance.value=m.id;
-    optionFinance.textContent=m.nom;
-    $("financeBrand").appendChild(optionFinance);
-  });
-}
-
-async function chargerDirigeants(){
-  $("leaderList").textContent="Chargement des dirigeants...";
-
-  const {data,error}=await db
-    .from("dirigeants")
-    .select("id,nom_complet,poste,marque_id,email,telephone,statut")
-    .order("id",{ascending:false});
-
-  if(error) throw new Error("Dirigeants : "+erreurTexte(error));
-
-  const lignes=data || [];
-  $("statDirigeants").textContent=lignes.length;
-
-  if(!lignes.length){
-    $("leaderList").innerHTML='<p class="empty">Aucun dirigeant enregistré.</p>';
-    return;
-  }
-
-  $("leaderList").innerHTML=`
-    <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Nom</th><th>Poste</th><th>Marque</th><th>Contact</th><th>Statut</th></tr>
-      </thead>
-      <tbody>
-        ${lignes.map(d=>{
-          const marque=marques.find(m=>String(m.id)===String(d.marque_id));
-          return `
-            <tr>
-              <td><strong>${echapper(d.nom_complet)}</strong></td>
-              <td>${echapper(d.poste)}</td>
-              <td>${echapper(marque?.nom || "Marque non trouvée")}</td>
-              <td>${echapper(d.email || d.telephone || "—")}</td>
-              <td><span class="status">${echapper(d.statut || "—")}</span></td>
-            </tr>`;
-        }).join("")}
-      </tbody>
-    </table>
-    </div>`;
-}
-
-async function chargerFinances(){
-  $("financeList").textContent="Chargement des opérations financières...";
-
-  const {data,error}=await db
-    .from("transactions_financieres")
-    .select("id,libelle,type,montant,categorie,marque_id,date_operation,description")
-    .order("date_operation",{ascending:false})
-    .limit(100);
-
-  if(error) throw new Error("Finances : "+erreurTexte(error));
-
-  const lignes=data || [];
-  $("statFinances").textContent=lignes.length;
-
-  if(!lignes.length){
-    $("financeList").innerHTML='<p class="empty">Aucune opération financière enregistrée.</p>';
-    return;
-  }
-
-  $("financeList").innerHTML=`
-    <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Date</th><th>Libellé</th><th>Type</th><th>Montant</th><th>Catégorie</th><th>Marque</th></tr>
-      </thead>
-      <tbody>
-        ${lignes.map(f=>{
-          const marque=marques.find(m=>String(m.id)===String(f.marque_id));
-          return `
-            <tr>
-              <td>${dateLisible(f.date_operation)}</td>
-              <td>${echapper(f.libelle)}</td>
-              <td>${echapper(f.type)}</td>
-              <td><strong>${Number(f.montant || 0).toLocaleString("fr-FR")} FCFA</strong></td>
-              <td>${echapper(f.categorie || "—")}</td>
-              <td>${echapper(marque?.nom || "Groupe ADDIBA")}</td>
-            </tr>`;
-        }).join("")}
-      </tbody>
-    </table>
-    </div>`;
-}
-
-async function initialiser(){
-  try{
-    afficherMessage("Connexion à Supabase...");
-
-    const {data:sessionData,error:sessionError}=await db.auth.getSession();
-
-    if(sessionError) throw sessionError;
-
-    if(!sessionData.session){
-      afficherMessage("Aucune session ouverte. Connecte-toi avec ton compte fondateur.","error");
-      $("brandList").textContent="Connexion requise.";
-      $("leaderList").textContent="Connexion requise.";
-      $("financeList").textContent="Connexion requise.";
-      return;
-    }
-
-    const utilisateur=sessionData.session.user;
-    $("userLabel").textContent=utilisateur.email || "Fondateur";
-
-    afficherMessage("Vérification de votre profil fondateur...");
-
-    const {data:profil,error:profilError}=await db
-      .from("profils")
-      .select("nom_complet,role")
-      .eq("id",utilisateur.id)
-      .maybeSingle();
-
-    if(profilError) throw new Error("Lecture du profil : "+erreurTexte(profilError));
-
-    if(!profil || profil.role!=="fondateur"){
-      afficherMessage("Ce compte n'a pas le rôle fondateur. Vérifie le profil associé à ton compte.","error");
-      $("brandList").textContent="Accès fondateur requis.";
-      $("leaderList").textContent="Accès fondateur requis.";
-      $("financeList").textContent="Accès fondateur requis.";
-      return;
-    }
-
-    $("userLabel").textContent=profil.nom_complet || "Fondateur ADDIBA";
-
-    afficherMessage("Connexion réussie. Chargement des données...");
-
-    await chargerMarques();
-    await chargerDirigeants();
-    await chargerFinances();
-
-    afficherMessage("Connexion réussie. Les données du groupe sont chargées.","success");
-
-  }catch(error){
-    console.error("Erreur ADDIBA :",error);
-    afficherMessage("Erreur : "+erreurTexte(error),"error");
-
-    if($("brandList").textContent.includes("Chargement")) $("brandList").textContent="Erreur de chargement.";
-    if($("leaderList").textContent.includes("Chargement")) $("leaderList").textContent="Erreur de chargement.";
-    if($("financeList").textContent.includes("Chargement")) $("financeList").textContent="Erreur de chargement.";
-  }
-}
-
-$("brandForm").addEventListener("submit",async function(e){
-  e.preventDefault();
-  const bouton=this.querySelector("button[type=submit]");
-  bouton.disabled=true;
-
-  try{
-    const nom=$("brandName").value.trim();
-    const description=$("brandDescription").value.trim();
-    const statut=$("brandStatus").value;
-
-    const {error}=await db.from("marques").insert({
-      nom,description,statut
-    });
-
-    if(error) throw error;
-
-    this.reset();
-    afficherSousMessage("brandMessage","Marque ajoutée avec succès.","success");
-    await chargerMarques();
-    await chargerDirigeants();
-
-  }catch(error){
-    afficherSousMessage("brandMessage","Erreur : "+erreurTexte(error),"error");
-  }finally{
-    bou
+/* TEXTE SÉCURISÉ */
+fonction securiserTexte(texte){
+  retou
