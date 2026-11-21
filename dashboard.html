@@ -374,8 +374,168 @@ padding:12px;text-align:left;border-bottom:1px solid var(--border);font-size:13p
     Chargement des opérations...
   </div>
  </section>
+<section class="section" id="rh">
+  <div class="section-heading">
+    <h2>Gestion des ressources humaines</h2>
+  </div>
 
+  <div class="finance-summary">
+    <div class="finance-card">
+      <p>Effectif total</p>
+      <h3 id="rhTotal">0</h3>
+    </div>
+    <div class="finance-card">
+      <p>Employés actifs</p>
+      <h3 id="rhActifs">0</h3>
+    </div>
+    <div class="finance-card">
+      <p>Masse salariale mensuelle</p>
+      <h3 id="rhSalaires">0 FCFA</h3>
+    </div>
+  </div>
+
+  <h3 id="rhFormTitle">Ajouter un employé</h3>
+
+  <form id="rhForm">
+    <div class="form-grid">
+      <div class="field">
+        <label for="rhNom">Nom complet *</label>
+        <input id="rhNom" type="text" required>
+      </div>
+      <div class="field">
+        <label for="rhEmail">Adresse e-mail</label>
+        <input id="rhEmail" type="email">
+      </div>
+      <div class="field">
+        <label for="rhPoste">Poste occupé</label>
+        <input id="rhPoste" type="text">
+      </div>
+      <div class="field">
+        <label for="rhMarque">Marque associée</label>
+        <select id="rhMarque">
+          <option value="">Groupe ADDIBA</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rhSalaire">Salaire mensuel (FCFA)</label>
+        <input id="rhSalaire" type="number" min="0" step="1" value="0">
+      </div>
+      <div class="field">
+        <label for="rhDate">Date de recrutement</label>
+        <input id="rhDate" type="date">
+      </div>
+      <div class="field">
+        <label for="rhStatut">Statut</label>
+        <select id="rhStatut">
+          <option value="actif">Actif</option>
+          <option value="inactif">Inactif</option>
+        </select>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="rhSaveBtn" type="submit">
+        Enregistrer l'employé
+      </button>
+      <button class="btn btn-secondary" id="rhCancelBtn" type="button" hidden>
+        Annuler
+      </button>
+    </div>
+  </form>
+
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+  <h3>Liste du personnel</h3>
+  <div id="rhList" class="brand-list">
+    <div class="empty">Chargement des employés...</div>
+  </div>
+</section>
+
+<section class="section" id="rh">
+  <div class="section-heading">
+    <h2>Gestion des ressources humaines</h2>
+  </div>
+
+  <div class="finance-summary">
+    <div class="finance-card">
+      <p>Effectif total</p>
+      <h3 id="rhTotal">0</h3>
+    </div>
+    <div class="finance-card">
+      <p>Employés actifs</p>
+      <h3 id="rhActifs">0</h3>
+    </div>
+    <div class="finance-card">
+      <p>Masse salariale mensuelle</p>
+      <h3 id="rhSalaires">0 FCFA</h3>
+    </div>
+  </div>
+
+  <h3 id="rhFormTitle">Ajouter un employé</h3>
+
+  <form id="rhForm">
+    <div class="form-grid">
+      <div class="field">
+        <label for="rhNom">Nom complet *</label>
+        <input id="rhNom" type="text" required>
+      </div>
+
+      <div class="field">
+        <label for="rhEmail">Adresse e-mail</label>
+        <input id="rhEmail" type="email">
+      </div>
+
+      <div class="field">
+        <label for="rhPoste">Poste occupé</label>
+        <input id="rhPoste" type="text">
+      </div>
+
+      <div class="field">
+        <label for="rhMarque">Marque associée</label>
+        <select id="rhMarque">
+          <option value="">Groupe ADDIBA</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="rhSalaire">Salaire mensuel (FCFA)</label>
+        <input id="rhSalaire" type="number" min="0" step="1" value="0">
+      </div>
+
+      <div class="field">
+        <label for="rhDate">Date de recrutement</label>
+        <input id="rhDate" type="date">
+      </div>
+
+      <div class="field">
+        <label for="rhStatut">Statut</label>
+        <select id="rhStatut">
+          <option value="actif">Actif</option>
+          <option value="inactif">Inactif</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="rhSaveBtn" type="submit">
+        Enregistrer l'employé
+      </button>
+
+      <button class="btn btn-secondary" id="rhCancelBtn" type="button" hidden>
+        Annuler
+      </button>
+    </div>
+  </form>
+
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+
+  <h3>Liste du personnel</h3>
+
+  <div id="rhList" class="brand-list">
+    <div class="empty">Chargement des employés...</div>
+  </div>
+</section>
+  
 <section class="section" id="autres-modules">
+<section class="section" id="rh">
 <div class="section-heading"><h2>Autres modules de gestion</h2></div>
 <div class="modules">
 <article class="module-card" id="finances-card"><div class="module-icon">▤</div><h3>Finances</h3><p>Suivi des revenus, dépenses, budgets et performances financières.</p><span class="module-status">À développer</span></article>
