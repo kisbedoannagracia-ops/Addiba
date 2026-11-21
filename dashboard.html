@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101f3c">
 <title>Espace fondateur | ADDIBA</title>
 
 <style>
-:root{
+:root {
   --navy:#101f3c;
   --navy2:#192e50;
   --green:#20bd83;
@@ -17,210 +17,162 @@
   --muted:#718096;
   --border:#e5eaf1;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
-button,input,textarea,select{font:inherit}
-
-.sidebar{
-  position:fixed;top:0;left:0;width:255px;height:100vh;
+* {box-sizing:border-box;margin:0;padding:0}
+body {font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea,select {font:inherit}
+.sidebar {
+  position:fixed;inset:0 auto 0 0;width:255px;
   background:var(--navy);color:white;padding:25px 17px;
-  overflow-y:auto;z-index:1000;transition:transform .3s ease;
+  overflow-y:auto;z-index:1000;transition:transform .25s;
 }
-.logo{font-size:27px;font-weight:800;letter-spacing:1px;padding:0 12px}
-.logo span{color:var(--green)}
-.sidebar-subtitle{font-size:12px;color:#aebbd0;padding:5px 12px 28px}
-.menu-title{font-size:11px;color:#8999b2;text-transform:uppercase;letter-spacing:1px;padding:12px}
-.menu{display:flex;flex-direction:column;gap:5px}
-.menu a{
+.logo {font-size:27px;font-weight:800;padding:0 12px}
+.logo span {color:var(--green)}
+.sidebar-subtitle {font-size:12px;color:#aebbd0;padding:5px 12px 28px}
+.menu-title {font-size:11px;color:#8999b2;text-transform:uppercase;padding:12px}
+.menu {display:flex;flex-direction:column;gap:5px}
+.menu a {
   text-decoration:none;color:#c9d3e1;padding:13px 14px;
-  border-radius:8px;font-size:14px;transition:.2s;
+  border-radius:8px;font-size:14px;
 }
-.menu a:hover,.menu a.active{background:rgba(32,189,131,.15);color:var(--green)}
-.menu a span{display:inline-block;width:27px}
-.sidebar-bottom{margin-top:35px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
-.sidebar-bottom button{
+.menu a:hover,.menu a.active {background:#203b52;color:var(--green)}
+.menu a span {display:inline-block;width:27px}
+.sidebar-bottom {margin-top:35px;border-top:1px solid #ffffff22;padding-top:18px}
+.sidebar-bottom button {
   width:100%;padding:12px;border:0;background:transparent;
-  color:#ffb5b5;text-align:left;cursor:pointer;border-radius:8px;
+  color:#ffb5b5;text-align:left;cursor:pointer;
 }
-.sidebar-close{display:none}
-.overlay{display:none}
-
-.main{margin-left:255px;min-height:100vh}
-.topbar{
+.sidebar-close {display:none}
+.overlay {display:none}
+.main {margin-left:255px;min-height:100vh}
+.topbar {
   background:white;min-height:75px;padding:15px 32px;
   display:flex;justify-content:space-between;align-items:center;
   gap:15px;border-bottom:1px solid var(--border);
   position:sticky;top:0;z-index:50;
 }
-.topbar h2{font-size:19px;color:var(--navy)}
-.topbar small{display:block;color:var(--muted);margin-top:5px}
-.founder{display:flex;align-items:center;gap:12px}
-.avatar{
+.topbar h2 {font-size:19px;color:var(--navy)}
+.topbar small {display:block;color:var(--muted);margin-top:5px}
+.founder {display:flex;align-items:center;gap:12px}
+.avatar {
   width:40px;height:40px;border-radius:50%;display:grid;
   place-items:center;background:#e3f8ef;color:#11865b;font-weight:bold;
 }
-.founder strong{color:var(--navy);font-size:13px}
-.founder small{font-size:11px}
-
-.content{max-width:1400px;margin:auto;padding:32px}
-.welcome{margin-bottom:25px}
-.welcome h1{color:var(--navy);font-size:27px;margin-bottom:9px}
-.welcome p{color:var(--muted);line-height:1.5}
-
-.message{
+.content {max-width:1400px;margin:auto;padding:32px}
+.welcome {margin-bottom:25px}
+.welcome h1 {color:var(--navy);font-size:27px;margin-bottom:9px}
+.welcome p {color:var(--muted);line-height:1.5}
+.message {
   display:none;padding:14px;margin-bottom:20px;
   border-radius:8px;overflow-wrap:anywhere;line-height:1.5;
 }
-.message.success{display:block;background:#e5f8ef;color:#13784e}
-.message.error{display:block;background:#fff0f0;color:#a52a35}
-
-.stats{
+.message.success {display:block;background:#e5f8ef;color:#13784e}
+.message.error {display:block;background:#fff0f0;color:#a52a35}
+.stats {
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:17px;margin-bottom:30px;
 }
-.stat-card{
-  background:white;padding:22px;border-radius:12px;
-  border:1px solid var(--border);
-  box-shadow:0 3px 12px rgba(16,31,60,.04);
+.stat-card,.section {
+  background:white;border:1px solid var(--border);
+  border-radius:12px;
 }
-.stat-card p{color:var(--muted);font-size:13px;margin-bottom:13px}
-.stat-card h2{color:var(--navy);font-size:24px;overflow-wrap:anywhere}
-
-.section{
-  background:white;padding:25px;border-radius:12px;
-  border:1px solid var(--border);margin-bottom:25px;
-  scroll-margin-top:95px;
-}
-.section-heading{
+.stat-card {padding:22px}
+.stat-card p {color:var(--muted);font-size:13px;margin-bottom:13px}
+.stat-card h2 {color:var(--navy);font-size:24px;overflow-wrap:anywhere}
+.section {padding:25px;margin-bottom:25px;scroll-margin-top:95px}
+.section-heading {
   display:flex;justify-content:space-between;align-items:center;
   gap:12px;margin-bottom:20px;flex-wrap:wrap;
 }
-.section-heading h2{color:var(--navy);font-size:20px}
-
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field{display:flex;flex-direction:column;gap:8px}
-.field.full{grid-column:1/-1}
-.field label{font-size:13px;font-weight:bold}
-.field input,.field textarea,.field select{
+.section-heading h2 {color:var(--navy);font-size:20px}
+.form-grid {display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field {display:flex;flex-direction:column;gap:8px}
+.field.full {grid-column:1/-1}
+.field label {font-size:13px;font-weight:bold}
+.field input,.field textarea,.field select {
   width:100%;padding:13px;border:1px solid #d9e1eb;
   border-radius:8px;outline:none;background:white;
 }
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green)}
-.field textarea{min-height:85px;resize:vertical}
-
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
-.btn{
+.field input:focus,.field textarea:focus,.field select:focus {
+  border-color:var(--green);
+}
+.field textarea {min-height:85px;resize:vertical}
+.actions {display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
+.btn {
   border:0;border-radius:8px;padding:11px 15px;
   font-weight:bold;cursor:pointer;
 }
-.btn-primary{background:var(--green);color:var(--navy)}
-.btn-secondary{background:#e8edf4;color:var(--navy)}
-.btn-edit{background:#e7f0ff;color:#2055a0}
-.btn-delete{background:#ffe8e9;color:#b52c37}
-.btn:disabled{opacity:.6;cursor:not-allowed}
-
-.brand-list{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
-.brand-card{border:1px solid var(--border);border-radius:11px;padding:20px}
-.brand-head{
+.btn-primary {background:var(--green);color:var(--navy)}
+.btn-secondary {background:#e8edf4;color:var(--navy)}
+.btn-delete {background:#ffe8e9;color:#b52c37}
+.btn:disabled {opacity:.6;cursor:not-allowed}
+.brand-list {display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.brand-card {border:1px solid var(--border);border-radius:11px;padding:20px}
+.brand-head {
   display:flex;justify-content:space-between;align-items:center;
   gap:10px;flex-wrap:wrap;margin-bottom:12px;
 }
-.brand-head h3{color:var(--navy);font-size:18px}
-.status{padding:6px 10px;border-radius:30px;font-size:11px;font-weight:bold}
-.status-active{background:#e1f8ed;color:#13784e}
-.status-inactive{background:#ffe8e9;color:#b52c37}
-.status-preparation{background:#fff2d9;color:#93600b}
-.brand-description{color:var(--muted);font-size:13px;line-height:1.6;min-height:30px}
-.brand-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.brand-actions .btn{font-size:12px;padding:9px 11px}
-
-.empty{
+.brand-head h3 {color:var(--navy);font-size:18px}
+.brand-description {color:var(--muted);font-size:13px;line-height:1.6}
+.brand-actions {display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.empty {
   grid-column:1/-1;padding:25px;text-align:center;
   color:var(--muted);border:1px dashed var(--border);
   border-radius:9px;overflow-wrap:anywhere;
 }
-.finance-stats{
+.finance-stats {
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:15px;margin-bottom:25px;
 }
-.finance-card{
-  padding:20px;border:1px solid var(--border);
-  border-radius:11px;background:#fff;
-}
-.finance-card p{font-size:13px;color:var(--muted);margin-bottom:10px}
-.finance-card h3{font-size:23px;color:var(--navy);overflow-wrap:anywhere}
-.finance-card.income h3{color:#138456}
-.finance-card.expense h3{color:#b52c37}
-.finance-card.balance h3{color:#2055a0}
-
-.table-wrap{width:100%;overflow-x:auto}
-.finance-table{width:100%;border-collapse:collapse;min-width:700px}
-.finance-table th,.finance-table td{
+.finance-card {padding:20px;border:1px solid var(--border);border-radius:11px}
+.finance-card p {font-size:13px;color:var(--muted);margin-bottom:10px}
+.finance-card h3 {font-size:23px;color:var(--navy);overflow-wrap:anywhere}
+.income h3 {color:#138456}
+.expense h3 {color:#b52c37}
+.balance h3 {color:#2055a0}
+.table-wrap {width:100%;overflow-x:auto}
+.finance-table {width:100%;border-collapse:collapse;min-width:700px}
+.finance-table th,.finance-table td {
   text-align:left;padding:13px 11px;
   border-bottom:1px solid var(--border);font-size:13px;
 }
-.finance-table th{background:#f7f9fc;color:var(--navy)}
-.finance-table td{color:var(--text)}
-.amount-income{color:#138456;font-weight:bold}
-.amount-expense{color:#b52c37;font-weight:bold}
-.table-actions{display:flex;gap:7px;flex-wrap:wrap}
-.table-actions button{font-size:11px;padding:8px 10px}
-
-.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
-.module-card{
-  border:1px solid var(--border);padding:21px;
-  border-radius:11px;background:white;scroll-margin-top:100px;
-}
-.module-icon{
-  width:43px;height:43px;border-radius:10px;
-  display:grid;place-items:center;background:#e3f8ef;
-  font-size:21px;margin-bottom:14px;
-}
-.module-card h3{color:var(--navy);font-size:16px;margin-bottom:8px}
-.module-card p{color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:13px}
-.module-status{
-  display:inline-block;padding:6px 9px;border-radius:20px;
-  background:#fff3dc;color:#93600b;font-size:11px;font-weight:bold;
-}
-.footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
-
-.mobile-menu{
+.finance-table th {background:#f7f9fc;color:var(--navy)}
+.table-actions {display:flex;gap:7px;flex-wrap:wrap}
+.table-actions button {font-size:11px;padding:8px 10px}
+.footer {text-align:center;padding:25px;color:var(--muted);font-size:12px}
+.mobile-menu {
   display:none;border:0;background:var(--navy);color:white;
   padding:10px 14px;border-radius:7px;font-size:22px;cursor:pointer;
 }
-
-@media(max-width:1050px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .modules{grid-template-columns:repeat(2,1fr)}
+@media(max-width:1050px) {
+  .stats {grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:700px){
-  .sidebar{width:min(290px,85vw);transform:translateX(-105%)}
-  .sidebar.open{transform:translateX(0)}
-  .sidebar-close{
+@media(max-width:700px) {
+  .sidebar {width:min(290px,85vw);transform:translateX(-105%)}
+  .sidebar.open {transform:translateX(0)}
+  .sidebar-close {
     display:block;position:absolute;top:15px;right:15px;
     width:38px;height:38px;border:0;border-radius:8px;
-    background:rgba(255,255,255,.15);color:white;
-    font-size:25px;cursor:pointer;
+    background:#ffffff25;color:white;font-size:25px;
   }
-  .overlay{
+  .overlay {
     display:block;position:fixed;inset:0;
-    background:rgba(0,0,0,.45);z-index:900;
-    opacity:0;visibility:hidden;transition:.25s;
+    background:#0007;z-index:900;opacity:0;
+    visibility:hidden;transition:.25s;
   }
-  .overlay.show{opacity:1;visibility:visible}
-  .main{margin-left:0}
-  .topbar{padding:13px 16px}
-  .mobile-menu{display:block}
-  .topbar h2{font-size:16px}
-  .content{padding:20px 15px}
-  .welcome h1{font-size:23px}
-  .stats{gap:10px}
-  .stat-card{padding:16px}
-  .stat-card h2{font-size:19px}
-  .modules,.brand-list,.form-grid{grid-template-columns:1fr}
-  .finance-stats{grid-template-columns:1fr}
-  .section{padding:18px}
-  .founder div:last-child{display:none}
+  .overlay.show {opacity:1;visibility:visible}
+  .main {margin-left:0}
+  .topbar {padding:13px 16px}
+  .mobile-menu {display:block}
+  .topbar h2 {font-size:16px}
+  .content {padding:20px 15px}
+  .welcome h1 {font-size:23px}
+  .stats {gap:10px}
+  .stat-card {padding:16px}
+  .stat-card h2 {font-size:19px}
+  .brand-list,.form-grid {grid-template-columns:1fr}
+  .finance-stats {grid-template-columns:1fr}
+  .section {padding:18px}
+  .founder div:last-child {display:none}
 }
 </style>
 </head>
@@ -253,7 +205,6 @@ button,input,textarea,select{font:inherit}
 </aside>
 
 <div class="main">
-
 <header class="topbar">
   <div style="display:flex;align-items:center;gap:13px">
     <button class="mobile-menu" id="mobileMenu" type="button">☰</button>
@@ -287,22 +238,22 @@ button,input,textarea,select{font:inherit}
   </div>
   <div class="stat-card">
     <p>Dirigeants</p>
-    <h2 id="statProjets">—</h2>
+    <h2 id="statDirigeants">—</h2>
   </div>
   <div class="stat-card">
     <p>Revenus enregistrés</p>
-    <h2 id="statEmployes">—</h2>
+    <h2 id="statRevenus">—</h2>
   </div>
   <div class="stat-card">
     <p>Opérations financières</p>
-    <h2 id="statDocuments">—</h2>
+    <h2 id="statOperations">—</h2>
   </div>
 </section>
 
 <section class="section" id="marques">
   <div class="section-heading"><h2>Gestion des marques</h2></div>
 
-  <h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
+  <h3 id="brandFormTitle" style="margin-bottom:17px;color:#101f3c">
     Ajouter une marque
   </h3>
 
@@ -310,7 +261,7 @@ button,input,textarea,select{font:inherit}
     <div class="form-grid">
       <div class="field">
         <label for="brandName">Nom de la marque *</label>
-        <input id="brandName" type="text" required placeholder="Nom de la marque">
+        <input id="brandName" required>
       </div>
       <div class="field">
         <label for="brandStatus">Statut</label>
@@ -322,17 +273,21 @@ button,input,textarea,select{font:inherit}
       </div>
       <div class="field full">
         <label for="brandDescription">Description</label>
-        <textarea id="brandDescription" placeholder="Description de la marque"></textarea>
+        <textarea id="brandDescription"></textarea>
       </div>
     </div>
     <div class="actions">
-      <button class="btn btn-primary" id="saveBtn" type="submit">Enregistrer la marque</button>
-      <button class="btn btn-secondary" id="cancelBtn" type="button" hidden>Annuler</button>
+      <button class="btn btn-primary" type="submit" id="brandSave">
+        Enregistrer la marque
+      </button>
+      <button class="btn btn-secondary" type="button" id="brandCancel" hidden>
+        Annuler
+      </button>
     </div>
   </form>
 
   <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
+  <h3 style="margin-bottom:17px;color:#101f3c">Marques du groupe</h3>
   <div id="brandList" class="brand-list">
     <div class="empty">Connexion à Supabase...</div>
   </div>
@@ -341,7 +296,7 @@ button,input,textarea,select{font:inherit}
 <section class="section" id="direction">
   <div class="section-heading"><h2>Gestion de la direction</h2></div>
 
-  <h3 id="leaderFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
+  <h3 id="leaderFormTitle" style="margin-bottom:17px;color:#101f3c">
     Ajouter un dirigeant
   </h3>
 
@@ -349,15 +304,17 @@ button,input,textarea,select{font:inherit}
     <div class="form-grid">
       <div class="field">
         <label for="leaderName">Nom et prénom *</label>
-        <input id="leaderName" type="text" required placeholder="Nom complet">
+        <input id="leaderName" required>
       </div>
       <div class="field">
         <label for="leaderPost">Poste occupé *</label>
-        <input id="leaderPost" type="text" required placeholder="Ex : Directeur général">
+        <input id="leaderPost" required>
       </div>
       <div class="field">
         <label for="leaderBrand">Marque associée</label>
-        <select id="leaderBrand"><option value="">Groupe ADDIBA</option></select>
+        <select id="leaderBrand">
+          <option value="">Groupe ADDIBA</option>
+        </select>
       </div>
       <div class="field">
         <label for="leaderStatus">Statut</label>
@@ -368,31 +325,32 @@ button,input,textarea,select{font:inherit}
       </div>
       <div class="field">
         <label for="leaderEmail">Adresse e-mail</label>
-        <input id="leaderEmail" type="email" placeholder="exemple@email.com">
+        <input id="leaderEmail" type="email">
       </div>
       <div class="field">
         <label for="leaderPhone">Téléphone</label>
-        <input id="leaderPhone" type="tel" placeholder="Numéro de téléphone">
+        <input id="leaderPhone" type="tel">
       </div>
     </div>
     <div class="actions">
-      <button class="btn btn-primary" id="leaderSaveBtn" type="submit">Enregistrer le dirigeant</button>
-      <button class="btn btn-secondary" id="leaderCancelBtn" type="button" hidden>Annuler</button>
+      <button class="btn btn-primary" type="submit" id="leaderSave">
+        Enregistrer le dirigeant
+      </button>
+      <button class="btn btn-secondary" type="button" id="leaderCancel" hidden>
+        Annuler
+      </button>
     </div>
   </form>
 
   <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Dirigeants du groupe</h3>
+  <h3 style="margin-bottom:17px;color:#101f3c">Dirigeants du groupe</h3>
   <div id="leaderList" class="brand-list">
     <div class="empty">Chargement des dirigeants...</div>
   </div>
 </section>
 
 <section class="section" id="finances">
-  <div class="section-heading">
-    <h2>Gestion financière</h2>
-    <span class="module-status">Suivi financier</span>
-  </div>
+  <div class="section-heading"><h2>Gestion financière</h2></div>
 
   <div class="finance-stats">
     <div class="finance-card income">
@@ -409,7 +367,7 @@ button,input,textarea,select{font:inherit}
     </div>
   </div>
 
-  <h3 id="financeFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
+  <h3 id="financeFormTitle" style="margin-bottom:17px;color:#101f3c">
     Enregistrer une opération
   </h3>
 
@@ -417,22 +375,22 @@ button,input,textarea,select{font:inherit}
     <div class="form-grid">
       <div class="field">
         <label for="financeType">Type d'opération *</label>
-        <select id="financeType" required>
+        <select id="financeType">
           <option value="revenu">Revenu</option>
           <option value="depense">Dépense</option>
         </select>
       </div>
       <div class="field">
         <label for="financeLabel">Libellé *</label>
-        <input id="financeLabel" type="text" required placeholder="Ex : Vente de produits">
+        <input id="financeLabel" required>
       </div>
       <div class="field">
         <label for="financeAmount">Montant en FCFA *</label>
-        <input id="financeAmount" type="number" min="1" step="1" required placeholder="Ex : 25000">
+        <input id="financeAmount" type="number" min="1" step="1" required>
       </div>
       <div class="field">
         <label for="financeCategory">Catégorie *</label>
-        <select id="financeCategory" required>
+        <select id="financeCategory">
           <option value="Ventes">Ventes</option>
           <option value="Prestations">Prestations</option>
           <option value="Investissement">Investissement</option>
@@ -446,7 +404,9 @@ button,input,textarea,select{font:inherit}
       </div>
       <div class="field">
         <label for="financeBrand">Marque concernée</label>
-        <select id="financeBrand"><option value="">Groupe ADDIBA</option></select>
+        <select id="financeBrand">
+          <option value="">Groupe ADDIBA</option>
+        </select>
       </div>
       <div class="field">
         <label for="financeDate">Date de l'opération *</label>
@@ -454,12 +414,16 @@ button,input,textarea,select{font:inherit}
       </div>
       <div class="field full">
         <label for="financeDescription">Description complémentaire</label>
-        <textarea id="financeDescription" placeholder="Informations complémentaires (facultatif)"></textarea>
+        <textarea id="financeDescription"></textarea>
       </div>
     </div>
     <div class="actions">
-      <button class="btn btn-primary" id="financeSaveBtn" type="submit">Enregistrer l'opération</button>
-      <button class="btn btn-secondary" id="financeCancelBtn" type="button" hidden>Annuler</button>
+      <button class="btn btn-primary" type="submit" id="financeSave">
+        Enregistrer l'opération
+      </button>
+      <button class="btn btn-secondary" type="button" id="financeCancel" hidden>
+        Annuler
+      </button>
     </div>
   </form>
 
@@ -484,7 +448,7 @@ button,input,textarea,select{font:inherit}
         </tr>
       </thead>
       <tbody id="financeList">
-        <tr><td colspan="7">Chargement des opérations...</td></tr>
+        <tr><td colspan="7">Chargement...</td></tr>
       </tbody>
     </table>
   </div>
@@ -492,36 +456,26 @@ button,input,textarea,select{font:inherit}
 
 <section class="section" id="autres-modules">
   <div class="section-heading"><h2>Autres modules de gestion</h2></div>
-  <div class="modules">
-    <article class="module-card" id="rh">
-      <div class="module-icon">♧</div>
+  <div class="brand-list">
+    <article class="brand-card" id="rh">
       <h3>Ressources humaines</h3>
-      <p>Gestion du personnel, recrutements et informations des employés.</p>
-      <span class="module-status">À développer</span>
+      <p class="brand-description">Gestion du personnel et des employés.</p>
     </article>
-    <article class="module-card" id="projets">
-      <div class="module-icon">◈</div>
+    <article class="brand-card" id="projets">
       <h3>Projets</h3>
-      <p>Création, organisation et suivi des projets du groupe.</p>
-      <span class="module-status">À développer</span>
+      <p class="brand-description">Organisation et suivi des projets du groupe.</p>
     </article>
-    <article class="module-card" id="documents">
-      <div class="module-icon">▧</div>
+    <article class="brand-card" id="documents">
       <h3>Documents</h3>
-      <p>Centralisation des documents administratifs et professionnels.</p>
-      <span class="module-status">À développer</span>
+      <p class="brand-description">Documents administratifs et professionnels.</p>
     </article>
-    <article class="module-card" id="messages">
-      <div class="module-icon">✉</div>
+    <article class="brand-card" id="messages">
       <h3>Messages</h3>
-      <p>Communication interne et gestion des messages du groupe.</p>
-      <span class="module-status">À développer</span>
+      <p class="brand-description">Communication interne du groupe.</p>
     </article>
-    <article class="module-card" id="parametres">
-      <div class="module-icon">⚙</div>
+    <article class="brand-card" id="parametres">
       <h3>Paramètres</h3>
-      <p>Configuration et gestion des paramètres de l'administration.</p>
-      <span class="module-status">À développer</span>
+      <p class="brand-description">Configuration de l'administration.</p>
     </article>
   </div>
 </section>
@@ -533,13 +487,11 @@ button,input,textarea,select{font:inherit}
 </footer>
 </div>
 
-<!-- MENU : SCRIPT INDEPENDANT DE SUPABASE -->
 <script>
+/* MENU MOBILE */
 (function(){
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("overlay");
-  const openButton = document.getElementById("mobileMenu");
-  const closeButton = document.getElementById("sidebarClose");
 
   function ouvrirMenu(){
     sidebar.classList.add("open");
@@ -551,17 +503,104 @@ button,input,textarea,select{font:inherit}
     overlay.classList.remove("show");
   }
 
-  openButton.addEventListener("click", ouvrirMenu);
-  closeButton.addEventListener("click", fermerMenu);
-  overlay.addEventListener("click", fermerMenu);
+  document.getElementById("mobileMenu").addEventListener("click",ouvrirMenu);
+  document.getElementById("sidebarClose").addEventListener("click",fermerMenu);
+  overlay.addEventListener("click",fermerMenu);
 
   document.querySelectorAll(".menu a").forEach(function(lien){
-    lien.addEventListener("click", function(){
-      document.querySelectorAll(".menu a").forEach(a => a.classList.remove("active"));
+    lien.addEventListener("click",function(){
+      document.querySelectorAll(".menu a").forEach(a=>a.classList.remove("active"));
       lien.classList.add("active");
       fermerMenu();
     });
   });
 
-  document.addEventListener("keydown", function(e){
-    if(e.key === "Escape") ferme
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape") fermerMenu();
+  });
+})();
+
+/* APPLICATION SUPABASE */
+const $ = id => document.getElementById(id);
+
+let supabaseClient = null;
+let marques = [];
+let dirigeants = [];
+let operations = [];
+let editionMarque = null;
+let editionDirigeant = null;
+let editionFinance = null;
+
+function message(texte,type="error"){
+  const zone=$("message");
+  zone.textContent=texte;
+  zone.className="message "+type;
+  zone.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function cacherMessage(){
+  $("message").className="message";
+  $("message").textContent="";
+}
+
+function echapper(valeur){
+  return String(valeur ?? "").replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",
+    '"':"&quot;","'":"&#039;"
+  })[c]);
+}
+
+function montant(valeur){
+  return new Intl.NumberFormat("fr-FR").format(Number(valeur)||0)+" FCFA";
+}
+
+function dateAujourdhui(){
+  const d=new Date();
+  return [
+    d.getFullYear(),
+    String(d.getMonth()+1).padStart(2,"0"),
+    String(d.getDate()).padStart(2,"0")
+  ].join("-");
+}
+
+function verifierErreur(erreur,operation){
+  if(erreur){
+    console.error(operation,erreur);
+    message(operation+" : "+(erreur.message||JSON.stringify(erreur)));
+    return true;
+  }
+  return false;
+}
+
+/* CHARGEMENT DES MARQUES */
+async function chargerMarques(){
+  $("brandList").innerHTML='<div class="empty">Chargement des marques...</div>';
+
+  const {data,error}=await supabaseClient
+    .from("marques")
+    .select("id,nom,description,statut,created_at")
+    .order("id",{ascending:false});
+
+  if(verifierErreur(error,"Chargement des marques")) {
+    $("brandList").innerHTML='<div class="empty">Impossible de charger les marques.</div>';
+    return;
+  }
+
+  marques=data||[];
+  $("statMarques").textContent=marques.length;
+
+  if(!marques.length){
+    $("brandList").innerHTML='<div class="empty">Aucune marque enregistrée.</div>';
+  }else{
+    $("brandList").innerHTML=marques.map(m=>`
+      <article class="brand-card">
+        <div class="brand-head">
+          <h3>${echapper(m.nom)}</h3>
+          <span>${echapper(m.statut||"Non défini")}</span>
+        </div>
+        <p class="brand-description">${echapper(m.description||"Aucune description.")}</p>
+        <div class="brand-actions">
+          <button class="btn btn-secondary" onclick="modifierMarque(${Number(m.id)})">Modifier</button>
+          <button class="btn btn-delete" onclick="supprimerMarque(${Number(m.id)})">Supprimer</button>
+        </div>
+    </article>
