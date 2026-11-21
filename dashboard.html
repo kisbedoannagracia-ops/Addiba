@@ -18,564 +18,136 @@
   --border:#e5eaf1;
   --red:#dc3545;
 }
-
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body {
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-
-button,input,textarea,select {
-  font:inherit;
-}
-
-.sidebar {
-  position:fixed;
-  top:0;
-  left:0;
-  width:255px;
-  height:100vh;
-  background:var(--navy);
-  color:white;
-  padding:25px 17px;
-  overflow-y:auto;
-  z-index:100;
-}
-
-.logo {
-  font-size:27px;
-  font-weight:800;
-  letter-spacing:1px;
-  padding:0 12px;
-}
-
-.logo span {
-  color:var(--green);
-}
-
-.sidebar-subtitle {
-  font-size:12px;
-  color:#aebbd0;
-  padding:5px 12px 28px;
-}
-
-.menu-title {
-  font-size:11px;
-  color:#8999b2;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  padding:12px;
-}
-
-.menu {
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-}
-
-.menu a {
-  text-decoration:none;
-  color:#c9d3e1;
-  padding:13px 14px;
-  border-radius:8px;
-  font-size:14px;
-  transition:.2s;
-}
-
-.menu a:hover,
-.menu a.active {
-  background:rgba(32,189,131,.15);
-  color:var(--green);
-}
-
-.menu a span {
-  display:inline-block;
-  width:27px;
-}
-
-.sidebar-bottom {
-  margin-top:35px;
-  border-top:1px solid rgba(255,255,255,.12);
-  padding-top:18px;
-}
-
-.sidebar-bottom button {
-  width:100%;
-  padding:12px;
-  border:0;
-  background:transparent;
-  color:#ffb5b5;
-  text-align:left;
-  cursor:pointer;
-  border-radius:8px;
-}
-
-.sidebar-bottom button:hover {
-  background:rgba(255,255,255,.08);
-}
-
-.main {
-  margin-left:255px;
-  min-height:100vh;
-}
-
-.topbar {
-  background:white;
-  min-height:75px;
-  padding:15px 32px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:50;
-}
-
-.topbar h2 {
-  font-size:19px;
-  color:var(--navy);
-}
-
-.topbar small {
-  display:block;
-  color:var(--muted);
-  margin-top:5px;
-}
-
-.founder {
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.avatar {
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:#e3f8ef;
-  color:#11865b;
-  font-weight:bold;
-}
-
-.founder strong {
-  color:var(--navy);
-  font-size:13px;
-}
-
-.founder small {
-  font-size:11px;
-}
-
-.content {
-  max-width:1400px;
-  margin:auto;
-  padding:32px;
-}
-
-.welcome {
-  margin-bottom:25px;
-}
-
-.welcome h1 {
-  color:var(--navy);
-  font-size:27px;
-  margin-bottom:9px;
-}
-
-.welcome p {
-  color:var(--muted);
-  line-height:1.5;
-}
-
-.message {
-  display:none;
-  padding:14px;
-  margin-bottom:20px;
-  border-radius:8px;
-  overflow-wrap:anywhere;
-}
-
-.message.success {
-  display:block;
-  background:#e5f8ef;
-  color:#13784e;
-}
-
-.message.error {
-  display:block;
-  background:#fff0f0;
-  color:#a52a35;
-}
-
-.stats {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:17px;
-  margin-bottom:30px;
-}
-
-.stat-card {
-  background:white;
-  padding:22px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  box-shadow:0 3px 12px rgba(16,31,60,.04);
-}
-
-.stat-card p {
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:13px;
-}
-
-.stat-card h2 {
-  color:var(--navy);
-  font-size:30px;
-}
-
-.section {
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  margin-bottom:25px;
-  scroll-margin-top:95px;
-}
-
-.section-heading {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:20px;
-  flex-wrap:wrap;
-}
-
-.section-heading h2 {
-  color:var(--navy);
-  font-size:20px;
-}
-
-.form-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-}
-
-.field {
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.field.full {
-  grid-column:1/-1;
-}
-
-.field label {
-  font-size:13px;
-  font-weight:bold;
-}
-
-.field input,
-.field textarea,
-.field select {
-  width:100%;
-  padding:13px;
-  border:1px solid #d9e1eb;
-  border-radius:8px;
-  outline:none;
-  background:white;
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-  border-color:var(--green);
-}
-
-.field textarea {
-  min-height:85px;
-  resize:vertical;
-}
-
-.actions {
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:17px;
-}
-
-.btn {
-  border:0;
-  border-radius:8px;
-  padding:11px 15px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.btn-primary {
-  background:var(--green);
-  color:var(--navy);
-}
-
-.btn-secondary {
-  background:#e8edf4;
-  color:var(--navy);
-}
-
-.btn-edit {
-  background:#e7f0ff;
-  color:#2055a0;
-}
-
-.btn-toggle {
-  background:#fff4df;
-  color:#95600b;
-}
-
-.btn-delete {
-  background:#ffe8e9;
-  color:#b52c37;
-}
-
-.btn:disabled {
-  opacity:.6;
-  cursor:not-allowed;
-}
-
-.brand-list {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:17px;
-}
-
-.brand-card {
-  border:1px solid var(--border);
-  border-radius:11px;
-  padding:20px;
-}
-
-.brand-head {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:12px;
-}
-
-.brand-head h3 {
-  color:var(--navy);
-  font-size:18px;
-}
-
-.status {
-  padding:6px 10px;
-  border-radius:30px;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.status-active {
-  background:#e1f8ed;
-  color:#13784e;
-}
-
-.status-inactive {
-  background:#ffe8e9;
-  color:#b52c37;
-}
-
-.status-preparation {
-  background:#fff2d9;
-  color:#93600b;
-}
-
-.brand-description {
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-  min-height:40px;
-}
-
-.brand-actions {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:16px;
-}
-
-.brand-actions .btn {
-  font-size:12px;
-  padding:9px 11px;
-}
-
-.empty {
-  grid-column:1/-1;
-  padding:25px;
-  text-align:center;
-  color:var(--muted);
-  border:1px dashed var(--border);
-  border-radius:9px;
-}
-
-.modules {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:17px;
-}
-
-.module-card {
-  border:1px solid var(--border);
-  padding:21px;
-  border-radius:11px;
-  background:white;
-  scroll-margin-top:100px;
-}
-
-.module-icon {
-  width:43px;
-  height:43px;
-  border-radius:10px;
-  display:grid;
-  place-items:center;
-  background:#e3f8ef;
-  font-size:21px;
-  margin-bottom:14px;
-}
-
-.module-card h3 {
-  color:var(--navy);
-  font-size:16px;
-  margin-bottom:8px;
-}
-
-.module-card p {
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
-  margin-bottom:13px;
-}
-
-.module-status {
-  display:inline-block;
-  padding:6px 9px;
-  border-radius:20px;
-  background:#fff3dc;
-  color:#93600b;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.footer {
-  text-align:center;
-  padding:25px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.mobile-menu {
-  display:none;
-  border:0;
-  background:var(--navy);
-  color:white;
-  padding:9px 12px;
-  border-radius:7px;
-  cursor:pointer;
-}
-
-@media(max-width:1050px) {
-  .stats {
-    grid-template-columns:repeat(2,1fr);
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea,select{font:inherit}
+
+.sidebar{
+  position:fixed;top:0;left:0;width:255px;height:100vh;
+  background:var(--navy);color:white;padding:25px 17px;
+  overflow-y:auto;z-index:100;transition:transform .25s;
+}
+.logo{font-size:27px;font-weight:800;letter-spacing:1px;padding:0 12px}
+.logo span{color:var(--green)}
+.sidebar-subtitle{font-size:12px;color:#aebbd0;padding:5px 12px 28px}
+.menu-title{font-size:11px;color:#8999b2;text-transform:uppercase;letter-spacing:1px;padding:12px}
+.menu{display:flex;flex-direction:column;gap:5px}
+.menu a{text-decoration:none;color:#c9d3e1;padding:13px 14px;border-radius:8px;font-size:14px;transition:.2s}
+.menu a:hover,.menu a.active{background:rgba(32,189,131,.15);color:var(--green)}
+.menu a span{display:inline-block;width:27px}
+.sidebar-bottom{margin-top:35px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
+.sidebar-bottom button{width:100%;padding:12px;border:0;background:transparent;color:#ffb5b5;text-align:left;cursor:pointer;border-radius:8px}
+.sidebar-bottom button:hover{background:rgba(255,255,255,.08)}
+
+.sidebar-close{display:none}
+.overlay{display:none}
+
+.main{margin-left:255px;min-height:100vh}
+.topbar{
+  background:white;min-height:75px;padding:15px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50;
+}
+.topbar h2{font-size:19px;color:var(--navy)}
+.topbar small{display:block;color:var(--muted);margin-top:5px}
+.founder{display:flex;align-items:center;gap:12px}
+.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#e3f8ef;color:#11865b;font-weight:bold}
+.founder strong{color:var(--navy);font-size:13px}
+.founder small{font-size:11px}
+.content{max-width:1400px;margin:auto;padding:32px}
+.welcome{margin-bottom:25px}
+.welcome h1{color:var(--navy);font-size:27px;margin-bottom:9px}
+.welcome p{color:var(--muted);line-height:1.5}
+.message{display:none;padding:14px;margin-bottom:20px;border-radius:8px;overflow-wrap:anywhere}
+.message.success{display:block;background:#e5f8ef;color:#13784e}
+.message.error{display:block;background:#fff0f0;color:#a52a35}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:17px;margin-bottom:30px}
+.stat-card{background:white;padding:22px;border-radius:12px;border:1px solid var(--border);box-shadow:0 3px 12px rgba(16,31,60,.04)}
+.stat-card p{color:var(--muted);font-size:13px;margin-bottom:13px}
+.stat-card h2{color:var(--navy);font-size:30px}
+.section{background:white;padding:25px;border-radius:12px;border:1px solid var(--border);margin-bottom:25px;scroll-margin-top:95px}
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.section-heading h2{color:var(--navy);font-size:20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:bold}
+.field input,.field textarea,.field select{width:100%;padding:13px;border:1px solid #d9e1eb;border-radius:8px;outline:none;background:white}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green)}
+.field textarea{min-height:85px;resize:vertical}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
+.btn{border:0;border-radius:8px;padding:11px 15px;font-weight:bold;cursor:pointer}
+.btn-primary{background:var(--green);color:var(--navy)}
+.btn-secondary{background:#e8edf4;color:var(--navy)}
+.btn-edit{background:#e7f0ff;color:#2055a0}
+.btn-toggle{background:#fff4df;color:#95600b}
+.btn-delete{background:#ffe8e9;color:#b52c37}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.brand-list{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.brand-card{border:1px solid var(--border);border-radius:11px;padding:20px}
+.brand-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.brand-head h3{color:var(--navy);font-size:18px}
+.status{padding:6px 10px;border-radius:30px;font-size:11px;font-weight:bold}
+.status-active{background:#e1f8ed;color:#13784e}
+.status-inactive{background:#ffe8e9;color:#b52c37}
+.status-preparation{background:#fff2d9;color:#93600b}
+.brand-description{color:var(--muted);font-size:13px;line-height:1.6;min-height:40px}
+.brand-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.brand-actions .btn{font-size:12px;padding:9px 11px}
+.empty{grid-column:1/-1;padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:9px}
+.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.module-card{border:1px solid var(--border);padding:21px;border-radius:11px;background:white;scroll-margin-top:100px}
+.module-icon{width:43px;height:43px;border-radius:10px;display:grid;place-items:center;background:#e3f8ef;font-size:21px;margin-bottom:14px}
+.module-card h3{color:var(--navy);font-size:16px;margin-bottom:8px}
+.module-card p{color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:13px}
+.module-status{display:inline-block;padding:6px 9px;border-radius:20px;background:#fff3dc;color:#93600b;font-size:11px;font-weight:bold}
+.footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
+.mobile-menu{display:none;border:0;background:var(--navy);color:white;padding:9px 12px;border-radius:7px;cursor:pointer}
+
+@media(max-width:1050px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .modules{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .sidebar{transform:translateX(-100%);width:min(290px,85vw)}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-close{
+    display:block;position:absolute;top:17px;right:15px;
+    border:0;background:rgba(255,255,255,.12);color:white;
+    font-size:25px;width:36px;height:36px;border-radius:8px;cursor:pointer;
   }
-
-  .modules {
-    grid-template-columns:repeat(2,1fr);
+  .overlay{
+    display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);
+    z-index:90;opacity:0;visibility:hidden;transition:.25s;
   }
-}
-
-@media(max-width:700px) {
-  .sidebar {
-    transform:translateX(-100%);
-    transition:.25s;
-  }
-
-  .sidebar.open {
-    transform:translateX(0);
-  }
-
-  .main {
-    margin-left:0;
-  }
-
-  .topbar {
-    padding:13px 16px;
-  }
-
-  .mobile-menu {
-    display:block;
-  }
-
-  .topbar h2 {
-    font-size:16px;
-  }
-
-  .content {
-    padding:20px 15px;
-  }
-
-  .welcome h1 {
-    font-size:23px;
-  }
-
-  .stats {
-    gap:10px;
-  }
-
-  .stat-card {
-    padding:16px;
-  }
-
-  .stat-card h2 {
-    font-size:25px;
-  }
-
-  .modules,
-  .brand-list,
-  .form-grid {
-    grid-template-columns:1fr;
-  }
-
-  .section {
-    padding:18px;
-  }
-
-  .founder div:last-child {
-    display:none;
-  }
+  .overlay.show{opacity:1;visibility:visible}
+  .main{margin-left:0}
+  .topbar{padding:13px 16px}
+  .mobile-menu{display:block}
+  .topbar h2{font-size:16px}
+  .content{padding:20px 15px}
+  .welcome h1{font-size:23px}
+  .stats{gap:10px}
+  .stat-card{padding:16px}
+  .stat-card h2{font-size:25px}
+  .modules,.brand-list,.form-grid{grid-template-columns:1fr}
+  .section{padding:18px}
+  .founder div:last-child{display:none}
 }
 </style>
 </head>
 
 <body>
 
+<div class="overlay" id="overlay"></div>
+
 <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Fermer le menu">×</button>
   <div class="logo">ADDI<span>BA</span></div>
   <div class="sidebar-subtitle">Administration du groupe</div>
 
   <div class="menu-title">Menu principal</div>
-
   <nav class="menu">
     <a href="#overview" class="active"><span>⌂</span> Vue générale</a>
     <a href="#marques"><span>▣</span> Marques</a>
@@ -594,19 +166,14 @@ button,input,textarea,select {
 </aside>
 
 <div class="main">
-
 <header class="topbar">
   <div style="display:flex;align-items:center;gap:13px">
-   <button class="mobile-menu" id="mobileMenu" type="button"
-onclick="document.getElementById('sidebar').classList.toggle('open')">
-☰
-</button>
+    <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Ouvrir le menu">☰</button>
     <div>
       <h2>Administration ADDIBA</h2>
       <small>Espace réservé au fondateur</small>
     </div>
   </div>
-
   <div class="founder">
     <div class="avatar">F</div>
     <div>
@@ -617,56 +184,30 @@ onclick="document.getElementById('sidebar').classList.toggle('open')">
 </header>
 
 <main class="content">
-
 <section class="welcome" id="overview">
   <h1>Vue générale</h1>
-  <p>
-    Bienvenue dans votre espace de direction.
-    Pilotez les activités et les marques du groupe ADDIBA.
-  </p>
+  <p>Bienvenue dans votre espace de direction. Pilotez les activités et les marques du groupe ADDIBA.</p>
 </section>
 
 <div id="message" class="message" role="status"></div>
 
 <section class="stats">
-  <div class="stat-card">
-    <p>Marques enregistrées</p>
-    <h2 id="statMarques">—</h2>
-  </div>
-
-  <div class="stat-card">
-    <p>Projets</p>
-    <h2 id="statProjets">—</h2>
-  </div>
-
-  <div class="stat-card">
-    <p>Employés</p>
-    <h2 id="statEmployes">—</h2>
-  </div>
-
-  <div class="stat-card">
-    <p>Documents</p>
-    <h2 id="statDocuments">—</h2>
-  </div>
+  <div class="stat-card"><p>Marques enregistrées</p><h2 id="statMarques">—</h2></div>
+  <div class="stat-card"><p>Projets</p><h2 id="statProjets">—</h2></div>
+  <div class="stat-card"><p>Employés</p><h2 id="statEmployes">—</h2></div>
+  <div class="stat-card"><p>Documents</p><h2 id="statDocuments">—</h2></div>
 </section>
 
 <section class="section" id="marques">
-  <div class="section-heading">
-    <h2>Gestion des marques</h2>
-  </div>
-
-  <h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">
-    Ajouter une marque
-  </h3>
+  <div class="section-heading"><h2>Gestion des marques</h2></div>
+  <h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter une marque</h3>
 
   <form id="brandForm">
     <div class="form-grid">
-
       <div class="field">
         <label for="brandName">Nom de la marque *</label>
         <input id="brandName" type="text" required placeholder="Nom de la marque">
       </div>
-
       <div class="field">
         <label for="brandStatus">Statut</label>
         <select id="brandStatus">
@@ -675,101 +216,67 @@ onclick="document.getElementById('sidebar').classList.toggle('open')">
           <option value="inactive">Inactive</option>
         </select>
       </div>
-
       <div class="field full">
         <label for="brandDescription">Description</label>
         <textarea id="brandDescription" placeholder="Description de la marque"></textarea>
       </div>
-
     </div>
-
     <div class="actions">
-      <button class="btn btn-primary" id="saveBtn" type="submit">
-        Enregistrer la marque
-      </button>
-
-      <button class="btn btn-secondary" id="cancelBtn" type="button" hidden>
-        Annuler
-      </button>
+      <button class="btn btn-primary" id="saveBtn" type="submit">Enregistrer la marque</button>
+      <button class="btn btn-secondary" id="cancelBtn" type="button" hidden>Annuler</button>
     </div>
   </form>
 
   <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-
-  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">
-    Marques du groupe
-  </h3>
-
+  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
   <div id="brandList" class="brand-list">
     <div class="empty">Chargement des marques...</div>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-heading">
-    <h2>Modules de gestion du groupe</h2>
-  </div>
-
+  <div class="section-heading"><h2>Modules de gestion du groupe</h2></div>
   <div class="modules">
-
     <article class="module-card" id="direction">
-      <div class="module-icon">♙</div>
-      <h3>Direction</h3>
+      <div class="module-icon">♙</div><h3>Direction</h3>
       <p>Organisation, décisions stratégiques et pilotage général du groupe.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="finances">
-      <div class="module-icon">▤</div>
-      <h3>Finances</h3>
+      <div class="module-icon">▤</div><h3>Finances</h3>
       <p>Suivi des revenus, dépenses, budgets et performances financières.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="rh">
-      <div class="module-icon">♧</div>
-      <h3>Ressources humaines</h3>
+      <div class="module-icon">♧</div><h3>Ressources humaines</h3>
       <p>Gestion du personnel, recrutements et informations des employés.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="projets">
-      <div class="module-icon">◈</div>
-      <h3>Projets</h3>
+      <div class="module-icon">◈</div><h3>Projets</h3>
       <p>Création, organisation et suivi des projets du groupe.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="documents">
-      <div class="module-icon">▧</div>
-      <h3>Documents</h3>
+      <div class="module-icon">▧</div><h3>Documents</h3>
       <p>Centralisation des documents administratifs et professionnels.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="messages">
-      <div class="module-icon">✉</div>
-      <h3>Messages</h3>
+      <div class="module-icon">✉</div><h3>Messages</h3>
       <p>Communication interne et gestion des messages du groupe.</p>
       <span class="module-status">À développer</span>
     </article>
-
     <article class="module-card" id="parametres">
-      <div class="module-icon">⚙</div>
-      <h3>Paramètres</h3>
+      <div class="module-icon">⚙</div><h3>Paramètres</h3>
       <p>Configuration et gestion des paramètres de l'administration.</p>
       <span class="module-status">À développer</span>
     </article>
-
   </div>
 </section>
-
 </main>
 
-<footer class="footer">
-  © ADDIBA — Un groupe. Plusieurs marques. Une vision commune.
-</footer>
-
+<footer class="footer">© ADDIBA — Un groupe. Plusieurs marques. Une vision commune.</footer>
 </div>
 
 <script type="module">
@@ -778,18 +285,43 @@ import { supabase } from "./supabase.js";
 const message = document.getElementById("message");
 const brandList = document.getElementById("brandList");
 const brandForm = document.getElementById("brandForm");
-
 const brandName = document.getElementById("brandName");
 const brandDescription = document.getElementById("brandDescription");
 const brandStatus = document.getElementById("brandStatus");
-
 const formTitle = document.getElementById("formTitle");
 const saveBtn = document.getElementById("saveBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const mobileMenu = document.getElementById("mobileMenu");
+const sidebarClose = document.getElementById("sidebarClose");
+
 let utilisateurAutorise = false;
 let marqueEnModification = null;
 let marquesActuelles = [];
+
+function ouvrirMenu() {
+  sidebar.classList.add("open");
+  overlay.classList.add("show");
+}
+
+function fermerMenu() {
+  sidebar.classList.remove("open");
+  overlay.classList.remove("show");
+}
+
+mobileMenu.addEventListener("click", () => {
+  if (sidebar.classList.contains("open")) fermerMenu();
+  else ouvrirMenu();
+});
+
+sidebarClose.addEventListener("click", fermerMenu);
+overlay.addEventListener("click", fermerMenu);
+
+document.addEventListener("keydown", evenement => {
+  if (evenement.key === "Escape") fermerMenu();
+});
 
 function afficherMessage(texte, erreur = false) {
   message.textContent = texte;
@@ -803,11 +335,7 @@ function effacerMessage() {
 
 function securiserTexte(texte) {
   return String(texte ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#039;"
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
   })[c]);
 }
 
@@ -833,7 +361,6 @@ function viderFormulaire() {
 
 async function verifierFondateur() {
   const { data, error } = await supabase.auth.getUser();
-
   if (error) throw error;
 
   if (!data.user) {
@@ -868,9 +395,7 @@ async function chargerStatistique(table, elementId) {
   document.getElementById(elementId).textContent =
     error ? "—" : (count ?? 0);
 
-  if (error) {
-    console.warn("Statistique indisponible :", table, error.message);
-  }
+  if (error) console.warn("Statistique indisponible :", table, error.message);
 }
 
 async function chargerStatistiques() {
@@ -910,26 +435,15 @@ async function chargerMarques() {
           ${statutTexte(marque.statut)}
         </span>
       </div>
-
       <p class="brand-description">
         ${securiserTexte(marque.description || "Aucune description.")}
       </p>
-
       <div class="brand-actions">
-        <button class="btn btn-edit" type="button"
-          data-action="edit" data-id="${securiserTexte(marque.id)}">
-          Modifier
-        </button>
-
-        <button class="btn btn-toggle" type="button"
-          data-action="toggle" data-id="${securiserTexte(marque.id)}">
+        <button class="btn btn-edit" type="button" data-action="edit" data-id="${securiserTexte(marque.id)}">Modifier</button>
+        <button class="btn btn-toggle" type="button" data-action="toggle" data-id="${securiserTexte(marque.id)}">
           ${marque.statut === "active" ? "Désactiver" : "Activer"}
         </button>
-
-        <button class="btn btn-delete" type="button"
-          data-action="delete" data-id="${securiserTexte(marque.id)}">
-          Supprimer
-        </button>
+        <button class="btn btn-delete" type="button" data-action="delete" data-id="${securiserTexte(marque.id)}">Supprimer</button>
       </div>
     </article>
   `).join("");
@@ -940,14 +454,11 @@ function preparerModification(marque) {
   brandName.value = marque.nom || "";
   brandDescription.value = marque.description || "";
   brandStatus.value = marque.statut || "en_preparation";
-
   formTitle.textContent = "Modifier la marque";
   saveBtn.textContent = "Enregistrer les modifications";
   cancelBtn.hidden = false;
 
-  document.getElementById("marques").scrollIntoView({
-    behavior:"smooth"
-  });
+  document.getElementById("marques").scrollIntoView({ behavior:"smooth" });
 }
 
 brandForm.addEventListener("submit", async evenement => {
@@ -971,7 +482,6 @@ brandForm.addEventListener("submit", async evenement => {
   }
 
   const estModification = marqueEnModification !== null;
-
   saveBtn.disabled = true;
   saveBtn.textContent = "Enregistrement...";
 
@@ -991,11 +501,9 @@ brandForm.addEventListener("submit", async evenement => {
     await chargerMarques();
     await chargerStatistiques();
 
-    afficherMessage(
-      estModification
-        ? "Marque modifiée avec succès."
-        : "Marque ajoutée avec succès."
-    );
+    afficherMessage(estModification
+      ? "Marque modifiée avec succès."
+      : "Marque ajoutée avec succès.");
 
   } catch (erreur) {
     afficherMessage("Erreur : " + erreur.message, true);
@@ -1021,4 +529,9 @@ brandList.addEventListener("click", async evenement => {
     return;
   }
 
-  const action = bouton.dataset.a
+  const id = bouton.dataset.id;
+  const action = bouton.dataset.action;
+  const marque = marquesActuelles.find(item => String(item.id) === String(id));
+
+  if (!marque) {
+    affic
