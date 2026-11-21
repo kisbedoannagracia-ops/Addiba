@@ -107,13 +107,8 @@ button,input,textarea,select{font:inherit}
   border-radius:8px;
 }
 
-.sidebar-close{
-  display:none;
-}
-
-.overlay{
-  display:none;
-}
+.sidebar-close{display:none}
+.overlay{display:none}
 
 .main{
   margin-left:255px;
@@ -383,6 +378,7 @@ button,input,textarea,select{font:inherit}
   color:var(--muted);
   border:1px dashed var(--border);
   border-radius:9px;
+  overflow-wrap:anywhere;
 }
 
 .modules{
@@ -462,9 +458,7 @@ button,input,textarea,select{font:inherit}
     transform:translateX(-105%);
   }
 
-  .sidebar.open{
-    transform:translateX(0);
-  }
+  .sidebar.open{transform:translateX(0)}
 
   .sidebar-close{
     display:block;
@@ -498,29 +492,16 @@ button,input,textarea,select{font:inherit}
   }
 
   .main{margin-left:0}
-
   .topbar{padding:13px 16px}
-
   .mobile-menu{display:block}
-
   .topbar h2{font-size:16px}
-
   .content{padding:20px 15px}
-
   .welcome h1{font-size:23px}
-
   .stats{gap:10px}
-
   .stat-card{padding:16px}
-
   .stat-card h2{font-size:25px}
-
-  .modules,.brand-list,.form-grid{
-    grid-template-columns:1fr;
-  }
-
+  .modules,.brand-list,.form-grid{grid-template-columns:1fr}
   .section{padding:18px}
-
   .founder div:last-child{display:none}
 }
 </style>
@@ -714,7 +695,7 @@ button,input,textarea,select{font:inherit}
 
 </div>
 
-<!-- SCRIPT DU MENU : INDEPENDANT DE SUPABASE -->
+<!-- MENU MOBILE -->
 <script>
 (function(){
   const sidebar = document.getElementById("sidebar");
@@ -759,7 +740,7 @@ button,input,textarea,select{font:inherit}
 })();
 </script>
 
-<!-- SCRIPT DE GESTION SUPABASE -->
+<!-- GESTION SUPABASE -->
 <script type="module">
 import { supabase } from "./supabase.js";
 
@@ -877,14 +858,17 @@ async function chargerMarques() {
     .order("id", { ascending:true });
 
   if (error) {
-    brandList.innerHTML = '<div class="empty">Impossible de charger les marques.</div>';
+    brandList.innerHTML =
+      '<div class="empty">Erreur de chargement : ' +
+      securiserTexte(error.message) + '</div>';
     throw error;
   }
 
   marquesActuelles = data || [];
 
   if (!marquesActuelles.length) {
-    brandList.innerHTML = '<div class="empty">Aucune marque enregistrée.</div>';
+    brandList.innerHTML =
+      '<div class="empty">Aucune marque enregistrée.</div>';
     return;
   }
 
@@ -946,4 +930,4 @@ brandForm.addEventListener("submit", async evenement => {
   }
 
   const donnees = {
-    nom:bra
+    nom: brandName.v
