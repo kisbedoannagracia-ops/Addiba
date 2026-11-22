@@ -1,997 +1,673 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101f3c">
-
-<title>ADDIBA | Un groupe. Plusieurs marques.</title>
-<meta name="description" content="ADDIBA est un groupe d'entreprises qui développe des marques et des projets ambitieux en Afrique.">
-
-<style>
-:root {
-  --navy: #101f3c;
-  --navy2: #1b365c;
-  --green: #20bd83;
-  --white: #ffffff;
-  --bg: #f5f7fb;
-  --text: #17243b;
-  --muted: #657187;
-  --border: #e5eaf1;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.65;
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font: inherit;
-}
-
-.container {
-  width: min(1160px, calc(100% - 40px));
-  margin: auto;
-}
-
-/* HEADER */
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(16, 31, 60, 0.98);
-  color: white;
-  box-shadow: 0 3px 18px rgba(0,0,0,.12);
-}
-
-.navbar {
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.logo {
-  font-size: 29px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-
-.logo span,
-.footer-brand span {
-  color: var(--green);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 19px;
-}
-
-.nav-links a {
-  font-size: 13px;
-  font-weight: 600;
-  color: #e6edf8;
-  transition: .2s;
-}
-
-.nav-links a:hover {
-  color: var(--green);
-}
-
-.nav-links .nav-cta {
-  background: var(--green);
-  color: var(--navy);
-  padding: 11px 15px;
-  border-radius: 7px;
-}
-
-.nav-links .nav-cta:hover {
-  background: white;
-  color: var(--navy);
-}
-
-.menu-toggle {
-  display: none;
-  border: 1px solid rgba(255,255,255,.3);
-  background: transparent;
-  color: white;
-  border-radius: 7px;
-  padding: 8px 12px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-/* HERO */
-
-.hero {
-  background:
-    radial-gradient(circle at 85% 20%, rgba(32,189,131,.18), transparent 30%),
-    linear-gradient(125deg, var(--navy), var(--navy2));
-  color: white;
-  padding: 105px 0 110px;
-  text-align: center;
-}
-
-.hero-content {
-  max-width: 850px;
-  margin: auto;
-}
-
-.hero-label {
-  display: inline-block;
-  color: var(--green);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-size: clamp(36px, 6vw, 65px);
-  line-height: 1.12;
-  margin-bottom: 24px;
-}
-
-.hero h1 span {
-  color: var(--green);
-}
-
-.hero p {
-  color: #d8e1ef;
-  font-size: clamp(16px, 2vw, 19px);
-  max-width: 720px;
-  margin: 0 auto 32px;
-}
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 48px;
-  padding: 13px 23px;
-  border-radius: 7px;
-  font-weight: 700;
-  transition: .2s;
-}
-
-.btn-primary {
-  background: var(--green);
-  color: var(--navy);
-}
-
-.btn-primary:hover {
-  background: white;
-  transform: translateY(-2px);
-}
-
-.btn-outline {
-  border: 1px solid rgba(255,255,255,.55);
-  color: white;
-}
-
-.btn-outline:hover {
-  background: white;
-  color: var(--navy);
-}
-
-/* SECTIONS */
-
-section {
-  padding: 85px 0;
-}
-
-.section-heading {
-  max-width: 720px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.section-heading .eyebrow {
-  color: #139a6a;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.section-heading h2 {
-  color: var(--navy);
-  font-size: clamp(28px, 4vw, 39px);
-  line-height: 1.2;
-  margin: 10px 0 15px;
-}
-
-.section-heading p {
-  color: var(--muted);
-  font-size: 16px;
-}
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  padding: 29px;
-  box-shadow: 0 7px 25px rgba(16,31,60,.045);
-  transition: .25s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 13px 30px rgba(16,31,60,.09);
-}
-
-.card-icon {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  background: #e8f8f1;
-  color: #11986a;
-  border-radius: 11px;
-  font-size: 23px;
-  margin-bottom: 19px;
-}
-
-.card h3 {
-  color: var(--navy);
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.card p {
-  color: var(--muted);
-  font-size: 15px;
-}
-
-/* ABOUT */
-
-.about-section {
-  background: white;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 55px;
-}
-
-.about-label {
-  color: #139a6a;
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-.about-content h2 {
-  color: var(--navy);
-  font-size: clamp(28px, 4vw, 39px);
-  line-height: 1.2;
-  margin: 12px 0 20px;
-}
-
-.about-content p {
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-
-.about-visual {
-  min-height: 310px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 35px;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 80% 15%, rgba(32,189,131,.3), transparent 35%),
-    linear-gradient(135deg, var(--navy), var(--navy2));
-  color: white;
-}
-
-.about-visual strong {
-  font-size: clamp(45px, 7vw, 70px);
-  font-weight: 900;
-  letter-spacing: 3px;
-}
-
-.about-visual strong span {
-  color: var(--green);
-}
-
-.about-visual p {
-  color: #d8e1ef;
-  margin-top: 12px;
-}
-
-/* BRANDS */
-
-.brands-section {
-  background: var(--bg);
-}
-
-.brand-card {
-  display: flex;
-  flex-direction: column;
-  min-height: 220px;
-}
-
-.brand-name {
-  font-size: 25px;
-  font-weight: 900;
-  color: var(--navy);
-  margin-bottom: 12px;
-}
-
-.brand-card p {
-  flex: 1;
-}
-
-.brand-status {
-  display: inline-block;
-  align-self: flex-start;
-  margin-top: 20px;
-  background: #e8f8f1;
-  color: #11845d;
-  border-radius: 20px;
-  padding: 5px 11px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-/* PROJECTS */
-
-.projects-section {
-  background: white;
-}
-
-.project-card {
-  border-left: 4px solid var(--green);
-}
-
-/* FOUNDER */
-
-.founder-section {
-  background: var(--navy);
-  color: white;
-  text-align: center;
-}
-
-.founder-section h2 {
-  font-size: clamp(27px, 4vw, 38px);
-  margin-bottom: 16px;
-}
-
-.founder-section p {
-  max-width: 720px;
-  color: #d8e1ef;
-  margin: 0 auto 25px;
-}
-
-/* CONTACT */
-
-.contact-section {
-  background: var(--bg);
-}
-
-.contact-box {
-  max-width: 780px;
-  margin: auto;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  text-align: center;
-  padding: 40px 25px;
-}
-
-.contact-box h2 {
-  color: var(--navy);
-  font-size: clamp(26px, 4vw, 35px);
-  margin-bottom: 12px;
-}
-
-.contact-box p {
-  color: var(--muted);
-  margin-bottom: 22px;
-}
-
-/* FOOTER */
-
-footer {
-  background: #0b172d;
-  color: white;
-  padding: 48px 0 25px;
-  text-align: center;
-}
-
-.footer-brand {
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  margin-bottom: 18px;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px 23px;
-  margin: 0 auto 20px;
-}
-
-.footer-links a {
-  color: #d3dceb;
-  font-size: 14px;
-}
-
-.footer-links a:hover {
-  color: var(--green);
-}
-
-.footer-slogan {
-  color: #aebbd0;
-  font-size: 14px;
-  margin-bottom: 24px;
-}
-
-/* RESEAUX SOCIAUX */
-
-.social-title {
-  color: white;
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 13px;
-  margin-bottom: 27px;
-}
-
-.social-icon {
-  width: 43px;
-  height: 43px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 50%;
-  color: white;
-  background: rgba(255,255,255,.06);
-}
-
-.social-icon svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.social-icon:hover {
-  background: var(--green);
-  color: var(--navy);
-  border-color: var(--green);
-}
-
-.footer-copy {
-  border-top: 1px solid rgba(255,255,255,.13);
-  padding-top: 20px;
-  color: #8998ae;
-  font-size: 12px;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 1050px) {
-  .nav-links {
-    gap: 12px;
+‎<!DOCTYPE html>
+‎<html lang="fr">
+‎<head>
+‎<meta charset="UTF-8">
+‎<meta name="viewport" content="width=device-width, initial-scale=1.0">
+‎<meta name="theme-color" content="#101f3c">
+‎<title>ADDIBA | Un groupe. Plusieurs marques.</title>
+‎<meta name="description" content="ADDIBA est un groupe d'entreprises qui développe des marques et des projets ambitieux en Afrique.">
+‎
+‎<style>
+‎:root {
+‎  --navy:#101f3c;
+‎  --navy2:#1b365c;
+‎  --green:#20bd83;
+‎  --white:#fff;
+‎  --bg:#f5f7fb;
+‎  --text:#17243b;
+‎  --muted:#657187;
+‎  --border:#e5eaf1;
+‎}
+‎*{margin:0;padding:0;box-sizing:border-box}
+‎html{scroll-behavior:smooth;scroll-padding-top:90px}
+‎body{
+‎  font-family:Arial,Helvetica,sans-serif;
+‎  background:var(--bg);
+‎  color:var(--text);
+‎  line-height:1.65;
+‎  overflow-x:hidden
+‎}
+‎a{color:inherit;text-decoration:none}
+‎button{font:inherit}
+‎.container{width:min(1160px,calc(100% - 40px));margin:auto}
+‎
+‎/* HEADER */
+‎header{
+‎  position:sticky;top:0;z-index:1000;
+‎  background:rgba(16,31,60,.98);
+‎  color:white;
+‎  box-shadow:0 3px 18px rgba(0,0,0,.12)
+‎}
+‎.navbar{
+‎  min-height:76px;
+‎  display:flex;
+‎  align-items:center;
+‎  justify-content:space-between;
+‎  gap:24px;
+‎  position:relative
+‎}
+‎.logo{
+‎  font-size:29px;font-weight:900;
+‎  letter-spacing:1px;white-space:nowrap
+‎}
+‎.logo span,.footer-brand span{color:var(--green)}
+‎.nav-links{
+‎  display:flex;align-items:center;
+‎  justify-content:flex-end;gap:19px
+‎}
+‎.nav-links a{
+‎  font-size:13px;font-weight:600;
+‎  color:#e6edf8;transition:.2s
+‎}
+‎.nav-links a:hover{color:var(--green)}
+‎.nav-links .nav-cta{
+‎  background:var(--green);color:var(--navy);
+‎  padding:11px 15px;border-radius:7px
+‎}
+‎.nav-links .nav-cta:hover{background:white;color:var(--navy)}
+‎.menu-toggle{
+‎  display:none;border:1px solid rgba(255,255,255,.3);
+‎  background:transparent;color:white;border-radius:7px;
+‎  padding:7px 12px;font-size:24px;cursor:pointer
+‎}
+‎
+‎/* HERO */
+‎.hero{
+‎  background:
+‎    radial-gradient(circle at 85% 20%,rgba(32,189,131,.18),transparent 30%),
+‎    linear-gradient(125deg,var(--navy),var(--navy2));
+‎  color:white;padding:105px 0 110px;text-align:center
+‎}
+‎.hero-content{max-width:850px;margin:auto}
+‎.hero-label{
+‎  display:inline-block;color:var(--green);
+‎  font-size:13px;font-weight:800;
+‎  letter-spacing:3px;margin-bottom:20px
+‎}
+‎.hero h1{
+‎  font-size:clamp(36px,6vw,65px);
+‎  line-height:1.12;margin-bottom:24px
+‎}
+‎.hero h1 span{color:var(--green)}
+‎.hero p{
+‎  color:#d8e1ef;font-size:clamp(16px,2vw,19px);
+‎  max-width:720px;margin:0 auto 32px
+‎}
+‎.hero-buttons{
+‎  display:flex;justify-content:center;
+‎  align-items:center;flex-wrap:wrap;gap:14px
+‎}
+‎.btn{
+‎  display:inline-flex;justify-content:center;
+‎  align-items:center;min-height:48px;
+‎  padding:13px 23px;border-radius:7px;
+‎  font-weight:700;transition:.2s;cursor:pointer
+‎}
+‎.btn-primary{background:var(--green);color:var(--navy)}
+‎.btn-primary:hover{background:white;transform:translateY(-2px)}
+‎.btn-outline{border:1px solid rgba(255,255,255,.55);color:white}
+‎.btn-outline:hover{background:white;color:var(--navy)}
+‎
+‎/* SECTIONS */
+‎section{padding:85px 0}
+‎.section-heading{
+‎  max-width:720px;margin:0 auto 45px;text-align:center
+‎}
+‎.section-heading .eyebrow{
+‎  color:#139a6a;font-size:12px;font-weight:800;
+‎  letter-spacing:2px;text-transform:uppercase
+‎}
+‎.section-heading h2{
+‎  color:var(--navy);font-size:clamp(28px,4vw,39px);
+‎  line-height:1.2;margin:10px 0 15px
+‎}
+‎.section-heading p{color:var(--muted);font-size:16px}
+‎.cards-grid{
+‎  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+‎  gap:22px
+‎}
+‎.card{
+‎  background:white;border:1px solid var(--border);
+‎  border-radius:13px;padding:29px;
+‎  box-shadow:0 7px 25px rgba(16,31,60,.045);
+‎  transition:.25s
+‎}
+‎.card:hover{
+‎  transform:translateY(-5px);
+‎  box-shadow:0 13px 30px rgba(16,31,60,.09)
+‎}
+‎.card-icon{
+‎  width:48px;height:48px;display:grid;place-items:center;
+‎  background:#e8f8f1;color:#11986a;
+‎  border-radius:11px;font-size:23px;margin-bottom:19px
+‎}
+‎.card h3{color:var(--navy);font-size:20px;margin-bottom:10px}
+‎.card p{color:var(--muted);font-size:15px}
+‎
+‎/* ABOUT */
+‎.about-section{background:white}
+‎.about-grid{
+‎  display:grid;grid-template-columns:1fr 1fr;
+‎  align-items:center;gap:55px
+‎}
+‎.about-label{
+‎  color:#139a6a;font-weight:800;
+‎  font-size:12px;letter-spacing:2px
+‎}
+‎.about-content h2{
+‎  color:var(--navy);font-size:clamp(28px,4vw,39px);
+‎  line-height:1.2;margin:12px 0 20px
+‎}
+‎.about-content p{color:var(--muted);margin-bottom:16px}
+‎.about-visual{
+‎  min-height:310px;display:flex;flex-direction:column;
+‎  justify-content:center;align-items:center;text-align:center;
+‎  padding:35px;border-radius:18px;
+‎  background:
+‎    radial-gradient(circle at 80% 15%,rgba(32,189,131,.3),transparent 35%),
+‎    linear-gradient(135deg,var(--navy),var(--navy2));
+‎  color:white
+‎}
+‎.about-visual strong{
+‎  font-size:clamp(45px,7vw,70px);
+‎  font-weight:900;letter-spacing:3px
+‎}
+‎.about-visual strong span{color:var(--green)}
+‎.about-visual p{color:#d8e1ef;margin-top:12px}
+‎
+‎/* BRANDS */
+‎.brands-section{background:var(--bg)}
+‎.brand-card{display:flex;flex-direction:column;min-height:250px}
+‎.brand-name{
+‎  font-size:25px;font-weight:900;
+‎  color:var(--navy);margin-bottom:12px
+‎}
+‎.brand-card p{flex:1}
+‎.brand-status{
+‎  display:inline-block;align-self:flex-start;
+‎  margin-top:20px;background:#e8f8f1;
+‎  color:#11845d;border-radius:20px;
+‎  padding:5px 11px;font-size:12px;font-weight:700
+‎}
+‎.brand-discover{
+‎  display:inline-flex;align-items:center;gap:7px;
+‎  margin-top:14px;color:var(--navy);
+‎  font-size:14px;font-weight:800
+‎}
+‎.brand-discover span{color:var(--green);font-size:20px}
+‎.brand-discover:hover{color:#11986a}
+‎
+‎/* PROJECTS */
+‎.projects-section{background:white}
+‎.project-card{border-left:4px solid var(--green)}
+‎
+‎/* FOUNDER */
+‎.founder-section{background:var(--navy);color:white;text-align:center}
+‎.founder-section h2{
+‎  font-size:clamp(27px,4vw,38px);margin-bottom:16px
+‎}
+‎.founder-section p{
+‎  max-width:720px;color:#d8e1ef;margin:0 auto 25px
+‎}
+‎
+‎/* CONTACT */
+‎.contact-section{background:var(--bg)}
+‎.contact-box{
+‎  max-width:780px;margin:auto;background:white;
+‎  border:1px solid var(--border);border-radius:15px;
+‎  text-align:center;padding:40px 25px
+‎}
+‎.contact-box h2{
+‎  color:var(--navy);font-size:clamp(26px,4vw,35px);
+‎  margin-bottom:12px
+‎}
+‎.contact-box p{color:var(--muted);margin-bottom:22px}
+‎
+‎/* FOOTER */
+‎footer{
+‎  background:#0b172d;color:white;
+‎  padding:48px 0 25px;text-align:center
+‎}
+‎.footer-brand{
+‎  font-size:30px;font-weight:900;
+‎  letter-spacing:1px;margin-bottom:18px
+‎}
+‎.footer-links{
+‎  display:flex;justify-content:center;align-items:center;
+‎  flex-wrap:wrap;gap:12px 23px;margin:0 auto 20px
+‎}
+‎.footer-links a{color:#d3dceb;font-size:14px}
+‎.footer-links a:hover{color:var(--green)}
+‎.footer-slogan{color:#aebbd0;font-size:14px;margin-bottom:24px}
+‎.social-title{color:white;font-size:14px;font-weight:700;margin-bottom:15px}
+‎.social-icons{
+‎  display:flex;justify-content:center;align-items:center;
+‎  flex-wrap:wrap;gap:13px;margin-bottom:27px
+‎}
+‎.social-icon{
+‎  width:43px;height:43px;display:grid;place-items:center;
+‎  border:1px solid rgba(255,255,255,.25);
+‎  border-radius:50%;color:white;background:rgba(255,255,255,.06)
+‎}
+‎.social-icon svg{width:20px;height:20px;fill:currentColor}
+‎.social-icon:hover{
+‎  background:var(--green);color:var(--navy);
+‎  border-color:var(--green)
+‎}
+‎.footer-copy{
+‎  border-top:1px solid rgba(255,255,255,.13);
+‎  padding-top:20px;color:#8998ae;font-size:12px
+‎}
+‎
+‎/* RESPONSIVE */
+‎@media(max-width:1050px){
+‎  .nav-links{gap:12px}
+‎  .nav-links a{font-size:12px}
+‎  .container{width:min(100% - 36px,950px)}
+‎}
+‎@media(max-width:950px){
+‎  .navbar{min-height:70px}
+‎  .menu-toggle{display:block}
+‎  .nav-links{
+‎    display:none;position:absolute;top:70px;
+‎    left:0;right:0;background:var(--navy);
+‎    padding:18px 22px 25px;
+‎    flex-direction:column;align-items:stretch;gap:0;
+‎    box-shadow:0 12px 18px rgba(0,0,0,.15)
+‎  }
+‎  .nav-links.active{display:flex}
+‎  .nav-links a{
+‎    font-size:15px;padding:12px 8px;
+‎    border-bottom:1px solid rgba(255,255,255,.09)
+‎  }
+‎  .nav-links .nav-cta{
+‎    text-align:center;margin-top:12px;border:0
+‎  }
+‎  .cards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+‎  .about-grid{gap:30px}
+‎  section{padding:70px 0}
+‎}
+‎@media(max-width:600px){
+‎  .container{width:calc(100% - 30px)}
+‎  .hero{padding:78px 0 82px}
+‎  .hero h1{font-size:39px}
+‎  .hero p{font-size:16px}
+‎  .hero-buttons{flex-direction:column;width:100%}
+‎  .hero-buttons .btn{width:100%}
+‎  .cards-grid{grid-template-columns:1fr}
+‎  .about-grid{grid-template-columns:1fr}
+‎  .about-visual{min-height:230px}
+‎  section{padding:58px 0}
+‎  .card{padding:24px}
+‎  .contact-box{padding:32px 20px}
+‎  .footer-links{gap:12px 17px}
+‎}
+‎@media(max-width:360px){
+‎  .logo{font-size:25px}
+‎  .hero h1{font-size:33px}
+‎  .social-icons{gap:9px}
+‎  .social-icon{width:39px;height:39px}
+‎}
+‎@media(prefers-reduced-motion:reduce){
+‎  html{scroll-behavior:auto}
+‎  *,*::before,*::after{transition-duration:.01ms!important}
+‎}
+‎</style>
+‎</head>
+‎
+‎<body>
+‎
+‎<header>
+‎  <div class="container navbar">
+‎    <a href="index.html" class="logo">ADDI<span>BA</span></a>
+‎
+‎    <button class="menu-toggle" id="menuToggle"
+‎      type="button" aria-label="Ouvrir le menu"
+‎      aria-expanded="false" aria-controls="navLinks">☰</button>
+‎
+‎    <nav class="nav-links" id="navLinks">
+‎      <a href="index.html">Accueil</a>
+‎      <a href="index.html#apropos">À propos</a>
+‎      <a href="index.html#vision">Vision et mission</a>
+‎      <a href="index.html#marques">Nos marques</a>
+‎      <a href="projets.html">Projets</a>
+‎      <a href="contact.html">Contact</a>
+‎      <a href="connexion.html">Espace fondateur</a>
+‎      <a href="inscription.html" class="nav-cta">Inscrire mon entreprise</a>
+‎    </nav>
+‎  </div>
+‎</header>
+‎
+‎<main>
+‎
+‎<section class="hero" id="accueil">
+‎  <div class="container hero-content">
+‎    <div class="hero-label">GROUPE ADDIBA</div>
+‎    <h1>Bienvenue chez <span>ADDIBA</span></h1>
+‎    <p>
+‎      Un groupe. Plusieurs marques. Une vision commune.
+‎      Nous construisons et développons des entreprises,
+‎      des marques et des projets tournés vers l'avenir.
+‎    </p>
+‎    <div class="hero-buttons">
+‎      <a href="#marques" class="btn btn-primary">Découvrir nos marques</a>
+‎      <a href="àpropos.html" class="btn btn-outline">Découvrir ADDIBA</a>
+‎    </div>
+‎  </div>
+‎</section>
+‎
+‎<section id="vision">
+‎  <div class="container">
+‎    <div class="section-heading">
+‎      <div class="eyebrow">Notre identité</div>
+‎      <h2>Une vision, plusieurs ambitions</h2>
+‎      <p>
+‎        ADDIBA rassemble des initiatives et des activités
+‎        complémentaires autour d'une ambition commune.
+‎      </p>
+‎    </div>
+‎
+‎    <div class="cards-grid">
+‎      <article class="card">
+‎        <div class="card-icon">◎</div>
+‎        <h3>Notre vision</h3>
+‎        <p>
+‎          Construire un groupe d'entreprises ambitieux,
+‎          durable et reconnu, capable de créer de la valeur
+‎          en Afrique et au-delà.
+‎        </p>
+‎      </article>
+‎
+‎      <article class="card">
+‎        <div class="card-icon">↗</div>
+‎        <h3>Notre mission</h3>
+‎        <p>
+‎          Développer des marques et des projets innovants,
+‎          répondre aux besoins des populations et créer
+‎          de nouvelles opportunités.
+‎        </p>
+‎      </article>
+‎
+‎      <article class="card">
+‎        <div class="card-icon">✦</div>
+‎        <h3>Nos valeurs</h3>
+‎        <p>
+‎          L'ambition, l'innovation, la confiance,
+‎          la responsabilité, la qualité et l'esprit
+‎          d'entreprise guident nos actions.
+‎        </p>
+‎      </article>
+‎    </div>
+‎  </div>
+‎</section>
+‎
+‎<section class="about-section" id="apropos">
+‎  <div class="container about-grid">
+‎    <div class="about-content">
+‎      <div class="about-label">QUI SOMMES-NOUS ?</div>
+‎      <h2>Un groupe tourné vers l'avenir</h2>
+‎      <p>
+‎        ADDIBA est un groupe d'entreprises qui a pour ambition
+‎        de développer plusieurs marques et activités dans
+‎        différents secteurs.
+‎      </p>
+‎      <p>
+‎        Notre approche repose sur la création de projets
+‎        structurés, la recherche de solutions utiles et
+‎        le développement progressif de nos activités.
+‎      </p>
+‎      <p>
+‎        Chaque marque possède son identité et ses objectifs,
+‎        tout en participant à une vision commune.
+‎      </p>
+‎      <a href="àpropos.html" class="btn btn-primary">En savoir plus</a>
+‎    </div>
+‎
+‎    <div class="about-visual">
+‎      <strong>ADDI<span>BA</span></strong>
+‎      <p>Un groupe. Plusieurs marques. Une vision commune.</p>
+‎    </div>
+‎  </div>
+‎</section>
+‎
+‎<section class="brands-section" id="marques">
+‎  <div class="container">
+‎    <div class="section-heading">
+‎      <div class="eyebrow">Notre portefeuille</div>
+‎      <h2>Nos marques</h2>
+‎      <p>
+‎        Des identités différentes, des ambitions complémentaires
+‎        et une même vision de développement.
+‎      </p>
+‎    </div>
+‎
+‎    <div class="cards-grid">
+‎      <article class="card brand-card">
+‎        <div class="brand-name">ZAAMARKET</div>
+‎        <p>
+‎          Une plateforme commerciale pensée pour faciliter
+‎          l'accès aux produits et aux services en Afrique.
+‎        </p>
+‎        <span class="brand-status">En développement</span>
+‎        <a href="zaamarket.html" class="brand-discover">
+‎          Découvrir ZAAMARKET <span>→</span>
+‎        </a>
+‎      </article>
+‎
+‎      <article class="card brand-card">
+‎        <div class="brand-name">ALTEVA</div>
+‎        <p>
+‎          Une marque du portefeuille ADDIBA destinée à
+‎          développer de nouvelles opportunités.
+‎        </p>
+‎        <span class="brand-status">En préparation</span>
+‎        <a href="alteva.html" class="brand-discover">
+‎          Découvrir ALTEVA <span>→</span>
+‎        </a>
+‎      </article>
+‎
+‎      <article class="card brand-card">
+‎        <div class="brand-name">TURINEX</div>
+‎        <p>
+‎          Une marque du groupe appelée à porter ses propres
+‎          activités et ambitions.
+‎        </p>
+‎        <span class="brand-status">En préparation</span>
+‎        <a href="turinex.html" class="brand-discover">
+‎          Découvrir TURINEX <span>→</span>
+‎        </a>
+‎      </article>
+‎    </div>
+‎
+‎    <div style="text-align:center;margin-top:32px">
+‎      <a href="marques.html" class="btn btn-primary">Voir toutes nos marques</a>
+‎    </div>
+‎  </div>
+‎</section>
+‎
+‎<section class="projects-section" id="projets">
+‎  <div class="container">
+‎    <div class="section-heading">
+‎      <div class="eyebrow">Nos initiatives</div>
+‎      <h2>Des projets pour construire demain</h2>
+‎      <p>
+‎        Nous développons progressivement des initiatives
+‎        destinées à soutenir la croissance de nos activités.
+‎      </p>
+‎    </div>
+‎
+‎    <div class="cards-grid">
+‎      <article class="card project-card">
+‎        <div class="card-icon">◆</div>
+‎        <h3>Innovation</h3>
+‎        <p>
+‎          Explorer de nouvelles idées et développer
+‎          des solutions adaptées aux besoins du marché.
+‎        </p>
+‎      </article>
+‎
+‎      <article class="card project-card">
+‎        <div class="card-icon">◈</div>
+‎        <h3>Entrepreneuriat</h3>
+‎        <p>
+‎          Faire émerger des activités et accompagner
+‎          le développement de nouvelles marques.
+‎        </p>
+‎      </article>
+‎
+‎      <article class="card project-card">
+‎        <div class="card-icon">◇</div>
+‎        <h3>Développement</h3>
+‎        <p>
+‎          Construire des projets durables et renforcer
+‎          progressivement la présence du groupe.
+‎        </p>
+‎      </article>
+‎    </div>
+‎
+‎    <div style="text-align:center;margin-top:32px">
+‎      <a href="projets.html" class="btn btn-primary">Découvrir nos projets</a>
+‎    </div>
+‎  </div>
+‎</section>
+‎
+‎<section class="founder-section">
+‎  <div class="container">
+‎    <h2>Une ambition portée par une vision</h2>
+‎    <p>
+‎      ADDIBA avance avec la volonté de bâtir un groupe
+‎      structuré, de développer ses marques et de transformer
+‎      ses ambitions en réalisations concrètes.
+‎    </p>
+‎    <a href="connexion.html" class="btn btn-primary">Espace fondateur</a>
+‎  </div>
+‎</section>
+‎
+‎<section class="contact-section" id="contact">
+‎  <div class="container">
+‎    <div class="contact-box">
+‎      <h2>Entrons en contact</h2>
+‎      <p>
+‎        Vous souhaitez en savoir plus sur ADDIBA,
+‎        ses marques ou ses projets ? Notre espace contact
+‎        est à votre disposition.
+‎      </p>
+‎      <a href="contact.html" class="btn btn-primary">Nous contacter</a>
+‎    </div>
+‎  </div>
+‎</section>
+‎
+‎</main>
+‎
+‎<footer>
+‎  <div class="container">
+‎    <div class="footer-brand">ADDI<span>BA</span></div>
+‎
+‎    <div class="footer-links">
+‎      <a href="index.html">Accueil</a>
+‎      <a href="index.html#marques">Nos marques</a>
+‎      <a href="àpropos.html">À propos</a>
+‎      <a href="projets.html">Projets</a>
+‎      <a href="contact.html">Contact</a>
+‎      <a href="connexion.html">Espace fondateur</a>
+‎    </div>
+‎
+‎    <p class="footer-slogan">
+‎      Un groupe. Plusieurs marques. Une vision commune.
+‎    </p>
+‎
+‎    <p class="social-title">Suivez ADDIBA</p>
+‎
+‎    <div class="social-icons" aria-label="Icônes des réseaux sociaux">
+‎      <span class="social-icon" title="LinkedIn" aria-label="LinkedIn">
+‎        <svg viewBox="0 0 24 24">
+‎          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.3 10H5.7v8h2.6v-8zM7 6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 7.4c0-2.4-1.3-3.6-3.1-3.6-1.4 0-2 .8-2.4 1.3V10H10v8h2.6v-4.3c0-1.1.2-2.2 1.6-2.2s1.4 1.3 1.4 2.3V18h2.6l-.2-4.6z"/>
+‎        </svg>
+‎      </span>
+‎
+‎      <span class="social-icon" title="Facebook" aria-label="Facebook">
+‎        <svg viewBox="0 0 24 24">
+‎          <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.6V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.2V13H10v8h3.5z"/>
+‎        </svg>
+‎      </span>
+‎
+‎      <span class="social-icon" title="Instagram" aria-label="Instagram">
+‎        <svg viewBox="0 0 24 24">
+‎          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2.5A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h10a2.5 2.5 0 0 0 2.5-2.5V7A2.5 2.5 0 0 0 17 4.5H7zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm5.3-4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/>
+‎        </svg>
+‎      </span>
+‎
+‎      <span class="social-icon" title="YouTube" aria-label="YouTube">
+‎        <svg viewBox="0 0 24 24">
+‎          <path d="M23 7.1a3 3 0 0 0-2.1-2.2C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7.1 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.9 3 3 0 0 0 2.1 2.2c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.2 31 31 0 0 0 .5-4.9 31 31 0 0 0-.5-4.9zM9.7 15.8V8.2l6.4 3.8z"/>
+‎        </svg>
+‎      </span>
+‎    </div>
+‎
+‎    <div class="footer-copy">
+‎      © <span id="currentYear"></span> ADDIBA. Tous droits réservés.
+‎    </div>
+‎  </div>
+‎</footer>
+‎
+‎<script>
+‎(function () {
+‎  "use strict";
+‎
+‎  const menuToggle = document.getElementById("menuToggle");
+‎  const navLinks = document.getElementById("navLinks");
+‎
+‎  if (menuToggle && navLinks) {
+‎    function closeMenu() {
+‎      navLinks.classList.remove("active");
+‎      menuToggle.setAttribute("aria-expanded", "false");
+‎      menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+‎      menuToggle.textContent = "☰";
+‎    }
+‎
+‎    function toggleMenu() {
+‎      const isOpen = navLinks.classList.toggle("active");
+‎      menuToggle.setAttribute("aria-expanded", String(isOpen));
+‎      menuToggle.setAttribute(
+‎        "aria-label",
+‎        isOpen ? "Fermer le menu" : "Ouvrir le menu"
+‎      );
+‎      menuToggle.textContent = isOpen ? "✕" : "☰";
+‎    }
+‎
+‎    
+menuToggle.addEventListener("click", toggleMenu);
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", function (event) {
+      if (
+        navLinks.classList.contains("active") &&
+        !navLinks.contains(event.target) &&
+        !menuToggle.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 950) closeMenu();
+    });
   }
 
-  .nav-links a {
-    font-size: 12px;
+  const year = document.getElementById("currentYear");
+  if (year) {
+    year.textContent = new Date().getFullYear();
   }
+})();
+</script>
 
-  .container {
-    width: min(100% - 36px, 950px);
-  }
-}
+</body>
+</html>
 
-@media (max-width: 850px) {
-  .navbar {
-    min-height: 70px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: var(--navy);
-    padding: 18px 22px 25px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    box-shadow: 0 12px 18px rgba(0,0,0,.15);
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-links a {
-    font-size: 15px;
-    padding: 12px 8px;
-    border-bottom: 1px solid rgba(255,255,255,.09);
-  }
-
-  .nav-links .nav-cta {
-    text-align: center;
-    margin-top: 12px;
-    border: 0;
-  }
-
-  .cards-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .about-grid {
-    gap: 30px;
-  }
-
-  section {
-    padding: 70px 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    width: calc(100% - 30px);
-  }
-
-  .hero {
-    padding: 78px 0 82px;
-  }
-
-  .hero h1 {
-    font-size: 39px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-buttons .btn {
-    width: 100%;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-visual {
-    min-height: 230px;
-  }
-
-  section {
-    padding: 58px 0;
-  }
-
-  .card {
-    padding: 24px;
-  }
-
-  .contact-box {
-    padding: 32px 20px;
-  }
-
-  .footer-links {
-    gap: 12px 17px;
-  }
-}
-
-@media (max-width: 360px) {
-  .logo {
-    font-size: 25px;
-  }
-
-  .hero h1 {
-    font-size: 33px;
-  }
-
-  .social-icons {
-    gap: 9px;
-  }
-
-  .social-icon {
-    width: 39px;
-    height: 39px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: .01ms !important;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <div class="container navbar">
-    <a href="index.html" class="logo">ADDI<span>BA</span></a>
-
-    <button class="menu-toggle" id="menuToggle"
-      aria-label="Ouvrir le menu" aria-expanded="false"
-      aria-controls="navLinks">☰</button>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Accueil</a>
-      <a href="#apropos">À propos</a>
-      <a href="#vision">Vision et mission</a>
-      <a href="#marques">Nos marques</a>
-      <a href="projets.html">Projets</a>
-      <a href="contact.html">Contact</a>
-      <a href="connexion.html">Espace fondateur</a>
-      <a href="inscription.html" class="nav-cta">Inscrire mon entreprise</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-  <!-- ACCUEIL -->
-
-  <section class="hero" id="accueil">
-    <div class="container hero-content">
-      <div class="hero-label">GROUPE ADDIBA</div>
-
-      <h1>
-        Bienvenue chez <span>ADDIBA</span>
-      </h1>
-
-      <p>
-        Un groupe. Plusieurs marques. Une vision commune.
-        Nous construisons et développons des entreprises,
-        des marques et des projets tournés vers l'avenir.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#marques" class="btn btn-primary">Découvrir nos marques</a>
-        <a href="apropos.html" class="btn btn-outline">Découvrir ADDIBA</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- VISION ET MISSION -->
-
-  <section id="vision">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">Notre identité</div>
-        <h2>Une vision, plusieurs ambitions</h2>
-        <p>
-          ADDIBA rassemble des initiatives et des activités
-          complémentaires autour d'une ambition commune.
-        </p>
-      </div>
-
-      <div class="cards-grid">
-        <article class="card">
-          <div class="card-icon">◎</div>
-          <h3>Notre vision</h3>
-          <p>
-            Construire un groupe d'entreprises ambitieux,
-            durable et reconnu, capable de créer de la valeur
-            en Afrique et au-delà.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon">↗</div>
-          <h3>Notre mission</h3>
-          <p>
-            Développer des marques et des projets innovants,
-            répondre aux besoins des populations et créer
-            de nouvelles opportunités.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon">✦</div>
-          <h3>Nos valeurs</h3>
-          <p>
-            L'ambition, l'innovation, la confiance,
-            la responsabilité, la qualité et l'esprit
-            d'entreprise guident nos actions.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- A PROPOS -->
-
-  <section class="about-section" id="apropos">
-    <div class="container about-grid">
-      <div class="about-content">
-        <div class="about-label">QUI SOMMES-NOUS ?</div>
-        <h2>Un groupe tourné vers l'avenir</h2>
-
-        <p>
-          ADDIBA est un groupe d'entreprises qui a pour ambition
-          de développer plusieurs marques et activités dans
-          différents secteurs.
-        </p>
-
-        <p>
-          Notre approche repose sur la création de projets
-          structurés, la recherche de solutions utiles et
-          le développement progressif de nos activités.
-        </p>
-
-        <p>
-          Chaque marque possède son identité et ses objectifs,
-          tout en participant à une vision commune.
-        </p>
-
-        <a href="àpropos.html" class="btn btn-primary">
-          En savoir plus
-        </a>
-      </div>
-
-      <div class="about-visual">
-        <strong>ADDI<span>BA</span></strong>
-        <p>Un groupe. Plusieurs marques. Une vision commune.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUES -->
-
-  <section class="brands-section" id="marques">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">Notre portefeuille</div>
-        <h2>Nos marques</h2>
-        <p>
-          Des identités différentes, des ambitions complémentaires
-          et une même vision de développement.
-        </p>
-      </div>
-
-      <div class="cards-grid">
-        <article class="card brand-card">
-          <div class="brand-name">ZAAMARKET</div>
-          <p>
-            Une plateforme commerciale pensée pour faciliter
-            l'accès aux produits et aux services en Afrique.
-          </p>
-          <span class="brand-status">En développement</span>
-        </article>
-
-        <article class="card brand-card">
-          <div class="brand-name">ALTEVA</div>
-          <p>
-            Une marque du portefeuille ADDIBA destinée à
-            développer de nouvelles opportunités.
-          </p>
-          <span class="brand-status">En préparation</span>
-        </article>
-
-        <article class="card brand-card">
-          <div class="brand-name">TURINEX</div>
-          <p>
-            Une marque du groupe appelée à porter ses propres
-            activités et ambitions.
-          </p>
-          <span class="brand-status">En préparation</span>
-        </article>
-      </div>
-
-      <div style="text-align:center;margin-top:32px;">
-        <a href="marques.html" class="btn btn-primary">
-          Voir toutes nos marques
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJETS -->
-
-  <section class="projects-section" id="projets">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">Nos initiatives</div>
-        <h2>Des projets pour construire demain</h2>
-        <p>
-          Nous développons progressivement des initiatives
-          destinées à soutenir la croissance de nos activités.
-        </p>
-      </div>
-
-      <div class="cards-grid">
-        <article class="card project-card">
-          <div class="card-icon">◆</div>
-          <h3>Innovation</h3>
-          <p>
-            Explorer de nouvelles idées et développer
-            des solutions adaptées aux besoins du marché.
-          </p>
-        </article>
-
-        <article class="card project-card">
-          <div class="card-icon">◈</div>
-          <h3>Entrepreneuriat</h3>
-          <p>
-            Faire émerger des activités et accompagner
-            le développement de nouvelles marques.
-          </p>
-        </article>
-
-        <article class="card project-card">
-          <div class="card-icon">◇</div>
-          <h3>Développement</h3>
-          <p>
-            Construire des projets durables et renforcer
-            progressivement la présence du groupe.
-          </p>
-        </article>
-      </div>
-
-      <div style="text-align:center;margin-top:32px;">
-        <a href="projets.html" class="btn btn-primary">
-          Découvrir nos projets
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FONDATEUR -->
-
-  <section class="founder-section">
-    <div class="container">
-      <h2>Une ambition portée par une vision</h2>
-      <p>
-        ADDIBA avance avec la volonté de bâtir un groupe
-        structuré, de développer ses marques et de transformer
-        ses ambitions en réalisations concrètes.
-      </p>
-      <a href="connexion.html" class="btn btn-primary">
-        Espace fondateur
-      </a>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <div class="contact-box">
-        <h2>Entrons en contact</h2>
-        <p>
-          Vous souhaitez en savoir plus sur ADDIBA,
-          ses marques ou ses projets ? Notre espace contact
-          est à votre disposition.
-        </p>
-        <a href="contact.html" class="btn btn-primary">
-          Nous contacter
-        </a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- PIED DE PAGE -->
-
-<footer>
-  <div class="container">
-
-    <div class="footer-brand">ADDI<span>BA</span></div>
-
-    <div class="footer-links">
-      <a href="index.html">Accueil</a>
-      <a href="#marques">Nos marques</a>
-      <a href="àpropos.html">À propos</a>
-      <a href="projets.html">Projets</a>
-      <a href="contact.html">Contact</a>
-      <a href="connexion.html">Espace fondateur</a>
-    </div>
-
-    <p class="footer-slogan">
-      Un groupe. Plusieurs marques. Une vision commune.
-    </p>
-
-    <p class="social-title">Suivez ADDIBA</p>
-
-    <div class="social-icons" aria-label="Réseaux sociaux">
-
-      <!-- LinkedIn -->
-      <span class="social-icon" title="LinkedIn" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24">
-          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.3 10H5.7v8h2.6v-8zM7 6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 7.4c0-2.4-1.3-3.6-3.1-3.6-1.4 0-2 .8-2.4 1.3V10H10v8h2.6v-4.3c0-1.1.2-2.2 1.6-2.2s1.4 1.3 1.4 2.3V18h2.6l-.2-4.6z"/>
-        </svg>
-      </span>
-
-      <!-- Facebook -->
-      <span class="social-icon" title="Facebook" aria-label="Facebook">
-        <svg viewBox="0 0 24 24">
-          <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.6V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.2V13H10v8h3.5z"/>
-        </svg>
-      </span>
-
-      <!-- Instagram -->
-      <span class="social-icon" title="Instagram" aria-label="Instagram">
-        <svg viewBox="0 0 24 24">
-          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2.5A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h10a2.5 2.5 0 0 0 2.5-2.5V7A2.5 2.5 0 0 0 17 4.5H7zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm5.3-4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/>
-        </svg>
-      </span>
-
-      <!-- YouTube -->
-      <span class="social-icon" title="YouTube" aria-label="YouTube">
-        <svg viewBox="0 0 24 24">
-          <path d="M23 7.1a3 3 0 0 0-2.1-2.2C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7.1 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.9 3 3 0 0 0 2.1 2.2c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.2 31 31 0 0 0 .5-4.9 31 31 0 0 0-.5-4.9zM9.7 15.8V8.2l6.4 3.8-
