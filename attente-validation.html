@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101f3c">
+<title>Demande en attente | ADDIBA</title>
+<meta name="description" content="Votre demande d'inscription est en attente de validation par ADDIBA.">
+
+<style>
+:root {
+  --navy:#101f3c;
+  --navy2:#1b365c;
+  --green:#20bd83;
+  --bg:#f5f7fb;
+  --text:#17243b;
+  --muted:#657187;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+a { text-decoration:none; }
+
+header {
+  background:var(--navy);
+  color:white;
+  padding:12px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 4px 18px rgba(0,0,0,.12);
+}
+.brand-logo {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:white;
+  flex-shrink:0;
+}
+.brand-logo svg { width:48px;height:48px; }
+.brand-logo strong { font-size:27px;letter-spacing:2px; }
+.brand-logo strong span { color:var(--green); }
+
+nav {
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+nav a {
+  color:white;
+  font-size:13px;
+  font-weight:bold;
+  transition:.3s;
+}
+nav a:hover { color:var(--green); }
+
+.menu-toggle {
+  display:none;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.35);
+  color:white;
+  padding:7px 12px;
+  border-radius:7px;
+  font-size:24px;
+  cursor:pointer;
+}
+
+.page-hero {
+  background:
+    radial-gradient(circle at 15% 20%,rgba(32,189,131,.16),transparent 30%),
+    linear-gradient(135deg,var(--navy),var(--navy2));
+  color:white;
+  text-align:center;
+  padding:55px 20px;
+}
+.page-hero h1 {
+  font-size:clamp(28px,5vw,40px);
+  line-height:1.3;
+  margin-bottom:12px;
+}
+.page-hero h1 span { color:var(--green); }
+.page-hero p {
+  max-width:650px;
+  margin:auto;
+  color:#dce5f3;
+}
+
+.section {
+  padding:65px 7%;
+}
+.status-container {
+  max-width:700px;
+  margin:auto;
+  background:white;
+  padding:40px 35px;
+  text-align:center;
+  border-radius:14px;
+  border:1px solid #e9edf4;
+  border-bottom:4px solid var(--green);
+  box-shadow:0 7px 25px rgba(16,31,60,.06);
+}
+.status-icon {
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  background:rgba(32,189,131,.12);
+  color:#159c6b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  font-weight:bold;
+  margin:0 auto 22px;
+}
+.status-container h2 {
+  color:var(--navy);
+  font-size:27px;
+  margin-bottom:15px;
+}
+.status-container p {
+  color:var(--muted);
+  margin-bottom:16px;
+}
+.status-label {
+  display:inline-block;
+  background:#fff4d9;
+  color:#8a6415;
+  padding:8px 17px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:bold;
+  margin:10px 0 22px;
+}
+.steps {
+  background:#f5f7fb;
+  padding:20px;
+  border-radius:10px;
+  text-align:left;
+  margin:20px 0 25px;
+}
+.steps h3 {
+  color:var(--navy);
+  margin-bottom:12px;
+  font-size:17px;
+}
+.steps p {
+  margin-bottom:9px;
+  font-size:14px;
+}
+.action-button {
+  display:inline-block;
+  background:var(--green);
+  color:var(--navy);
+  padding:13px 27px;
+  border-radius:7px;
+  font-weight:bold;
+  transition:.3s;
+}
+.action-button:hover {
+  background:var(--navy);
+  color:white;
+  transform:translateY(-2px);
+}
+.secondary-link {
+  display:block;
+  margin-top:18px;
+  color:#159c6b;
+  font-weight:bold;
+  font-size:14px;
+}
+.secondary-link:hover { color:var(--navy); }
+
+footer {
+  background:#0b172d;
+  color:#dce5f3;
+  text-align:center;
+  padding:35px 15px;
+  font-size:14px;
+}
+footer strong { color:var(--green); }
+.footer-links {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  margin:17px 0;
+}
+.footer-links a { color:#dce5f3; }
+.footer-links a:hover { color:var(--green); }
+.footer-slogan { color:#9eabc0;font-size:13px; }
+
+@media(max-width:850px) {
+  header { padding:12px 5%; }
+  .menu-toggle { display:block; }
+  nav {
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:var(--navy);
+    padding:15px 5% 22px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+  }
+  nav.open { display:flex; }
+  nav a {
+    padding:12px 5px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    font-size:14px;
+  }
+}
+@media(max-width:650px) {
+  .brand-logo svg { width:42px;height:42px; }
+  .brand-logo strong { font-size:23px; }
+  .page-hero { padding:45px 18px; }
+  .section { padding:40px 5%; }
+  .status-container { padding:28px 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="brand-logo" aria-label="ADDIBA - Accueil">
+    <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z" fill="#ffffff"/>
+      <path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z" fill="#20bd83"/>
+      <path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z" fill="#20bd83" fill-rule="evenodd"/>
+    </svg>
+    <strong>ADDI<span>BA</span></strong>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+
+  <nav id="mainNav">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#marques">Nos marques</a>
+    <a href="àpropos.html">À propos</a>
+    <a href="index.html#vision-mission">Vision et mission</a>
+    <a href="connexion.html">Espace fondateur</a>
+    <a href="contact.html">Contact</a>
+    <a href="inscription.html">Inscription</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="page-hero">
+  <h1>Demande reçue par <span>ADDIBA</span></h1>
+  <p>Merci de votre confiance et de votre intérêt pour notre plateforme.</p>
+</section>
+
+<section class="section">
+  <div class="status-container">
+
+    <div class="status-icon">✓</div>
+
+    <h2>Votre demande a bien été envoyée !</h2>
+
+    <p>
+      Nous avons reçu votre demande d'inscription.
+      Notre équipe va examiner les informations
+      de votre entreprise avant de prendre une décision.
+    </p>
+
+    <div class="status-label">● En attente de validation</div>
+
+    <div class="steps">
+      <h3>Quelles sont les prochaines étapes ?</h3>
+
+      <p>✓ Votre demande d'inscription a été reçue.</p>
+
+      <p>◷ L'équipe ADDIBA examine votre dossier.</p>
+
+      <p>○ Vous serez informé lorsque la décision sera prise.</p>
+
+      <p>○ Après approbation, vous pourrez accéder à votre espace entreprise.</p>
+    </div>
+
+    <p>
+      Merci de patienter pendant l'examen de votre demande.
+      Nous vous remercions pour votre confiance.
+    </p>
+
+    <a href="index.html" class="action-button">Retour à l'accueil</a>
+
+    <a href="contact.html" class="secondary-link">
+      Une question ? Contactez ADDIBA
+    </a>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 <strong>ADDIBA</strong>. Tous droits réservés.</p>
+
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#marques">Nos marques</a>
+    <a href="àpropos.html">À propos</a>
+    <a href="contact.html">Contact</a>
+    <a href="connexion.html">Espace fondateur</a>
+  </div>
+
+  <p class="footer-slogan">Un groupe. Plusieurs marques. Une vision commune.</p>
+</footer>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", function() {
+  const isOpen = mainNav.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", isOpen);
+  menuToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+  menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+mainNav.querySelectorAll("a").forEach(function(link) {
+  link.addEventListener("click", function() {
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+    menuToggle.textContent = "☰";
+  });
+});
+</script>
+
+</body>
+</html>
+  
