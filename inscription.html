@@ -391,10 +391,10 @@ mainNav.querySelectorAll("a").forEach(function(link) {
     mainNav.classList.remove("open");
     menuToggle.setAttribute("aria-expanded", "false");
     menuToggle.setAttribute("aria-label", "Ouvrir le menu");
-    menuToggle.textContent = "☰";
+menuToggle.textContent = "☰";
   });
-});
 </script>
+});
 
 <script type="module">
 import { supabase } from "./supabase.js";
@@ -410,11 +410,10 @@ function afficherMessage(texte, erreur = false) {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+
   bouton.disabled = true;
   bouton.textContent = "Envoi en cours...";
   message.className = "";
-
-  let compteCree = false;
 
   try {
     const nom = document.getElementById("nom").value.trim();
@@ -425,61 +424,47 @@ form.addEventListener("submit", async (event) => {
     const emailCompte = document.getElementById("emailCompte").value.trim();
     const motDePasse = document.getElementById("motDePasse").value;
 
-    if (!nom || !pays || !emailEntreprise || !emailCompte || motDePasse.length < 8) {
-      throw new Error("Veuillez remplir correctement tous les champs obligatoires.");
+    if (
+      !nom ||
+      !pays ||
+      !emailEntreprise ||
+      !emailCompte ||
+      motDePasse.length < 8
+    ) {
+      throw new Error("Veuillez remplir correctement tous les champs obligatoires. Le mot de passe doit contenir au moins 8 caractères.");
     }
 
     const { data, error } = await supabase.auth.signUp({
       email: emailCompte,
-      password: motDePasse
+      password: motDePasse,
+      options: {
+        emailRedirectTo: "https://kisbedoannagracia-ops.github.io/Addiba/attente-validation.html",
+        data: {
+          nom,
+          pays,
+          secteur,
+          emailEntreprise,
+          telephone
+        }
+      }
     });
 
     if (error) throw error;
+
     if (!data.user) {
-      throw new Error("Le compte n'a pas pu être créé. Réessayez.");
+      throw new Error("La création du compte n'a pas abouti.");
     }
 
-    compteCree = true;
-
-    const { error: profilError } = await supabase
-      .from("profils")
-      .upsert({
-        id: data.user.id,
-        nom_complet: nom,
-        role: "entreprise"
-      });
-
-    if (profilError) throw profilError;
-
-    const { error: entrepriseError } = await supabase
-      .from("entreprises")
-      .insert({
-        nom,
-        pays,
-        secteur: secteur || null,
-        email: emailEntreprise,
-        telephone: telephone || null,
-        statut: "en_attente",
-        created_by: data.user.id
-      });
-
-    if (entrepriseError) throw entrepriseError;
-
-        window.location.href = "attente-validation.html";
-    return;
+    window.location.href = "attente-validation.html";
 
   } catch (error) {
-    afficherMessage(
-      (compteCree
-        ? "Le compte a été créé, mais l'enregistrement de la demande a échoué. Contactez ADDIBA avant de recommencer. "
-        : "Erreur : ") + error.message,
-      true
-    );
-  } finally {
+    afficherMessage("Erreur : " + error.message, true);
+
     bouton.disabled = false;
     bouton.textContent = "Créer mon compte et envoyer la demande";
   }
 });
+  
 </script>
 
 </body>
