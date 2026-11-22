@@ -387,6 +387,7 @@ footer strong { color:var(--green); }
   <p class="footer-slogan">Un groupe. Plusieurs marques. Une vision commune.</p>
 </footer>
 
+
 <script>
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
@@ -403,11 +404,11 @@ mainNav.querySelectorAll("a").forEach(function(link) {
     mainNav.classList.remove("open");
     menuToggle.setAttribute("aria-expanded", "false");
     menuToggle.setAttribute("aria-label", "Ouvrir le menu");
-menuToggle.textContent = "☰";
+    menuToggle.textContent = "☰";
   });
-</script>
 });
-
+</script>
+  
 
 <script type="module">
 import { supabase } from "./supabase.js";
