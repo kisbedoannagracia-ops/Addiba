@@ -229,7 +229,11 @@ footer strong { color:var(--green); }
 /* MOBILE */
 @media(max-width:850px) {
   header { padding:12px 5%; }
-  .menu-toggle { display:block; }
+    .menu-toggle {
+    display: block;
+    position: relative;
+    z-index: 1001;
+    }
   nav {
     display:none;
     position:absolute;
