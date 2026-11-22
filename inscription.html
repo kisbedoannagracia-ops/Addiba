@@ -335,10 +335,22 @@ footer strong { color:var(--green); }
 
       <h3>Compte du responsable</h3>
 
-      <div class="form-group">
-        <label for="emailCompte">Votre adresse e-mail *</label>
-        <input id="emailCompte" type="email" required maxlength="254" placeholder="vous@exemple.com">
-      </div>
+<div class="form-group">
+  <label for="nomResponsable">Nom complet du responsable *</label>
+  <input
+    id="nomResponsable"
+    type="text"
+    required
+    maxlength="150"
+    autocomplete="name"
+    placeholder="Ex. : Moussa Ouédraogo"
+  >
+</div>
+
+<div class="form-group">
+  <label for="emailCompte">Votre adresse e-mail *</label>
+  <input id="emailCompte" type="email" required maxlength="254" placeholder="vous@exemple.com">
+</div>
 
       <div class="form-group">
         <label for="motDePasse">Mot de passe *</label>
