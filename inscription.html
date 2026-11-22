@@ -465,10 +465,8 @@ form.addEventListener("submit", async (event) => {
 
     if (entrepriseError) throw entrepriseError;
 
-    form.reset();
-    afficherMessage(
-      "Votre compte a été créé et votre demande a été envoyée à ADDIBA. Votre entreprise doit être approuvée avant d'accéder à son espace."
-    );
+        window.location.href = "attente-validation.html";
+    return;
 
   } catch (error) {
     afficherMessage(
