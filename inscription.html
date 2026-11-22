@@ -408,6 +408,7 @@ menuToggle.textContent = "☰";
 </script>
 });
 
+
 <script type="module">
 import { supabase } from "./supabase.js";
 
@@ -429,6 +430,7 @@ form.addEventListener("submit", async (event) => {
 
   try {
     const nom = document.getElementById("nom").value.trim();
+    const nomResponsable = document.getElementById("nomResponsable").value.trim();
     const pays = document.getElementById("pays").value.trim();
     const secteur = document.getElementById("secteur").value.trim();
     const emailEntreprise = document.getElementById("emailEntreprise").value.trim();
@@ -438,12 +440,13 @@ form.addEventListener("submit", async (event) => {
 
     if (
       !nom ||
+      !nomResponsable ||
       !pays ||
       !emailEntreprise ||
       !emailCompte ||
       motDePasse.length < 8
     ) {
-      throw new Error("Veuillez remplir correctement tous les champs obligatoires. Le mot de passe doit contenir au moins 8 caractères.");
+      throw new Error("Veuillez remplir tous les champs obligatoires. Le mot de passe doit contenir au moins 8 caractères.");
     }
 
     const { data, error } = await supabase.auth.signUp({
@@ -453,6 +456,7 @@ form.addEventListener("submit", async (event) => {
         emailRedirectTo: "https://kisbedoannagracia-ops.github.io/Addiba/attente-validation.html",
         data: {
           nom,
+          nomResponsable,
           pays,
           secteur,
           emailEntreprise,
@@ -476,9 +480,8 @@ form.addEventListener("submit", async (event) => {
     bouton.textContent = "Créer mon compte et envoyer la demande";
   }
 });
-  
 </script>
-
+  
 </body>
 </html>
   
