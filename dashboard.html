@@ -355,4 +355,624 @@ return false;
 }
 $("founderName").textContent=profil.nom_complet||"Fondateur ADDIBA";
 utilisateurAutorise=true;
-re
+
+
+turn true;
+}
+
+async function chargerMarques(){
+  const {data,error}=await supabase
+    .from("marques")
+    .select("id,nom,description,statut,entreprise_id")
+    .is("entreprise_id",null)
+    .order("id",{ascending:false});
+
+  if(error) throw error;
+  marquesActuelles=data||[];
+
+  $("brandList").innerHTML=marquesActuelles.length
+    ? marquesActuelles.map(m=>`
+      <article class="brand-card">
+        <div class="brand-head">
+          <h3>${securiserTexte(m.nom)}</h3>
+          <span class="status ${classeStatut(m.statut)}">
+            ${securiserTexte(statutTexte(m.statut))}
+          </span>
+        </div>
+        <p class="brand-description">
+          ${securiserTexte(m.description||"Aucune description")}
+        </p>
+        <div class="brand-actions">
+          <button class="btn btn-edit" data-brand-edit="${m.id}">Modifier</button>
+          <button class="btn btn-delete" data-brand-delete="${m.id}">Supprimer</button>
+        </div>
+      </article>
+    `).join("")
+    : '<div class="empty">Aucune marque enregistrée.</div>';
+
+  ["leaderBrand","rhMarque"].forEach(id=>{
+    const select=$(id);
+    const ancienne=select.value;
+    select.innerHTML='<option value="">Groupe ADDIBA</option>'+
+      marquesActuelles.map(m=>
+        `<option value="${m.id}">${securiserTexte(m.nom)}</option>`
+      ).join("");
+    select.value=ancienne;
+  });
+
+  $("statMarques").textContent=marquesActuelles.length;
+}
+
+async function chargerEntreprises(){
+  const {data,error}=await supabase
+    .from("entreprises")
+    .select("id,nom,pays,secteur,email,telephone,statut,created_at")
+    .order("created_at",{ascending:false});
+
+  if(error) throw error;
+
+  $("companyList").innerHTML=data.length
+    ? data.map(e=>`
+      <article class="brand-card">
+        <div class="brand-head">
+          <h3>${securiserTexte(e.nom)}</h3>
+          <span class="status ${classeStatut(e.statut)}">
+            ${securiserTexte(statutTexte(e.statut))}
+          </span>
+        </div>
+        <p class="brand-description">
+          Pays : ${securiserTexte(e.pays)}<br>
+          Secteur : ${securiserTexte(e.secteur)}<br>
+          E-mail : ${securiserTexte(e.email||"Non renseigné")}<br>
+          Téléphone : ${securiserTexte(e.telephone||"Non renseigné")}
+        </p>
+        <div class="brand-actions">
+          ${e.statut!=="approuvee"?`
+            <button class="btn btn-primary"
+              data-company-action="approuvee" data-id="${e.id}">
+              Approuver
+            </button>`:""}
+          ${e.statut!=="refusee"?`
+            <button class="btn btn-delete"
+              data-company-action="refusee" data-id="${e.id}">
+              Refuser
+            </button>`:""}
+          ${e.statut!=="suspendue"?`
+            <button class="btn btn-toggle"
+              data-company-action="suspendue" data-id="${e.id}">
+              Suspendre
+            </button>`:""}
+          ${e.statut==="suspendue"?`
+            <button class="btn btn-primary"
+              data-company-action="approuvee" data-id="${e.id}">
+              Réactiver
+            </button>`:""}
+        </div>
+      </article>
+    `).join("")
+    : '<div class="empty">Aucune entreprise enregistrée.</div>';
+}
+
+async function chargerDirigeants(){
+  const {data,error}=await supabase
+    .from("dirigeants")
+    .select("id,nom_complet,poste,marque_id,email,telephone,statut")
+    .is("entreprise_id",null)
+    .order("id",{ascending:false});
+
+  if(error) throw error;
+  dirigeantsActuels=data||[];
+
+  $("leaderList").innerHTML=dirigeantsActuels.length
+    ? dirigeantsActuels.map(d=>`
+      <article class="brand-card">
+        <div class="brand-head">
+          <h3>${securiserTexte(d.nom_complet)}</h3>
+          <span class="status ${classeStatut(d.statut)}">
+            ${securiserTexte(statutTexte(d.statut))}
+          </span>
+        </div>
+        <p class="brand-description">
+          Poste : ${securiserTexte(d.poste)}<br>
+          E-mail : ${securiserTexte(d.email||"Non renseigné")}<br>
+          Téléphone : ${securiserTexte(d.telephone||"Non renseigné")}
+        </p>
+        <div class="brand-actions">
+          <button class="btn btn-edit" data-leader-edit="${d.id}">Modifier</button>
+          <button class="btn btn-delete" data-leader-delete="${d.id}">Supprimer</button>
+        </div>
+      </article>
+    `).join("")
+    : '<div class="empty">Aucun dirigeant enregistré.</div>';
+}
+
+async function chargerEmployes(){
+  const {data,error}=await supabase
+    .from("employes")
+    .select("id,nom_complet,email,poste,marque_id,statut,date_recrutement,salaire_mensuel")
+    .is("entreprise_id",null)
+    .order("id",{ascending:false});
+
+  if(error) throw error;
+
+  const employes=data||[];
+  const actifs=employes.filter(e=>e.statut==="actif");
+  const masse=actifs.reduce((s,e)=>s+Number(e.salaire_mensuel||0),0);
+
+  $("rhTotal").textContent=employes.length;
+  $("rhActifs").textContent=actifs.length;
+  $("rhSalaires").textContent=formaterMontant(masse);
+
+  $("rhList").innerHTML=employes.length
+    ? employes.map(e=>`
+      <article class="brand-card">
+        <div class="brand-head">
+          <h3>${securiserTexte(e.nom_complet)}</h3>
+          <span class="status ${classeStatut(e.statut)}">
+            ${securiserTexte(statutTexte(e.statut))}
+          </span>
+        </div>
+        <p class="brand-description">
+          Poste : ${securiserTexte(e.poste||"Non renseigné")}<br>
+          E-mail : ${securiserTexte(e.email||"Non renseigné")}<br>
+          Salaire : ${formaterMontant(e.salaire_mensuel)}
+        </p>
+        <div class="brand-actions">
+          <button class="btn btn-edit" data-employee-edit="${e.id}">Modifier</button>
+          <button class="btn btn-delete" data-employee-delete="${e.id}">Supprimer</button>
+        </div>
+      </article>
+    `).join("")
+    : '<div class="empty">Aucun employé enregistré.</div>';
+
+  window.employesActuels=employes;
+}
+
+async function chargerFinances(){
+  const [transactions,finances]=await Promise.all([
+    supabase.from("transactions_financieres")
+      .select("id,libelle,type,montant,categorie,date_operation,description,devise")
+      .is("entreprise_id",null)
+      .order("date_operation",{ascending:false}),
+    supabase.from("finances")
+      .select("id,type_operation,montant,devise,description,date_operation")
+      .is("entreprise_id",null)
+      .order("date_operation",{ascending:false})
+  ]);
+
+  if(transactions.error) throw transactions.error;
+  if(finances.error) throw finances.error;
+
+  const operations=transactions.data||[];
+  let revenus=0;
+  let depenses=0;
+
+  operations.forEach(o=>{
+    const type=String(o.type||"").toLowerCase();
+    if(["revenu","entree","entrée","income"].includes(type)){
+      revenus+=Number(o.montant||0);
+    }else if(["depense","dépense","sortie","expense"].includes(type)){
+      depenses+=Number(o.montant||0);
+    }
+  });
+
+  $("financeRevenus").textContent=formaterMontant(revenus);
+  $("financeDepenses").textContent=formaterMontant(depenses);
+  $("financeSolde").textContent=formaterMontant(revenus-depenses);
+
+  const lignesTransactions=operations.map(o=>`
+    <tr>
+      <td>${securiserTexte(o.date_operation||"")}</td>
+      <td>${securiserTexte(o.libelle||o.categorie||"Opération")}</td>
+      <td>${securiserTexte(o.type)}</td>
+      <td>${formaterMontant(o.montant)}</td>
+    </tr>
+  `).join("");
+
+  const lignesFinances=(finances.data||[]).map(o=>`
+    <tr>
+      <td>${securiserTexte(o.date_operation||"")}</td>
+      <td>${securiserTexte(o.description||"Opération")}</td>
+      <td>${securiserTexte(o.type_operation)}</td>
+      <td>${formaterMontant(o.montant)}</td>
+    </tr>
+  `).join("");
+
+  financeList.innerHTML=`
+    <h3 style="margin:10px 0;color:#101f3c">Transactions financières</h3>
+    <table>
+      <thead><tr><th>Date</th><th>Libellé</th><th>Type</th><th>Montant</th></tr></thead>
+      <tbody>${lignesTransactions||'<tr><td colspan="4">Aucune transaction.</td></tr>'}</tbody>
+    </table>
+    <h3 style="margin:25px 0 10px;color:#101f3c">Historique de la table finances</h3>
+    <table>
+      <thead><tr><th>Date</th><th>Description</th><th>Type</th><th>Montant</th></tr></thead>
+      <tbody>${lignesFinances||'<tr><td colspan="4">Aucune opération.</td></tr>'}</tbody>
+    </table>
+  `;
+}
+
+async function chargerStatistiques(){
+  const [marques,projets,employes,documents]=await Promise.all([
+    supabase.from("marques").select("id",{count:"exact",head:true}).is("entreprise_id",null),
+    supabase.from("projets").select("id",{count:"exact",head:true}).is("entreprise_id",null),
+    supabase.from("employes").select("id",{count:"exact",head:true}).is("entreprise_id",null),
+    supabase.from("documents").select("id",{count:"exact",head:true}).is("entreprise_id",null)
+  ]);
+
+  [marques,projets,employes,documents].forEach(r=>{
+    if(r.error) throw r.error;
+  });
+
+  $("statMarques").textContent=marques.count??0;
+  $("statProjets").textContent=projets.count??0;
+  $("statEmployes").textContent=employes.count??0;
+  $("statDocuments").textContent=documents.count??0;
+}
+
+async function initialiserDashboard(){
+  try{
+    const autorise=await verifierFondateur();
+    if(!autorise)return;
+
+    await chargerMarques();
+
+    const resultats=await Promise.allSettled([
+      chargerEntreprises(),
+      chargerDirigeants(),
+      chargerFinances(),
+      chargerEmployes(),
+      chargerStatistiques()
+    ]);
+
+    resultats.forEach(r=>{
+      if(r.status==="rejected"){
+        console.error(r.reason);
+        afficherMessage("Une partie du tableau de bord n'a pas pu être chargée : "+r.reason.message,true);
+      }
+    });
+
+  }catch(erreur){
+    console.error("Erreur du tableau de bord :",erreur);
+    afficherMessage("Impossible de charger le tableau de bord : "+erreur.message,true);
+  }
+}
+
+// Création d'une entreprise par le fondateur
+$("companyForm").addEventListener("submit",async evenement=>{
+  evenement.preventDefault();
+  if(!utilisateurAutorise)return;
+
+  const bouton=$("companySaveBtn");
+  bouton.disabled=true;
+
+  try{
+    const {data:{user},error:erreurSession}=await supabase.auth.getUser();
+    if(erreurSession)throw erreurSession;
+    if(!user)throw new Error("Session utilisateur absente.");
+
+    const {error}=await supabase.from("entreprises").insert({
+      nom:$("companyName").value.trim(),
+      pays:$("companyCountry").value.trim(),
+      secteur:$("companySector").value.trim(),
+      email:$("companyEmail").value.trim()||null,
+      telephone:$("companyPhone").value.trim()||null,
+      statut:$("companyStatus").value,
+      created_by:user.id
+    });
+
+    if(error)throw error;
+
+    $("companyForm").reset();
+    $("companyCountry").value="Burkina Faso";
+    afficherMessage("Entreprise créée avec succès.");
+    await chargerEntreprises();
+
+  }catch(e){
+    afficherMessage("Erreur lors de la création : "+e.message,true);
+  }finally{
+    bouton.disabled=false;
+  }
+});
+
+// Changement de statut d'une entreprise
+$("companyList").addEventListener("click",async evenement=>{
+  const bouton=evenement.target.closest("button[data-company-action]");
+  if(!bouton||!utilisateurAutorise)return;
+
+  const id=bouton.dataset.id;
+  const statut=bouton.dataset.companyAction;
+  const libelles={
+    approuvee:"approuver",
+    refusee:"refuser",
+    suspendue:"suspendre"
+  };
+
+  if(!confirm("Voulez-vous vraiment "+libelles[statut]+" cette entreprise ?"))return;
+
+  bouton.disabled=true;
+  try{
+    const {error}=await supabase.from("entreprises")
+      .update({statut}).eq("id",id);
+    if(error)throw error;
+
+    afficherMessage("Statut de l'entreprise mis à jour.");
+    await chargerEntreprises();
+  }catch(e){
+    afficherMessage("Erreur : "+e.message,true);
+    bouton.disabled=false;
+  }
+});
+
+// Ajouter ou modifier une marque
+$("brandForm").addEventListener("submit",async evenement=>{
+  evenement.preventDefault();
+  if(!utilisateurAutorise)return;
+
+  const donnees={
+    nom:$("brandName").value.trim(),
+    statut:$("brandStatus").value,
+    description:$("brandDescription").value.trim(),
+    entreprise_id:null
+  };
+
+  try{
+    let resultat;
+    if(marqueEnModification){
+      resultat=await supabase.from("marques")
+        .update(donnees).eq("id",marqueEnModification);
+    }else{
+      resultat=await supabase.from("marques").insert(donnees);
+    }
+    if(resultat.error)throw resultat.error;
+
+    reinitialiserFormulaireMarque();
+    afficherMessage("Marque enregistrée avec succès.");
+    await chargerMarques();
+    await chargerStatistiques();
+  }catch(e){
+    afficherMessage("Erreur marque : "+e.message,true);
+  }
+});
+
+function reinitialiserFormulaireMarque(){
+  marqueEnModification=null;
+  $("brandForm").reset();
+  $("formTitle").textContent="Ajouter une marque";
+  $("saveBtn").textContent="Enregistrer la marque";
+  $("cancelBtn").hidden=true;
+}
+
+$("cancelBtn").addEventListener("click",reinitialiserFormulaireMarque);
+
+$("brandList").addEventListener("click",async evenement=>{
+  const modifier=evenement.target.closest("[data-brand-edit]");
+  const supprimer=evenement.target.closest("[data-brand-delete]");
+
+  if(modifier){
+    const m=marquesActuelles.find(x=>String(x.id)===modifier.dataset.brandEdit);
+    if(!m)return;
+    marqueEnModification=m.id;
+    $("brandName").value=m.nom||"";
+    $("brandStatus").value=m.statut||"en_preparation";
+    $("brandDescription").value=m.description||"";
+    $("formTitle").textContent="Modifier la marque";
+    $("saveBtn").textContent="Enregistrer les modifications";
+    $("cancelBtn").hidden=false;
+    $("brandForm").scrollIntoView({behavior:"smooth"});
+  }
+
+  if(supprimer){
+    const id=supprimer.dataset.brandDelete;
+    if(!confirm("Supprimer définitivement cette marque ?"))return;
+    const {error}=await supabase.from("marques").delete().eq("id",id);
+    if(error){afficherMessage(error.message,true);return;}
+    afficherMessage("Marque supprimée.");
+    await chargerMarques();
+    await chargerStatistiques();
+  }
+});
+
+// Ajouter ou modifier un dirigeant
+$("leaderForm").addEventListener("submit",async evenement=>{
+  evenement.preventDefault();
+  if(!utilisateurAutorise)return;
+
+  const donnees={
+    nom_complet:$("leaderName").value.trim(),
+    poste:$("leaderPost").value.trim(),
+    marque_id:$("leaderBrand").value?Number($("leaderBrand").value):null,
+    statut:$("leaderStatus").value,
+    email:$("leaderEmail").value.trim()||null,
+    telephone:$("leaderPhone").value.trim()||null,
+    entreprise_id:null
+  };
+
+  try{
+    const resultat=dirigeantEnModification
+      ? await supabase.from("dirigeants").update(donnees).eq("id",dirigeantEnModification)
+      : await supabase.from("dirigeants").insert(donnees);
+
+    if(resultat.error)throw resultat.error;
+
+    dirigeantEnModification=null;
+    $("leaderForm").reset();
+    $("leaderFormTitle").textContent="Ajouter un dirigeant";
+    $("leaderSaveBtn").textContent="Enregistrer le dirigeant";
+    $("leaderCancelBtn").hidden=true;
+
+    afficherMessage("Dirigeant enregistré.");
+    await chargerDirigeants();
+  }catch(e){
+    afficherMessage("Erreur dirigeant : "+e.message,true);
+  }
+});
+
+$("leaderCancelBtn").addEventListener("click",()=>{
+  dirigeantEnModification=null;
+  $("leaderForm").reset();
+  $("leaderFormTitle").textContent="Ajouter un dirigeant";
+  $("leaderSaveBtn").textContent="Enregistrer le dirigeant";
+  $("leaderCancelBtn").hidden=true;
+});
+
+$("leaderList").addEventListener("click",async evenement=>{
+  const modifier=evenement.target.closest("[data-leader-edit]");
+  const supprimer=evenement.target.closest("[data-leader-delete]");
+
+  if(modifier){
+    const d=dirigeantsActuels.find(x=>String(x.id)===modifier.dataset.leaderEdit);
+    if(!d)return;
+    dirigeantEnModification=d.id;
+    $("leaderName").value=d.nom_complet||"";
+    $("leaderPost").value=d.poste||"";
+    $("leaderBrand").value=d.marque_id||"";
+    $("leaderStatus").value=d.statut||"actif";
+    $("leaderEmail").value=d.email||"";
+    $("leaderPhone").value=d.telephone||"";
+    $("leaderFormTitle").textContent="Modifier le dirigeant";
+    $("leaderSaveBtn").textContent="Enregistrer les modifications";
+    $("leaderCancelBtn").hidden=false;
+    $("leaderForm").scrollIntoView({behavior:"smooth"});
+  }
+
+  if(supprimer){
+    if(!confirm("Supprimer ce dirigeant ?"))return;
+    const {error}=await supabase.from("dirigeants")
+      .delete().eq("id",supprimer.dataset.leaderDelete);
+    if(error){afficherMessage(error.message,true);return;}
+    afficherMessage("Dirigeant supprimé.");
+    await chargerDirigeants();
+  }
+});
+
+// Enregistrer une transaction financière
+$("financeForm").addEventListener("submit",async evenement=>{
+  evenement.preventDefault();
+  if(!utilisateurAutorise)return;
+
+  const donnees={
+    libelle:$("financeCategorie").value.trim(),
+    type:$("financeType").value,
+    montant:Number($("financeMontant").value),
+    categorie:$("financeCategorie").value.trim(),
+    date_operation:$("financeDate").value,
+    description:$("financeDescription").value.trim()||null,
+    devise:"FCFA",
+    entreprise_id:null
+  };
+
+  try{
+    const {error}=await supabase.from("transactions_financieres").insert(donnees);
+    if(error)throw error;
+
+    $("financeForm").reset();
+    $("financeDate").value=new Date().toISOString().slice(0,10);
+    afficherMessage("Transaction enregistrée.");
+    await chargerFinances();
+  }catch(e){
+    afficherMessage("Erreur financière : "+e.message,true);
+  }
+});
+
+// Ajouter ou modifier un employé
+$("rhForm").addEventListener("submit",async evenement=>{
+  evenement.preventDefault();
+  if(!utilisateurAutorise)return;
+
+  const donnees={
+    nom_complet:$("rhNom").value.trim(),
+    email:$("rhEmail").value.trim()||null,
+    poste:$("rhPoste").value.trim()||null,
+    marque_id:$("rhMarque").value?Number($("rhMarque").value):null,
+    salaire_mensuel:Number($("rhSalaire").value||0),
+    date_recrutement:$("rhDate").value||null,
+    statut:$("rhStatut").value,
+    entreprise_id:null
+  };
+
+  try{
+    const resultat=employeEnModification
+      ? await supabase.from("employes").update(donnees).eq("id",employeEnModification)
+      : await supabase.from("employes").insert(donnees);
+
+    if(resultat.error)throw resultat.error;
+
+    employeEnModification=null;
+    $("rhForm").reset();
+    $("rhSalaire").value="0";
+    $("rhFormTitle").textContent="Ajouter un employé";
+    $("rhSaveBtn").textContent="Enregistrer l'employé";
+    $("rhCancelBtn").hidden=true;
+
+    afficherMessage("Employé enregistré.");
+    await chargerEmployes();
+    await chargerStatistiques();
+  }catch(e){
+    afficherMessage("Erreur RH : "+e.message,true);
+  }
+});
+
+let employeEnModification=null;
+
+$("rhCancelBtn").addEventListener("click",()=>{
+  employeEnModification=null;
+  $("rhForm").reset();
+  $("rhSalaire").value="0";
+  $("rhFormTitle").textContent="Ajouter un employé";
+  $("rhSaveBtn").textContent="Enregistrer l'employé";
+  $("rhCancelBtn").hidden=true;
+});
+
+$("rhList").addEventListener("click",async evenement=>{
+  const modifier=evenement.target.closest("[data-employee-edit]");
+  const supprimer=evenement.target.closest("[data-employee-delete]");
+
+  if(modifier){
+    const e=(window.employesActuels||[]).find(x=>String(x.id)===modifier.dataset.employeeEdit);
+    if(!e)return;
+    employeEnModification=e.id;
+    $("rhNom").value=e.nom_complet||"";
+    $("rhEmail").value=e.email||"";
+    $("rhPoste").value=e.poste||"";
+    $("rhMarque").value=e.marque_id||"";
+    $("rhSalaire").value=e.salaire_mensuel||0;
+    $("rhDate").value=e.date_recrutement||"";
+    $("rhStatut").value=e.statut||"actif";
+    $("rhFormTitle").textContent="Modifier l'employé";
+    $("rhSaveBtn").textContent="Enregistrer les modifications";
+    $("rhCancelBtn").hidden=false;
+    $("rhForm").scrollIntoView({behavior:"smooth"});
+  }
+
+  if(supprimer){
+    if(!confirm("Supprimer cet employé ?"))return;
+    const {error}=await supabase.from("employes")
+      .delete().eq("id",supprimer.dataset.employeeDelete);
+    if(error){afficherMessage(error.message,true);return;}
+    afficherMessage("Employé supprimé.");
+    await chargerEmployes();
+    await chargerStatistiques();
+  }
+});
+
+// Déconnexion
+$("sidebarLogout").addEventListener("click",async()=>{
+  if(!confirm("Voulez-vous vous déconnecter ?"))return;
+  const {error}=await supabase.auth.signOut();
+  if(error){
+    afficherMessage("Erreur de déconnexion : "+error.message,true);
+    return;
+  }
+  window.location.href="connexion.html";
+});
+
+// Date du formulaire financier
+$("financeDate").value=new Date().toISOString().slice(0,10);
+
+// Lancement du tableau de bord
+initialiserDashboard();
+
+</script>
+</body>
+</html>
