@@ -1259,8 +1259,10 @@ if(!autorise)return;
 
 
 await chargerMarques();
+
 await Promise.all([
     chargerDirigeants(),
+    chargerEntreprises(),
     chargerStatistiques(),
     chargerFinances(),
     chargerEmployes()
