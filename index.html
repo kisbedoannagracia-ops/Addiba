@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101f3c">
-
   <title>ADDIBA | Un groupe. Plusieurs marques.</title>
   <meta name="description" content="ADDIBA est un groupe d'entreprises qui développe plusieurs marques et activités en Afrique.">
 
@@ -52,8 +51,6 @@
       width: min(1160px, calc(100% - 40px));
       margin: auto;
     }
-
-    /* EN-TÊTE */
 
     header {
       position: sticky;
@@ -126,8 +123,6 @@
       cursor: pointer;
       line-height: 1.2;
     }
-
-    /* ACCUEIL */
 
     .hero {
       background:
@@ -209,8 +204,6 @@
       color: var(--navy);
     }
 
-    /* SECTIONS */
-
     section {
       padding: 85px 0;
     }
@@ -284,8 +277,6 @@
       font-size: 15px;
     }
 
-    /* À PROPOS */
-
     .about-section {
       background: white;
     }
@@ -304,16 +295,29 @@
       letter-spacing: 2px;
     }
 
+    .about-content {
+      text-align: center;
+      width: 100%;
+    }
+
     .about-content h2 {
       color: var(--navy);
       font-size: clamp(28px, 4vw, 39px);
       line-height: 1.2;
       margin: 12px 0 20px;
+      text-align: center;
     }
 
     .about-content p {
       color: var(--muted);
-      margin-bottom: 16px;
+      margin: 0 auto 16px;
+      max-width: 750px;
+      text-align: center;
+    }
+
+    .about-content .btn {
+      display: table;
+      margin: 24px auto 0;
     }
 
     .about-visual {
@@ -345,8 +349,6 @@
       color: #d8e1ef;
       margin-top: 12px;
     }
-
-    /* MARQUES */
 
     .brands-section {
       background: var(--bg);
@@ -400,8 +402,6 @@
       color: #11986a;
     }
 
-    /* PROJETS */
-
     .projects-section {
       background: white;
     }
@@ -409,8 +409,6 @@
     .project-card {
       border-left: 4px solid var(--green);
     }
-
-    /* FONDATEUR */
 
     .founder-section {
       background: var(--navy);
@@ -428,8 +426,6 @@
       color: #d8e1ef;
       margin: 0 auto 25px;
     }
-
-    /* CONTACT */
 
     .contact-section {
       background: var(--bg);
@@ -455,8 +451,6 @@
       color: var(--muted);
       margin-bottom: 22px;
     }
-
-    /* PIED DE PAGE */
 
     footer {
       background: #0b172d;
@@ -542,8 +536,6 @@
       font-size: 12px;
     }
 
-    /* TABLETTES ET PETITS ÉCRANS */
-
     @media (max-width: 1050px) {
       .nav-links {
         gap: 12px;
@@ -609,8 +601,6 @@
         padding: 70px 0;
       }
     }
-
-    /* TÉLÉPHONES */
 
     @media (max-width: 600px) {
       .container {
@@ -697,27 +687,6 @@
         transition-duration: 0.01ms !important;
       }
     }
-    /* CENTRAGE DE LA PRESENTATION ADDIBA */
-    .about-content {
-      text-align: center;
-      width: 100%;
-    }
-
-    .about-content h2,
-    .about-content p {
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .about-content p {
-      max-width: 750px;
-    }
-
-    .about-content .btn {
-      display: table;
-      margin: 24px auto 0;
-        }
   </style>
 </head>
 
@@ -727,20 +696,11 @@
 
   <header>
     <div class="container navbar">
+      <a href="index.html" class="logo">ADDI<span>BA</span></a>
 
-      <a href="index.html" class="logo">
-        ADDI<span>BA</span>
-      </a>
-
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-label="Ouvrir le menu"
-        aria-expanded="false"
-        aria-controls="navLinks">
-        ☰
-      </button>
+      <button class="menu-toggle" id="menuToggle" type="button"
+        aria-label="Ouvrir le menu" aria-expanded="false"
+        aria-controls="navLinks">☰</button>
 
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Accueil</a>
@@ -750,11 +710,8 @@
         <a href="projets.html">Projets</a>
         <a href="contact.html">Contact</a>
         <a href="connexion.html">Espace fondateur</a>
-        <a href="inscription.html" class="nav-cta">
-          Inscrire mon entreprise
-        </a>
+        <a href="inscription.html" class="nav-cta">Inscrire mon entreprise</a>
       </nav>
-
     </div>
   </header>
 
@@ -764,12 +721,9 @@
 
     <section class="hero" id="accueil">
       <div class="container hero-content">
-
         <div class="hero-label">GROUPE ADDIBA</div>
 
-        <h1>
-          Bienvenue chez <span>ADDIBA</span>
-        </h1>
+        <h1>Bienvenue chez <span>ADDIBA</span></h1>
 
         <p>
           Un groupe. Plusieurs marques. Une vision commune.
@@ -778,15 +732,9 @@
         </p>
 
         <div class="hero-buttons">
-          <a href="#marques" class="btn btn-primary">
-            Découvrir nos marques
-          </a>
-
-          <a href="àpropos.html" class="btn btn-outline">
-            Découvrir ADDIBA
-          </a>
+          <a href="#marques" class="btn btn-primary">Découvrir nos marques</a>
+          <a href="àpropos.html" class="btn btn-outline">Découvrir ADDIBA</a>
         </div>
-
       </div>
     </section>
 
@@ -794,12 +742,9 @@
 
     <section id="vision">
       <div class="container">
-
         <div class="section-heading">
           <div class="eyebrow">Notre identité</div>
-
           <h2>Une vision, plusieurs ambitions</h2>
-
           <p>
             ADDIBA rassemble des initiatives et des activités
             complémentaires autour d'une ambition commune.
@@ -807,12 +752,9 @@
         </div>
 
         <div class="cards-grid">
-
           <article class="card">
             <div class="card-icon">◎</div>
-
             <h3>Notre vision</h3>
-
             <p>
               Construire un groupe d'entreprises ambitieux,
               durable et reconnu, capable de créer de la valeur
@@ -822,9 +764,7 @@
 
           <article class="card">
             <div class="card-icon">↗</div>
-
             <h3>Notre mission</h3>
-
             <p>
               Développer des marques et des projets innovants,
               répondre aux besoins des populations et créer
@@ -834,429 +774,14 @@
 
           <article class="card">
             <div class="card-icon">✦</div>
-
             <h3>Nos valeurs</h3>
-
             <p>
               L'ambition, l'innovation, la confiance,
               la responsabilité, la qualité et l'esprit
               d'entreprise guident nos actions.
             </p>
           </article>
-
         </div>
       </div>
-    </section>
-
-    <!-- À PROPOS -->
-
-    <section class="about-section" id="apropos">
-      <div class="container about-grid">
-
-        <div class="about-content">
-
-          <div class="about-label">QUI SOMMES-NOUS ?</div>
-
-          <h2>Un groupe tourné vers l'avenir</h2>
-
-          <p>
-            ADDIBA est un groupe d'entreprises qui a pour ambition
-            de développer plusieurs marques et activités dans
-            différents secteurs.
-          </p>
-
-          <p>
-            Notre approche repose sur la création de projets
-            structurés, la recherche de solutions utiles et
-            le développement progressif de nos activités.
-          </p>
-
-          <p>
-            Chaque marque possède son identité, ses activités
-            et ses objectifs, tout en participant à une vision commune.
-          </p>
-
-          <a href="àpropos.html" class="btn btn-primary">
-            En savoir plus
-          </a>
-
-        </div>
-
-        <div class="about-visual">
-          <strong>ADDI<span>BA</span></strong>
-          <p>Un groupe. Plusieurs marques. Une vision commune.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- NOS MARQUES -->
-
-    <section class="brands-section" id="marques">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">Notre portefeuille</div>
-
-          <h2>Nos marques</h2>
-
-          <p>
-            Des identités différentes, des activités propres
-            et des ambitions complémentaires.
-          </p>
-        </div>
-
-        <div class="cards-grid">
-
-          <!-- ZAAMARKET -->
-
-          <article class="card brand-card">
-
-            <div class="brand-name">ZAAMARKET</div>
-
-            <p>
-              Une marque du groupe ADDIBA qui développe
-              son activité dans le commerce et la marketplace.
-            </p>
-
-            <span class="brand-status">
-              Marque du groupe ADDIBA
-            </span>
-
-            <a href="zaamarket.html" class="brand-discover">
-              Découvrir ZAAMARKET <span>→</span>
-            </a>
-
-          </article>
-
-          <!-- ALTEVA -->
-
-          <article class="card brand-card">
-
-            <div class="brand-name">ALTEVA</div>
-
-            <p>
-              Une marque du groupe ADDIBA avec sa propre
-              identité, ses activités et ses ambitions.
-            </p>
-
-            <span class="brand-status">
-              Marque du groupe ADDIBA
-            </span>
-
-            <a href="marques.html" class="brand-discover">
-              Découvrir ALTEVA <span>→</span>
-            </a>
-
-          </article>
-
-          <!-- TURINEX -->
-
-          <article class="card brand-card">
-
-            <div class="brand-name">TURINEX</div>
-
-            <p>
-              Une marque du groupe ADDIBA avec sa propre
-              identité, ses activités et ses ambitions.
-            </p>
-
-            <span class="brand-status">
-              Marque du groupe ADDIBA
-            </span>
-
-            <a href="marques.html" class="brand-discover">
-              Découvrir TURINEX <span>→</span>
-            </a>
-
-          </article>
-
-        </div>
-
-        <div style="text-align:center; margin-top:32px;">
-          <a href="marques.html" class="btn btn-primary">
-            Voir toutes nos marques
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- PROJETS -->
-
-    <section class="projects-section" id="projets">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">Nos initiatives</div>
-
-          <h2>Des projets pour construire demain</h2>
-
-          <p>
-            Nous développons des initiatives destinées à soutenir
-            la croissance de nos activités et de nos marques.
-          </p>
-        </div>
-
-        <div class="cards-grid">
-
-          <article class="card project-card">
-            <div class="card-icon">◆</div>
-
-            <h3>Innovation</h3>
-
-            <p>
-              Explorer de nouvelles idées et développer
-              des solutions adaptées aux besoins du marché.
-            </p>
-          </article>
-
-          
-<article class="card">
-  <div class="card-icon">◎</div>
-  <h3>Notre vision</h3>
-  <p>Construire un groupe d'entreprises ambitieux, durable et reconnu, capable de créer de la valeur en Afrique et au-delà.</p>
-</article>
-
-<article class="card">
-  <div class="card-icon">↗</div>
-  <h3>Notre mission</h3>
-  <p>Développer des marques et des projets innovants, répondre aux besoins des populations et créer de nouvelles opportunités.</p>
-</article>
-
-<article class="card">
-  <div class="card-icon">✦</div>
-  <h3>Nos valeurs</h3>
-  <p>L'ambition, l'innovation, la confiance, la responsabilité, la qualité et l'esprit d'entreprise guident nos actions.</p>
-</article>
-</div>
-</div>
-</section>
-
-<section class="about-section" id="apropos">
-<div class="container about-grid">
-<div class="about-content">
-<div class="about-label">QUI SOMMES-NOUS ?</div>
-<h2>Un groupe tourné vers l'avenir</h2>
-<p>ADDIBA est un groupe d'entreprises qui a pour ambition de développer plusieurs marques et activités dans différents secteurs.</p>
-<p>Notre approche repose sur la création de projets structurés, la recherche de solutions utiles et le développement progressif de nos activités.</p>
-<p>Chaque marque possède son identité, ses activités et ses objectifs, tout en participant à une vision commune.</p>
-<a href="àpropos.html" class="btn btn-primary">En savoir plus</a>
-</div>
-<div class="about-visual">
-<strong>ADDI<span>BA</span></strong>
-<p>Un groupe. Plusieurs marques. Une vision commune.</p>
-</div>
-</div>
-</section>
-
-<section class="brands-section" id="marques">
-<div class="container">
-<div class="section-heading">
-<div class="eyebrow">Notre portefeuille</div>
-<h2>Nos marques</h2>
-<p>Des identités différentes, des activités propres et des ambitions complémentaires.</p>
-</div>
-
-<div class="cards-grid">
-<article class="card brand-card">
-<div class="brand-name">ZAAMARKET</div>
-<p>Une marque du groupe ADDIBA qui développe son activité dans le commerce et la marketplace.</p>
-<span class="brand-status">Marque du groupe ADDIBA</span>
-<a href="zaamarket.html" class="brand-discover">Découvrir ZAAMARKET <span>→</span></a>
-</article>
-
-<article class="card brand-card">
-<div class="brand-name">ALTEVA</div>
-<p>Une marque du groupe ADDIBA avec sa propre identité, ses activités et ses ambitions.</p>
-<span class="brand-status">Marque du groupe ADDIBA</span>
-<a href="marques.html" class="brand-discover">Découvrir ALTEVA <span>→</span></a>
-</article>
-
-<article class="card brand-card">
-<div class="brand-name">TURINEX</div>
-<p>Une marque du groupe ADDIBA avec sa propre identité, ses activités et ses ambitions.</p>
-<span class="brand-status">Marque du groupe ADDIBA</span>
-<a href="marques.html" class="brand-discover">Découvrir TURINEX <span>→</span></a>
-</article>
-</div>
-
-<div style="text-align:center; margin-top:32px;">
-<a href="marques.html" class="btn btn-primary">Voir toutes nos marques</a>
-</div>
-</div>
-</section>
-
-<section class="projects-section" id="projets">
-<div class="container">
-<div class="section-heading">
-<div class="eyebrow">Nos initiatives</div>
-<h2>Des projets pour construire demain</h2>
-<p>Nous développons des initiatives destinées à soutenir la croissance de nos activités et de nos marques.</p>
-</div>
-
-<div class="cards-grid">
-<article class="card project-card">
-<div class="card-icon">◆</div>
-<h3>Innovation</h3>
-<p>Explorer de nouvelles idées et développer des solutions adaptées aux besoins du marché.</p>
-</article>
-
-<article class="card project-card">
-<div class="card-icon">◈</div>
-<h3>Entrepreneuriat</h3>
-<p>Faire émerger des activités et accompagner le développement de nouvelles marques.</p>
-</article>
-
-<article class="card project-card">
-<div class="card-icon">◇</div>
-<h3>Développement</h3>
-<p>Construire des projets durables et renforcer progressivement la présence du groupe.</p>
-</article>
-</div>
-
-<div style="text-align:center; margin-top:32px;">
-<a href="projets.html" class="btn btn-primary">Découvrir nos projets</a>
-</div>
-</div>
-</section>
-
-<section class="founder-section">
-<div class="container">
-<h2>Une ambition portée par une vision</h2>
-<p>ADDIBA avance avec la volonté de bâtir un groupe structuré, de développer ses marques et de transformer ses ambitions en réalisations concrètes.</p>
-<a href="connexion.html" class="btn btn-primary">Espace fondateur</a>
-</div>
-</section>
-
-<section class="contact-section" id="contact">
-<div class="container">
-<div class="contact-box">
-<h2>Entrons en contact</h2>
-<p>Vous souhaitez en savoir plus sur ADDIBA, ses marques ou ses projets ? Notre espace contact est à votre disposition.</p>
-<a href="contact.html" class="btn btn-primary">Nous contacter</a>
-</div>
-</div>
-</section>
-
-</main>
-
-<footer>
-<div class="container">
-<div class="footer-brand">ADDI<span>BA</span></div>
-
-<div class="footer-links">
-<a href="index.html">Accueil</a>
-<a href="marques.html">Nos marques</a>
-<a href="àpropos.html">À propos</a>
-<a href="projets.html">Projets</a>
-<a href="contact.html">Contact</a>
-<a href="connexion.html">Espace fondateur</a>
-</div>
-
-<p class="footer-slogan">Un groupe. Plusieurs marques. Une vision commune.</p>
-<p class="social-title">Suivez ADDIBA</p>
-
-<div class="social-icons" aria-label="Réseaux sociaux">
-
-<span class="social-icon" title="LinkedIn" aria-label="LinkedIn">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.3 10H5.7v8h2.6v-8zM7 6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 7.4c0-2.4-1.3-3.6-3.1-3.6-1.4 0-2 .8-2.4 1.3V10H10v8h2.6v-4.3c0-1.1.2-2.2 1.6-2.2s1.4 1.3 1.4 2.3V18h2.6l-.2-4.6z"/>
-</svg>
-</span>
-
-<span class="social-icon" title="Facebook" aria-label="Facebook">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.6V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.2V13H10v8h3.5z"/>
-</svg>
-</span>
-
-<span class="social-icon" title="Instagram" aria-label="Instagram">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2.5A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h10a2.5 2.5 0 0 0 2.5-2.5V7A2.5 2.5 0 0 0 17 4.5H7zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm5.3-4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/>
-</svg>
-</span>
-
-<span class="social-icon" title="YouTube" aria-label="YouTube">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M23 7.1a3 3 0 0 0-2.1-2.2C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7.1 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.9 3 3 0 0 0 2.1 2.2c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.2 31 31 0 0 0 .5-4.9 31 31 0 0 0-.5-4.9zM9.7 15.8V8.2l6.4 3.8z"/>
-</svg>
-</span>
-
-<span class="social-icon" title="WhatsApp" aria-label="WhatsApp">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M20.52 3.48A11.8 11.8 0 0 0 12.13 0C5.6 0 .28 5.32.28 11.86c0 2.09.55 4.13 1.6 5.93L.17 24l6.37-1.67a11.85 11.85 0 0 0 5.58 1.42h.01c6.53 0 11.85-5.32 11.86-11.86a11.8 11.8 0 0 0-3.47-8.41ZM12.13 21.74h-.01a9.85 9.85 0 0 1-5.02-1.37l-.36-.21-3.78.99 1.01-3.69-.23-.38a9.83 9.83 0 0 1-1.51-5.22c0-5.43 4.42-9.85 9.86-9.85a9.8 9.8 0 0 1 6.97 2.89 9.8 9.8 0 0 1 2.88 6.98c0 5.44-4.42 9.86-9.85 9.86Zm5.41-7.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.93 1.17-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.66-1.6-.91-2.19-.24-.57-.48-.49-.66-.5h-.56c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.5 1.7.64.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/>
-</svg>
-</span>
-
-</div>
-
-<div class="footer-copy">
-© <span id="currentYear"></span> ADDIBA. Tous droits réservés.
-</div>
-</div>
-</footer>
-
-<script>
-(function () {
-"use strict";
-
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-if (menuToggle && navLinks) {
-
-function closeMenu() {
-navLinks.classList.remove("active");
-menuToggle.setAttribute("aria-expanded", "false");
-menuToggle.setAttribute("aria-label", "Ouvrir le menu");
-menuToggle.textContent = "☰";
-}
-
-function toggleMenu() {
-const isOpen = navLinks.classList.toggle("active");
-menuToggle.setAttribute("aria-expanded", String(isOpen));
-menuToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
-menuToggle.textContent = isOpen ? "✕" : "☰";
-}
-
-menuToggle.addEventListener("click", toggleMenu);
-
-navLinks.querySelectorAll("a").forEach(function (link) {
-link.addEventListener("click", closeMenu);
-});
-
-document.addEventListener("click", function (event) {
-if (
-navLinks.classList.contains("active") &&
-!navLinks.contains(event.target) &&
-!menuToggle.contains(event.target)
-) {
-closeMenu();
-}
-});
-
-document.addEventListener("keydown", function (event) {
-if (event.key === "Escape") {
-closeMenu();
-}
-});
-
-window.addEventListener("resize", function () {
-if (window.innerWidth > 950) {
-closeMenu();
-}
-});
-}
-
-const year = document.getElementById("currentYear");
-if (year) {
-year.textContent = new Date().getFullYear();
-}
-
-})();
-</script>
-
-</body>
-</html>
-
+  </section>
+  
