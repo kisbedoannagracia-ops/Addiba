@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALTEVA | Une marque ADDIBA</title>
+
+<style>
+:root {
+  --navy: #10243a;
+  --green: #16845b;
+  --light: #f4f7f6;
+  --white: #ffffff;
+  --text: #344454;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 18px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: #39bd83;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #39bd83;
+}
+
+.hero {
+  background: linear-gradient(135deg, #10243a, #176c54);
+  color: white;
+  padding: 110px 20px;
+  text-align: center;
+}
+
+.hero .brand-name {
+  font-size: 16px;
+  letter-spacing: 6px;
+  color: #73e0ae;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.hero h1 {
+  font-size: 55px;
+  letter-spacing: 5px;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: auto;
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  padding: 13px 27px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 28px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #0d6545;
+  transform: translateY(-2px);
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section {
+  padding: 75px 0;
+}
+
+.section h2 {
+  color: var(--navy);
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+
+.intro {
+  text-align: center;
+  max-width: 850px;
+  margin: auto;
+}
+
+.intro p {
+  font-size: 17px;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.value-card {
+  background: white;
+  padding: 30px 23px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+  border-top: 4px solid var(--green);
+}
+
+.value-card h3 {
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.mission {
+  background: white;
+  text-align: center;
+}
+
+.mission-content {
+  max-width: 850px;
+  margin: auto;
+}
+
+.activities {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.activity {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  border-left: 4px solid var(--green);
+}
+
+.activity h3 {
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.cta {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 65px 20px;
+}
+
+.cta h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.cta p {
+  max-width: 700px;
+  margin: auto;
+}
+
+.cta .btn {
+  background: #16845b;
+}
+
+footer {
+  background: #0b1928;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  font-size: 14px;
+}
+
+@media(max-width: 750px) {
+  header {
+    flex-direction: column;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 13px;
+  }
+
+  .hero {
+    padding: 80px 20px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .values,
+  .activities {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html" class="logo">ADDI<span>BA</span></a>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="nos-marques.html">Nos marques</a>
+    <a href="àpropos.html">À propos</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <p class="brand-name">UNE MARQUE DU GROUPE ADDIBA</p>
+  <h1>ALTEVA</h1>
+  <p>
+    Imaginer de nouvelles possibilités, développer des idées
+    ambitieuses et contribuer à construire l'avenir.
+  </p>
+  <a href="#presentation" class="btn">Découvrir ALTEVA</a>
+</section>
+
+<section class="section" id="presentation">
+  <div class="container">
+    <div class="intro">
+      <h2>Bienvenue chez ALTEVA</h2>
+      <p>
+        ALTEVA est une marque du groupe ADDIBA.
+        Elle s'inscrit dans une vision entrepreneuriale tournée
+        vers l'innovation, la créativité et la recherche
+        de nouvelles opportunités.
+        Son ambition est de faire émerger des initiatives
+        porteuses de valeur et de développement.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section mission">
+  <div class="container">
+    <div class="mission-content">
+      <h2>Notre vision</h2>
+      <p>
+        Participer à la construction d'un avenir dans lequel
+        les idées, les compétences et les initiatives
+        deviennent des solutions concrètes.
+      </p>
+
+      <h2 style="margin-top:35px;">Notre mission</h2>
+      <p>
+        Développer progressivement des activités et des projets
+        capables de répondre aux besoins, de créer des opportunités
+        et de produire un impact positif.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="intro">
+      <h2>Nos valeurs</h2>
+      <p>Les principes qui guident l'ambition d'ALTEVA.</p>
+    </div>
+
+    <div class="values">
+      <article class="value-card">
+        <h3>Innovation</h3>
+        <p>
+          Encourager les idées nouvelles et rechercher
+          des approches adaptées aux défis de demain.
+        </p>
+      </article>
+
+      <article class="value-card">
+        <h3>Ambition</h3>
+        <p>
+          Voir grand, progresser avec détermination
+          et transformer les objectifs en réalisations.
+        </p>
+      </article>
+
+      <article class="value-card">
+        <h3>Responsabilité</h3>
+        <p>
+          Construire avec sérieux, confiance et volonté
+          de créer une valeur durable.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section mission">
+  <div class="container">
+    <div class="intro">
+      <h2>Nos domaines d'action</h2>
+      <p>
+        Les domaines d'activité d'ALTEVA seront développés
+        progressivement selon ses orientations stratégiques.
+      </p>
+    </div>
+
+    <div class="activities">
+      <article class="activity">
+        <h3>Développement de projets</h3>
+        <p>
+          Concevoir et accompagner des initiatives
+          répondant à des besoins concrets.
+        </p>
+      </article>
+
+      <article class="activity">
+        <h3>Innovation et créativité</h3>
+        <p>
+          Explorer de nouvelles idées et imaginer
+          des solutions utiles.
+        </p>
+      </article>
+
+      <article class="activity">
+        <h3>Entrepreneuriat</h3>
+        <p>
+          Identifier des opportunités et contribuer
+          à la création de nouvelles activités.
+        </p>
+      </article>
+
+      <article class="activity">
+        <h3>Partenariats</h3>
+        <p>
+          Favoriser les collaborations et les relations
+          qui permettent de concrétiser des ambitions.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>ALTEVA, une ambition en construction</h2>
+  <p>
+    Chaque grande réalisation commence par une idée,
+    une vision et la volonté de passer à l'action.
+  </p>
+  <a href="contact.html" class="btn">Nous contacter</a>
+</section>
+
+<footer>
+  <p>ALTEVA — Une marque du groupe ADDIBA</p>
+  <p>© 2026 ADDIBA. Tous droits réservés.</p>
+</footer>
+
+</body>
+  </html>
+  
