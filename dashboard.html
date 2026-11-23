@@ -176,6 +176,46 @@ overflow-y:auto;z-index:1000;transition:transform .3s
 <div class="section-heading"><h2>Gestion des entreprises</h2></div>
 <p style="color:#718096;margin-bottom:18px">Consultez les entreprises inscrites et gérez leurs demandes d'accès à ADDIBA.</p>
 <div id="companyList" class="brand-list"><div class="empty">Chargement des entreprises...</div></div>
+<h3 style="color:#101f3c;margin-bottom:17px">Créer une entreprise</h3>
+
+<form id="companyForm">
+  <div class="form-grid">
+    <div class="field">
+      <label for="companyName">Nom de l'entreprise *</label>
+      <input id="companyName" required>
+    </div>
+    <div class="field">
+      <label for="companyCountry">Pays *</label>
+      <input id="companyCountry" value="Burkina Faso" required>
+    </div>
+    <div class="field">
+      <label for="companySector">Secteur d'activité *</label>
+      <input id="companySector" required>
+    </div>
+    <div class="field">
+      <label for="companyEmail">E-mail</label>
+      <input id="companyEmail" type="email">
+    </div>
+    <div class="field">
+      <label for="companyPhone">Téléphone</label>
+      <input id="companyPhone" type="tel">
+    </div>
+    <div class="field">
+      <label for="companyStatus">Statut initial</label>
+      <select id="companyStatus">
+        <option value="en_attente">En attente</option>
+        <option value="approuvee">Approuvée</option>
+      </select>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-primary" id="companySaveBtn" type="submit">
+      Créer l'entreprise
+    </button>
+  </div>
+</form>
+
+<div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
 </section>
 
 <section class="section" id="marques">
