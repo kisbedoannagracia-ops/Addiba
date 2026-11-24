@@ -3,857 +3,924 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestion des projets | ADDIBA</title>
+<meta name="theme-color" content="#171717">
+<title>ADDIBA | Gestion des projets</title>
 
 <style>
 :root {
-  --navy:#101f3c;
-  --green:#20a875;
-  --light:#f2f5f9;
-  --text:#17243b;
-  --muted:#68758a;
-  --white:#fff;
+  --orange:#ed7928;
+  --dark:#171717;
+  --dark2:#222222;
+  --bg:#f5f6f8;
+  --white:#ffffff;
+  --text:#252525;
+  --muted:#777777;
+  --border:#e9e9e9;
+  --green:#168653;
   --red:#c0392b;
+  --blue:#3978bd;
 }
+
 * {
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
 }
-body {background:var(--light);color:var(--text)}
-header {
-  background:var(--navy);
+
+body {
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,input,select,textarea {
+  font:inherit;
+}
+
+button {
+  cursor:pointer;
+  border:0;
+}
+
+.app {
+  display:flex;
+  min-height:100vh;
+}
+
+/* MENU LATERAL */
+
+.sidebar {
+  width:245px;
+  background:var(--dark);
   color:white;
-  padding:18px 5%;
+  padding:25px 17px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.logo {
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:1px;
+  padding:0 12px 28px;
+}
+
+.logo span {
+  color:var(--orange);
+}
+
+.side-label {
+  color:#858585;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:1.5px;
+  padding:17px 12px 9px;
+}
+
+.side-link {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#c8c8c8;
+  padding:12px;
+  border-radius:8px;
+  margin-bottom:5px;
+  font-size:13px;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.side-link:hover,
+.side-link.active {
+  background:rgba(237,121,40,.15);
+  color:var(--orange);
+}
+
+.side-icon {
+  width:20px;
+  text-align:center;
+  font-size:16px;
+}
+
+.sidebar-bottom {
+  margin-top:auto;
+  padding-top:25px;
+}
+
+.founder-box {
+  background:var(--dark2);
+  border:1px solid #383838;
+  padding:14px;
+  border-radius:9px;
+  font-size:12px;
+  color:#bbbbbb;
+  line-height:1.6;
+}
+
+.founder-box strong {
+  display:block;
+  color:white;
+  margin-bottom:4px;
+}
+
+/* CONTENU PRINCIPAL */
+
+.main-area {
+  flex:1;
+  min-width:0;
+}
+
+.topbar {
+  min-height:75px;
+  background:white;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 30px;
+  gap:15px;
+}
+
+.topbar-title {
+  font-size:14px;
+  font-weight:bold;
+}
+
+.topbar-right {
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.top-search {
+  width:240px;
+  padding:10px 13px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:#fafafa;
+  font-size:12px;
+}
+
+.profile {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.avatar {
+  width:35px;
+  height:35px;
+  display:grid;
+  place-items:center;
+  background:#fff0e4;
+  color:var(--orange);
+  border-radius:50%;
+  font-weight:bold;
+}
+
+.content {
+  padding:30px;
+  max-width:1500px;
+  margin:auto;
+}
+
+.heading {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  flex-wrap:wrap;
   gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
 }
-.logo {font-size:26px;font-weight:bold;letter-spacing:2px;color:#36c98a}
-header a {color:white;text-decoration:none;font-size:14px}
-main {max-width:1200px;margin:auto;padding:30px 20px 50px}
-.page-heading {margin-bottom:25px}
-.page-heading h1 {color:var(--navy);font-size:30px;margin-bottom:8px}
-.page-heading p {color:var(--muted);line-height:1.6}
+
+.heading h1 {
+  font-size:28px;
+  margin-bottom:5px;
+}
+
+.heading p {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.primary-button {
+  background:var(--orange);
+  color:white;
+  border-radius:7px;
+  padding:12px 18px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.primary-button:hover {
+  background:#d9681c;
+}
+
+/* STATISTIQUES */
+
 .stats {
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(4,minmax(0,1fr));
   gap:16px;
   margin-bottom:25px;
 }
+
 .stat-card {
   background:white;
-  padding:22px;
-  border-radius:12px;
-  box-shadow:0 3px 12px #0000000b;
-  border-left:4px solid var(--green);
+  padding:20px;
+  border-radius:11px;
+  border:1px solid var(--border);
+  min-width:0;
 }
-.stat-card p {color:var(--muted);font-size:13px;margin-bottom:10px}
-.stat-card h2 {color:var(--navy);font-size:30px}
+
+.stat-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.stat-card p {
+  color:var(--muted);
+  font-size:12px;
+}
+
+.stat-card h2 {
+  font-size:29px;
+  margin-bottom:5px;
+}
+
+.stat-note {
+  color:var(--muted);
+  font-size:11px;
+}
+
+.stat-icon {
+  width:37px;
+  height:37px;
+  display:grid;
+  place-items:center;
+  border-radius:9px;
+  background:#fff0e4;
+  color:var(--orange);
+  font-size:18px;
+}
+
+.stat-card:nth-child(2) .stat-icon {
+  background:#eaf2ff;
+  color:var(--blue);
+}
+
+.stat-card:nth-child(3) .stat-icon {
+  background:#e7f7ef;
+  color:var(--green);
+}
+
+.stat-card:nth-child(4) .stat-icon {
+  background:#ffeded;
+  color:var(--red);
+}
+
+/* PANNEAUX */
+
 .panel {
   background:white;
-  padding:25px;
-  border-radius:12px;
-  margin-bottom:25px;
-  box-shadow:0 3px 12px #0000000b;
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:23px;
+  margin-bottom:23px;
 }
-.panel h2 {color:var(--navy);font-size:21px;margin-bottom:18px}
-label {display:block;font-weight:bold;margin:15px 0 7px;font-size:14px}
-input,textarea,select {
-  width:100%;
-  padding:13px;
-  border:1px solid #d5dce5;
-  border-radius:7px;
-  font-size:15px;
-  background:white;
-  color:var(--text);
+
+.panel-title {
+  font-size:19px;
+  margin-bottom:17px;
 }
-textarea {min-height:100px;resize:vertical}
-input:focus,textarea:focus,select:focus {
-  outline:2px solid #20a87533;
-  border-color:var(--green);
-}
+
 .form-grid {
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0 18px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 17px;
 }
-button {
-  border:none;
-  border-radius:7px;
-  padding:12px 17px;
-  background:var(--green);
-  color:white;
+
+.field {
+  margin-bottom:15px;
+}
+
+.field label {
+  display:block;
+  font-size:12px;
   font-weight:bold;
-  cursor:pointer;
-  margin-top:18px;
+  margin-bottom:7px;
 }
-button:disabled {opacity:.6;cursor:wait}
-.cancel {background:#68758a;margin-left:8px}
-#message {margin-top:15px;font-size:14px;line-height:1.5}
+
+.field input,
+.field select,
+.field textarea,
+.filters input,
+.filters select {
+  width:100%;
+  padding:12px;
+  border:1px solid #dedede;
+  border-radius:7px;
+  background:white;
+  color:var(--text);
+  font-size:13px;
+}
+
+.field textarea {
+  min-height:90px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.filters input:focus,
+.filters select:focus {
+  outline:2px solid #ed792833;
+  border-color:var(--orange);
+}
+
 .publication-option {
   display:flex;
+  gap:11px;
   align-items:flex-start;
-  gap:10px;
-  padding:15px;
-  margin-top:18px;
-  background:#f2f8f5;
-  border:1px solid #d5eade;
+  padding:14px;
+  background:#fff8f2;
+  border:1px solid #f4ddcb;
   border-radius:8px;
+  margin:10px 0;
 }
+
 .publication-option input {
   width:18px;
   height:18px;
   margin-top:2px;
-  flex-shrink:0;
 }
-.publication-option label {margin:0;line-height:1.5}
-.publication-help {font-size:12px;color:var(--muted);margin-top:5px}
+
+.publication-option label {
+  font-size:13px;
+  font-weight:bold;
+}
+
+.publication-help {
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+}
+
+.form-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.secondary-button {
+  background:#e9e9e9;
+  color:#333;
+  padding:12px 17px;
+  border-radius:7px;
+  font-weight:bold;
+  font-size:13px;
+}
+
+#message {
+  margin-top:13px;
+  font-size:13px;
+}
+
+/* FILTRES */
+
 .filters {
   display:grid;
   grid-template-columns:2fr 1fr 1fr;
   gap:12px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
-.project-list {
+
+.results-info {
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:14px;
+}
+
+/* CARTES PROJETS */
+
+.project-grid {
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:17px;
 }
-.project {
-  border:1px solid #e0e5ec;
-  border-radius:10px;
-  padding:20px;
+
+.project-card {
   background:white;
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:19px;
+  min-width:0;
+  transition:.2s;
 }
-.project h3 {color:var(--navy);font-size:19px;margin-bottom:9px;overflow-wrap:anywhere}
-.project p {color:var(--muted);font-size:14px;margin:8px 0;line-height:1.5;overflow-wrap:anywhere}
-.project strong {color:var(--text)}
-.status {
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:20px;
+
+.project-card:hover {
+  border-color:#efb38b;
+  box-shadow:0 7px 20px #00000009;
+  transform:translateY(-2px);
+}
+
+.project-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.project-card h3 {
+  font-size:17px;
+  margin-bottom:9px;
+  overflow-wrap:anywhere;
+}
+
+.project-card p {
   font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+}
+
+.tag {
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:10px;
   font-weight:bold;
 }
-.status.en_preparation {background:#fff3d9;color:#946200}
-.status.en_cours {background:#e3f1ff;color:#175b9a}
-.status.termine {background:#e3f7ed;color:#147a54}
-.status.suspendu {background:#fde9e7;color:#a52c20}
-.publication-status {
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
+
+.status.en_preparation {
+  background:#fff2d8;
+  color:#986800;
 }
-.is-public {background:#e3f7ed;color:#147a54}
-.is-private {background:#fff3d9;color:#946200}
-.actions {display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.actions button {margin:0;padding:10px 14px}
-.delete {background:var(--red)}
+
+.status.en_cours {
+  background:#e6f1ff;
+  color:#2365a0;
+}
+
+.status.termine {
+  background:#e5f7ed;
+  color:#147a54;
+}
+
+.status.suspendu {
+  background:#fde9e7;
+  color:#a52c20;
+}
+
+.publication-status.is-public {
+  background:#e5f7ed;
+  color:#147a54;
+}
+
+.publication-status.is-private {
+  background:#fff2d8;
+  color:#986800;
+}
+
+.priority {
+  background:#f0f0f0;
+  color:#555;
+}
+
+.project-meta {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  border-top:1px solid var(--border);
+  padding-top:13px;
+  margin-top:14px;
+}
+
+.project-meta span {
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.project-meta strong {
+  display:block;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.progress-area {
+  margin-top:15px;
+}
+
+.progress-label {
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  margin-bottom:7px;
+}
+
+.progress-track {
+  height:7px;
+  background:#ededed;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress-fill {
+  height:100%;
+  background:var(--orange);
+  border-radius:10px;
+}
+
+.project-actions {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.project-actions button {
+  padding:9px 12px;
+  border-radius:6px;
+  font-size:11px;
+  font-weight:bold;
+  background:#f0f0f0;
+  color:#333;
+}
+
+.project-actions .delete {
+  background:#fde9e7;
+  color:var(--red);
+}
+
 .empty {
-  background:#f8fafc;
-  border:1px dashed #cbd5e1;
-  padding:25px;
+  grid-column:1/-1;
+  text-align:center;
+  padding:30px;
+  border:1px dashed #cccccc;
   border-radius:9px;
   color:var(--muted);
+  font-size:13px;
+}
+
+footer {
   text-align:center;
-  grid-column:1/-1;
+  color:var(--muted);
+  font-size:11px;
+  padding:20px;
 }
-.results-info {color:var(--muted);font-size:13px;margin-bottom:14px}
-footer {text-align:center;padding:25px;color:var(--muted);font-size:13px}
-@media(max-width:850px) {
-  .stats {grid-template-columns:repeat(2,1fr)}
-  .project-list {grid-template-columns:1fr}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+  .sidebar {
+    width:205px;
+  }
+
+  .stats {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
 }
-@media(max-width:600px) {
-  header {padding:17px 5%}
-  main {padding:25px 14px 40px}
-  .page-heading h1 {font-size:25px}
-  .panel {padding:18px}
-  .form-grid,.filters {grid-template-columns:1fr}
-  .stat-card {padding:16px}
-  .stat-card h2 {font-size:25px}
-  .actions button {flex:1}
+
+@media(max-width:720px) {
+  .app {
+    display:block;
+  }
+
+  .sidebar {
+    width:100%;
+    padding:13px;
+  }
+
+  .logo {
+    padding:0 8px 12px;
+    font-size:23px;
+  }
+
+  .side-label,
+  .sidebar-bottom {
+    display:none;
+  }
+
+  .sidebar nav {
+    display:flex;
+    overflow-x:auto;
+    gap:5px;
+  }
+
+  .side-link {
+    white-space:nowrap;
+    margin:0;
+    padding:9px;
+    font-size:11px;
+  }
+
+  .topbar {
+    padding:12px 15px;
+  }
+
+  .top-search {
+    display:none;
+  }
+
+  .content {
+    padding:20px 14px;
+  }
+
+  .project-grid {
+    grid-template-columns:1fr;
+  }
+
+  .filters {
+    grid-template-columns:1fr;
+  }
+
+  .heading h1 {
+    font-size:23px;
+  }
+}
+
+@media(max-width:430px) {
+  .stats {
+    gap:9px;
+  }
+
+  .stat-card {
+    padding:13px;
+  }
+
+  .stat-card h2 {
+    font-size:23px;
+  }
+
+  .stat-card p {
+    font-size:10px;
+  }
+
+  .panel {
+    padding:16px;
+  }
+
+  .form-grid {
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">ADDIBA</div>
-  <a href="dashboard.html">← Retour au tableau de bord</a>
-</header>
+<div class="app">
 
-<main>
+<aside class="sidebar">
 
-  <div class="page-heading">
-    <h1>Gestion des projets</h1>
-    <p>
-      Pilote, organise et suis les projets et les initiatives
-      des marques du groupe ADDIBA.
-    </p>
+  <div class="logo">ADDI<span>BA</span></div>
+
+  <div class="side-label">ESPACE FONDATEUR</div>
+
+  <nav>
+    <a class="side-link" href="dashboard.html">
+      <span class="side-icon">▦</span> Tableau de bord
+    </a>
+
+    <a class="side-link active" href="#projects-section">
+      <span class="side-icon">▣</span> Projets
+    </a>
+
+    <a class="side-link" href="nos-marques.html">
+      <span class="side-icon">◇</span> Marques
+    </a>
+
+    <a class="side-link" href="#project-form-panel">
+      <span class="side-icon">＋</span> Nouveau projet
+    </a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="founder-box">
+      <strong>Administration ADDIBA</strong>
+      Espace privé réservé au fondateur.
+    </div>
   </div>
 
-  <section class="stats">
-    <div class="stat-card">
-      <p>Total des projets</p>
-      <h2 id="totalProjects">—</h2>
+</aside>
+
+<div class="main-area">
+
+  <div class="topbar">
+    <div class="topbar-title">Espace de gestion</div>
+
+    <div class="topbar-right">
+      <input class="top-search" type="search"
+        placeholder="Rechercher un projet..."
+        id="top-search">
+
+      <div class="profile">
+        <div class="avatar">A</div>
+        <span>Fondateur</span>
+      </div>
     </div>
-    <div class="stat-card">
-      <p>En préparation</p>
-      <h2 id="preparationProjects">—</h2>
-    </div>
-    <div class="stat-card">
-      <p>En cours</p>
-      <h2 id="ongoingProjects">—</h2>
-    </div>
-    <div class="stat-card">
-      <p>Terminés</p>
-      <h2 id="completedProjects">—</h2>
-    </div>
-  </section>
+  </div>
 
-  <section class="panel">
-    <h2 id="form-title">Ajouter un projet</h2>
+  <main class="content">
 
-    <form id="project-form">
-
-      <label for="name">Nom du projet *</label>
-      <input id="name" type="text" required maxlength="150"
-        placeholder="Ex : Développement de Zaamarket">
-
-      <label for="description">Description du projet</label>
-      <textarea id="description"
-        placeholder="Présente les objectifs et les activités du projet"></textarea>
-
-      <div class="form-grid">
-        <div>
-          <label for="brand">Marque concernée *</label>
-          <select id="brand" required>
-            <option value="">Chargement des marques...</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="status">Statut du projet</label>
-          <select id="status">
-            <option value="en_preparation">En préparation</option>
-            <option value="en_cours">En cours</option>
-            <option value="termine">Terminé</option>
-            <option value="suspendu">Suspendu</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="start-date">Date de début</label>
-          <input id="start-date" type="date">
-        </div>
-
-        <div>
-          <label for="end-date">Date de fin prévue</label>
-          <input id="end-date" type="date">
-        </div>
+    <section class="heading">
+      <div>
+        <h1>Projets</h1>
+        <p>Organise, pilote et suis les projets du groupe ADDIBA.</p>
       </div>
 
-      <div class="publication-option">
-        <input type="checkbox" id="est-public">
-        <div>
-          <label for="est-public">
-            Rendre ce projet visible sur la page publique
-          </label>
-          <p class="publication-help">
-            Si cette case reste décochée, le projet reste privé.
-            Seul le fondateur décide de sa publication.
-          </p>
+      <button class="primary-button" type="button"
+        id="new-project-button">
+        + Nouveau projet
+      </button>
+    </section>
+
+    <section class="stats">
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <p>Total des projets</p>
+          <span class="stat-icon">▣</span>
         </div>
+        <h2 id="totalProjects">—</h2>
+        <span class="stat-note">Tous les projets enregistrés</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <p>En cours</p>
+          <span class="stat-icon">◷</span>
+        </div>
+        <h2 id="ongoingProjects">—</h2>
+        <span class="stat-note">Projets en développement</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <p>Terminés</p>
+          <span class="stat-icon">✓</span>
+        </div>
+        <h2 id="completedProjects">—</h2>
+        <span class="stat-note">Projets achevés</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <p>En retard</p>
+          <span class="stat-icon">!</span>
+        </div>
+        <h2 id="overdueProjects">—</h2>
+        <span class="stat-note">À vérifier selon les échéances</span>
+      </article>
+
+    </section>
+
+    <section class="panel" id="project-form-panel">
+
+      <h2 class="panel-title" id="form-title">
+        Créer un nouveau projet
+      </h2>
+
+      <form id="project-form">
+
+        <div class="field">
+          <label for="name">Nom du projet *</label>
+          <input id="name" type="text" required maxlength="150"
+            placeholder="Ex : Développement d'une nouvelle plateforme">
+        </div>
+
+        <div class="field">
+          <label for="description">Description du projet</label>
+          <textarea id="description"
+            placeholder="Présente les objectifs et les activités du projet"></textarea>
+        </div>
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="brand">Marque concernée *</label>
+            <select id="brand" required>
+              <option value="">Chargement des marques...</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="status">Statut</label>
+            <select id="status">
+              <option value="en_preparation">En préparation</option>
+              <option value="en_cours">En cours</option>
+              <option value="termine">Terminé</option>
+              <option value="suspendu">Suspendu</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="priority">Priorité</label>
+            <select id="priority">
+              <option value="basse">Basse</option>
+              <option value="moyenne" selected>Moyenne</option>
+              <option value="haute">Haute</option>
+              <option value="urgente">Urgente</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="progress">Progression (%)</label>
+            <input id="progress" type="number" min="0" max="100"
+              value="0" required>
+          </div>
+
+          <div class="field">
+            <label for="start-date">Date de début</label>
+            <input id="start-date" type="date">
+          </div>
+
+          <div class="field">
+            <label for="end-date">Date de fin prévue</label>
+            <input id="end-date" type="date">
+          </div>
+
+        </div>
+
+        <div class="publication-option">
+          <input type="checkbox" id="est-public">
+          <div>
+            <label for="est-public">
+              Rendre ce projet visible publiquement
+            </label>
+            <p class="publication-help">
+              Si la case reste décochée, le projet reste privé.
+              Seul le fondateur décide de sa publication.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="primary-button" type="submit" id="save-button">
+            Enregistrer le projet
+          </button>
+
+          <button class="secondary-button" type="button"
+            id="cancel-button" hidden>
+            Annuler
+          </button>
+        </div>
+
+      </form>
+
+      <p id="message" role="status" aria-live="polite"></p>
+
+    </section>
+
+    <section class="panel" id="projects-section">
+
+      <h2 class="panel-title">Tous les projets</h2>
+
+      <div class="filters">
+
+        <input id="search-project" type="search"
+          placeholder="Rechercher un projet...">
+
+        <select id="filter-brand">
+          <option value="">Toutes les marques</option>
+        </select>
+
+        <select id="filter-status">
+          <option value="">Tous les statuts</option>
+          <option value="en_preparation">En préparation</option>
+          <option value="en_cours">En cours</option>
+          <option value="termine">Terminé</option>
+          <option value="suspendu">Suspendu</option>
+        </select>
+
       </div>
 
-      <button type="submit" id="save-button">
-        Enregistrer le projet
-      </button>
+      <p class="results-info" id="results-info"></p>
 
-      <button type="button" id="cancel-button" class="cancel" hidden>
-        Annuler
-      </button>
-    </form>
+      <div class="project-grid" id="project-list">
+        <div class="empty">Chargement des projets...</div>
+      </div>
 
-    <p id="message" role="status" aria-live="polite"></p>
-  </section>
+    </section>
 
-  <section class="panel">
-    <h2>Suivi des projets</h2>
+  </main>
 
-    <div class="filters">
-      <input id="search-project" type="search"
-        placeholder="Rechercher un projet...">
-
-      <select id="filter-brand">
-        <option value="">Toutes les marques</option>
-      </select>
-
-      <select id="filter-status">
-        <option value="">Tous les statuts</option>
-        <option value="en_preparation">En préparation</option>
-        <option value="en_cours">En cours</option>
-        <option value="termine">Terminé</option>
-        <option value="suspendu">Suspendu</option>
-      </select>
-    </div>
-
-    <p class="results-info" id="results-info"></p>
-
-    <div id="project-list" class="project-list">
-      Chargement des projets...
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  © 2026 ADDIBA — Espace de gestion des projets
+  <footer>
+    © 2026 ADDIBA — Administration des projets
   </footer>
-<script type="module">
 
-import { supabase } from "./supabase.js";
-
-// Éléments HTML
-const form = document.getElementById("project-form");
-const message = document.getElementById("message");
-const list = document.getElementById("project-list");
-const brandSelect = document.getElementById("brand");
-const saveButton = document.getElementById("save-button");
-const cancelButton = document.getElementById("cancel-button");
-const publicCheckbox = document.getElementById("est-public");
-
-const searchInput = document.getElementById("search-project");
-const filterBrand = document.getElementById("filter-brand");
-const filterStatus = document.getElementById("filter-status");
-
-// Variables
-let editingId = null;
-let brands = [];
-let projects = [];
-
-// Afficher un message
-function showMessage(text, success = false) {
-  message.textContent = text;
-  message.style.color = success ? "#16875d" : "#c0392b";
-}
-
-// Sécuriser les textes
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
-  })[char]);
-}
-
-// Traduire les statuts
-function formatStatus(status) {
-  const labels = {
-    en_preparation: "En préparation",
-    en_cours: "En cours",
-    termine: "Terminé",
-    suspendu: "Suspendu"
-  };
-
-  return labels[status] || status || "Non défini";
-}
-
-// Formater les dates
-function formatDate(date) {
-  if (!date) return "Non définie";
-
-  const parts = date.split("-");
-
-  if (parts.length !== 3) return date;
-
-  return `${parts[2]}/${parts[1]}/${parts[0]}`;
-}
-
-// Vérifier l'accès du fondateur
-async function checkFounder() {
-  const { data, error } = await supabase.auth.getUser();
-
-  if (error || !data.user) {
-    window.location.href = "connexion.html";
-    return false;
-  }
-
-  const { data: profile, error: profileError } = await supabase
-    .from("profils")
-    .select("role")
-    .eq("id", data.user.id)
-    .single();
-
-  if (profileError || profile?.role !== "fondateur") {
-    await supabase.auth.signOut();
-    window.location.href = "connexion.html";
-    return false;
-  }
-
-  return true;
-}
-
-// Charger les marques
-async function loadBrands() {
-  brandSelect.innerHTML =
-    '<option value="">Chargement des marques...</option>';
-
-  const { data, error } = await supabase
-    .from("marques")
-    .select("id, nom")
-    .order("nom");
-
-  if (error) {
-    brandSelect.innerHTML =
-      '<option value="">Erreur de chargement</option>';
-
-    showMessage(
-      "Impossible de charger les marques : " + error.message
-    );
-
-    return false;
-  }
-
-  brands = data || [];
-
-  if (brands.length === 0) {
-    brandSelect.innerHTML =
-      '<option value="">Aucune marque disponible</option>';
-
-    showMessage(
-      "Aucune marque enregistrée. Ajoute d'abord une marque."
-    );
-
-    return false;
-  }
-
-  const options = brands.map(brand =>
-    `<option value="${escapeHTML(brand.id)}">${escapeHTML(brand.nom)}</option>`
-  ).join("");
-
-  brandSelect.innerHTML =
-    '<option value="">Choisir une marque</option>' + options;
-
-  filterBrand.innerHTML =
-    '<option value="">Toutes les marques</option>' + options;
-
-  return true;
-}
-
-// Actualiser les statistiques
-function updateStatistics() {
-  document.getElementById("totalProjects").textContent =
-    projects.length;
-
-  document.getElementById("preparationProjects").textContent =
-    projects.filter(p => p.statut === "en_preparation").length;
-
-  document.getElementById("ongoingProjects").textContent =
-    projects.filter(p => p.statut === "en_cours").length;
-
-  document.getElementById("completedProjects").textContent =
-    projects.filter(p => p.statut === "termine").length;
-}
-
-// Charger les projets
-async function loadProjects() {
-  list.textContent = "Chargement des projets...";
-
-  const { data, error } = await supabase
-    .from("projets")
-    .select("*, marques(nom)")
-    .order("id", { ascending: false });
-
-  if (error) {
-    list.textContent = "Erreur : " + error.message;
-
-    showMessage(
-      "Impossible de charger les projets : " + error.message
-    );
-
-    return false;
-  }
-
-  projects = data || [];
-
-  updateStatistics();
-  renderProjects();
-
-  return true;
-}
-
-// Normaliser la recherche
-function normalizeSearch(value) {
-  return String(value || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim();
-}
-
-// Afficher les projets et appliquer les filtres
-function renderProjects() {
-  const search = normalizeSearch(searchInput.value);
-  const selectedBrand = filterBrand.value;
-  const selectedStatus = filterStatus.value;
-
-  const terms = search.split(/\s+/).filter(Boolean);
-
-  const filtered = projects.filter(project => {
-    const brandName = project.marques?.nom || "";
-    const statusName = formatStatus(project.statut);
-
-    const searchableText = normalizeSearch([
-      project.nom,
-      project.description,
-      brandName,
-      statusName,
-      project.date_debut,
-      project.date_fin
-    ].join(" "));
-
-    const matchesSearch = terms.every(term =>
-      searchableText.includes(term)
-    );
-
-    const matchesBrand =
-      !selectedBrand ||
-      String(project.marque_id) === selectedBrand;
-
-    const matchesStatus =
-      !selectedStatus ||
-      project.statut === selectedStatus;
-
-    return matchesSearch && matchesBrand && matchesStatus;
-  });
-
-  document.getElementById("results-info").textContent =
-    `${filtered.length} projet(s) affiché(s) sur ${projects.length}.`;
-
-  if (filtered.length === 0) {
-    list.innerHTML = `
-      <div class="empty">
-        <h3>Aucun projet trouvé</h3>
-        <p>Essaie un autre mot, une autre marque ou un autre statut.</p>
-      </div>
-    `;
-    return;
-  }
-
-  list.innerHTML = filtered.map(project => `
-    <article class="project">
-      <h3>${escapeHTML(project.nom)}</h3>
-
-      <p>
-        ${escapeHTML(
-          project.description || "Aucune description renseignée."
-        )}
-      </p>
-
-      <p>
-        <strong>Marque :</strong>
-        ${escapeHTML(project.marques?.nom || "Non définie")}
-      </p>
-
-      <p>
-        <strong>Date de début :</strong>
-        ${escapeHTML(formatDate(project.date_debut))}
-      </p>
-
-      <p>
-        <strong>Fin prévue :</strong>
-        ${escapeHTML(formatDate(project.date_fin))}
-      </p>
-
-      <p>
-        <strong>Statut :</strong>
-        <span class="status ${escapeHTML(project.statut)}">
-          ${escapeHTML(formatStatus(project.statut))}
-        </span>
-      </p>
-
-      <p>
-        <strong>Publication :</strong>
-        ${
-          project.est_public
-          ? '<span class="publication-status is-public">Visible publiquement</span>'
-          : '<span class="publication-status is-private">Privé</span>'
-        }
-      </p>
-
-      <div class="actions">
-        <button
-          type="button"
-          data-edit="${escapeHTML(project.id)}"
-        >
-          Modifier
-        </button>
-
-        <button
-          type="button"
-          class="delete"
-          data-delete="${escapeHTML(project.id)}"
-        >
-          Supprimer
-        </button>
-      </div>
-    </article>
-  `).join("");
-}
-
-// Réinitialiser le formulaire
-function resetForm() {
-  form.reset();
-  editingId = null;
-  publicCheckbox.checked = false;
-
-  document.getElementById("form-title").textContent =
-    "Ajouter un projet";
-
-  saveButton.textContent = "Enregistrer le projet";
-  cancelButton.hidden = true;
-}
-
-// Ajouter ou modifier un projet
-form.addEventListener("submit", async event => {
-  event.preventDefault();
-
-  if (saveButton.disabled) return;
-
-  saveButton.disabled = true;
-
-  const startDate =
-    document.getElementById("start-date").value;
-
-  const endDate =
-    document.getElementById("end-date").value;
-
-  if (startDate && endDate && endDate < startDate) {
-    showMessage(
-      "La date de fin ne peut pas précéder la date de début."
-    );
-
-    saveButton.disabled = false;
-    return;
-  }
-
-  const project = {
-    nom: document.getElementById("name").value.trim(),
-    description:
-      document.getElementById("description").value.trim(),
-    marque_id: brandSelect.value,
-    statut: document.getElementById("status").value,
-    date_debut: startDate || null,
-    date_fin: endDate || null,
-    est_public: publicCheckbox.checked
-  };
-
-  if (!project.nom || !project.marque_id) {
-    showMessage(
-      "Remplis le nom du projet et choisis une marque."
-    );
-
-    saveButton.disabled = false;
-    return;
-  }
-
-  try {
-    let result;
-
-    if (editingId !== null) {
-      result = await supabase
-        .from("projets")
-        .update(project)
-        .eq("id", editingId);
-    } else {
-      result = await supabase
-        .from("projets")
-        .insert(project)
-        .select()
-        .single();
-    }
-
-    if (result.error) {
-      throw result.error;
-    }
-
-    showMessage(
-      editingId !== null
-        ? "Les modifications ont été enregistrées."
-        : "Le projet a été créé avec succès.",
-      true
-    );
-
-    resetForm();
-    await loadProjects();
-
-  } catch (error) {
-    showMessage("Erreur : " + error.message);
-
-  } finally {
-    saveButton.disabled = false;
-  }
-});
-
-// Gérer les boutons Modifier et Supprimer
-list.addEventListener("click", async event => {
-  const button = event.target.closest("button");
-
-  if (!button) return;
-
-  const editId = button.dataset.edit;
-  const deleteId = button.dataset.delete;
-
-  // Modifier un projet
-  if (editId) {
-    try {
-      const { data, error } = await supabase
-        .from("projets")
-        .select("*")
-        .eq("id", editId)
-        .single();
-
-      if (error || !data) {
-        showMessage(
-          "Impossible de récupérer ce projet : " +
-          (error?.message || "Projet introuvable.")
-        );
-        return;
-      }
-
-      editingId = data.id;
-
-      document.getElementById("name").value =
-        data.nom || "";
-
-      document.getElementById("description").value =
-        data.description || "";
-
-      brandSelect.value = data.marque_id || "";
-
-      document.getElementById("status").value =
-        data.statut || "en_preparation";
-
-      document.getElementById("start-date").value =
-        data.date_debut || "";
-
-      document.getElementById("end-date").value =
-        data.date_fin || "";
-
-      publicCheckbox.checked = data.est_public === true;
-
-      document.getElementById("form-title").textContent =
-        "Modifier un projet";
-
-      saveButton.textContent =
-        "Enregistrer les modifications";
-
-      cancelButton.hidden = false;
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    } catch (error) {
-      showMessage("Erreur : " + error.message);
-    }
-  }
-
-  // Supprimer un projet
-  if (deleteId) {
-    const confirmed = confirm(
-      "Attention : veux-tu vraiment supprimer ce projet ? Cette action est définitive."
-    );
-
-    if (!confirmed) return;
-
-    button.disabled = true;
-
-    try {
-      const { error } = await supabase
-        .from("projets")
-        .delete()
-        .eq("id", deleteId);
-
-      if (error) {
-        throw error;
-      }
-
-      showMessage("Projet supprimé avec succès.", true);
-      await loadProjects();
-
-    } catch (error) {
-      showMessage(
-        "Suppression impossible : " + error.message
-      );
-
-      button.disabled = false;
-    }
-  }
-});
-
-// Annuler une modification
-cancelButton.addEventListener("click", () => {
-  resetForm();
-  showMessage("Modification annulée.", true);
-});
-
-// Recherche et filtres
-searchInput.addEventListener("input", renderProjects);
-filterBrand.addEventListener("change", renderProjects);
-filterStatus.addEventListener("change", renderProjects);
-
-// Démarrage sécurisé de la page
-async function startPage() {
-  try {
-    list.textContent = "Vérification de votre accès...";
-
-    const isFounder = await checkFounder();
-
-    if (!isFounder) return;
-
-    list.textContent = "Chargement des marques...";
-
-    const brandsLoaded = await loadBrands();
-
-    if (!brandsLoaded) {
-      list.textContent =
-        "Impossible de charger les projets sans marque disponible.";
-      return;
-    }
-
-    await loadProjects();
-
-  } catch (error) {
-    console.error("Erreur de démarrage ADDIBA :", error);
-
-    showMessage(
-      "Erreur au démarrage : " +
-      (error.message || "Une erreur inattendue est survenue.")
-    );
-
-    list.textContent =
-      "Le chargement a échoué. Vérifie la connexion et réessaie.";
-  }
-}
-
-// Lancer la page
-startPage();
-
-</script>
-
+</div>
+</div>
 </body>
   </html>
-  
