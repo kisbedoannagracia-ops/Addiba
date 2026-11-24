@@ -922,5 +922,506 @@ footer {
 
 </div>
 </div>
+
+<script type="module">
+import { supabase } from "./supabase.js";
+
+const $ = id => document.getElementById(id);
+
+let marques = [];
+let projets = [];
+let projetEnModification = null;
+
+function echapper(valeur) {
+  return String(valeur ?? "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[c]));
+}
+
+function message(texte, erreur = false) {
+  const zone = $("message");
+  zone.textContent = texte;
+  zone.style.color = erreur ? "#c0392b" : "#168653";
+}
+
+function nomStatut(statut) {
+  return {
+    en_preparation: "En préparation",
+    en_cours: "En cours",
+    termine: "Terminé",
+    suspendu: "Suspendu"
+  }[statut] || statut;
+}
+
+function nomPriorite(priorite) {
+  return {
+    basse: "Basse",
+    moyenne: "Moyenne",
+    haute: "Haute",
+    urgente: "Urgente"
+  }[priorite] || "Moyenne";
+}
+
+function dateLisible(date) {
+  if (!date) return "Non définie";
+  return new Date(date + "T00:00:00").toLocaleDateString("fr-FR");
+}
+
+async function verifierFondateur() {
+  const { data: { session }, error } =
+    await supabase.auth.getSession();
+
+  if (error) throw error;
+
+  if (!session) {
+    window.location.href = "connexion.html";
+    return false;
+  }
+
+  const { data: profil, error: erreurProfil } = await supabase
+    .from("profils")
+    .select("nom_complet, role")
+    .eq("id", session.user.id)
+    .maybeSingle();
+
+  if (erreurProfil) throw erreurProfil;
+
+  if (!profil || profil.role !== "fondateur") {
+    message("Accès réservé au fondateur ADDIBA.", true);
+    await supabase.auth.signOut();
+    setTimeout(() => {
+      window.location.href = "connexion.html";
+    }, 1500);
+    return false;
+  }
+
+  return true;
+}
+
+async function chargerMarques() {
+  const select = $("brand");
+  select.innerHTML = '<option value="">Chargement...</option>';
+
+  const { data, error } = await supabase
+    .from("marques")
+    .select("id, nom, entreprise_id")
+    .is("entreprise_id", null)
+    .order("id", { ascending: true });
+
+  if (error) throw error;
+
+  marques = data || [];
+
+  select.innerHTML =
+    '<option value="">Choisir une marque</option>' +
+    marques.map(m => `
+      <option value="${m.id}">
+        ${echapper(m.nom)}
+      </option>
+    `).join("");
+
+  $("filter-brand").innerHTML =
+    '<option value="">Toutes les marques</option>' +
+    marques.map(m => `
+      <option value="${m.id}">
+        ${echapper(m.nom)}
+      </option>
+    `).join("");
+}
+
+async function chargerProjets() {
+  $("project-list").innerHTML =
+    '<div class="empty">Chargement des projets...</div>';
+
+  const { data, error } = await supabase
+    .from("projets")
+    .select("*")
+    .is("entreprise_id", null)
+    .order("id", { ascending: false });
+
+  if (error) throw error;
+
+  projets = data || [];
+  actualiserAffichage();
+}
+
+function actualiserStatistiques() {
+  const aujourdHui = new Date().toISOString().slice(0, 10);
+
+  $("totalProjects").textContent = projets.length;
+
+  $("ongoingProjects").textContent =
+    projets.filter(p => p.statut === "en_cours").length;
+
+  $("completedProjects").textContent =
+    projets.filter(p => p.statut === "termine").length;
+
+  $("overdueProjects").textContent =
+    projets.filter(p =>
+      p.date_fin &&
+      p.date_fin < aujourdHui &&
+      p.statut !== "termine" &&
+      p.statut !== "suspendu"
+    ).length;
+}
+
+function actualiserAffichage() {
+  actualiserStatistiques();
+
+  const recherche = $("search-project").value
+    .toLowerCase().trim();
+
+  const marqueFiltre = $("filter-brand").value;
+  const statutFiltre = $("filter-status").value;
+
+  const filtres = projets.filter(p => {
+    const marque = marques.find(
+      m => String(m.id) === String(p.marque_id)
+    );
+
+    const texte = (
+      (p.nom || "") + " " +
+      (p.description || "") + " " +
+      (marque?.nom || "")
+    ).toLowerCase();
+
+    return (
+      texte.includes(recherche) &&
+      (!marqueFiltre ||
+        String(p.marque_id) === marqueFiltre) &&
+      (!statutFiltre || p.statut === statutFiltre)
+    );
+  });
+
+  $("results-info").textContent =
+    filtres.length + " projet(s) affiché(s)";
+
+  if (!filtres.length) {
+    $("project-list").innerHTML =
+      '<div class="empty">Aucun projet ne correspond à votre recherche.</div>';
+    return;
+  }
+
+  $("project-list").innerHTML = filtres.map(p => {
+    const marque = marques.find(
+      m => String(m.id) === String(p.marque_id)
+    );
+
+    const progression = Math.min(
+      100,
+      Math.max(0, Number(p.progression || 0))
+    );
+
+    return `
+      <article class="project-card">
+        <div class="project-top">
+          <span class="tag status ${echapper(p.statut)}">
+            ${echapper(nomStatut(p.statut))}
+          </span>
+
+          <span class="tag publication-status ${
+            p.est_public ? "is-public" : "is-private"
+          }">
+            ${p.est_public ? "Public" : "Privé"}
+          </span>
+        </div>
+
+        <h3>${echapper(p.nom)}</h3>
+
+        <p>${echapper(p.description || "Aucune description.")}</p>
+
+        <div class="project-meta">
+          <div>
+            <span>Marque</span>
+            <strong>${echapper(marque?.nom || "Non définie")}</strong>
+          </div>
+
+          <div>
+            <span>Priorité</span>
+            <strong>${echapper(nomPriorite(p.priorite))}</strong>
+          </div>
+
+          <div>
+            <span>Début</span>
+            <strong>${echapper(dateLisible(p.date_debut))}</strong>
+          </div>
+
+          <div>
+            <span>Fin prévue</span>
+            <strong>${echapper(dateLisible(p.date_fin))}</strong>
+          </div>
+        </div>
+
+        <div class="progress-area">
+          <div class="progress-label">
+            <span>Progression</span>
+            <strong>${progression}%</strong>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill"
+              style="width:${progression}%"></div>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <button type="button" data-edit="${p.id}">
+            Modifier
+          </button>
+
+          <button type="button" data-publish="${p.id}">
+            ${p.est_public ? "Retirer du public" : "Publier"}
+          </button>
+
+          <button type="button" class="delete"
+            data-delete="${p.id}">
+            Supprimer
+          </button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function reinitialiserFormulaire() {
+  projetEnModification = null;
+  $("project-form").reset();
+
+  $("status").value = "en_preparation";
+  $("priority").value = "moyenne";
+  $("progress").value = "0";
+
+  $("est-public").checked = false;
+  $("form-title").textContent = "Créer un nouveau projet";
+  $("save-button").textContent = "Enregistrer le projet";
+  $("cancel-button").hidden = true;
+}
+
+function modifierProjet(id) {
+  const p = projets.find(x => String(x.id) === String(id));
+  if (!p) return;
+
+  projetEnModification = p.id;
+
+  $("name").value = p.nom || "";
+  $("description").value = p.description || "";
+  $("brand").value = p.marque_id || "";
+  $("status").value = p.statut || "en_preparation";
+  $("priority").value = p.priorite || "moyenne";
+  $("progress").value = p.progression ?? 0;
+  $("start-date").value = p.date_debut || "";
+  $("end-date").value = p.date_fin || "";
+  $("est-public").checked = p.est_public === true;
+
+  $("form-title").textContent = "Modifier le projet";
+  $("save-button").textContent = "Enregistrer les modifications";
+  $("cancel-button").hidden = false;
+
+  $("project-form-panel").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+$("project-form").addEventListener("submit", async evenement => {
+  evenement.preventDefault();
+
+  const bouton = $("save-button");
+  bouton.disabled = true;
+
+  const modification = projetEnModification !== null;
+
+  try {
+    const nom = $("name").value.trim();
+    const marqueId = $("brand").value;
+
+    if (!nom || !marqueId) {
+      throw new Error("Le nom et la marque sont obligatoires.");
+    }
+
+    const progression = Number($("progress").value);
+
+    if (!Number.isInteger(progression) ||
+        progression < 0 || progression > 100) {
+      throw new Error("La progression doit être entre 0 et 100.");
+    }
+
+    const debut = $("start-date").value;
+    const fin = $("end-date").value;
+
+    if (debut && fin && fin < debut) {
+      throw new Error("La date de fin doit être après la date de début.");
+    }
+
+    const donnees = {
+      nom,
+      description: $("description").value.trim(),
+      marque_id: Number(marqueId),
+      statut: $("status").value,
+      priorite: $("priority").value,
+      progression,
+      date_debut: debut || null,
+      date_fin: fin || null,
+      est_public: $("est-public").checked,
+      entreprise_id: null
+    };
+
+    let resultat;
+
+    if (modification) {
+      resultat = await supabase
+        .from("projets")
+        .update(donnees)
+        .eq("id", projetEnModification)
+        .is("entreprise_id", null);
+    } else {
+      resultat = await supabase
+        .from("projets")
+        .insert(donnees);
+    }
+
+    if (resultat.error) throw resultat.error;
+
+    reinitialiserFormulaire();
+    message(modification
+      ? "Projet modifié avec succès."
+      : "Projet enregistré avec succès."
+    );
+
+    await chargerProjets();
+
+  } catch (erreur) {
+    console.error(erreur);
+    message("Erreur : " + erreur.message, true);
+  } finally {
+    bouton.disabled = false;
+  }
+});
+
+$("project-list").addEventListener("click", async evenement => {
+  const modifier = evenement.target.closest("[data-edit]");
+  const publier = evenement.target.closest("[data-publish]");
+  const supprimer = evenement.target.closest("[data-delete]");
+
+  if (modifier) {
+    modifierProjet(modifier.dataset.edit);
+    return;
+  }
+
+  if (publier) {
+    const p = projets.find(
+      x => String(x.id) === publier.dataset.publish
+    );
+    if (!p) return;
+
+    const nouveauStatut = !p.est_public;
+
+    const confirmation = nouveauStatut
+      ? "Publier ce projet sur la page publique ?"
+      : "Retirer ce projet de la page publique ?";
+
+    if (!confirm(confirmation)) return;
+
+    publier.disabled = true;
+
+    try {
+      const { error } = await supabase
+        .from("projets")
+        .update({ est_public: nouveauStatut })
+        .eq("id", p.id)
+        .is("entreprise_id", null);
+
+      if (error) throw error;
+
+      message(nouveauStatut
+        ? "Projet publié."
+        : "Projet retiré de la publication."
+      );
+
+      await chargerProjets();
+
+    } catch (erreur) {
+      message("Erreur : " + erreur.message, true);
+      publier.disabled = false;
+    }
+
+    return;
+  }
+
+  if (supprimer) {
+    const p = projets.find(
+      x => String(x.id) === supprimer.dataset.delete
+    );
+    if (!p) return;
+
+    if (!confirm("Voulez-vous vraiment supprimer ce projet ?")) {
+      return;
+    }
+
+    supprimer.disabled = true;
+
+    try {
+      const { error } = await supabase
+        .from("projets")
+        .delete()
+        .eq("id", p.id)
+        .is("entreprise_id", null);
+
+      if (error) throw error;
+
+      message("Projet supprimé.");
+      await chargerProjets();
+
+    } catch (erreur) {
+      message("Erreur : " + erreur.message, true);
+      supprimer.disabled = false;
+    }
+  }
+});
+
+$("search-project").addEventListener("input", actualiserAffichage);
+$("filter-brand").addEventListener("change", actualiserAffichage);
+$("filter-status").addEventListener("change", actualiserAffichage);
+
+$("top-search").addEventListener("input", () => {
+  $("search-project").value = $("top-search").value;
+  actualiserAffichage();
+});
+
+$("new-project-button").addEventListener("click", () => {
+  reinitialiserFormulaire();
+  $("project-form-panel").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+$("cancel-button").addEventListener("click", reinitialiserFormulaire);
+
+async function initialiserPage() {
+  try {
+    const autorise = await verifierFondateur();
+    if (!autorise) return;
+
+    await chargerMarques();
+    await chargerProjets();
+
+  } catch (erreur) {
+    console.error("Erreur de chargement ADDIBA :", erreur);
+    message("Impossible de charger les données : " + erreur.message, true);
+
+    $("brand").innerHTML =
+      '<option value="">Erreur de chargement des marques</option>';
+
+    $("project-list").innerHTML =
+      '<div class="empty">Erreur : ' +
+      echapper(erreur.message) + '</div>';
+  }
+}
+
+initialiserPage();
+</script>
+
 </body>
-  </html>
+</html>
