@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Découvrez les projets et les axes stratégiques de développement du groupe ADDIBA.">
+  <meta name="theme-color" content="#171717">
   <title>Nos projets | ADDIBA</title>
 
   <style>
@@ -98,6 +99,10 @@
       font-weight: bold;
     }
 
+    .hero-button:hover {
+      background: #d9681c;
+    }
+
     .section {
       padding: 60px 6%;
     }
@@ -173,6 +178,16 @@
       border-radius: 12px;
       padding: 25px;
       grid-column: 1 / -1;
+      overflow-wrap: anywhere;
+    }
+
+    .empty-message pre {
+      text-align: left;
+      margin-top: 12px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
     }
 
     .axis-icon {
@@ -255,35 +270,48 @@
 
 <section class="hero">
   <h1>Nos <span>projets</span></h1>
+
   <p>
     Construire aujourd'hui les initiatives qui contribueront
     au développement économique, technologique et social de demain.
   </p>
-  <a class="hero-button" href="#projets-publies">Découvrir nos projets</a>
+
+  <a class="hero-button" href="#projets-publies">
+    Découvrir nos projets
+  </a>
 </section>
 
 <section class="section" id="projets-publies">
+
   <div class="section-heading">
     <h2>Nos projets</h2>
+
     <p>
       Découvrez les initiatives sélectionnées par le fondateur
       pour être présentées publiquement par ADDIBA.
     </p>
+
     <div class="orange-line"></div>
   </div>
 
   <div id="projects-container" class="project-grid">
-    <div class="empty-message">Chargement des projets...</div>
+    <div class="empty-message">
+      Chargement des projets...
+    </div>
   </div>
+
 </section>
 
 <section class="section" id="axes-strategiques">
+
   <div class="section-heading">
     <h2>Nos axes stratégiques</h2>
+
     <p>
       Les grands domaines qui orientent la vision et les ambitions
       de développement d'ADDIBA.
     </p>
+
     <div class="orange-line"></div>
   </div>
 
@@ -340,10 +368,12 @@
     </article>
 
   </div>
+
 </section>
 
 <section class="vision">
   <h2>Notre vision pour l'avenir</h2>
+
   <p>
     ADDIBA ambitionne de bâtir un groupe dynamique,
     innovant et durable, capable de porter des initiatives
@@ -353,12 +383,17 @@
 
 <footer>
   <strong>ADDIBA</strong>
-  <p>Construire aujourd'hui les initiatives de demain.</p>
-  <p>© <span id="current-year"></span> ADDIBA. Tous droits réservés.</p>
+
+  <p>
+    Construire aujourd'hui les initiatives de demain.
+  </p>
+
+  <p>
+    © <span id="current-year"></span> ADDIBA. Tous droits réservés.
+  </p>
 </footer>
 
 <script type="module">
-  import { supabase } from "./supabase.js";
 
   const projectsContainer =
     document.getElementById("projects-container");
@@ -367,17 +402,13 @@
     new Date().getFullYear();
 
   function escapeHTML(value) {
-    return String(value ?? "").replace(/[&<>"']/g, function(char) {
-      const entities = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-      };
-
-      return entities[char];
-    });
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    }[char]));
   }
 
   function formatDate(value) {
@@ -385,7 +416,9 @@
 
     const date = new Date(value + "T00:00:00");
 
-    if (Number.isNaN(date.getTime())) return "";
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
 
     return date.toLocaleDateString("fr-FR", {
       day: "2-digit",
@@ -395,29 +428,51 @@
   }
 
   function displayProject(project) {
+
     const card = document.createElement("article");
+
     card.className = "project-card";
 
-    const name = escapeHTML(project.nom || "Projet ADDIBA");
+    const name = escapeHTML(
+      project.nom || "Projet ADDIBA"
+    );
+
     const description = escapeHTML(
       project.description || "Description à venir."
     );
-    const status = escapeHTML(project.statut || "En cours");
+
+    const statusLabels = {
+      en_preparation: "En préparation",
+      en_cours: "En cours",
+      termine: "Terminé",
+      suspendu: "Suspendu"
+    };
+
+    const status = escapeHTML(
+      statusLabels[project.statut] || project.statut || "En cours"
+    );
 
     const dates = [];
 
     if (project.date_debut) {
-      dates.push("Début : " + formatDate(project.date_debut));
+      dates.push(
+        "Début : " + formatDate(project.date_debut)
+      );
     }
 
     if (project.date_fin) {
-      dates.push("Fin : " + formatDate(project.date_fin));
+      dates.push(
+        "Fin : " + formatDate(project.date_fin)
+      );
     }
 
     card.innerHTML = `
       <h3>${name}</h3>
+
       <p>${description}</p>
+
       <span class="project-status">${status}</span>
+
       ${
         dates.length
           ? `<div class="project-dates">${dates.map(escapeHTML).join(" · ")}</div>`
@@ -428,11 +483,52 @@
     projectsContainer.appendChild(card);
   }
 
+  function afficherErreur(error) {
+
+    console.error("Erreur ADDIBA :", error);
+
+    projectsContainer.innerHTML = "";
+
+    const message = document.createElement("div");
+
+    message.className = "empty-message";
+
+    const titre = document.createElement("strong");
+
+    titre.textContent =
+      "Erreur de chargement des projets";
+
+    const details = document.createElement("pre");
+
+    details.textContent =
+      (error.message || String(error)) +
+      (error.code ? "\nCode : " + error.code : "") +
+      (error.details ? "\nDétails : " + error.details : "") +
+      (error.hint ? "\nIndication : " + error.hint : "");
+
+    message.appendChild(titre);
+    message.appendChild(details);
+
+    projectsContainer.appendChild(message);
+  }
+
   async function loadPublicProjects() {
+
     projectsContainer.innerHTML =
       '<div class="empty-message">Chargement des projets...</div>';
 
     try {
+
+      // Connexion à Supabase
+      const { supabase } = await import("./supabase.js");
+
+      if (!supabase) {
+        throw new Error(
+          "La connexion Supabase n'a pas été initialisée."
+        );
+      }
+
+      // Récupération uniquement des projets publics
       const { data, error } = await supabase
         .from("projets")
         .select(
@@ -448,31 +544,29 @@
       projectsContainer.innerHTML = "";
 
       if (!data || data.length === 0) {
+
         projectsContainer.innerHTML = `
           <div class="empty-message">
             Aucun projet public n'est disponible pour le moment.
             Revenez bientôt découvrir les prochaines initiatives d'ADDIBA.
           </div>
         `;
+
         return;
       }
 
       data.forEach(displayProject);
 
     } catch (error) {
-      console.error("Erreur de chargement des projets :", error);
 
-      projectsContainer.innerHTML = `
-        <div class="empty-message">
-          Impossible de charger les projets pour le moment.
-          <br>
-          Veuillez réessayer plus tard.
-        </div>
-      `;
+      afficherErreur(error);
+
     }
+
   }
 
   loadPublicProjects();
+
 </script>
 
 </body>
