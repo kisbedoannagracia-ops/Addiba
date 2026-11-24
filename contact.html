@@ -162,6 +162,11 @@ input, select, textarea {
   font-size: 15px;
 }
 
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #20bd83;
+  border-color: #20bd83;
+}
+
 textarea {
   min-height: 140px;
   resize: vertical;
@@ -181,10 +186,38 @@ button {
 
 button:hover { background: #18a873; }
 
+button:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
 .notice {
   margin-top: 15px;
   color: #647087;
   font-size: 13px;
+}
+
+.form-result {
+  display: none;
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.form-result.success {
+  display: block;
+  background: #e5f7ef;
+  color: #116b45;
+  border: 1px solid #b8e6ce;
+}
+
+.form-result.error {
+  display: block;
+  background: #fff0f0;
+  color: #a32929;
+  border: 1px solid #f0c4c4;
 }
 
 .back {
@@ -233,29 +266,23 @@ footer strong { color: #20bd83; }
 <body>
 
 <header>
-<a href="index.html" class="brand-logo" aria-label="ADDIBA - Accueil">
+  <a href="index.html" class="brand-logo" aria-label="ADDIBA - Accueil">
+    <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z"
+        fill="#ffffff"/>
+      <path
+        d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z"
+        fill="#20bd83"/>
+      <path
+        d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z"
+        fill="#20bd83"
+        fill-rule="evenodd"/>
+    </svg>
 
-  <svg viewBox="0 0 300 220"
-       xmlns="http://www.w3.org/2000/svg">
-
-    <path
-      d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z"
-      fill="#ffffff"/>
-
-    <path
-      d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z"
-      fill="#20bd83"/>
-
-    <path
-      d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z"
-      fill="#20bd83"
-      fill-rule="evenodd"/>
-
-  </svg>
-
-  <strong>ADDI<span>BA</span></strong>
-
+    <strong>ADDI<span>BA</span></strong>
   </a>
+
   <nav>
     <a href="index.html">Accueil</a>
     <a href="zaamarket.html">ZAAMARKET</a>
@@ -310,45 +337,73 @@ footer strong { color: #20bd83; }
   <div class="section-title">
     <h2>Contact</h2>
     <span></span>
+    <p>Remplissez le formulaire pour transmettre votre demande à ADDIBA.</p>
   </div>
 
-  <form class="contact-form"
-        action="mailto:"
-        method="post"
-        enctype="text/plain">
+  <form class="contact-form" id="contactForm">
 
     <div class="form-group">
       <label for="nom">Nom complet</label>
-      <input type="text" id="nom" name="Nom" placeholder="Votre nom complet" required>
+      <input
+        type="text"
+        id="nom"
+        name="nom"
+        placeholder="Votre nom complet"
+        minlength="2"
+        maxlength="120"
+        autocomplete="name"
+        required>
     </div>
 
     <div class="form-group">
       <label for="email">Adresse e-mail</label>
-      <input type="email" id="email" name="Email" placeholder="Votre adresse e-mail" required>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Votre adresse e-mail"
+        maxlength="254"
+        autocomplete="email"
+        required>
     </div>
 
     <div class="form-group">
       <label for="sujet">Objet de votre demande</label>
-      <select id="sujet" name="Objet" required>
+      <select id="sujet" name="sujet" required>
         <option value="">Choisir un sujet</option>
-        <option>Informations générales</option>
-        <option>Partenariat</option>
-        <option>Demande commerciale</option>
-        <option>Relations institutionnelles</option>
-        <option>Autre demande</option>
+        <option value="Informations générales">Informations générales</option>
+        <option value="Partenariat">Partenariat</option>
+        <option value="Demande commerciale">Demande commerciale</option>
+        <option value="Relations institutionnelles">Relations institutionnelles</option>
+        <option value="Autre demande">Autre demande</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="message">Votre message</label>
-      <textarea id="message" name="Message" placeholder="Écrivez votre message..." required></textarea>
+      <textarea
+        id="message"
+        name="message"
+        placeholder="Écrivez votre message..."
+        minlength="5"
+        maxlength="5000"
+        required></textarea>
     </div>
 
-    <button type="submit">Envoyer un message</button>
+    <button type="submit" id="submitButton">
+      Envoyer un message
+    </button>
+
+    <div
+      id="formResult"
+      class="form-result"
+      role="status"
+      aria-live="polite">
+    </div>
 
     <p class="notice">
-      Ce formulaire utilise votre application de messagerie.
-      L'envoi dépend de sa configuration et de votre validation.
+      Vos informations sont utilisées uniquement pour traiter
+      votre demande auprès d'ADDIBA.
     </p>
 
   </form>
@@ -361,10 +416,97 @@ footer strong { color: #20bd83; }
 </main>
 
 <footer>
-  <p>© 2026 <strong>ADDIBA</strong>. Tous droits réservés.</p>
+  <p>© <span id="currentYear"></span> <strong>ADDIBA</strong>. Tous droits réservés.</p>
   <p>Un groupe. Plusieurs marques. Une vision commune.</p>
 </footer>
 
+<script type="module">
+
+const form = document.getElementById("contactForm");
+const button = document.getElementById("submitButton");
+const result = document.getElementById("formResult");
+
+document.getElementById("currentYear").textContent =
+  new Date().getFullYear();
+
+function showMessage(message, type) {
+  result.textContent = message;
+  result.className = "form-result " + type;
+}
+
+form.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  if (!form.reportValidity()) {
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Envoi en cours...";
+  result.className = "form-result";
+  result.textContent = "";
+
+  try {
+
+    const { supabase } = await import("./supabase.js");
+
+    if (!supabase) {
+      throw new Error("La connexion à la base de données est indisponible.");
+    }
+
+    const nom = document.getElementById("nom").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const sujet = document.getElementById("sujet").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (
+      nom.length < 2 ||
+      email.length < 5 ||
+      sujet.length < 2 ||
+      message.length < 5
+    ) {
+      throw new Error("Veuillez vérifier les informations saisies.");
+    }
+
+    const { error } = await supabase
+      .from("contact_messages")
+      .insert([{
+        nom: nom,
+        email: email,
+        sujet: sujet,
+        message: message
+      }]);
+
+    if (error) {
+      throw error;
+    }
+
+    form.reset();
+
+    showMessage(
+      "Votre message a bien été enregistré. Merci d'avoir contacté ADDIBA. Nous avons reçu votre demande dans notre système.",
+      "success"
+    );
+
+  } catch (error) {
+
+    console.error("Erreur formulaire ADDIBA :", error);
+
+    showMessage(
+      "Impossible d'enregistrer votre message pour le moment. Vérifiez votre connexion et réessayez.",
+      "error"
+    );
+
+  } finally {
+
+    button.disabled = false;
+    button.textContent = "Envoyer un message";
+
+  }
+});
+
+</script>
+
 </body>
-  </html>
+</html>
   
