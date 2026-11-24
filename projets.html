@@ -731,11 +731,12 @@ form.addEventListener("submit", async event => {
         .update(project)
         .eq("id", editingId);
     } else {
-      result = await supabase
-        .from("projets")
-        .insert(project);
-    }
-
+  result = await supabase
+    .from("projets")
+    .insert(project)
+    .select()
+    .single();
+  }
     if (result.error) throw result.error;
 
     showMessage(
