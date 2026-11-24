@@ -611,11 +611,10 @@ function renderProjects() {
   const selectedStatus = filterStatus.value;
 
   const filtered = projects.filter(project => {
-
-    const matchesSearch =
-      (project.nom || "").toLowerCase().includes(search) ||
-      (project.description || "").toLowerCase().includes(search);
-
+const matchesSearch =
+  (project.nom || "").toLowerCase().includes(search) ||
+  (project.description || "").toLowerCase().includes(search) ||
+  (project.marques?.nom || "").toLowerCase().includes(search);
     const matchesBrand =
       !selectedBrand ||
       String(project.marque_id) === selectedBrand;
