@@ -7,325 +7,178 @@
 
 <style>
 :root {
-  --navy: #101f3c;
-  --green: #20a875;
-  --light: #f2f5f9;
-  --text: #17243b;
-  --muted: #68758a;
-  --white: #ffffff;
-  --red: #c0392b;
+  --navy:#101f3c;
+  --green:#20a875;
+  --light:#f2f5f9;
+  --text:#17243b;
+  --muted:#68758a;
+  --white:#fff;
+  --red:#c0392b;
 }
-
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
 }
-
-body {
-  background: var(--light);
-  color: var(--text);
-}
-
+body {background:var(--light);color:var(--text)}
 header {
-  background: var(--navy);
-  color: white;
-  padding: 18px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  background:var(--navy);
+  color:white;
+  padding:18px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
 }
-
-.logo {
-  font-size: 26px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: #36c98a;
-}
-
-header a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 30px 20px 50px;
-}
-
-.page-heading {
-  margin-bottom: 25px;
-}
-
-.page-heading h1 {
-  color: var(--navy);
-  font-size: 30px;
-  margin-bottom: 8px;
-}
-
-.page-heading p {
-  color: var(--muted);
-  line-height: 1.6;
-}
-
+.logo {font-size:26px;font-weight:bold;letter-spacing:2px;color:#36c98a}
+header a {color:white;text-decoration:none;font-size:14px}
+main {max-width:1200px;margin:auto;padding:30px 20px 50px}
+.page-heading {margin-bottom:25px}
+.page-heading h1 {color:var(--navy);font-size:30px;margin-bottom:8px}
+.page-heading p {color:var(--muted);line-height:1.6}
 .stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 25px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:25px;
 }
-
 .stat-card {
-  background: white;
-  padding: 22px;
-  border-radius: 12px;
-  box-shadow: 0 3px 12px #0000000b;
-  border-left: 4px solid var(--green);
+  background:white;
+  padding:22px;
+  border-radius:12px;
+  box-shadow:0 3px 12px #0000000b;
+  border-left:4px solid var(--green);
 }
-
-.stat-card p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-
-.stat-card h2 {
-  color: var(--navy);
-  font-size: 30px;
-}
-
+.stat-card p {color:var(--muted);font-size:13px;margin-bottom:10px}
+.stat-card h2 {color:var(--navy);font-size:30px}
 .panel {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  box-shadow: 0 3px 12px #0000000b;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  margin-bottom:25px;
+  box-shadow:0 3px 12px #0000000b;
 }
-
-.panel h2 {
-  color: var(--navy);
-  font-size: 21px;
-  margin-bottom: 18px;
+.panel h2 {color:var(--navy);font-size:21px;margin-bottom:18px}
+label {display:block;font-weight:bold;margin:15px 0 7px;font-size:14px}
+input,textarea,select {
+  width:100%;
+  padding:13px;
+  border:1px solid #d5dce5;
+  border-radius:7px;
+  font-size:15px;
+  background:white;
+  color:var(--text);
 }
-
-label {
-  display: block;
-  font-weight: bold;
-  margin: 15px 0 7px;
-  font-size: 14px;
+textarea {min-height:100px;resize:vertical}
+input:focus,textarea:focus,select:focus {
+  outline:2px solid #20a87533;
+  border-color:var(--green);
 }
-
-input,
-textarea,
-select {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #d5dce5;
-  border-radius: 7px;
-  font-size: 15px;
-  background: white;
-  color: var(--text);
-}
-
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid #20a87533;
-  border-color: var(--green);
-}
-
 .form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 18px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 18px;
 }
-
 button {
-  border: none;
-  border-radius: 7px;
-  padding: 12px 17px;
-  background: var(--green);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 18px;
+  border:none;
+  border-radius:7px;
+  padding:12px 17px;
+  background:var(--green);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:18px;
 }
-
-button:disabled {
-  opacity: 0.6;
-  cursor: wait;
+button:disabled {opacity:.6;cursor:wait}
+.cancel {background:#68758a;margin-left:8px}
+#message {margin-top:15px;font-size:14px;line-height:1.5}
+.publication-option {
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:15px;
+  margin-top:18px;
+  background:#f2f8f5;
+  border:1px solid #d5eade;
+  border-radius:8px;
 }
-
-.cancel {
-  background: #68758a;
-  margin-left: 8px;
+.publication-option input {
+  width:18px;
+  height:18px;
+  margin-top:2px;
+  flex-shrink:0;
 }
-
-#message {
-  margin-top: 15px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
+.publication-option label {margin:0;line-height:1.5}
+.publication-help {font-size:12px;color:var(--muted);margin-top:5px}
 .filters {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:12px;
+  margin-bottom:20px;
 }
-
 .project-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
 }
-
 .project {
-  border: 1px solid #e0e5ec;
-  border-radius: 10px;
-  padding: 20px;
-  background: white;
+  border:1px solid #e0e5ec;
+  border-radius:10px;
+  padding:20px;
+  background:white;
 }
-
-.project h3 {
-  color: var(--navy);
-  font-size: 19px;
-  margin-bottom: 9px;
-  overflow-wrap: anywhere;
-}
-
-.project p {
-  color: var(--muted);
-  font-size: 14px;
-  margin: 8px 0;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-
-.project strong {
-  color: var(--text);
-}
-
+.project h3 {color:var(--navy);font-size:19px;margin-bottom:9px;overflow-wrap:anywhere}
+.project p {color:var(--muted);font-size:14px;margin:8px 0;line-height:1.5;overflow-wrap:anywhere}
+.project strong {color:var(--text)}
 .status {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
 }
-
-.status.en_preparation {
-  background: #fff3d9;
-  color: #946200;
+.status.en_preparation {background:#fff3d9;color:#946200}
+.status.en_cours {background:#e3f1ff;color:#175b9a}
+.status.termine {background:#e3f7ed;color:#147a54}
+.status.suspendu {background:#fde9e7;color:#a52c20}
+.publication-status {
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
 }
-
-.status.en_cours {
-  background: #e3f1ff;
-  color: #175b9a;
-}
-
-.status.termine {
-  background: #e3f7ed;
-  color: #147a54;
-}
-
-.status.suspendu {
-  background: #fde9e7;
-  color: #a52c20;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.actions button {
-  margin: 0;
-  padding: 10px 14px;
-}
-
-.delete {
-  background: var(--red);
-}
-
+.is-public {background:#e3f7ed;color:#147a54}
+.is-private {background:#fff3d9;color:#946200}
+.actions {display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.actions button {margin:0;padding:10px 14px}
+.delete {background:var(--red)}
 .empty {
-  background: #f8fafc;
-  border: 1px dashed #cbd5e1;
-  padding: 25px;
-  border-radius: 9px;
-  color: var(--muted);
-  text-align: center;
-  grid-column: 1 / -1;
+  background:#f8fafc;
+  border:1px dashed #cbd5e1;
+  padding:25px;
+  border-radius:9px;
+  color:var(--muted);
+  text-align:center;
+  grid-column:1/-1;
 }
-
-.results-info {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 14px;
+.results-info {color:var(--muted);font-size:13px;margin-bottom:14px}
+footer {text-align:center;padding:25px;color:var(--muted);font-size:13px}
+@media(max-width:850px) {
+  .stats {grid-template-columns:repeat(2,1fr)}
+  .project-list {grid-template-columns:1fr}
 }
-
-footer {
-  text-align: center;
-  padding: 25px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-@media (max-width: 850px) {
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .project-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  header {
-    padding: 17px 5%;
-  }
-
-  main {
-    padding: 25px 14px 40px;
-  }
-
-  .page-heading h1 {
-    font-size: 25px;
-  }
-
-  .panel {
-    padding: 18px;
-  }
-
-  .form-grid,
-  .filters {
-    grid-template-columns: 1fr;
-  }
-
-  .stat-card {
-    padding: 16px;
-  }
-
-  .stat-card h2 {
-    font-size: 25px;
-  }
-
-  .actions button {
-    flex: 1;
-  }
+@media(max-width:600px) {
+  header {padding:17px 5%}
+  main {padding:25px 14px 40px}
+  .page-heading h1 {font-size:25px}
+  .panel {padding:18px}
+  .form-grid,.filters {grid-template-columns:1fr}
+  .stat-card {padding:16px}
+  .stat-card h2 {font-size:25px}
+  .actions button {flex:1}
 }
 </style>
 </head>
@@ -348,52 +201,38 @@ footer {
   </div>
 
   <section class="stats">
-
     <div class="stat-card">
       <p>Total des projets</p>
       <h2 id="totalProjects">—</h2>
     </div>
-
     <div class="stat-card">
       <p>En préparation</p>
       <h2 id="preparationProjects">—</h2>
     </div>
-
     <div class="stat-card">
       <p>En cours</p>
       <h2 id="ongoingProjects">—</h2>
     </div>
-
     <div class="stat-card">
       <p>Terminés</p>
       <h2 id="completedProjects">—</h2>
     </div>
-
   </section>
 
   <section class="panel">
-
     <h2 id="form-title">Ajouter un projet</h2>
 
     <form id="project-form">
 
       <label for="name">Nom du projet *</label>
-      <input
-        id="name"
-        type="text"
-        required
-        maxlength="150"
-        placeholder="Ex : Développement de Zaamarket"
-      >
+      <input id="name" type="text" required maxlength="150"
+        placeholder="Ex : Développement de Zaamarket">
 
       <label for="description">Description du projet</label>
-      <textarea
-        id="description"
-        placeholder="Présente les objectifs et les activités du projet"
-      ></textarea>
+      <textarea id="description"
+        placeholder="Présente les objectifs et les activités du projet"></textarea>
 
       <div class="form-grid">
-
         <div>
           <label for="brand">Marque concernée *</label>
           <select id="brand" required>
@@ -420,39 +259,39 @@ footer {
           <label for="end-date">Date de fin prévue</label>
           <input id="end-date" type="date">
         </div>
+      </div>
 
+      <div class="publication-option">
+        <input type="checkbox" id="est-public">
+        <div>
+          <label for="est-public">
+            Rendre ce projet visible sur la page publique
+          </label>
+          <p class="publication-help">
+            Si cette case reste décochée, le projet reste privé.
+            Seul le fondateur décide de sa publication.
+          </p>
+        </div>
       </div>
 
       <button type="submit" id="save-button">
         Enregistrer le projet
       </button>
 
-      <button
-        type="button"
-        id="cancel-button"
-        class="cancel"
-        hidden
-      >
+      <button type="button" id="cancel-button" class="cancel" hidden>
         Annuler
       </button>
-
     </form>
 
     <p id="message" role="status" aria-live="polite"></p>
-
   </section>
 
   <section class="panel">
-
     <h2>Suivi des projets</h2>
 
     <div class="filters">
-
-      <input
-        id="search-project"
-        type="search"
-        placeholder="Rechercher un projet..."
-      >
+      <input id="search-project" type="search"
+        placeholder="Rechercher un projet...">
 
       <select id="filter-brand">
         <option value="">Toutes les marques</option>
@@ -465,7 +304,6 @@ footer {
         <option value="termine">Terminé</option>
         <option value="suspendu">Suspendu</option>
       </select>
-
     </div>
 
     <p class="results-info" id="results-info"></p>
@@ -473,15 +311,13 @@ footer {
     <div id="project-list" class="project-list">
       Chargement des projets...
     </div>
-
   </section>
 
 </main>
 
 <footer>
   © 2026 ADDIBA — Espace de gestion des projets
-</footer>
-
+  </footer>
 <script type="module">
 
 import { supabase } from "./supabase.js";
@@ -493,6 +329,7 @@ const list = document.getElementById("project-list");
 const brandSelect = document.getElementById("brand");
 const saveButton = document.getElementById("save-button");
 const cancelButton = document.getElementById("cancel-button");
+const publicCheckbox = document.getElementById("est-public");
 
 const searchInput = document.getElementById("search-project");
 const filterBrand = document.getElementById("filter-brand");
@@ -711,13 +548,11 @@ function renderProjects() {
         <p>Essaie un autre mot, une autre marque ou un autre statut.</p>
       </div>
     `;
-
     return;
   }
 
   list.innerHTML = filtered.map(project => `
     <article class="project">
-
       <h3>${escapeHTML(project.nom)}</h3>
 
       <p>
@@ -748,8 +583,16 @@ function renderProjects() {
         </span>
       </p>
 
-      <div class="actions">
+      <p>
+        <strong>Publication :</strong>
+        ${
+          project.est_public
+          ? '<span class="publication-status is-public">Visible publiquement</span>'
+          : '<span class="publication-status is-private">Privé</span>'
+        }
+      </p>
 
+      <div class="actions">
         <button
           type="button"
           data-edit="${escapeHTML(project.id)}"
@@ -764,9 +607,7 @@ function renderProjects() {
         >
           Supprimer
         </button>
-
       </div>
-
     </article>
   `).join("");
 }
@@ -774,8 +615,8 @@ function renderProjects() {
 // Réinitialiser le formulaire
 function resetForm() {
   form.reset();
-
   editingId = null;
+  publicCheckbox.checked = false;
 
   document.getElementById("form-title").textContent =
     "Ajouter un projet";
@@ -814,7 +655,8 @@ form.addEventListener("submit", async event => {
     marque_id: brandSelect.value,
     statut: document.getElementById("status").value,
     date_debut: startDate || null,
-    date_fin: endDate || null
+    date_fin: endDate || null,
+    est_public: publicCheckbox.checked
   };
 
   if (!project.nom || !project.marque_id) {
@@ -854,7 +696,6 @@ form.addEventListener("submit", async event => {
     );
 
     resetForm();
-
     await loadProjects();
 
   } catch (error) {
@@ -888,7 +729,6 @@ list.addEventListener("click", async event => {
           "Impossible de récupérer ce projet : " +
           (error?.message || "Projet introuvable.")
         );
-
         return;
       }
 
@@ -910,6 +750,8 @@ list.addEventListener("click", async event => {
 
       document.getElementById("end-date").value =
         data.date_fin || "";
+
+      publicCheckbox.checked = data.est_public === true;
 
       document.getElementById("form-title").textContent =
         "Modifier un projet";
@@ -950,7 +792,6 @@ list.addEventListener("click", async event => {
       }
 
       showMessage("Projet supprimé avec succès.", true);
-
       await loadProjects();
 
     } catch (error) {
@@ -966,7 +807,6 @@ list.addEventListener("click", async event => {
 // Annuler une modification
 cancelButton.addEventListener("click", () => {
   resetForm();
-
   showMessage("Modification annulée.", true);
 });
 
@@ -991,7 +831,6 @@ async function startPage() {
     if (!brandsLoaded) {
       list.textContent =
         "Impossible de charger les projets sans marque disponible.";
-
       return;
     }
 
@@ -1017,4 +856,4 @@ startPage();
 
 </body>
   </html>
-    
+  
