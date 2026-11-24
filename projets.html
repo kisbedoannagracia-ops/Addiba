@@ -1,156 +1,330 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestion des projets | ADDIBA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion des projets | ADDIBA</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+:root {
+  --navy:#101f3c;
+  --green:#20a875;
+  --light:#f2f5f9;
+  --text:#17243b;
+  --muted:#68758a;
+  --white:#fff;
+  --red:#c0392b;
+}
 
-    body {
-      background: #f2f5f9;
-      color: #17243b;
-    }
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-    header {
-      background: #101f3c;
-      color: white;
-      padding: 20px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
+body {
+  background:var(--light);
+  color:var(--text);
+}
 
-    .logo {
-      color: #36c98a;
-      font-size: 26px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
+header {
+  background:var(--navy);
+  color:white;
+  padding:18px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
 
-    header a {
-      color: white;
-      text-decoration: none;
-    }
+.logo {
+  font-size:26px;
+  font-weight:bold;
+  letter-spacing:2px;
+  color:#36c98a;
+}
 
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 35px 20px;
-    }
+header a {
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
 
-    h1 {
-      color: #101f3c;
-      margin-bottom: 10px;
-    }
+main {
+  max-width:1200px;
+  margin:auto;
+  padding:30px 20px 50px;
+}
 
-    .intro {
-      color: #68758a;
-      margin-bottom: 25px;
-    }
+.page-heading {
+  margin-bottom:25px;
+}
 
-    .panel {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      margin-bottom: 25px;
-      box-shadow: 0 3px 12px #0000000b;
-    }
+.page-heading h1 {
+  color:var(--navy);
+  font-size:30px;
+  margin-bottom:8px;
+}
 
-    label {
-      display: block;
-      margin: 15px 0 7px;
-      font-weight: bold;
-    }
+.page-heading p {
+  color:var(--muted);
+  line-height:1.6;
+}
 
-    input, textarea, select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d5dce5;
-      border-radius: 7px;
-      font-size: 15px;
-    }
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:25px;
+}
 
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
+.stat-card {
+  background:white;
+  padding:22px;
+  border-radius:12px;
+  box-shadow:0 3px 12px #0000000b;
+  border-left:4px solid var(--green);
+}
 
-    button {
-      border: none;
-      border-radius: 7px;
-      padding: 12px 17px;
-      background: #20a875;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 18px;
-    }
+.stat-card p {
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:10px;
+}
 
-    button:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
+.stat-card h2 {
+  color:var(--navy);
+  font-size:30px;
+}
 
-    .cancel {
-      background: #68758a;
-      margin-left: 8px;
-    }
+.panel {
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  margin-bottom:25px;
+  box-shadow:0 3px 12px #0000000b;
+}
 
-    #message {
-      margin-top: 15px;
-      font-size: 14px;
-    }
+.panel h2 {
+  color:var(--navy);
+  font-size:21px;
+  margin-bottom:18px;
+}
 
-    .project {
-      border: 1px solid #e0e5ec;
-      border-radius: 9px;
-      padding: 18px;
-      margin-top: 15px;
-    }
+label {
+  display:block;
+  font-weight:bold;
+  margin:15px 0 7px;
+  font-size:14px;
+}
 
-    .project h3 {
-      color: #101f3c;
-      margin-bottom: 8px;
-    }
+input,textarea,select {
+  width:100%;
+  padding:13px;
+  border:1px solid #d5dce5;
+  border-radius:7px;
+  font-size:15px;
+  background:white;
+  color:var(--text);
+}
 
-    .project p {
-      color: #68758a;
-      margin: 7px 0;
-    }
+textarea {
+  min-height:100px;
+  resize:vertical;
+}
 
-    .status {
-      display: inline-block;
-      background: #e7f8f0;
-      color: #147a54;
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: bold;
-    }
+input:focus,textarea:focus,select:focus {
+  outline:2px solid #20a87533;
+  border-color:var(--green);
+}
 
-    .actions button {
-      margin-right: 8px;
-    }
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 18px;
+}
 
-    .delete {
-      background: #c0392b;
-    }
+button {
+  border:none;
+  border-radius:7px;
+  padding:12px 17px;
+  background:var(--green);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:18px;
+}
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #68758a;
-    }
-  </style>
+button:disabled {
+  opacity:.6;
+  cursor:wait;
+}
+
+.cancel {
+  background:#68758a;
+  margin-left:8px;
+}
+
+#message {
+  margin-top:15px;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.filters {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.project-list {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.project {
+  border:1px solid #e0e5ec;
+  border-radius:10px;
+  padding:20px;
+  background:#fff;
+}
+
+.project h3 {
+  color:var(--navy);
+  font-size:19px;
+  margin-bottom:9px;
+  overflow-wrap:anywhere;
+}
+
+.project p {
+  color:var(--muted);
+  font-size:14px;
+  margin:8px 0;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+
+.project strong {
+  color:var(--text);
+}
+
+.status {
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.status.en_preparation {
+  background:#fff3d9;
+  color:#946200;
+}
+
+.status.en_cours {
+  background:#e3f1ff;
+  color:#175b9a;
+}
+
+.status.termine {
+  background:#e3f7ed;
+  color:#147a54;
+}
+
+.status.suspendu {
+  background:#fde9e7;
+  color:#a52c20;
+}
+
+.actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+
+.actions button {
+  margin:0;
+  padding:10px 14px;
+}
+
+.delete {
+  background:var(--red);
+}
+
+.empty {
+  background:#f8fafc;
+  border:1px dashed #cbd5e1;
+  padding:25px;
+  border-radius:9px;
+  color:var(--muted);
+  text-align:center;
+  grid-column:1/-1;
+}
+
+.results-info {
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:14px;
+}
+
+footer {
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:850px) {
+  .stats {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .project-list {
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:600px) {
+  header {
+    padding:17px 5%;
+  }
+
+  main {
+    padding:25px 14px 40px;
+  }
+
+  .page-heading h1 {
+    font-size:25px;
+  }
+
+  .panel {
+    padding:18px;
+  }
+
+  .form-grid,
+  .filters {
+    grid-template-columns:1fr;
+  }
+
+  .stat-card {
+    padding:16px;
+  }
+
+  .stat-card h2 {
+    font-size:25px;
+  }
+
+  .actions button {
+    flex:1;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -162,10 +336,35 @@
 
 <main>
 
-  <h1>Gestion des projets</h1>
-  <p class="intro">
-    Créer, consulter et suivre les projets des marques de ADDIBA.
-  </p>
+  <div class="page-heading">
+    <h1>Gestion des projets</h1>
+    <p>
+      Pilote, organise et suis les projets et les initiatives
+      des marques du groupe ADDIBA.
+    </p>
+  </div>
+
+  <section class="stats">
+    <div class="stat-card">
+      <p>Total des projets</p>
+      <h2 id="totalProjects">—</h2>
+    </div>
+
+    <div class="stat-card">
+      <p>En préparation</p>
+      <h2 id="preparationProjects">—</h2>
+    </div>
+
+    <div class="stat-card">
+      <p>En cours</p>
+      <h2 id="ongoingProjects">—</h2>
+    </div>
+
+    <div class="stat-card">
+      <p>Terminés</p>
+      <h2 id="completedProjects">—</h2>
+    </div>
+  </section>
 
   <section class="panel">
 
@@ -173,32 +372,48 @@
 
     <form id="project-form">
 
-      <label for="name">Nom du projet</label>
-      <input id="name" type="text" required placeholder="Ex : Développement de Zaamarket">
+      <label for="name">Nom du projet *</label>
+      <input id="name" type="text" required maxlength="150"
+        placeholder="Ex : Développement de Zaamarket">
 
-      <label for="description">Description</label>
-      <textarea id="description" placeholder="Description du projet"></textarea>
+      <label for="description">Description du projet</label>
+      <textarea id="description"
+        placeholder="Présente les objectifs et les activités du projet"></textarea>
 
-      <label for="brand">Marque concernée</label>
-      <select id="brand" required>
-        <option value="">Chargement des marques...</option>
-      </select>
+      <div class="form-grid">
 
-      <label for="status">Statut du projet</label>
-      <select id="status">
-        <option value="en_preparation">En préparation</option>
-        <option value="en_cours">En cours</option>
-        <option value="termine">Terminé</option>
-        <option value="suspendu">Suspendu</option>
-      </select>
+        <div>
+          <label for="brand">Marque concernée *</label>
+          <select id="brand" required>
+            <option value="">Chargement des marques...</option>
+          </select>
+        </div>
 
-      <label for="start-date">Date de début</label>
-      <input id="start-date" type="date">
+        <div>
+          <label for="status">Statut du projet</label>
+          <select id="status">
+            <option value="en_preparation">En préparation</option>
+            <option value="en_cours">En cours</option>
+            <option value="termine">Terminé</option>
+            <option value="suspendu">Suspendu</option>
+          </select>
+        </div>
 
-      <label for="end-date">Date de fin prévue</label>
-      <input id="end-date" type="date">
+        <div>
+          <label for="start-date">Date de début</label>
+          <input id="start-date" type="date">
+        </div>
 
-      <button type="submit" id="save-button">Enregistrer le projet</button>
+        <div>
+          <label for="end-date">Date de fin prévue</label>
+          <input id="end-date" type="date">
+        </div>
+
+      </div>
+
+      <button type="submit" id="save-button">
+        Enregistrer le projet
+      </button>
 
       <button type="button" id="cancel-button" class="cancel" hidden>
         Annuler
@@ -206,15 +421,36 @@
 
     </form>
 
-    <p id="message" role="status"></p>
+    <p id="message" role="status" aria-live="polite"></p>
 
   </section>
 
   <section class="panel">
 
-    <h2>Projets enregistrés</h2>
+    <h2>Suivi des projets</h2>
 
-    <div id="project-list">
+    <div class="filters">
+
+      <input id="search-project" type="search"
+        placeholder="Rechercher un projet...">
+
+      <select id="filter-brand">
+        <option value="">Toutes les marques</option>
+      </select>
+
+      <select id="filter-status">
+        <option value="">Tous les statuts</option>
+        <option value="en_preparation">En préparation</option>
+        <option value="en_cours">En cours</option>
+        <option value="termine">Terminé</option>
+        <option value="suspendu">Suspendu</option>
+      </select>
+
+    </div>
+
+    <p class="results-info" id="results-info"></p>
+
+    <div id="project-list" class="project-list">
       Chargement des projets...
     </div>
 
@@ -222,255 +458,396 @@
 
 </main>
 
-<footer>© 2026 ADDIBA — Gestion des projets</footer>
+<footer>© 2026 ADDIBA — Espace de gestion des projets</footer>
 
 <script type="module">
 
-  import { supabase } from "./supabase.js";
+import { supabase } from "./supabase.js";
 
-  const form = document.getElementById("project-form");
-  const message = document.getElementById("message");
-  const list = document.getElementById("project-list");
-  const brandSelect = document.getElementById("brand");
-  const saveButton = document.getElementById("save-button");
-  const cancelButton = document.getElementById("cancel-button");
+const form = document.getElementById("project-form");
+const message = document.getElementById("message");
+const list = document.getElementById("project-list");
+const brandSelect = document.getElementById("brand");
+const saveButton = document.getElementById("save-button");
+const cancelButton = document.getElementById("cancel-button");
 
-  let editingId = null;
-  let brands = [];
+const searchInput = document.getElementById("search-project");
+const filterBrand = document.getElementById("filter-brand");
+const filterStatus = document.getElementById("filter-status");
 
-  function showMessage(text, success = false) {
-    message.textContent = text;
-    message.style.color = success ? "#16875d" : "#c0392b";
+let editingId = null;
+let brands = [];
+let projects = [];
+
+function showMessage(text, success = false) {
+  message.textContent = text;
+  message.style.color = success ? "#16875d" : "#c0392b";
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
+function formatStatus(status) {
+  const labels = {
+    en_preparation: "En préparation",
+    en_cours: "En cours",
+    termine: "Terminé",
+    suspendu: "Suspendu"
+  };
+
+  return labels[status] || status || "Non défini";
+}
+
+function formatDate(date) {
+  if (!date) return "Non définie";
+
+  const parts = date.split("-");
+  if (parts.length !== 3) return date;
+
+  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+}
+
+async function checkFounder() {
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error || !data.user) {
+    window.location.href = "connexion.html";
+    return false;
   }
 
-  function escapeHTML(value) {
-    return String(value ?? "").replace(/[&<>"']/g, char => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;"
-    })[char]);
+  const { data: profile, error: profileError } = await supabase
+    .from("profils")
+    .select("role")
+    .eq("id", data.user.id)
+    .single();
+
+  if (profileError || profile?.role !== "fondateur") {
+    await supabase.auth.signOut();
+    window.location.href = "connexion.html";
+    return false;
   }
 
-  function formatStatus(status) {
-    const labels = {
-      en_preparation: "En préparation",
-      en_cours: "En cours",
-      termine: "Terminé",
-      suspendu: "Suspendu"
-    };
+  return true;
+}
 
-    return labels[status] || status;
-  }
+async function loadBrands() {
+  const { data, error } = await supabase
+    .from("marques")
+    .select("id, nom")
+    .order("nom");
 
-  async function checkFounder() {
-    const { data, error } = await supabase.auth.getUser();
-
-    if (error || !data.user) {
-      window.location.href = "connexion.html";
-      return false;
-    }
-
-    const { data: profile, error: profileError } = await supabase
-      .from("profils")
-      .select("role")
-      .eq("id", data.user.id)
-      .single();
-
-    if (profileError || profile?.role !== "fondateur") {
-      await supabase.auth.signOut();
-      window.location.href = "connexion.html";
-      return false;
-    }
-
-    return true;
-  }
-
-  async function loadBrands() {
-    const { data, error } = await supabase
-      .from("marques")
-      .select("id, nom")
-      .order("nom");
-
-    if (error) {
-      brandSelect.innerHTML = '<option value="">Erreur de chargement</option>';
-      showMessage("Impossible de charger les marques : " + error.message);
-      return false;
-    }
-
-    brands = data || [];
-
+  if (error) {
     brandSelect.innerHTML =
-      '<option value="">Choisir une marque</option>' +
-      brands.map(brand =>
-        `<option value="${brand.id}">${escapeHTML(brand.nom)}</option>`
-      ).join("");
+      '<option value="">Erreur de chargement</option>';
 
-    return true;
+    showMessage("Impossible de charger les marques : " + error.message);
+    return false;
   }
 
-  async function loadProjects() {
-    list.textContent = "Chargement des projets...";
+  brands = data || [];
 
+  if (brands.length === 0) {
+    brandSelect.innerHTML =
+      '<option value="">Aucune marque disponible</option>';
+
+    showMessage("Aucune marque enregistrée. Ajoute d'abord une marque.");
+    return false;
+  }
+
+  const options = brands.map(brand =>
+    `<option value="${escapeHTML(brand.id)}">${escapeHTML(brand.nom)}</option>`
+  ).join("");
+
+  brandSelect.innerHTML =
+    '<option value="">Choisir une marque</option>' + options;
+
+  filterBrand.innerHTML =
+    '<option value="">Toutes les marques</option>' + options;
+
+  return true;
+}
+
+function updateStatistics() {
+  document.getElementById("totalProjects").textContent = projects.length;
+
+  document.getElementById("preparationProjects").textContent =
+    projects.filter(p => p.statut === "en_preparation").length;
+
+  document.getElementById("ongoingProjects").textContent =
+    projects.filter(p => p.statut === "en_cours").length;
+
+  document.getElementById("completedProjects").textContent =
+    projects.filter(p => p.statut === "termine").length;
+}
+
+async function loadProjects() {
+  list.textContent = "Chargement des projets...";
+
+  const { data, error } = await supabase
+    .from("projets")
+    .select("*, marques(nom)")
+    .order("id", { ascending: false });
+
+  if (error) {
+    list.textContent = "Erreur : " + error.message;
+    showMessage("Impossible de charger les projets : " + error.message);
+    return;
+  }
+
+  projects = data || [];
+
+  updateStatistics();
+  renderProjects();
+}
+
+function renderProjects() {
+  const search = searchInput.value.trim().toLowerCase();
+  const selectedBrand = filterBrand.value;
+  const selectedStatus = filterStatus.value;
+
+  const filtered = projects.filter(project => {
+
+    const matchesSearch =
+      (project.nom || "").toLowerCase().includes(search) ||
+      (project.description || "").toLowerCase().includes(search);
+
+    const matchesBrand =
+      !selectedBrand ||
+      String(project.marque_id) === selectedBrand;
+
+    const matchesStatus =
+      !selectedStatus ||
+      project.statut === selectedStatus;
+
+    return matchesSearch && matchesBrand && matchesStatus;
+  });
+
+  document.getElementById("results-info").textContent =
+    `${filtered.length} projet(s) affiché(s) sur ${projects.length}.`;
+
+  if (filtered.length === 0) {
+    list.innerHTML = `
+      <div class="empty">
+        Aucun projet ne correspond à ta recherche.
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = filtered.map(project => `
+    <article class="project">
+
+      <h3>${escapeHTML(project.nom)}</h3>
+
+      <p>${escapeHTML(project.description || "Aucune description renseignée.")}</p>
+
+      <p>
+        <strong>Marque :</strong>
+        ${escapeHTML(project.marques?.nom || "Non définie")}
+      </p>
+
+      <p>
+        <strong>Date de début :</strong>
+        ${escapeHTML(formatDate(project.date_debut))}
+      </p>
+
+      <p>
+        <strong>Fin prévue :</strong>
+        ${escapeHTML(formatDate(project.date_fin))}
+      </p>
+
+      <p>
+        <strong>Statut :</strong>
+        <span class="status ${escapeHTML(project.statut)}">
+          ${escapeHTML(formatStatus(project.statut))}
+        </span>
+      </p>
+
+      <div class="actions">
+        <button type="button" data-edit="${escapeHTML(project.id)}">
+          Modifier
+        </button>
+
+        <button type="button" class="delete"
+          data-delete="${escapeHTML(project.id)}">
+          Supprimer
+        </button>
+      </div>
+
+    </article>
+  `).join("");
+}
+
+function resetForm() {
+  form.reset();
+  editingId = null;
+
+  document.getElementById("form-title").textContent = "Ajouter un projet";
+  saveButton.textContent = "Enregistrer le projet";
+  cancelButton.hidden = true;
+}
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (saveButton.disabled) return;
+
+  saveButton.disabled = true;
+
+  const startDate = document.getElementById("start-date").value;
+  const endDate = document.getElementById("end-date").value;
+
+  if (startDate && endDate && endDate < startDate) {
+    showMessage("La date de fin ne peut pas précéder la date de début.");
+    saveButton.disabled = false;
+    return;
+  }
+
+  const project = {
+    nom: document.getElementById("name").value.trim(),
+    description: document.getElementById("description").value.trim(),
+    marque_id: Number(brandSelect.value),
+    statut: document.getElementById("status").value,
+    date_debut: startDate || null,
+    date_fin: endDate || null
+  };
+
+  if (!project.nom || !project.marque_id) {
+    showMessage("Remplis le nom du projet et choisis une marque.");
+    saveButton.disabled = false;
+    return;
+  }
+
+  try {
+    let result;
+
+    if (editingId !== null) {
+      result = await supabase
+        .from("projets")
+        .update(project)
+        .eq("id", editingId);
+    } else {
+      result = await supabase
+        .from("projets")
+        .insert(project);
+    }
+
+    if (result.error) throw result.error;
+
+    showMessage(
+      editingId !== null
+        ? "Les modifications ont été enregistrées."
+        : "Le projet a été créé avec succès.",
+      true
+    );
+
+    resetForm();
+    await loadProjects();
+
+  } catch (error) {
+    showMessage("Erreur : " + error.message);
+  } finally {
+    saveButton.disabled = false;
+  }
+});
+
+list.addEventListener("click", async event => {
+
+  const button = event.target.closest("button");
+
+  if (!button) return;
+
+  const editId = button.dataset.edit;
+  const deleteId = button.dataset.delete;
+
+  if (editId) {
     const { data, error } = await supabase
       .from("projets")
-      .select("*, marques(nom)")
-      .order("id", { ascending: false });
+      .select("*")
+      .eq("id", editId)
+      .single();
+
+    if (error || !data) {
+      showMessage("Impossible de récupérer ce projet.");
+      return;
+    }
+
+    editingId = data.id;
+
+    document.getElementById("name").value = data.nom || "";
+    document.getElementById("description").value = data.description || "";
+    brandSelect.value = data.marque_id || "";
+    document.getElementById("status").value =
+      data.statut || "en_preparation";
+
+    document.getElementById("start-date").value =
+      data.date_debut || "";
+
+    document.getElementById("end-date").value =
+      data.date_fin || "";
+
+    document.getElementById("form-title").textContent =
+      "Modifier un projet";
+
+    saveButton.textContent = "Enregistrer les modifications";
+    cancelButton.hidden = false;
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  if (deleteId) {
+    const confirmed = confirm(
+      "Attention : veux-tu vraiment supprimer ce projet ? Cette action est définitive."
+    );
+
+    if (!confirmed) return;
+
+    button.disabled = true;
+
+    const { error } = await supabase
+      .from("projets")
+      .delete()
+      .eq("id", deleteId);
 
     if (error) {
-      list.textContent = "Erreur : " + error.message;
+      showMessage("Suppression impossible : " + error.message);
+      button.disabled = false;
       return;
     }
 
-    if (!data || data.length === 0) {
-      list.textContent = "Aucun projet enregistré pour le moment.";
-      return;
-    }
-
-    list.innerHTML = data.map(project => `
-      <article class="project">
-        <h3>${escapeHTML(project.nom)}</h3>
-        <p>${escapeHTML(project.description || "Aucune description")}</p>
-        <p><strong>Marque :</strong> ${escapeHTML(project.marques?.nom || "Non définie")}</p>
-        <p><strong>Début :</strong> ${escapeHTML(project.date_debut || "Non définie")}</p>
-        <p><strong>Fin prévue :</strong> ${escapeHTML(project.date_fin || "Non définie")}</p>
-        <p><strong>Statut :</strong>
-          <span class="status">${escapeHTML(formatStatus(project.statut))}</span>
-        </p>
-        <div class="actions">
-          <button type="button" data-edit="${project.id}">Modifier</button>
-          <button type="button" class="delete" data-delete="${project.id}">
-            Supprimer
-          </button>
-        </div>
-      </article>
-    `).join("");
+    showMessage("Projet supprimé avec succès.", true);
+    await loadProjects();
   }
 
-  function resetForm() {
-    form.reset();
-    editingId = null;
-    document.getElementById("form-title").textContent = "Ajouter un projet";
-    saveButton.textContent = "Enregistrer le projet";
-    cancelButton.hidden = true;
+});
+
+cancelButton.addEventListener("click", () => {
+  resetForm();
+  showMessage("Modification annulée.", true);
+});
+
+searchInput.addEventListener("input", renderProjects);
+filterBrand.addEventListener("change", renderProjects);
+filterStatus.addEventListener("change", renderProjects);
+
+if (await checkFounder()) {
+  const brandsLoaded = await loadBrands();
+
+  if (brandsLoaded) {
+    await loadProjects();
+  } else {
+    list.textContent = "Impossible de charger les projets sans marque disponible.";
   }
-
-  form.addEventListener("submit", async event => {
-    event.preventDefault();
-    saveButton.disabled = true;
-
-    const startDate = document.getElementById("start-date").value;
-    const endDate = document.getElementById("end-date").value;
-
-    if (startDate && endDate && endDate < startDate) {
-      showMessage("La date de fin ne peut pas précéder la date de début.");
-      saveButton.disabled = false;
-      return;
-    }
-
-    const project = {
-      nom: document.getElementById("name").value.trim(),
-      description: document.getElementById("description").value.trim(),
-      marque_id: Number(brandSelect.value),
-      statut: document.getElementById("status").value,
-      date_debut: startDate || null,
-      date_fin: endDate || null
-    };
-
-    try {
-      let result;
-
-      if (editingId !== null) {
-        result = await supabase
-          .from("projets")
-          .update(project)
-          .eq("id", editingId);
-      } else {
-        result = await supabase
-          .from("projets")
-          .insert(project);
-      }
-
-      if (result.error) throw result.error;
-
-      showMessage("Projet enregistré avec succès.", true);
-      resetForm();
-      await loadProjects();
-
-    } catch (error) {
-      showMessage("Erreur : " + error.message);
-    } finally {
-      saveButton.disabled = false;
-    }
-  });
-
-  list.addEventListener("click", async event => {
-
-    const editId = event.target.dataset.edit;
-    const deleteId = event.target.dataset.delete;
-
-    if (editId) {
-      const { data, error } = await supabase
-        .from("projets")
-        .select("*")
-        .eq("id", editId)
-        .single();
-
-      if (error || !data) {
-        showMessage("Impossible de récupérer ce projet.");
-        return;
-      }
-
-      editingId = data.id;
-      document.getElementById("name").value = data.nom;
-      document.getElementById("description").value = data.description || "";
-      brandSelect.value = data.marque_id || "";
-      document.getElementById("status").value = data.statut;
-      document.getElementById("start-date").value = data.date_debut || "";
-      document.getElementById("end-date").value = data.date_fin || "";
-
-      document.getElementById("form-title").textContent = "Modifier un projet";
-      saveButton.textContent = "Enregistrer les modifications";
-      cancelButton.hidden = false;
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    if (deleteId) {
-      const confirmed = confirm(
-        "Attention : veux-tu vraiment supprimer ce projet ?"
-      );
-
-      if (!confirmed) return;
-
-      const { error } = await supabase
-        .from("projets")
-        .delete()
-        .eq("id", deleteId);
-
-      if (error) {
-        showMessage("Suppression impossible : " + error.message);
-        return;
-      }
-
-      showMessage("Projet supprimé.", true);
-      await loadProjects();
-    }
-
-  });
-
-  cancelButton.addEventListener("click", resetForm);
-
-  if (await checkFounder()) {
-    const brandsLoaded = await loadBrands();
-
-    if (brandsLoaded) {
-      await loadProjects();
-    }
-  }
+}
 
 </script>
-
 </body>
 </html>
+            
