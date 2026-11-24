@@ -7,320 +7,324 @@
 
 <style>
 :root {
-  --navy:#101f3c;
-  --green:#20a875;
-  --light:#f2f5f9;
-  --text:#17243b;
-  --muted:#68758a;
-  --white:#fff;
-  --red:#c0392b;
+  --navy: #101f3c;
+  --green: #20a875;
+  --light: #f2f5f9;
+  --text: #17243b;
+  --muted: #68758a;
+  --white: #ffffff;
+  --red: #c0392b;
 }
 
 * {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background:var(--light);
-  color:var(--text);
+  background: var(--light);
+  color: var(--text);
 }
 
 header {
-  background:var(--navy);
-  color:white;
-  padding:18px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:15px;
+  background: var(--navy);
+  color: white;
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .logo {
-  font-size:26px;
-  font-weight:bold;
-  letter-spacing:2px;
-  color:#36c98a;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #36c98a;
 }
 
 header a {
-  color:white;
-  text-decoration:none;
-  font-size:14px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 main {
-  max-width:1200px;
-  margin:auto;
-  padding:30px 20px 50px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 20px 50px;
 }
 
 .page-heading {
-  margin-bottom:25px;
+  margin-bottom: 25px;
 }
 
 .page-heading h1 {
-  color:var(--navy);
-  font-size:30px;
-  margin-bottom:8px;
+  color: var(--navy);
+  font-size: 30px;
+  margin-bottom: 8px;
 }
 
 .page-heading p {
-  color:var(--muted);
-  line-height:1.6;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .stats {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  margin-bottom:25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 25px;
 }
 
 .stat-card {
-  background:white;
-  padding:22px;
-  border-radius:12px;
-  box-shadow:0 3px 12px #0000000b;
-  border-left:4px solid var(--green);
+  background: white;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #0000000b;
+  border-left: 4px solid var(--green);
 }
 
 .stat-card p {
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:10px;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 10px;
 }
 
 .stat-card h2 {
-  color:var(--navy);
-  font-size:30px;
+  color: var(--navy);
+  font-size: 30px;
 }
 
 .panel {
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  margin-bottom:25px;
-  box-shadow:0 3px 12px #0000000b;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px #0000000b;
 }
 
 .panel h2 {
-  color:var(--navy);
-  font-size:21px;
-  margin-bottom:18px;
+  color: var(--navy);
+  font-size: 21px;
+  margin-bottom: 18px;
 }
 
 label {
-  display:block;
-  font-weight:bold;
-  margin:15px 0 7px;
-  font-size:14px;
+  display: block;
+  font-weight: bold;
+  margin: 15px 0 7px;
+  font-size: 14px;
 }
 
-input,textarea,select {
-  width:100%;
-  padding:13px;
-  border:1px solid #d5dce5;
-  border-radius:7px;
-  font-size:15px;
-  background:white;
-  color:var(--text);
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d5dce5;
+  border-radius: 7px;
+  font-size: 15px;
+  background: white;
+  color: var(--text);
 }
 
 textarea {
-  min-height:100px;
-  resize:vertical;
+  min-height: 100px;
+  resize: vertical;
 }
 
-input:focus,textarea:focus,select:focus {
-  outline:2px solid #20a87533;
-  border-color:var(--green);
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #20a87533;
+  border-color: var(--green);
 }
 
 .form-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
 }
 
 button {
-  border:none;
-  border-radius:7px;
-  padding:12px 17px;
-  background:var(--green);
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-  margin-top:18px;
+  border: none;
+  border-radius: 7px;
+  padding: 12px 17px;
+  background: var(--green);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 18px;
 }
 
 button:disabled {
-  opacity:.6;
-  cursor:wait;
+  opacity: 0.6;
+  cursor: wait;
 }
 
 .cancel {
-  background:#68758a;
-  margin-left:8px;
+  background: #68758a;
+  margin-left: 8px;
 }
 
 #message {
-  margin-top:15px;
-  font-size:14px;
-  line-height:1.5;
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .filters {
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:12px;
-  margin-bottom:20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .project-list {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .project {
-  border:1px solid #e0e5ec;
-  border-radius:10px;
-  padding:20px;
-  background:#fff;
+  border: 1px solid #e0e5ec;
+  border-radius: 10px;
+  padding: 20px;
+  background: white;
 }
 
 .project h3 {
-  color:var(--navy);
-  font-size:19px;
-  margin-bottom:9px;
-  overflow-wrap:anywhere;
+  color: var(--navy);
+  font-size: 19px;
+  margin-bottom: 9px;
+  overflow-wrap: anywhere;
 }
 
 .project p {
-  color:var(--muted);
-  font-size:14px;
-  margin:8px 0;
-  line-height:1.5;
-  overflow-wrap:anywhere;
+  color: var(--muted);
+  font-size: 14px;
+  margin: 8px 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .project strong {
-  color:var(--text);
+  color: var(--text);
 }
 
 .status {
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:bold;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .status.en_preparation {
-  background:#fff3d9;
-  color:#946200;
+  background: #fff3d9;
+  color: #946200;
 }
 
 .status.en_cours {
-  background:#e3f1ff;
-  color:#175b9a;
+  background: #e3f1ff;
+  color: #175b9a;
 }
 
 .status.termine {
-  background:#e3f7ed;
-  color:#147a54;
+  background: #e3f7ed;
+  color: #147a54;
 }
 
 .status.suspendu {
-  background:#fde9e7;
-  color:#a52c20;
+  background: #fde9e7;
+  color: #a52c20;
 }
 
 .actions {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 .actions button {
-  margin:0;
-  padding:10px 14px;
+  margin: 0;
+  padding: 10px 14px;
 }
 
 .delete {
-  background:var(--red);
+  background: var(--red);
 }
 
 .empty {
-  background:#f8fafc;
-  border:1px dashed #cbd5e1;
-  padding:25px;
-  border-radius:9px;
-  color:var(--muted);
-  text-align:center;
-  grid-column:1/-1;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  padding: 25px;
+  border-radius: 9px;
+  color: var(--muted);
+  text-align: center;
+  grid-column: 1 / -1;
 }
 
 .results-info {
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:14px;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 14px;
 }
 
 footer {
-  text-align:center;
-  padding:25px;
-  color:var(--muted);
-  font-size:13px;
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
-@media(max-width:850px) {
+@media (max-width: 850px) {
   .stats {
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .project-list {
-    grid-template-columns:1fr;
+    grid-template-columns: 1fr;
   }
 }
 
-@media(max-width:600px) {
+@media (max-width: 600px) {
   header {
-    padding:17px 5%;
+    padding: 17px 5%;
   }
 
   main {
-    padding:25px 14px 40px;
+    padding: 25px 14px 40px;
   }
 
   .page-heading h1 {
-    font-size:25px;
+    font-size: 25px;
   }
 
   .panel {
-    padding:18px;
+    padding: 18px;
   }
 
   .form-grid,
   .filters {
-    grid-template-columns:1fr;
+    grid-template-columns: 1fr;
   }
 
   .stat-card {
-    padding:16px;
+    padding: 16px;
   }
 
   .stat-card h2 {
-    font-size:25px;
+    font-size: 25px;
   }
 
   .actions button {
-    flex:1;
+    flex: 1;
   }
 }
 </style>
@@ -344,6 +348,7 @@ footer {
   </div>
 
   <section class="stats">
+
     <div class="stat-card">
       <p>Total des projets</p>
       <h2 id="totalProjects">—</h2>
@@ -363,6 +368,7 @@ footer {
       <p>Terminés</p>
       <h2 id="completedProjects">—</h2>
     </div>
+
   </section>
 
   <section class="panel">
@@ -372,12 +378,19 @@ footer {
     <form id="project-form">
 
       <label for="name">Nom du projet *</label>
-      <input id="name" type="text" required maxlength="150"
-        placeholder="Ex : Développement de Zaamarket">
+      <input
+        id="name"
+        type="text"
+        required
+        maxlength="150"
+        placeholder="Ex : Développement de Zaamarket"
+      >
 
       <label for="description">Description du projet</label>
-      <textarea id="description"
-        placeholder="Présente les objectifs et les activités du projet"></textarea>
+      <textarea
+        id="description"
+        placeholder="Présente les objectifs et les activités du projet"
+      ></textarea>
 
       <div class="form-grid">
 
@@ -414,7 +427,12 @@ footer {
         Enregistrer le projet
       </button>
 
-      <button type="button" id="cancel-button" class="cancel" hidden>
+      <button
+        type="button"
+        id="cancel-button"
+        class="cancel"
+        hidden
+      >
         Annuler
       </button>
 
@@ -430,7 +448,11 @@ footer {
 
     <div class="filters">
 
-       <input id="search-project" type="search" placeholder="Rechercher un projet...">
+      <input
+        id="search-project"
+        type="search"
+        placeholder="Rechercher un projet..."
+      >
 
       <select id="filter-brand">
         <option value="">Toutes les marques</option>
@@ -456,12 +478,15 @@ footer {
 
 </main>
 
-<footer>© 2026 ADDIBA — Espace de gestion des projets</footer>
+<footer>
+  © 2026 ADDIBA — Espace de gestion des projets
+</footer>
 
 <script type="module">
 
 import { supabase } from "./supabase.js";
 
+// Éléments HTML
 const form = document.getElementById("project-form");
 const message = document.getElementById("message");
 const list = document.getElementById("project-list");
@@ -473,15 +498,18 @@ const searchInput = document.getElementById("search-project");
 const filterBrand = document.getElementById("filter-brand");
 const filterStatus = document.getElementById("filter-status");
 
+// Variables
 let editingId = null;
 let brands = [];
 let projects = [];
 
+// Afficher un message
 function showMessage(text, success = false) {
   message.textContent = text;
   message.style.color = success ? "#16875d" : "#c0392b";
 }
 
+// Sécuriser les textes
 function escapeHTML(value) {
   return String(value ?? "").replace(/[&<>"']/g, char => ({
     "&": "&amp;",
@@ -492,6 +520,7 @@ function escapeHTML(value) {
   })[char]);
 }
 
+// Traduire les statuts
 function formatStatus(status) {
   const labels = {
     en_preparation: "En préparation",
@@ -503,15 +532,18 @@ function formatStatus(status) {
   return labels[status] || status || "Non défini";
 }
 
+// Formater les dates
 function formatDate(date) {
   if (!date) return "Non définie";
 
   const parts = date.split("-");
+
   if (parts.length !== 3) return date;
 
   return `${parts[2]}/${parts[1]}/${parts[0]}`;
 }
 
+// Vérifier l'accès du fondateur
 async function checkFounder() {
   const { data, error } = await supabase.auth.getUser();
 
@@ -535,7 +567,11 @@ async function checkFounder() {
   return true;
 }
 
+// Charger les marques
 async function loadBrands() {
+  brandSelect.innerHTML =
+    '<option value="">Chargement des marques...</option>';
+
   const { data, error } = await supabase
     .from("marques")
     .select("id, nom")
@@ -545,7 +581,10 @@ async function loadBrands() {
     brandSelect.innerHTML =
       '<option value="">Erreur de chargement</option>';
 
-    showMessage("Impossible de charger les marques : " + error.message);
+    showMessage(
+      "Impossible de charger les marques : " + error.message
+    );
+
     return false;
   }
 
@@ -555,7 +594,10 @@ async function loadBrands() {
     brandSelect.innerHTML =
       '<option value="">Aucune marque disponible</option>';
 
-    showMessage("Aucune marque enregistrée. Ajoute d'abord une marque.");
+    showMessage(
+      "Aucune marque enregistrée. Ajoute d'abord une marque."
+    );
+
     return false;
   }
 
@@ -572,8 +614,10 @@ async function loadBrands() {
   return true;
 }
 
+// Actualiser les statistiques
 function updateStatistics() {
-  document.getElementById("totalProjects").textContent = projects.length;
+  document.getElementById("totalProjects").textContent =
+    projects.length;
 
   document.getElementById("preparationProjects").textContent =
     projects.filter(p => p.statut === "en_preparation").length;
@@ -585,6 +629,7 @@ function updateStatistics() {
     projects.filter(p => p.statut === "termine").length;
 }
 
+// Charger les projets
 async function loadProjects() {
   list.textContent = "Chargement des projets...";
 
@@ -595,17 +640,23 @@ async function loadProjects() {
 
   if (error) {
     list.textContent = "Erreur : " + error.message;
-    showMessage("Impossible de charger les projets : " + error.message);
-    return;
+
+    showMessage(
+      "Impossible de charger les projets : " + error.message
+    );
+
+    return false;
   }
 
   projects = data || [];
 
   updateStatistics();
   renderProjects();
+
+  return true;
 }
 
-
+// Normaliser la recherche
 function normalizeSearch(value) {
   return String(value || "")
     .normalize("NFD")
@@ -614,6 +665,7 @@ function normalizeSearch(value) {
     .trim();
 }
 
+// Afficher les projets et appliquer les filtres
 function renderProjects() {
   const search = normalizeSearch(searchInput.value);
   const selectedBrand = filterBrand.value;
@@ -659,15 +711,19 @@ function renderProjects() {
         <p>Essaie un autre mot, une autre marque ou un autre statut.</p>
       </div>
     `;
+
     return;
   }
 
   list.innerHTML = filtered.map(project => `
     <article class="project">
+
       <h3>${escapeHTML(project.nom)}</h3>
 
       <p>
-        ${escapeHTML(project.description || "Aucune description renseignée.")}
+        ${escapeHTML(
+          project.description || "Aucune description renseignée."
+        )}
       </p>
 
       <p>
@@ -693,73 +749,42 @@ function renderProjects() {
       </p>
 
       <div class="actions">
-        <button type="button" data-edit="${escapeHTML(project.id)}">
+
+        <button
+          type="button"
+          data-edit="${escapeHTML(project.id)}"
+        >
           Modifier
         </button>
 
-        <button type="button" class="delete"
-          data-delete="${escapeHTML(project.id)}">
+        <button
+          type="button"
+          class="delete"
+          data-delete="${escapeHTML(project.id)}"
+        >
           Supprimer
         </button>
-      </div>
-    </article>
-  `).join("");
-  }
-  
 
-  list.innerHTML = filtered.map(project => `
-    <article class="project">
-
-      <h3>${escapeHTML(project.nom)}</h3>
-
-      <p>${escapeHTML(project.description || "Aucune description renseignée.")}</p>
-
-      <p>
-        <strong>Marque :</strong>
-        ${escapeHTML(project.marques?.nom || "Non définie")}
-      </p>
-
-      <p>
-        <strong>Date de début :</strong>
-        ${escapeHTML(formatDate(project.date_debut))}
-      </p>
-
-      <p>
-        <strong>Fin prévue :</strong>
-        ${escapeHTML(formatDate(project.date_fin))}
-      </p>
-
-      <p>
-        <strong>Statut :</strong>
-        <span class="status ${escapeHTML(project.statut)}">
-          ${escapeHTML(formatStatus(project.statut))}
-        </span>
-      </p>
-
-      <div class="actions">
-        <button type="button" data-edit="${escapeHTML(project.id)}">
-          Modifier
-        </button>
-
-        <button type="button" class="delete"
-          data-delete="${escapeHTML(project.id)}">
-          Supprimer
-        </button>
       </div>
 
     </article>
   `).join("");
 }
 
+// Réinitialiser le formulaire
 function resetForm() {
   form.reset();
+
   editingId = null;
 
-  document.getElementById("form-title").textContent = "Ajouter un projet";
+  document.getElementById("form-title").textContent =
+    "Ajouter un projet";
+
   saveButton.textContent = "Enregistrer le projet";
   cancelButton.hidden = true;
 }
 
+// Ajouter ou modifier un projet
 form.addEventListener("submit", async event => {
   event.preventDefault();
 
@@ -767,26 +792,36 @@ form.addEventListener("submit", async event => {
 
   saveButton.disabled = true;
 
-  const startDate = document.getElementById("start-date").value;
-  const endDate = document.getElementById("end-date").value;
+  const startDate =
+    document.getElementById("start-date").value;
+
+  const endDate =
+    document.getElementById("end-date").value;
 
   if (startDate && endDate && endDate < startDate) {
-    showMessage("La date de fin ne peut pas précéder la date de début.");
+    showMessage(
+      "La date de fin ne peut pas précéder la date de début."
+    );
+
     saveButton.disabled = false;
     return;
   }
 
   const project = {
     nom: document.getElementById("name").value.trim(),
-    description: document.getElementById("description").value.trim(),
-    marque_id: Number(brandSelect.value),
+    description:
+      document.getElementById("description").value.trim(),
+    marque_id: brandSelect.value,
     statut: document.getElementById("status").value,
     date_debut: startDate || null,
     date_fin: endDate || null
   };
 
   if (!project.nom || !project.marque_id) {
-    showMessage("Remplis le nom du projet et choisis une marque.");
+    showMessage(
+      "Remplis le nom du projet et choisis une marque."
+    );
+
     saveButton.disabled = false;
     return;
   }
@@ -800,13 +835,16 @@ form.addEventListener("submit", async event => {
         .update(project)
         .eq("id", editingId);
     } else {
-  result = await supabase
-    .from("projets")
-    .insert(project)
-    .select()
-    .single();
-  }
-    if (result.error) throw result.error;
+      result = await supabase
+        .from("projets")
+        .insert(project)
+        .select()
+        .single();
+    }
+
+    if (result.error) {
+      throw result.error;
+    }
 
     showMessage(
       editingId !== null
@@ -816,17 +854,19 @@ form.addEventListener("submit", async event => {
     );
 
     resetForm();
+
     await loadProjects();
 
   } catch (error) {
     showMessage("Erreur : " + error.message);
+
   } finally {
     saveButton.disabled = false;
   }
 });
 
+// Gérer les boutons Modifier et Supprimer
 list.addEventListener("click", async event => {
-
   const button = event.target.closest("button");
 
   if (!button) return;
@@ -834,41 +874,62 @@ list.addEventListener("click", async event => {
   const editId = button.dataset.edit;
   const deleteId = button.dataset.delete;
 
+  // Modifier un projet
   if (editId) {
-    const { data, error } = await supabase
-      .from("projets")
-      .select("*")
-      .eq("id", editId)
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from("projets")
+        .select("*")
+        .eq("id", editId)
+        .single();
 
-    if (error || !data) {
-      showMessage("Impossible de récupérer ce projet.");
-      return;
+      if (error || !data) {
+        showMessage(
+          "Impossible de récupérer ce projet : " +
+          (error?.message || "Projet introuvable.")
+        );
+
+        return;
+      }
+
+      editingId = data.id;
+
+      document.getElementById("name").value =
+        data.nom || "";
+
+      document.getElementById("description").value =
+        data.description || "";
+
+      brandSelect.value = data.marque_id || "";
+
+      document.getElementById("status").value =
+        data.statut || "en_preparation";
+
+      document.getElementById("start-date").value =
+        data.date_debut || "";
+
+      document.getElementById("end-date").value =
+        data.date_fin || "";
+
+      document.getElementById("form-title").textContent =
+        "Modifier un projet";
+
+      saveButton.textContent =
+        "Enregistrer les modifications";
+
+      cancelButton.hidden = false;
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    } catch (error) {
+      showMessage("Erreur : " + error.message);
     }
-
-    editingId = data.id;
-
-    document.getElementById("name").value = data.nom || "";
-    document.getElementById("description").value = data.description || "";
-    brandSelect.value = data.marque_id || "";
-    document.getElementById("status").value =
-      data.statut || "en_preparation";
-
-    document.getElementById("start-date").value =
-      data.date_debut || "";
-
-    document.getElementById("end-date").value =
-      data.date_fin || "";
-
-    document.getElementById("form-title").textContent =
-      "Modifier un projet";
-
-    saveButton.textContent = "Enregistrer les modifications";
-    cancelButton.hidden = false;
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  // Supprimer un projet
   if (deleteId) {
     const confirmed = confirm(
       "Attention : veux-tu vraiment supprimer ce projet ? Cette action est définitive."
@@ -878,43 +939,82 @@ list.addEventListener("click", async event => {
 
     button.disabled = true;
 
-    const { error } = await supabase
-      .from("projets")
-      .delete()
-      .eq("id", deleteId);
+    try {
+      const { error } = await supabase
+        .from("projets")
+        .delete()
+        .eq("id", deleteId);
 
-    if (error) {
-      showMessage("Suppression impossible : " + error.message);
+      if (error) {
+        throw error;
+      }
+
+      showMessage("Projet supprimé avec succès.", true);
+
+      await loadProjects();
+
+    } catch (error) {
+      showMessage(
+        "Suppression impossible : " + error.message
+      );
+
       button.disabled = false;
-      return;
     }
-
-    showMessage("Projet supprimé avec succès.", true);
-    await loadProjects();
   }
-
 });
 
+// Annuler une modification
 cancelButton.addEventListener("click", () => {
   resetForm();
+
   showMessage("Modification annulée.", true);
 });
 
+// Recherche et filtres
 searchInput.addEventListener("input", renderProjects);
 filterBrand.addEventListener("change", renderProjects);
 filterStatus.addEventListener("change", renderProjects);
 
-if (await checkFounder()) {
-  const brandsLoaded = await loadBrands();
+// Démarrage sécurisé de la page
+async function startPage() {
+  try {
+    list.textContent = "Vérification de votre accès...";
 
-  if (brandsLoaded) {
+    const isFounder = await checkFounder();
+
+    if (!isFounder) return;
+
+    list.textContent = "Chargement des marques...";
+
+    const brandsLoaded = await loadBrands();
+
+    if (!brandsLoaded) {
+      list.textContent =
+        "Impossible de charger les projets sans marque disponible.";
+
+      return;
+    }
+
     await loadProjects();
-  } else {
-    list.textContent = "Impossible de charger les projets sans marque disponible.";
+
+  } catch (error) {
+    console.error("Erreur de démarrage ADDIBA :", error);
+
+    showMessage(
+      "Erreur au démarrage : " +
+      (error.message || "Une erreur inattendue est survenue.")
+    );
+
+    list.textContent =
+      "Le chargement a échoué. Vérifie la connexion et réessaie.";
   }
 }
 
+// Lancer la page
+startPage();
+
 </script>
+
 </body>
-</html>
-            
+  </html>
+    
