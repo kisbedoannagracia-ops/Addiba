@@ -605,16 +605,39 @@ async function loadProjects() {
   renderProjects();
 }
 
+
+function normalizeSearch(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
 function renderProjects() {
-  const search = searchInput.value.trim().toLowerCase();
+  const search = normalizeSearch(searchInput.value);
   const selectedBrand = filterBrand.value;
   const selectedStatus = filterStatus.value;
 
+  const terms = search.split(/\s+/).filter(Boolean);
+
   const filtered = projects.filter(project => {
-const matchesSearch =
-  (project.nom || "").toLowerCase().includes(search) ||
-  (project.description || "").toLowerCase().includes(search) ||
-  (project.marques?.nom || "").toLowerCase().includes(search);
+    const brandName = project.marques?.nom || "";
+    const statusName = formatStatus(project.statut);
+
+    const searchableText = normalizeSearch([
+      project.nom,
+      project.description,
+      brandName,
+      statusName,
+      project.date_debut,
+      project.date_fin
+    ].join(" "));
+
+    const matchesSearch = terms.every(term =>
+      searchableText.includes(term)
+    );
+
     const matchesBrand =
       !selectedBrand ||
       String(project.marque_id) === selectedBrand;
@@ -632,11 +655,57 @@ const matchesSearch =
   if (filtered.length === 0) {
     list.innerHTML = `
       <div class="empty">
-        Aucun projet ne correspond à ta recherche.
+        <h3>Aucun projet trouvé</h3>
+        <p>Essaie un autre mot, une autre marque ou un autre statut.</p>
       </div>
     `;
     return;
   }
+
+  list.innerHTML = filtered.map(project => `
+    <article class="project">
+      <h3>${escapeHTML(project.nom)}</h3>
+
+      <p>
+        ${escapeHTML(project.description || "Aucune description renseignée.")}
+      </p>
+
+      <p>
+        <strong>Marque :</strong>
+        ${escapeHTML(project.marques?.nom || "Non définie")}
+      </p>
+
+      <p>
+        <strong>Date de début :</strong>
+        ${escapeHTML(formatDate(project.date_debut))}
+      </p>
+
+      <p>
+        <strong>Fin prévue :</strong>
+        ${escapeHTML(formatDate(project.date_fin))}
+      </p>
+
+      <p>
+        <strong>Statut :</strong>
+        <span class="status ${escapeHTML(project.statut)}">
+          ${escapeHTML(formatStatus(project.statut))}
+        </span>
+      </p>
+
+      <div class="actions">
+        <button type="button" data-edit="${escapeHTML(project.id)}">
+          Modifier
+        </button>
+
+        <button type="button" class="delete"
+          data-delete="${escapeHTML(project.id)}">
+          Supprimer
+        </button>
+      </div>
+    </article>
+  `).join("");
+  }
+  
 
   list.innerHTML = filtered.map(project => `
     <article class="project">
