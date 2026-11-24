@@ -350,6 +350,131 @@
     utiles et de contribuer au développement de l'Afrique.
   </p>
 </section>
+
+<footer>
+  <strong>ADDIBA</strong>
+  <p>Construire aujourd'hui les initiatives de demain.</p>
+  <p>© <span id="current-year"></span> ADDIBA. Tous droits réservés.</p>
+</footer>
+
+<script type="module">
+  import { supabase } from "./supabase.js";
+
+  const projectsContainer =
+    document.getElementById("projects-container");
+
+  document.getElementById("current-year").textContent =
+    new Date().getFullYear();
+
+  function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function(char) {
+      const entities = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      };
+
+      return entities[char];
+    });
+  }
+
+  function formatDate(value) {
+    if (!value) return "";
+
+    const date = new Date(value + "T00:00:00");
+
+    if (Number.isNaN(date.getTime())) return "";
+
+    return date.toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric"
+    });
+  }
+
+  function displayProject(project) {
+    const card = document.createElement("article");
+    card.className = "project-card";
+
+    const name = escapeHTML(project.nom || "Projet ADDIBA");
+    const description = escapeHTML(
+      project.description || "Description à venir."
+    );
+    const status = escapeHTML(project.statut || "En cours");
+
+    const dates = [];
+
+    if (project.date_debut) {
+      dates.push("Début : " + formatDate(project.date_debut));
+    }
+
+    if (project.date_fin) {
+      dates.push("Fin : " + formatDate(project.date_fin));
+    }
+
+    card.innerHTML = `
+      <h3>${name}</h3>
+      <p>${description}</p>
+      <span class="project-status">${status}</span>
+      ${
+        dates.length
+          ? `<div class="project-dates">${dates.map(escapeHTML).join(" · ")}</div>`
+          : ""
+      }
+    `;
+
+    projectsContainer.appendChild(card);
+  }
+
+  async function loadPublicProjects() {
+    projectsContainer.innerHTML =
+      '<div class="empty-message">Chargement des projets...</div>';
+
+    try {
+      const { data, error } = await supabase
+        .from("projets")
+        .select(
+          "id, nom, description, statut, date_debut, date_fin, est_public"
+        )
+        .eq("est_public", true)
+        .order("id", { ascending: false });
+
+      if (error) {
+        throw error;
+      }
+
+      projectsContainer.innerHTML = "";
+
+      if (!data || data.length === 0) {
+        projectsContainer.innerHTML = `
+          <div class="empty-message">
+            Aucun projet public n'est disponible pour le moment.
+            Revenez bientôt découvrir les prochaines initiatives d'ADDIBA.
+          </div>
+        `;
+        return;
+      }
+
+      data.forEach(displayProject);
+
+    } catch (error) {
+      console.error("Erreur de chargement des projets :", error);
+
+      projectsContainer.innerHTML = `
+        <div class="empty-message">
+          Impossible de charger les projets pour le moment.
+          <br>
+          Veuillez réessayer plus tard.
+        </div>
+      `;
+    }
+  }
+
+  loadPublicProjects();
+</script>
+
 </body>
-  </html>
-                                            
+</html>
+  
