@@ -8,56 +8,93 @@
 
 <style>
 :root{
---navy:#101f3c;--navy2:#192e50;--green:#20bd83;
---bg:#f3f6fa;--white:#fff;--text:#24334b;
---muted:#718096;--border:#e5eaf1;
+  --navy:#101f3c;
+  --navy2:#192e50;
+  --green:#20bd83;
+  --bg:#f3f6fa;
+  --white:#fff;
+  --text:#24334b;
+  --muted:#718096;
+  --border:#e5eaf1;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
 button,input,textarea,select{font:inherit}
 .sidebar{
-position:fixed;top:0;left:0;width:255px;height:100vh;
-background:var(--navy);color:white;padding:25px 17px;
-overflow-y:auto;z-index:1000;transition:transform .3s
+  position:fixed;top:0;left:0;width:255px;height:100vh;
+  background:var(--navy);color:white;padding:25px 17px;
+  overflow-y:auto;z-index:1000;transition:transform .3s
 }
 .logo{font-size:27px;font-weight:800;padding:0 12px}
 .logo span{color:var(--green)}
 .sidebar-subtitle{font-size:12px;color:#aebbd0;padding:5px 12px 28px}
 .menu-title{font-size:11px;color:#8999b2;text-transform:uppercase;padding:12px}
 .menu{display:flex;flex-direction:column;gap:5px}
-.menu a{text-decoration:none;color:#c9d3e1;padding:13px 14px;border-radius:8px;font-size:14px}
-.menu a:hover,.menu a.active{background:rgba(32,189,131,.15);color:var(--green)}
+.menu a{
+  text-decoration:none;color:#c9d3e1;padding:13px 14px;
+  border-radius:8px;font-size:14px
+}
+.menu a:hover,.menu a.active{
+  background:rgba(32,189,131,.15);color:var(--green)
+}
 .menu a span{display:inline-block;width:27px}
 .sidebar-bottom{margin-top:35px;border-top:1px solid #ffffff20;padding-top:18px}
-.sidebar-bottom button{width:100%;padding:12px;border:0;background:transparent;color:#ffb5b5;text-align:left;cursor:pointer}
+.sidebar-bottom button{
+  width:100%;padding:12px;border:0;background:transparent;
+  color:#ffb5b5;text-align:left;cursor:pointer
+}
 .sidebar-close{display:none}
 .overlay{display:none}
 .main{margin-left:255px;min-height:100vh}
-.topbar{background:white;min-height:75px;padding:15px 32px;display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.topbar{
+  background:white;min-height:75px;padding:15px 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:50
+}
 .topbar h2{font-size:19px;color:var(--navy)}
 .topbar small{display:block;color:var(--muted);margin-top:5px}
 .founder{display:flex;align-items:center;gap:12px}
-.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#e3f8ef;color:#11865b;font-weight:bold}
+.avatar{
+  width:40px;height:40px;border-radius:50%;display:grid;
+  place-items:center;background:#e3f8ef;color:#11865b;font-weight:bold
+}
 .founder strong{color:var(--navy);font-size:13px}
 .content{max-width:1400px;margin:auto;padding:32px}
 .welcome{margin-bottom:25px}
 .welcome h1{color:var(--navy);font-size:27px;margin-bottom:9px}
 .welcome p{color:var(--muted);line-height:1.5}
-.message{display:none;padding:14px;margin-bottom:20px;border-radius:8px;overflow-wrap:anywhere}
+.message{
+  display:none;padding:14px;margin-bottom:20px;border-radius:8px;
+  overflow-wrap:anywhere
+}
 .message.success{display:block;background:#e5f8ef;color:#13784e}
 .message.error{display:block;background:#fff0f0;color:#a52a35}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:17px;margin-bottom:30px}
-.stat-card{background:white;padding:22px;border-radius:12px;border:1px solid var(--border)}
+.stat-card{
+  background:white;padding:22px;border-radius:12px;
+  border:1px solid var(--border)
+}
 .stat-card p{color:var(--muted);font-size:13px;margin-bottom:13px}
 .stat-card h2{color:var(--navy);font-size:30px}
-.section{background:white;padding:25px;border-radius:12px;border:1px solid var(--border);margin-bottom:25px;scroll-margin-top:95px}
-.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.section{
+  background:white;padding:25px;border-radius:12px;
+  border:1px solid var(--border);margin-bottom:25px;
+  scroll-margin-top:95px
+}
+.section-heading{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;margin-bottom:20px
+}
 .section-heading h2{color:var(--navy);font-size:20px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{display:flex;flex-direction:column;gap:8px}
 .field.full{grid-column:1/-1}
 .field label{font-size:13px;font-weight:bold}
-.field input,.field textarea,.field select{width:100%;padding:13px;border:1px solid #d9e1eb;border-radius:8px;outline:none;background:white}
+.field input,.field textarea,.field select{
+  width:100%;padding:13px;border:1px solid #d9e1eb;
+  border-radius:8px;outline:none;background:white
+}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--green)}
 .field textarea{min-height:85px;resize:vertical}
 .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
@@ -69,52 +106,95 @@ overflow-y:auto;z-index:1000;transition:transform .3s
 .btn-delete{background:#ffe8e9;color:#b52c37}
 .btn:disabled{opacity:.6;cursor:not-allowed}
 .brand-list{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
-.brand-card{border:1px solid var(--border);border-radius:11px;padding:20px;min-width:0}
-.brand-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.brand-card{
+  border:1px solid var(--border);border-radius:11px;
+  padding:20px;min-width:0
+}
+.brand-head{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;flex-wrap:wrap;margin-bottom:12px
+}
 .brand-head h3{color:var(--navy);font-size:18px}
 .status{padding:6px 10px;border-radius:30px;font-size:11px;font-weight:bold}
 .status-active{background:#e1f8ed;color:#13784e}
 .status-inactive{background:#ffe8e9;color:#b52c37}
 .status-preparation{background:#fff2d9;color:#93600b}
-.brand-description{color:var(--muted);font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.brand-description{
+  color:var(--muted);font-size:13px;line-height:1.6;
+  overflow-wrap:anywhere
+}
 .brand-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .brand-actions .btn{font-size:12px;padding:9px 11px}
-.empty{grid-column:1/-1;padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:9px;overflow-wrap:anywhere}
+.empty{
+  grid-column:1/-1;padding:25px;text-align:center;color:var(--muted);
+  border:1px dashed var(--border);border-radius:9px;overflow-wrap:anywhere
+}
 .modules{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
-.module-card{border:1px solid var(--border);padding:21px;border-radius:11px;background:white;scroll-margin-top:100px}
-.module-icon{width:43px;height:43px;border-radius:10px;display:grid;place-items:center;background:#e3f8ef;font-size:21px;margin-bottom:14px}
+.module-card{
+  border:1px solid var(--border);padding:21px;border-radius:11px;
+  background:white;scroll-margin-top:100px
+}
+.module-icon{
+  width:43px;height:43px;border-radius:10px;display:grid;
+  place-items:center;background:#e3f8ef;font-size:21px;margin-bottom:14px
+}
 .module-card h3{color:var(--navy);font-size:16px;margin-bottom:8px}
-.module-card p{color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:13px}
-.module-status{display:inline-block;padding:6px 9px;border-radius:20px;background:#fff3dc;color:#93600b;font-size:11px;font-weight:bold}
+.module-card p{
+  color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:13px
+}
+.module-status{
+  display:inline-block;padding:6px 9px;border-radius:20px;
+  background:#e5f8ef;color:#13784e;font-size:11px;font-weight:bold
+}
+.module-link{display:block;text-decoration:none;color:inherit}
 .footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
 .finance-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:22px}
-.finance-card{background:#f3f6fa;padding:18px;border-radius:10px;border:1px solid var(--border)}
+.finance-card{
+  background:#f3f6fa;padding:18px;border-radius:10px;
+  border:1px solid var(--border)
+}
 .finance-card p{font-size:13px;color:var(--muted);margin-bottom:9px}
 .finance-card h3{font-size:23px;color:var(--navy)}
 .finance-list{width:100%;overflow-x:auto}
 .finance-list table{width:100%;border-collapse:collapse;min-width:550px}
-.finance-list th,.finance-list td{padding:12px;text-align:left;border-bottom:1px solid var(--border);font-size:13px}
+.finance-list th,.finance-list td{
+  padding:12px;text-align:left;border-bottom:1px solid var(--border);
+  font-size:13px
+}
 .finance-list th{color:var(--navy);background:#f3f6fa}
-.mobile-menu{display:none;border:0;background:var(--navy);color:white;padding:10px 14px;border-radius:7px;font-size:22px;cursor:pointer}
-@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.modules{grid-template-columns:repeat(2,1fr)}}
+.mobile-menu{
+  display:none;border:0;background:var(--navy);color:white;
+  padding:10px 14px;border-radius:7px;font-size:22px;cursor:pointer
+}
+@media(max-width:1050px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .modules{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:700px){
-.sidebar{width:min(290px,85vw);transform:translateX(-105%)}
-.sidebar.open{transform:translateX(0)}
-.sidebar-close{display:block;position:absolute;top:15px;right:15px;width:38px;height:38px;border:0;border-radius:8px;background:#ffffff25;color:white;font-size:25px}
-.overlay{display:block;position:fixed;inset:0;background:#0007;z-index:900;opacity:0;visibility:hidden;transition:.25s}
-.overlay.show{opacity:1;visibility:visible}
-.main{margin-left:0}
-.topbar{padding:13px 16px}
-.mobile-menu{display:block}
-.topbar h2{font-size:16px}
-.content{padding:20px 15px}
-.welcome h1{font-size:23px}
-.stats{gap:10px}
-.stat-card{padding:16px}
-.stat-card h2{font-size:25px}
-.modules,.brand-list,.form-grid,.finance-summary{grid-template-columns:1fr}
-.section{padding:18px}
-.founder div:last-child{display:none}
+  .sidebar{width:min(290px,85vw);transform:translateX(-105%)}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-close{
+    display:block;position:absolute;top:15px;right:15px;
+    width:38px;height:38px;border:0;border-radius:8px;
+    background:#ffffff25;color:white;font-size:25px
+  }
+  .overlay{
+    display:block;position:fixed;inset:0;background:#0007;z-index:900;
+    opacity:0;visibility:hidden;transition:.25s
+  }
+  .overlay.show{opacity:1;visibility:visible}
+  .main{margin-left:0}
+  .topbar{padding:13px 16px}
+  .mobile-menu{display:block}
+  .topbar h2{font-size:16px}
+  .content{padding:20px 15px}
+  .welcome h1{font-size:23px}
+  .stats{gap:10px}
+  .stat-card{padding:16px}
+  .stat-card h2{font-size:25px}
+  .modules,.brand-list,.form-grid,.finance-summary{grid-template-columns:1fr}
+  .section{padding:18px}
+  .founder div:last-child{display:none}
 }
 </style>
 </head>
@@ -123,222 +203,364 @@ overflow-y:auto;z-index:1000;transition:transform .3s
 <div class="overlay" id="overlay"></div>
 
 <aside class="sidebar" id="sidebar">
-<button class="sidebar-close" id="sidebarClose" type="button">×</button>
-<div class="logo">ADDI<span>BA</span></div>
-<div class="sidebar-subtitle">Administration du groupe</div>
-<div class="menu-title">Menu principal</div>
-<nav class="menu">
-<a href="#overview" class="active"><span>⌂</span> Vue générale</a>
-<a href="#entreprises"><span>▣</span> Gestion des entreprises</a>
-<a href="#marques"><span>▣</span> Marques</a>
-<a href="#direction"><span>♙</span> Direction</a>
-<a href="#finances"><span>▤</span> Finances</a>
-<a href="#rh"><span>♧</span> Ressources humaines</a>
-<a href="#projets"><span>◈</span> Projets</a>
-<a href="#documents"><span>▧</span> Documents</a>
-<a href="messages.html"><span>✉</span> Messages reçus</a>
-<a href="contact.html"><span>✉</span> Contact</a>
-<a href="#parametres"><span>⚙</span> Paramètres</a>
-</nav>
-<div class="sidebar-bottom">
-<button type="button" id="sidebarLogout">↪ Déconnexion</button>
-</div>
+  <button class="sidebar-close" id="sidebarClose" type="button">×</button>
+  <div class="logo">ADDI<span>BA</span></div>
+  <div class="sidebar-subtitle">Administration du groupe</div>
+  <div class="menu-title">Menu principal</div>
+
+  <nav class="menu">
+    <a href="#overview" class="active"><span>⌂</span> Vue générale</a>
+    <a href="#entreprises"><span>▣</span> Gestion des entreprises</a>
+    <a href="#marques"><span>▣</span> Marques</a>
+    <a href="#direction"><span>♙</span> Direction</a>
+    <a href="#finances"><span>▤</span> Finances</a>
+    <a href="#rh"><span>♧</span> Ressources humaines</a>
+    <a href="#projets"><span>◈</span> Projets</a>
+    <a href="#documents"><span>▧</span> Documents</a>
+    <a href="messages.html"><span>✉</span> Messages reçus</a>
+    <a href="contact.html"><span>✉</span> Contact</a>
+    <a href="#parametres"><span>⚙</span> Paramètres</a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <button type="button" id="sidebarLogout">↪ Déconnexion</button>
+  </div>
 </aside>
 
 <div class="main">
 <header class="topbar">
-<div style="display:flex;align-items:center;gap:13px">
-<button class="mobile-menu" id="mobileMenu" type="button">☰</button>
-<div><h2>Administration ADDIBA</h2><small>Espace réservé au fondateur</small></div>
-</div>
-<div class="founder">
-<div class="avatar">F</div>
-<div><strong id="founderName">Fondateur ADDIBA</strong><small>Fondateur</small></div>
-</div>
+  <div style="display:flex;align-items:center;gap:13px">
+    <button class="mobile-menu" id="mobileMenu" type="button">☰</button>
+    <div>
+      <h2>Administration ADDIBA</h2>
+      <small>Espace réservé au fondateur</small>
+    </div>
+  </div>
+  <div class="founder">
+    <div class="avatar">F</div>
+    <div><strong id="founderName">Fondateur ADDIBA</strong><small>Fondateur</small></div>
+  </div>
 </header>
 
 <main class="content">
 <section class="welcome" id="overview">
-<h1>Vue générale</h1>
-<p>Bienvenue dans votre espace de direction. Pilotez les activités et les marques du groupe ADDIBA.</p>
+  <h1>Vue générale</h1>
+  <p>Bienvenue dans votre espace de direction. Pilotez les activités et les marques du groupe ADDIBA.</p>
 </section>
 
 <div id="message" class="message" role="status"></div>
 
 <section class="stats">
-<div class="stat-card"><p>Marques enregistrées</p><h2 id="statMarques">—</h2></div>
-<div class="stat-card"><p>Projets</p><h2 id="statProjets">—</h2></div>
-<div class="stat-card"><p>Employés</p><h2 id="statEmployes">—</h2></div>
-<div class="stat-card"><p>Documents</p><h2 id="statDocuments">—</h2></div>
+  <div class="stat-card"><p>Marques enregistrées</p><h2 id="statMarques">—</h2></div>
+  <div class="stat-card"><p>Projets</p><h2 id="statProjets">—</h2></div>
+  <div class="stat-card"><p>Employés</p><h2 id="statEmployes">—</h2></div>
+  <div class="stat-card"><p>Documents</p><h2 id="statDocuments">—</h2></div>
 </section>
 
 <section class="section" id="entreprises">
-<div class="section-heading"><h2>Gestion des entreprises</h2></div>
-<p style="color:#718096;margin-bottom:18px">Consultez les entreprises inscrites et gérez leurs demandes d'accès à ADDIBA.</p>
-<div id="companyList" class="brand-list"><div class="empty">Chargement des entreprises...</div></div>
-<h3 style="color:#101f3c;margin-bottom:17px">Créer une entreprise</h3>
-
-<form id="companyForm">
-  <div class="form-grid">
-    <div class="field">
-      <label for="companyName">Nom de l'entreprise *</label>
-      <input id="companyName" required>
-    </div>
-    <div class="field">
-      <label for="companyCountry">Pays *</label>
-      <input id="companyCountry" value="Burkina Faso" required>
-    </div>
-    <div class="field">
-      <label for="companySector">Secteur d'activité *</label>
-      <input id="companySector" required>
-    </div>
-    <div class="field">
-      <label for="companyEmail">E-mail</label>
-      <input id="companyEmail" type="email">
-    </div>
-    <div class="field">
-      <label for="companyPhone">Téléphone</label>
-      <input id="companyPhone" type="tel">
-    </div>
-    <div class="field">
-      <label for="companyStatus">Statut initial</label>
-      <select id="companyStatus">
-        <option value="en_attente">En attente</option>
-        <option value="approuvee">Approuvée</option>
-      </select>
-    </div>
+  <div class="section-heading"><h2>Gestion des entreprises</h2></div>
+  <p style="color:#718096;margin-bottom:18px">
+    Consultez les entreprises inscrites et gérez leurs demandes d'accès à ADDIBA.
+  </p>
+  <div id="companyList" class="brand-list">
+    <div class="empty">Chargement des entreprises...</div>
   </div>
-  <div class="actions">
-    <button class="btn btn-primary" id="companySaveBtn" type="submit">
-      Créer l'entreprise
-    </button>
-  </div>
-</form>
 
-<div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+  <h3 style="color:#101f3c;margin:25px 0 17px">Créer une entreprise</h3>
+  <form id="companyForm">
+    <div class="form-grid">
+      <div class="field"><label for="companyName">Nom de l'entreprise *</label><input id="companyName" required></div>
+      <div class="field"><label for="companyCountry">Pays *</label><input id="companyCountry" value="Burkina Faso" required></div>
+      <div class="field"><label for="companySector">Secteur d'activité *</label><input id="companySector" required></div>
+      <div class="field"><label for="companyEmail">E-mail</label><input id="companyEmail" type="email"></div>
+      <div class="field"><label for="companyPhone">Téléphone</label><input id="companyPhone" type="tel"></div>
+      <div class="field">
+        <label for="companyStatus">Statut initial</label>
+        <select id="companyStatus">
+          <option value="en_attente">En attente</option>
+          <option value="approuvee">Approuvée</option>
+        </select>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="companySaveBtn" type="submit">Créer l'entreprise</button>
+    </div>
+  </form>
 </section>
 
 <section class="section" id="marques">
-<div class="section-heading"><h2>Gestion des marques</h2></div>
-<h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter une marque</h3>
-<form id="brandForm">
-<div class="form-grid">
-<div class="field"><label for="brandName">Nom de la marque *</label><input id="brandName" type="text" required placeholder="Nom de la marque"></div>
-<div class="field"><label for="brandStatus">Statut</label><select id="brandStatus"><option value="en_preparation">En préparation</option><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
-<div class="field full"><label for="brandDescription">Description</label><textarea id="brandDescription" placeholder="Description de la marque"></textarea></div>
-</div>
-<div class="actions"><button class="btn btn-primary" id="saveBtn" type="submit">Enregistrer la marque</button><button class="btn btn-secondary" id="cancelBtn" type="button" hidden>Annuler</button></div>
-</form>
-<div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-<h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
-<div id="brandList" class="brand-list"><div class="empty">Connexion à Supabase...</div></div>
+  <div class="section-heading"><h2>Gestion des marques</h2></div>
+  <h3 id="formTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter une marque</h3>
+  <form id="brandForm">
+    <div class="form-grid">
+      <div class="field"><label for="brandName">Nom de la marque *</label><input id="brandName" required placeholder="Nom de la marque"></div>
+      <div class="field">
+        <label for="brandStatus">Statut</label>
+        <select id="brandStatus">
+          <option value="en_preparation">En préparation</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="field full"><label for="brandDescription">Description</label><textarea id="brandDescription" placeholder="Description de la marque"></textarea></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="saveBtn" type="submit">Enregistrer la marque</button>
+      <button class="btn btn-secondary" id="cancelBtn" type="button" hidden>Annuler</button>
+    </div>
+  </form>
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Marques du groupe</h3>
+  <div id="brandList" class="brand-list"><div class="empty">Connexion à Supabase...</div></div>
 </section>
 
 <section class="section" id="direction">
-<div class="section-heading"><h2>Gestion de la direction</h2></div>
-<h3 id="leaderFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter un dirigeant</h3>
-<form id="leaderForm">
-<div class="form-grid">
-<div class="field"><label for="leaderName">Nom et prénom *</label><input id="leaderName" type="text" required placeholder="Nom complet"></div>
-<div class="field"><label for="leaderPost">Poste occupé *</label><input id="leaderPost" type="text" required placeholder="Ex : Directeur général"></div>
-<div class="field"><label for="leaderBrand">Marque associée</label><select id="leaderBrand"><option value="">Groupe ADDIBA</option></select></div>
-<div class="field"><label for="leaderStatus">Statut</label><select id="leaderStatus"><option value="actif">Actif</option><option value="inactif">Inactif</option></select></div>
-<div class="field"><label for="leaderEmail">Adresse e-mail</label><input id="leaderEmail" type="email" placeholder="exemple@email.com"></div>
-<div class="field"><label for="leaderPhone">Téléphone</label><input id="leaderPhone" type="tel" placeholder="Numéro de téléphone"></div>
-</div>
-<div class="actions"><button class="btn btn-primary" id="leaderSaveBtn" type="submit">Enregistrer le dirigeant</button><button class="btn btn-secondary" id="leaderCancelBtn" type="button" hidden>Annuler</button></div>
-</form>
-<div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-<h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Dirigeants du groupe</h3>
-<div id="leaderList" class="brand-list"><div class="empty">Chargement des dirigeants...</div></div>
+  <div class="section-heading"><h2>Gestion de la direction</h2></div>
+  <h3 id="leaderFormTitle" style="color:#101f3c;font-size:16px;margin-bottom:17px">Ajouter un dirigeant</h3>
+  <form id="leaderForm">
+    <div class="form-grid">
+      <div class="field"><label for="leaderName">Nom et prénom *</label><input id="leaderName" required placeholder="Nom complet"></div>
+      <div class="field"><label for="leaderPost">Poste occupé *</label><input id="leaderPost" required placeholder="Ex : Directeur général"></div>
+      <div class="field"><label for="leaderBrand">Marque associée</label><select id="leaderBrand"><option value="">Groupe ADDIBA</option></select></div>
+      <div class="field"><label for="leaderStatus">Statut</label><select id="leaderStatus"><option value="actif">Actif</option><option value="inactif">Inactif</option></select></div>
+      <div class="field"><label for="leaderEmail">Adresse e-mail</label><input id="leaderEmail" type="email"></div>
+      <div class="field"><label for="leaderPhone">Téléphone</label><input id="leaderPhone" type="tel"></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="leaderSaveBtn" type="submit">Enregistrer le dirigeant</button>
+      <button class="btn btn-secondary" id="leaderCancelBtn" type="button" hidden>Annuler</button>
+    </div>
+  </form>
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+  <h3 style="color:#101f3c;font-size:17px;margin-bottom:17px">Dirigeants du groupe</h3>
+  <div id="leaderList" class="brand-list"><div class="empty">Chargement des dirigeants...</div></div>
 </section>
 
 <section class="section" id="finances">
-<div class="section-heading"><h2>Gestion financière</h2></div>
-<div class="finance-summary">
-<div class="finance-card"><p>Total des revenus</p><h3 id="financeRevenus">0 FCFA</h3></div>
-<div class="finance-card"><p>Total des dépenses</p><h3 id="financeDepenses">0 FCFA</h3></div>
-<div class="finance-card"><p>Solde disponible</p><h3 id="financeSolde">0 FCFA</h3></div>
-</div>
-<h3 style="margin-bottom:16px;color:#101f3c">Enregistrer une opération</h3>
-<form id="financeForm">
-<div class="form-grid">
-<div class="field"><label for="financeType">Type d'opération</label><select id="financeType" required><option value="revenu">Revenu</option><option value="depense">Dépense</option></select></div>
-<div class="field"><label for="financeCategorie">Catégorie</label><input id="financeCategorie" required placeholder="Exemple : Vente, salaire..."></div>
-<div class="field"><label for="financeMontant">Montant (FCFA)</label><input id="financeMontant" type="number" min="1" step="0.01" required></div>
-<div class="field"><label for="financeDate">Date</label><input id="financeDate" type="date" required></div>
-<div class="field full"><label for="financeDescription">Description</label><textarea id="financeDescription" placeholder="Détails de l'opération"></textarea></div>
-</div>
-<div class="actions"><button class="btn btn-primary" id="financeSaveBtn" type="submit">Enregistrer l'opération</button></div>
+  <div class="section-heading"><h2>Gestion financière</h2></div>
+  <div class="finance-summary">
+    <div class="finance-card"><p>Total des revenus</p><h3 id="financeRevenus">0 FCFA</h3></div>
+    <div class="finance-card"><p>Total des dépenses</p><h3 id="financeDepenses">0 FCFA</h3></div>
+    <div class="finance-card"><p>Solde disponible</p><h3 id="financeSolde">0 FCFA</h3></div>
+  </div>
+  <h3 style="margin-bottom:16px;color:#101f3c">Enregistrer une opération</h3>
+  <form id="financeForm">
+    <div class="form-grid">
+      <div class="field">
+        <label for="financeType">Type d'opération</label>
+        <select id="financeType"><option value="revenu">Revenu</option><option value="depense">Dépense</option></select>
+      </div>
+      <div class="field"><label for="financeCategorie">Catégorie</label><input id="financeCategorie" required placeholder="Exemple : Vente, salaire..."></div>
+      <div class="field"><label for="financeMontant">Montant (FCFA)</label><input id="financeMontant" type="number" min="1" step="0.01" required></div>
+      <div class="field"><label for="financeDate">Date</label><input id="financeDate" type="date" required></div>
+      <div class="field full"><label for="financeDescription">Description</label><textarea id="financeDescription" placeholder="Détails de l'opération"></textarea></div>
+    </div>
+    <div class="actions"><button class="btn btn-primary" id="financeSaveBtn" type="submit">Enregistrer l'opération</button></div>
   </form>
-let marqueEnModification=null;
-let dirigeantEnModification=null;
-let marquesActuelles=[];
-let dirigeantsActuels=[];
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+  <h3 style="margin-bottom:16px;color:#101f3c">Historique financier</h3>
+  <div id="financeList" class="finance-list"><div class="empty">Chargement des opérations...</div></div>
+</section>
 
-function afficherMessage(texte,erreur=false){
-message.textContent=texte;
-message.className=erreur?"message error":"message success";
-}
-function securiserTexte(texte){
-return String(texte??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-}[c]));
-}
-function statutTexte(statut){
-const valeurs={
-active:"Active",inactive:"Inactive",en_preparation:"En préparation",
-actif:"Actif",inactif:"Inactif",en_attente:"En attente",
-approuvee:"Approuvée",refusee:"Refusée",suspendue:"Suspendue"
-};
-return valeurs[statut]||statut||"Non renseigné";
-}
-function classeStatut(statut){
-if(["active","actif","approuvee"].includes(statut))return "status-active";
-if(["inactive","inactif","refusee","suspendue"].includes(statut))return "status-inactive";
-return "status-preparation";
-}
-function formaterMontant(montant){
-return Number(montant||0).toLocaleString("fr-FR")+" FCFA";
-}
-function afficherErreur(element,texte){
-element.innerHTML='<div class="empty">'+securiserTexte(texte)+'</div>';
+<section class="section" id="rh">
+  <div class="section-heading"><h2>Ressources humaines</h2></div>
+  <div class="finance-summary">
+    <div class="finance-card"><p>Nombre d'employés</p><h3 id="rhTotal">0</h3></div>
+    <div class="finance-card"><p>Employés actifs</p><h3 id="rhActifs">0</h3></div>
+    <div class="finance-card"><p>Masse salariale mensuelle</p><h3 id="rhSalaires">0 FCFA</h3></div>
+  </div>
+  <h3 id="rhFormTitle" style="margin-bottom:16px;color:#101f3c">Ajouter un employé</h3>
+  <form id="rhForm">
+    <div class="form-grid">
+      <div class="field"><label for="rhNom">Nom complet *</label><input id="rhNom" required></div>
+      <div class="field"><label for="rhEmail">Adresse e-mail</label><input id="rhEmail" type="email"></div>
+      <div class="field"><label for="rhPoste">Poste occupé</label><input id="rhPoste"></div>
+      <div class="field"><label for="rhMarque">Marque associée</label><select id="rhMarque"><option value="">Groupe ADDIBA</option></select></div>
+      <div class="field"><label for="rhSalaire">Salaire mensuel (FCFA)</label><input id="rhSalaire" type="number" min="0" value="0"></div>
+      <div class="field"><label for="rhDate">Date de recrutement</label><input id="rhDate" type="date"></div>
+      <div class="field"><label for="rhStatut">Statut</label><select id="rhStatut"><option value="actif">Actif</option><option value="inactif">Inactif</option></select></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="rhSaveBtn" type="submit">Enregistrer l'employé</button>
+      <button class="btn btn-secondary" id="rhCancelBtn" type="button" hidden>Annuler</button>
+    </div>
+  </form>
+  <div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
+  <h3 style="margin-bottom:16px;color:#101f3c">Liste des employés</h3>
+  <div id="rhList" class="brand-list"><div class="empty">Chargement des employés...</div></div>
+<section class="section" id="projets">
+  <div class="section-heading"><h2>Gestion des projets</h2></div>
+  <p style="color:#718096;line-height:1.6;margin-bottom:18px">
+    Consultez l'espace de gestion des projets du groupe ADDIBA.
+    La visibilité publique des projets reste contrôlée depuis leur espace de gestion.
+  </p>
+  <a href="nos-projets.html" class="btn btn-primary" style="display:inline-block;text-decoration:none">
+    Découvrir les projets
+  </a>
+</section>
+
+<section class="section" id="documents">
+  <div class="section-heading"><h2>Gestion des documents</h2></div>
+  <p style="color:#718096;line-height:1.6;margin-bottom:18px">
+    Retrouvez l'espace documentaire du groupe ADDIBA.
+  </p>
+  <div id="documentInfo" class="empty">
+    Nombre de documents enregistrés : <strong id="documentCount">—</strong>
+  </div>
+</section>
+
+<section class="section" id="parametres">
+  <div class="section-heading"><h2>Paramètres</h2></div>
+  <p style="color:#718096;line-height:1.6">
+    Espace réservé à la configuration et à la sécurité du groupe ADDIBA.
+    L'accès à ce tableau de bord est réservé au fondateur.
+  </p>
+</section>
+
+<section class="section">
+  <div class="section-heading"><h2>Accès rapides</h2></div>
+  <div class="modules">
+    <a class="module-link" href="messages.html">
+      <article class="module-card">
+        <div class="module-icon">✉</div>
+        <h3>Messages reçus</h3>
+        <p>Consulter les messages envoyés depuis le formulaire de contact.</p>
+        <span class="module-status">Ouvrir la messagerie</span>
+      </article>
+    </a>
+    <a class="module-link" href="contact.html">
+      <article class="module-card">
+        <div class="module-icon">☎</div>
+        <h3>Page Contact</h3>
+        <p>Consulter la page publique de contact du groupe ADDIBA.</p>
+        <span class="module-status">Voir la page</span>
+      </article>
+    </a>
+    <a class="module-link" href="nos-projets.html">
+      <article class="module-card">
+        <div class="module-icon">◈</div>
+        <h3>Projets du groupe</h3>
+        <p>Découvrir la présentation publique des projets ADDIBA.</p>
+        <span class="module-status">Voir les projets</span>
+      </article>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  © <span id="currentYear"></span> ADDIBA — Administration du groupe
+</footer>
+</main>
+</div>
+
+<script type="module">
+import { supabase } from "./supabase.js";
+
+const $ = id => document.getElementById(id);
+
+let utilisateurAutorise = false;
+let marqueEnModification = null;
+let dirigeantEnModification = null;
+let employeEnModification = null;
+
+let marquesActuelles = [];
+let dirigeantsActuels = [];
+let employesActuels = [];
+
+function afficherMessage(texte, erreur = false) {
+  const element = $("message");
+  element.textContent = texte;
+  element.className = erreur ? "message error" : "message success";
+  element.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
-async function verifierFondateur(){
-const {data:{session},error}=await supabase.auth.getSession();
-if(error)throw error;
-if(!session){
-window.location.href="connexion.html";
-return false;
-}
-const {data:profil,error:erreurProfil}=await supabase
-.from("profils").select("nom_complet,role").eq("id",session.user.id).maybeSingle();
-if(erreurProfil)throw erreurProfil;
-if(!profil||profil.role!=="fondateur"){
-afficherMessage("Accès réservé au fondateur ADDIBA.",true);
-await supabase.auth.signOut();
-setTimeout(()=>window.location.href="connexion.html",1500);
-return false;
-}
-$("founderName").textContent=profil.nom_complet||"Fondateur ADDIBA";
-utilisateurAutorise=true;
-
-return true;
+function securiserTexte(texte) {
+  return String(texte ?? "").replace(/[&<>"']/g, caractere => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  })[caractere]);
 }
 
-async function chargerMarques(){
-  const {data,error}=await supabase
+function statutTexte(statut) {
+  const valeurs = {
+    active:"Active",
+    inactive:"Inactive",
+    en_preparation:"En préparation",
+    actif:"Actif",
+    inactif:"Inactif",
+    en_attente:"En attente",
+    approuvee:"Approuvée",
+    refusee:"Refusée",
+    suspendue:"Suspendue"
+  };
+  return valeurs[statut] || statut || "Non renseigné";
+}
+
+function classeStatut(statut) {
+  if (["active","actif","approuvee"].includes(statut)) return "status-active";
+  if (["inactive","inactif","refusee","suspendue"].includes(statut)) return "status-inactive";
+  return "status-preparation";
+}
+
+function formaterMontant(montant) {
+  return Number(montant || 0).toLocaleString("fr-FR") + " FCFA";
+}
+
+function afficherErreur(element, texte) {
+  element.innerHTML =
+    '<div class="empty">' + securiserTexte(texte) + '</div>';
+}
+
+async function verifierFondateur() {
+  const {data:{session},error} = await supabase.auth.getSession();
+
+  if (error) throw error;
+
+  if (!session) {
+    window.location.href = "connexion.html";
+    return false;
+  }
+
+  const {data:profil,error:erreurProfil} = await supabase
+    .from("profils")
+    .select("nom_complet,role")
+    .eq("id",session.user.id)
+    .maybeSingle();
+
+  if (erreurProfil) throw erreurProfil;
+
+  if (!profil || profil.role !== "fondateur") {
+    afficherMessage("Accès réservé au fondateur ADDIBA.",true);
+    await supabase.auth.signOut();
+    setTimeout(() => {
+      window.location.href = "connexion.html";
+    },1500);
+    return false;
+  }
+
+  $("founderName").textContent =
+    profil.nom_complet || "Fondateur ADDIBA";
+
+  utilisateurAutorise = true;
+  return true;
+}
+
+async function chargerMarques() {
+  const {data,error} = await supabase
     .from("marques")
     .select("id,nom,description,statut,entreprise_id")
     .is("entreprise_id",null)
     .order("id",{ascending:false});
 
-  if(error) throw error;
-  marquesActuelles=data||[];
+  if (error) throw error;
 
-  $("brandList").innerHTML=marquesActuelles.length
-    ? marquesActuelles.map(m=>`
+  marquesActuelles = data || [];
+
+  $("brandList").innerHTML = marquesActuelles.length
+    ? marquesActuelles.map(m => `
       <article class="brand-card">
         <div class="brand-head">
           <h3>${securiserTexte(m.nom)}</h3>
@@ -347,7 +569,7 @@ async function chargerMarques(){
           </span>
         </div>
         <p class="brand-description">
-          ${securiserTexte(m.description||"Aucune description")}
+          ${securiserTexte(m.description || "Aucune description")}
         </p>
         <div class="brand-actions">
           <button class="btn btn-edit" data-brand-edit="${m.id}">Modifier</button>
@@ -357,29 +579,34 @@ async function chargerMarques(){
     `).join("")
     : '<div class="empty">Aucune marque enregistrée.</div>';
 
-  ["leaderBrand","rhMarque"].forEach(id=>{
-    const select=$(id);
-    const ancienne=select.value;
-    select.innerHTML='<option value="">Groupe ADDIBA</option>'+
-      marquesActuelles.map(m=>
+  ["leaderBrand","rhMarque"].forEach(id => {
+    const select = $(id);
+    const ancienne = select.value;
+
+    select.innerHTML =
+      '<option value="">Groupe ADDIBA</option>' +
+      marquesActuelles.map(m =>
         `<option value="${m.id}">${securiserTexte(m.nom)}</option>`
       ).join("");
-    select.value=ancienne;
+
+    select.value = ancienne;
   });
 
-  $("statMarques").textContent=marquesActuelles.length;
+  $("statMarques").textContent = marquesActuelles.length;
 }
 
-async function chargerEntreprises(){
-  const {data,error}=await supabase
+async function chargerEntreprises() {
+  const {data,error} = await supabase
     .from("entreprises")
     .select("id,nom,pays,secteur,email,telephone,statut,created_at")
     .order("created_at",{ascending:false});
 
-  if(error) throw error;
+  if (error) throw error;
 
-  $("companyList").innerHTML=data.length
-    ? data.map(e=>`
+  const entreprises = data || [];
+
+  $("companyList").innerHTML = entreprises.length
+    ? entreprises.map(e => `
       <article class="brand-card">
         <div class="brand-head">
           <h3>${securiserTexte(e.nom)}</h3>
@@ -390,48 +617,49 @@ async function chargerEntreprises(){
         <p class="brand-description">
           Pays : ${securiserTexte(e.pays)}<br>
           Secteur : ${securiserTexte(e.secteur)}<br>
-          E-mail : ${securiserTexte(e.email||"Non renseigné")}<br>
-          Téléphone : ${securiserTexte(e.telephone||"Non renseigné")}
+          E-mail : ${securiserTexte(e.email || "Non renseigné")}<br>
+          Téléphone : ${securiserTexte(e.telephone || "Non renseigné")}
         </p>
         <div class="brand-actions">
-          ${e.statut!=="approuvee"?`
+          ${e.statut !== "approuvee" ? `
             <button class="btn btn-primary"
               data-company-action="approuvee" data-id="${e.id}">
               Approuver
-            </button>`:""}
-          ${e.statut!=="refusee"?`
+            </button>` : ""}
+          ${e.statut !== "refusee" ? `
             <button class="btn btn-delete"
               data-company-action="refusee" data-id="${e.id}">
               Refuser
-            </button>`:""}
-          ${e.statut!=="suspendue"?`
+            </button>` : ""}
+          ${e.statut !== "suspendue" ? `
             <button class="btn btn-toggle"
               data-company-action="suspendue" data-id="${e.id}">
               Suspendre
-            </button>`:""}
-          ${e.statut==="suspendue"?`
+            </button>` : ""}
+          ${e.statut === "suspendue" ? `
             <button class="btn btn-primary"
               data-company-action="approuvee" data-id="${e.id}">
               Réactiver
-            </button>`:""}
+            </button>` : ""}
         </div>
       </article>
     `).join("")
     : '<div class="empty">Aucune entreprise enregistrée.</div>';
 }
 
-async function chargerDirigeants(){
-  const {data,error}=await supabase
+async function chargerDirigeants() {
+  const {data,error} = await supabase
     .from("dirigeants")
     .select("id,nom_complet,poste,marque_id,email,telephone,statut")
     .is("entreprise_id",null)
     .order("id",{ascending:false});
 
-  if(error) throw error;
-  dirigeantsActuels=data||[];
+  if (error) throw error;
 
-  $("leaderList").innerHTML=dirigeantsActuels.length
-    ? dirigeantsActuels.map(d=>`
+  dirigeantsActuels = data || [];
+
+  $("leaderList").innerHTML = dirigeantsActuels.length
+    ? dirigeantsActuels.map(d => `
       <article class="brand-card">
         <div class="brand-head">
           <h3>${securiserTexte(d.nom_complet)}</h3>
@@ -441,8 +669,8 @@ async function chargerDirigeants(){
         </div>
         <p class="brand-description">
           Poste : ${securiserTexte(d.poste)}<br>
-          E-mail : ${securiserTexte(d.email||"Non renseigné")}<br>
-          Téléphone : ${securiserTexte(d.telephone||"Non renseigné")}
+          E-mail : ${securiserTexte(d.email || "Non renseigné")}<br>
+          Téléphone : ${securiserTexte(d.telephone || "Non renseigné")}
         </p>
         <div class="brand-actions">
           <button class="btn btn-edit" data-leader-edit="${d.id}">Modifier</button>
@@ -453,25 +681,28 @@ async function chargerDirigeants(){
     : '<div class="empty">Aucun dirigeant enregistré.</div>';
 }
 
-async function chargerEmployes(){
-  const {data,error}=await supabase
+async function chargerEmployes() {
+  const {data,error} = await supabase
     .from("employes")
     .select("id,nom_complet,email,poste,marque_id,statut,date_recrutement,salaire_mensuel")
     .is("entreprise_id",null)
     .order("id",{ascending:false});
 
-  if(error) throw error;
+  if (error) throw error;
 
-  const employes=data||[];
-  const actifs=employes.filter(e=>e.statut==="actif");
-  const masse=actifs.reduce((s,e)=>s+Number(e.salaire_mensuel||0),0);
+  employesActuels = data || [];
 
-  $("rhTotal").textContent=employes.length;
-  $("rhActifs").textContent=actifs.length;
-  $("rhSalaires").textContent=formaterMontant(masse);
+  const actifs = employesActuels.filter(e => e.statut === "actif");
+  const masse = actifs.reduce(
+    (s,e) => s + Number(e.salaire_mensuel || 0),0
+  );
 
-  $("rhList").innerHTML=employes.length
-    ? employes.map(e=>`
+  $("rhTotal").textContent = employesActuels.length;
+  $("rhActifs").textContent = actifs.length;
+  $("rhSalaires").textContent = formaterMontant(masse);
+
+  $("rhList").innerHTML = employesActuels.length
+    ? employesActuels.map(e => `
       <article class="brand-card">
         <div class="brand-head">
           <h3>${securiserTexte(e.nom_complet)}</h3>
@@ -480,8 +711,8 @@ async function chargerEmployes(){
           </span>
         </div>
         <p class="brand-description">
-          Poste : ${securiserTexte(e.poste||"Non renseigné")}<br>
-          E-mail : ${securiserTexte(e.email||"Non renseigné")}<br>
+          Poste : ${securiserTexte(e.poste || "Non renseigné")}<br>
+          E-mail : ${securiserTexte(e.email || "Non renseigné")}<br>
           Salaire : ${formaterMontant(e.salaire_mensuel)}
         </p>
         <div class="brand-actions">
@@ -491,100 +722,119 @@ async function chargerEmployes(){
       </article>
     `).join("")
     : '<div class="empty">Aucun employé enregistré.</div>';
-
-  window.employesActuels=employes;
 }
-
-async function chargerFinances(){
-  const [transactions,finances]=await Promise.all([
+async function chargerFinances() {
+  const [transactions,finances] = await Promise.all([
     supabase.from("transactions_financieres")
       .select("id,libelle,type,montant,categorie,date_operation,description,devise")
       .is("entreprise_id",null)
       .order("date_operation",{ascending:false}),
+
     supabase.from("finances")
       .select("id,type_operation,montant,devise,description,date_operation")
       .is("entreprise_id",null)
       .order("date_operation",{ascending:false})
   ]);
 
-  if(transactions.error) throw transactions.error;
-  if(finances.error) throw finances.error;
+  if (transactions.error) throw transactions.error;
+  if (finances.error) throw finances.error;
 
-  const operations=transactions.data||[];
-  let revenus=0;
-  let depenses=0;
+  const operations = transactions.data || [];
+  let revenus = 0;
+  let depenses = 0;
 
-  operations.forEach(o=>{
-    const type=String(o.type||"").toLowerCase();
-    if(["revenu","entree","entrée","income"].includes(type)){
-      revenus+=Number(o.montant||0);
-    }else if(["depense","dépense","sortie","expense"].includes(type)){
-      depenses+=Number(o.montant||0);
+  operations.forEach(o => {
+    const type = String(o.type || "").toLowerCase();
+
+    if (["revenu","entree","entrée","income"].includes(type)) {
+      revenus += Number(o.montant || 0);
+    } else if (["depense","dépense","sortie","expense"].includes(type)) {
+      depenses += Number(o.montant || 0);
     }
   });
 
-  $("financeRevenus").textContent=formaterMontant(revenus);
-  $("financeDepenses").textContent=formaterMontant(depenses);
-  $("financeSolde").textContent=formaterMontant(revenus-depenses);
+  $("financeRevenus").textContent = formaterMontant(revenus);
+  $("financeDepenses").textContent = formaterMontant(depenses);
+  $("financeSolde").textContent = formaterMontant(revenus - depenses);
 
-  const lignesTransactions=operations.map(o=>`
+  const lignesTransactions = operations.map(o => `
     <tr>
-      <td>${securiserTexte(o.date_operation||"")}</td>
-      <td>${securiserTexte(o.libelle||o.categorie||"Opération")}</td>
-      <td>${securiserTexte(o.type)}</td>
+      <td>${securiserTexte(o.date_operation || "")}</td>
+      <td>${securiserTexte(o.libelle || o.categorie || "Opération")}</td>
+      <td>${securiserTexte(o.type || "")}</td>
       <td>${formaterMontant(o.montant)}</td>
     </tr>
   `).join("");
 
-  const lignesFinances=(finances.data||[]).map(o=>`
+  const lignesFinances = (finances.data || []).map(o => `
     <tr>
-      <td>${securiserTexte(o.date_operation||"")}</td>
-      <td>${securiserTexte(o.description||"Opération")}</td>
-      <td>${securiserTexte(o.type_operation)}</td>
+      <td>${securiserTexte(o.date_operation || "")}</td>
+      <td>${securiserTexte(o.description || "Opération")}</td>
+      <td>${securiserTexte(o.type_operation || "")}</td>
       <td>${formaterMontant(o.montant)}</td>
     </tr>
   `).join("");
 
-  financeList.innerHTML=`
-    <h3 style="margin:10px 0;color:#101f3c">Transactions financières</h3>
+  $("financeList").innerHTML = `
+    <h3 style="color:#101f3c;margin-bottom:12px">Transactions financières</h3>
     <table>
-      <thead><tr><th>Date</th><th>Libellé</th><th>Type</th><th>Montant</th></tr></thead>
-      <tbody>${lignesTransactions||'<tr><td colspan="4">Aucune transaction.</td></tr>'}</tbody>
+      <thead>
+        <tr><th>Date</th><th>Libellé</th><th>Type</th><th>Montant</th></tr>
+      </thead>
+      <tbody>
+        ${lignesTransactions || '<tr><td colspan="4">Aucune transaction.</td></tr>'}
+      </tbody>
     </table>
-    <h3 style="margin:25px 0 10px;color:#101f3c">Historique de la table finances</h3>
+
+    <h3 style="color:#101f3c;margin:25px 0 12px">Historique de la table finances</h3>
     <table>
-      <thead><tr><th>Date</th><th>Description</th><th>Type</th><th>Montant</th></tr></thead>
-      <tbody>${lignesFinances||'<tr><td colspan="4">Aucune opération.</td></tr>'}</tbody>
+      <thead>
+        <tr><th>Date</th><th>Description</th><th>Type</th><th>Montant</th></tr>
+      </thead>
+      <tbody>
+        ${lignesFinances || '<tr><td colspan="4">Aucune opération.</td></tr>'}
+      </tbody>
     </table>
   `;
 }
 
-async function chargerStatistiques(){
-  const [marques,projets,employes,documents]=await Promise.all([
-    supabase.from("marques").select("id",{count:"exact",head:true}).is("entreprise_id",null),
-    supabase.from("projets").select("id",{count:"exact",head:true}).is("entreprise_id",null),
-    supabase.from("employes").select("id",{count:"exact",head:true}).is("entreprise_id",null),
-    supabase.from("documents").select("id",{count:"exact",head:true}).is("entreprise_id",null)
+async function chargerStatistiques() {
+  const [marques,projets,employes,documents] = await Promise.all([
+    supabase.from("marques")
+      .select("id",{count:"exact",head:true})
+      .is("entreprise_id",null),
+
+    supabase.from("projets")
+      .select("id",{count:"exact",head:true})
+      .is("entreprise_id",null),
+
+    supabase.from("employes")
+      .select("id",{count:"exact",head:true})
+      .is("entreprise_id",null),
+
+    supabase.from("documents")
+      .select("id",{count:"exact",head:true})
+      .is("entreprise_id",null)
   ]);
 
-  [marques,projets,employes,documents].forEach(r=>{
-    if(r.error) throw r.error;
+  [marques,projets,employes,documents].forEach(resultat => {
+    if (resultat.error) throw resultat.error;
   });
 
-  $("statMarques").textContent=marques.count??0;
-  $("statProjets").textContent=projets.count??0;
-  $("statEmployes").textContent=employes.count??0;
-  $("statDocuments").textContent=documents.count??0;
+  $("statMarques").textContent = marques.count ?? 0;
+  $("statProjets").textContent = projets.count ?? 0;
+  $("statEmployes").textContent = employes.count ?? 0;
+  $("statDocuments").textContent = documents.count ?? 0;
+  $("documentCount").textContent = documents.count ?? 0;
 }
 
-async function initialiserDashboard(){
-  try{
-    const autorise=await verifierFondateur();
-    if(!autorise)return;
+async function initialiserDashboard() {
+  try {
+    const autorise = await verifierFondateur();
+    if (!autorise) return;
 
-    await chargerMarques();
-
-    const resultats=await Promise.allSettled([
+    const resultats = await Promise.allSettled([
+      chargerMarques(),
       chargerEntreprises(),
       chargerDirigeants(),
       chargerFinances(),
@@ -592,327 +842,451 @@ async function initialiserDashboard(){
       chargerStatistiques()
     ]);
 
-    resultats.forEach(r=>{
-      if(r.status==="rejected"){
-        console.error(r.reason);
-        afficherMessage("Une partie du tableau de bord n'a pas pu être chargée : "+r.reason.message,true);
-      }
-    });
+    const erreurs = resultats.filter(r => r.status === "rejected");
 
-  }catch(erreur){
+    erreurs.forEach(r => console.error("Erreur de chargement :",r.reason));
+
+    if (erreurs.length) {
+      afficherMessage(
+        "Certaines données n'ont pas pu être chargées. Vérifie les autorisations Supabase et les tables concernées.",
+        true
+      );
+    }
+  } catch (erreur) {
     console.error("Erreur du tableau de bord :",erreur);
-    afficherMessage("Impossible de charger le tableau de bord : "+erreur.message,true);
+    afficherMessage(
+      "Impossible de charger le tableau de bord : " + erreur.message,
+      true
+    );
   }
 }
 
-// Création d'une entreprise par le fondateur
-$("companyForm").addEventListener("submit",async evenement=>{
+/* CRÉATION D'UNE ENTREPRISE */
+
+$("companyForm").addEventListener("submit",async evenement => {
   evenement.preventDefault();
-  if(!utilisateurAutorise)return;
+  if (!utilisateurAutorise) return;
 
-  const bouton=$("companySaveBtn");
-  bouton.disabled=true;
+  const bouton = $("companySaveBtn");
+  bouton.disabled = true;
 
-  try{
-    const {data:{user},error:erreurSession}=await supabase.auth.getUser();
-    if(erreurSession)throw erreurSession;
-    if(!user)throw new Error("Session utilisateur absente.");
+  try {
+    const {data:{user},error:erreurSession} = await supabase.auth.getUser();
 
-    const {error}=await supabase.from("entreprises").insert({
+    if (erreurSession) throw erreurSession;
+    if (!user) throw new Error("Session utilisateur absente.");
+
+    const {error} = await supabase.from("entreprises").insert({
       nom:$("companyName").value.trim(),
       pays:$("companyCountry").value.trim(),
       secteur:$("companySector").value.trim(),
-      email:$("companyEmail").value.trim()||null,
-      telephone:$("companyPhone").value.trim()||null,
+      email:$("companyEmail").value.trim() || null,
+      telephone:$("companyPhone").value.trim() || null,
       statut:$("companyStatus").value,
       created_by:user.id
     });
 
-    if(error)throw error;
+    if (error) throw error;
 
     $("companyForm").reset();
-    $("companyCountry").value="Burkina Faso";
+    $("companyCountry").value = "Burkina Faso";
+
     afficherMessage("Entreprise créée avec succès.");
     await chargerEntreprises();
-
-  }catch(e){
-    afficherMessage("Erreur lors de la création : "+e.message,true);
-  }finally{
-    bouton.disabled=false;
+  } catch (erreur) {
+    afficherMessage("Erreur lors de la création : " + erreur.message,true);
+  } finally {
+    bouton.disabled = false;
   }
 });
 
-// Changement de statut d'une entreprise
-$("companyList").addEventListener("click",async evenement=>{
-  const bouton=evenement.target.closest("button[data-company-action]");
-  if(!bouton||!utilisateurAutorise)return;
+/* MODIFICATION DU STATUT DES ENTREPRISES */
 
-  const id=bouton.dataset.id;
-  const statut=bouton.dataset.companyAction;
-  const libelles={
-    approuvee:"approuver",
-    refusee:"refuser",
-    suspendue:"suspendre"
-  };
+$("companyList").addEventListener("click",async evenement => {
+  const bouton = evenement.target.closest("button[data-company-action]");
 
-  if(!confirm("Voulez-vous vraiment "+libelles[statut]+" cette entreprise ?"))return;
+  if (!bouton || !utilisateurAutorise) return;
 
-  bouton.disabled=true;
-  try{
-    const {error}=await supabase.from("entreprises")
-      .update({statut}).eq("id",id);
-    if(error)throw error;
+  const id = bouton.dataset.id;
+  const statut = bouton.dataset.companyAction;
+
+  if (!confirm("Voulez-vous vraiment modifier le statut de cette entreprise ?")) return;
+
+  bouton.disabled = true;
+
+  try {
+    const {error} = await supabase.from("entreprises")
+      .update({statut})
+      .eq("id",id);
+
+    if (error) throw error;
 
     afficherMessage("Statut de l'entreprise mis à jour.");
     await chargerEntreprises();
-  }catch(e){
-    afficherMessage("Erreur : "+e.message,true);
-    bouton.disabled=false;
+  } catch (erreur) {
+    afficherMessage("Erreur : " + erreur.message,true);
+    bouton.disabled = false;
   }
 });
 
-// Ajouter ou modifier une marque
-$("brandForm").addEventListener("submit",async evenement=>{
-  evenement.preventDefault();
-  if(!utilisateurAutorise)return;
+/* AJOUT ET MODIFICATION DES MARQUES */
 
-  const donnees={
+function reinitialiserFormulaireMarque() {
+  marqueEnModification = null;
+  $("brandForm").reset();
+  $("formTitle").textContent = "Ajouter une marque";
+  $("saveBtn").textContent = "Enregistrer la marque";
+  $("cancelBtn").hidden = true;
+}
+
+$("brandForm").addEventListener("submit",async evenement => {
+  evenement.preventDefault();
+  if (!utilisateurAutorise) return;
+
+  const donnees = {
     nom:$("brandName").value.trim(),
     statut:$("brandStatus").value,
     description:$("brandDescription").value.trim(),
     entreprise_id:null
   };
 
-  try{
+  try {
     let resultat;
-    if(marqueEnModification){
-      resultat=await supabase.from("marques")
-        .update(donnees).eq("id",marqueEnModification);
-    }else{
-      resultat=await supabase.from("marques").insert(donnees);
+
+    if (marqueEnModification) {
+      resultat = await supabase.from("marques")
+        .update(donnees)
+        .eq("id",marqueEnModification);
+    } else {
+      resultat = await supabase.from("marques").insert(donnees);
     }
-    if(resultat.error)throw resultat.error;
+
+    if (resultat.error) throw resultat.error;
 
     reinitialiserFormulaireMarque();
     afficherMessage("Marque enregistrée avec succès.");
+
     await chargerMarques();
     await chargerStatistiques();
-  }catch(e){
-    afficherMessage("Erreur marque : "+e.message,true);
+  } catch (erreur) {
+    afficherMessage("Erreur marque : " + erreur.message,true);
   }
 });
-
-function reinitialiserFormulaireMarque(){
-  marqueEnModification=null;
-  $("brandForm").reset();
-  $("formTitle").textContent="Ajouter une marque";
-  $("saveBtn").textContent="Enregistrer la marque";
-  $("cancelBtn").hidden=true;
-}
 
 $("cancelBtn").addEventListener("click",reinitialiserFormulaireMarque);
 
-$("brandList").addEventListener("click",async evenement=>{
-  const modifier=evenement.target.closest("[data-brand-edit]");
-  const supprimer=evenement.target.closest("[data-brand-delete]");
+$("brandList").addEventListener("click",async evenement => {
+  const modifier = evenement.target.closest("[data-brand-edit]");
+  const supprimer = evenement.target.closest("[data-brand-delete]");
 
-  if(modifier){
-    const m=marquesActuelles.find(x=>String(x.id)===modifier.dataset.brandEdit);
-    if(!m)return;
-    marqueEnModification=m.id;
-    $("brandName").value=m.nom||"";
-    $("brandStatus").value=m.statut||"en_preparation";
-    $("brandDescription").value=m.description||"";
-    $("formTitle").textContent="Modifier la marque";
-    $("saveBtn").textContent="Enregistrer les modifications";
-    $("cancelBtn").hidden=false;
+  if (modifier) {
+    const marque = marquesActuelles.find(
+      m => String(m.id) === modifier.dataset.brandEdit
+    );
+
+    if (!marque) return;
+
+    marqueEnModification = marque.id;
+    $("brandName").value = marque.nom || "";
+    $("brandStatus").value = marque.statut || "en_preparation";
+    $("brandDescription").value = marque.description || "";
+
+    $("formTitle").textContent = "Modifier la marque";
+    $("saveBtn").textContent = "Enregistrer les modifications";
+    $("cancelBtn").hidden = false;
+
     $("brandForm").scrollIntoView({behavior:"smooth"});
   }
 
-  if(supprimer){
-    const id=supprimer.dataset.brandDelete;
-    if(!confirm("Supprimer définitivement cette marque ?"))return;
-    const {error}=await supabase.from("marques").delete().eq("id",id);
-    if(error){afficherMessage(error.message,true);return;}
-    afficherMessage("Marque supprimée.");
-    await chargerMarques();
-    await chargerStatistiques();
+  if (supprimer) {
+    const id = supprimer.dataset.brandDelete;
+
+    if (!confirm("Supprimer définitivement cette marque ?")) return;
+
+    try {
+      const {error} = await supabase.from("marques")
+        .delete()
+        .eq("id",id);
+
+      if (error) throw error;
+
+      afficherMessage("Marque supprimée.");
+      await chargerMarques();
+      await chargerStatistiques();
+    } catch (erreur) {
+      afficherMessage("Erreur : " + erreur.message,true);
+    }
   }
 });
 
-// Ajouter ou modifier un dirigeant
-$("leaderForm").addEventListener("submit",async evenement=>{
-  evenement.preventDefault();
-  if(!utilisateurAutorise)return;
+/* AJOUT ET MODIFICATION DES DIRIGEANTS */
 
-  const donnees={
+function reinitialiserFormulaireDirigeant() {
+  dirigeantEnModification = null;
+  $("leaderForm").reset();
+  $("leaderFormTitle").textContent = "Ajouter un dirigeant";
+  $("leaderSaveBtn").textContent = "Enregistrer le dirigeant";
+  $("leaderCancelBtn").hidden = true;
+}
+
+$("leaderForm").addEventListener("submit",async evenement => {
+  evenement.preventDefault();
+  if (!utilisateurAutorise) return;
+
+  const donnees = {
     nom_complet:$("leaderName").value.trim(),
     poste:$("leaderPost").value.trim(),
-    marque_id:$("leaderBrand").value?Number($("leaderBrand").value):null,
+    marque_id:$("leaderBrand").value ? Number($("leaderBrand").value) : null,
     statut:$("leaderStatus").value,
-    email:$("leaderEmail").value.trim()||null,
-    telephone:$("leaderPhone").value.trim()||null,
+    email:$("leaderEmail").value.trim() || null,
+    telephone:$("leaderPhone").value.trim() || null,
     entreprise_id:null
   };
 
-  try{
-    const resultat=dirigeantEnModification
-      ? await supabase.from("dirigeants").update(donnees).eq("id",dirigeantEnModification)
+  try {
+    const resultat = dirigeantEnModification
+      ? await supabase.from("dirigeants")
+          .update(donnees).eq("id",dirigeantEnModification)
       : await supabase.from("dirigeants").insert(donnees);
 
-    if(resultat.error)throw resultat.error;
+    if (resultat.error) throw resultat.error;
 
-    dirigeantEnModification=null;
-    $("leaderForm").reset();
-    $("leaderFormTitle").textContent="Ajouter un dirigeant";
-    $("leaderSaveBtn").textContent="Enregistrer le dirigeant";
-    $("leaderCancelBtn").hidden=true;
-
+    reinitialiserFormulaireDirigeant();
     afficherMessage("Dirigeant enregistré.");
     await chargerDirigeants();
-  }catch(e){
-    afficherMessage("Erreur dirigeant : "+e.message,true);
+  } catch (erreur) {
+    afficherMessage("Erreur dirigeant : " + erreur.message,true);
   }
 });
 
-$("leaderCancelBtn").addEventListener("click",()=>{
-  dirigeantEnModification=null;
-  $("leaderForm").reset();
-  $("leaderFormTitle").textContent="Ajouter un dirigeant";
-  $("leaderSaveBtn").textContent="Enregistrer le dirigeant";
-  $("leaderCancelBtn").hidden=true;
-});
+$("leaderCancelBtn").addEventListener(
+  "click",reinitialiserFormulaireDirigeant
+);
 
-$("leaderList").addEventListener("click",async evenement=>{
-  const modifier=evenement.target.closest("[data-leader-edit]");
-  const supprimer=evenement.target.closest("[data-leader-delete]");
+$("leaderList").addEventListener("click",async evenement => {
+  const modifier = evenement.target.closest("[data-leader-edit]");
+  const supprimer = evenement.target.closest("[data-leader-delete]");
 
-  if(modifier){
-    const d=dirigeantsActuels.find(x=>String(x.id)===modifier.dataset.leaderEdit);
-    if(!d)return;
-    dirigeantEnModification=d.id;
-    $("leaderName").value=d.nom_complet||"";
-    $("leaderPost").value=d.poste||"";
-    $("leaderBrand").value=d.marque_id||"";
-    $("leaderStatus").value=d.statut||"actif";
-    $("leaderEmail").value=d.email||"";
-    $("leaderPhone").value=d.telephone||"";
-    $("leaderFormTitle").textContent="Modifier le dirigeant";
-    $("leaderSaveBtn").textContent="Enregistrer les modifications";
-    $("leaderCancelBtn").hidden=false;
+  if (modifier) {
+    const dirigeant = dirigeantsActuels.find(
+      d => String(d.id) === modifier.dataset.leaderEdit
+    );
+
+    if (!dirigeant) return;
+
+    dirigeantEnModification = dirigeant.id;
+    $("leaderName").value = dirigeant.nom_complet || "";
+    $("leaderPost").value = dirigeant.poste || "";
+    $("leaderBrand").value = dirigeant.marque_id || "";
+    $("leaderStatus").value = dirigeant.statut || "actif";
+    $("leaderEmail").value = dirigeant.email || "";
+    $("leaderPhone").value = dirigeant.telephone || "";
+
+    $("leaderFormTitle").textContent = "Modifier le dirigeant";
+    $("leaderSaveBtn").textContent = "Enregistrer les modifications";
+    $("leaderCancelBtn").hidden = false;
+
     $("leaderForm").scrollIntoView({behavior:"smooth"});
   }
 
-  if(supprimer){
-    if(!confirm("Supprimer ce dirigeant ?"))return;
-    const {error}=await supabase.from("dirigeants")
-      .delete().eq("id",supprimer.dataset.leaderDelete);
-    if(error){afficherMessage(error.message,true);return;}
-    afficherMessage("Dirigeant supprimé.");
-    await chargerDirigeants();
+  if (supprimer) {
+    if (!confirm("Supprimer ce dirigeant ?")) return;
+
+    try {
+      const {error} = await supabase.from("dirigeants")
+        .delete()
+        .eq("id",supprimer.dataset.leaderDelete);
+
+      if (error) throw error;
+
+      afficherMessage("Dirigeant supprimé.");
+      await chargerDirigeants();
+    } catch (erreur) {
+      afficherMessage("Erreur : " + erreur.message,true);
+    }
   }
 });
 
-// Enregistrer une transaction financière
-$("financeForm").addEventListener("submit",async evenement=>{
-  evenement.preventDefault();
-  if(!utilisateurAutorise)return;
+/* AJOUT ET MODIFICATION DES EMPLOYÉS */
 
-  const donnees={
+function reinitialiserFormulaireEmploye() {
+  employeEnModification = null;
+  $("rhForm").reset();
+  $("rhSalaire").value = 0;
+  $("rhStatut").value = "actif";
+  $("rhFormTitle").textContent = "Ajouter un employé";
+  $("rhSaveBtn").textContent = "Enregistrer l'employé";
+  $("rhCancelBtn").hidden = true;
+}
+
+$("rhForm").addEventListener("submit",async evenement => {
+  evenement.preventDefault();
+  if (!utilisateurAutorise) return;
+
+  const donnees = {
+    nom_complet:$("rhNom").value.trim(),
+    email:$("rhEmail").value.trim() || null,
+    poste:$("rhPoste").value.trim() || null,
+    marque_id:$("rhMarque").value ? Number($("rhMarque").value) : null,
+    salaire_mensuel:Number($("rhSalaire").value || 0),
+    date_recrutement:$("rhDate").value || null,
+    statut:$("rhStatut").value,
+    entreprise_id:null
+  };
+
+  try {
+    const resultat = employeEnModification
+      ? await supabase.from("employes")
+          .update(donnees).eq("id",employeEnModification)
+      : await supabase.from("employes").insert(donnees);
+
+    if (resultat.error) throw resultat.error;
+
+    reinitialiserFormulaireEmploye();
+    afficherMessage("Employé enregistré avec succès.");
+
+    await chargerEmployes();
+    await chargerStatistiques();
+  } catch (erreur) {
+    afficherMessage("Erreur employé : " + erreur.message,true);
+  }
+});
+
+$("rhCancelBtn").addEventListener("click",reinitialiserFormulaireEmploye);
+
+$("rhList").addEventListener("click",async evenement => {
+  const modifier = evenement.target.closest("[data-employee-edit]");
+  const supprimer = evenement.target.closest("[data-employee-delete]");
+
+  if (modifier) {
+    const employe = employesActuels.find(
+      e => String(e.id) === modifier.dataset.employeeEdit
+    );
+
+    if (!employe) return;
+
+    employeEnModification = employe.id;
+
+    $("rhNom").value = employe.nom_complet || "";
+    $("rhEmail").value = employe.email || "";
+    $("rhPoste").value = employe.poste || "";
+    $("rhMarque").value = employe.marque_id || "";
+    $("rhSalaire").value = employe.salaire_mensuel || 0;
+    $("rhDate").value = employe.date_recrutement || "";
+    $("rhStatut").value = employe.statut || "actif";
+
+    $("rhFormTitle").textContent = "Modifier l'employé";
+    $("rhSaveBtn").textContent = "Enregistrer les modifications";
+    $("rhCancelBtn").hidden = false;
+
+    $("rhForm").scrollIntoView({behavior:"smooth"});
+  }
+
+  if (supprimer) {
+    if (!confirm("Supprimer cet employé ?")) return;
+
+    try {
+      const {error} = await supabase.from("employes")
+        .delete()
+        .eq("id",supprimer.dataset.employeeDelete);
+
+      if (error) throw error;
+
+      afficherMessage("Employé supprimé.");
+      await chargerEmployes();
+      await chargerStatistiques();
+    } catch (erreur) {
+      afficherMessage("Erreur : " + erreur.message,true);
+    }
+  }
+});
+
+/* ENREGISTRER UNE TRANSACTION FINANCIÈRE */
+
+$("financeForm").addEventListener("submit",async evenement => {
+  evenement.preventDefault();
+  if (!utilisateurAutorise) return;
+
+  const bouton = $("financeSaveBtn");
+  bouton.disabled = true;
+
+  const donnees = {
     libelle:$("financeCategorie").value.trim(),
     type:$("financeType").value,
     montant:Number($("financeMontant").value),
     categorie:$("financeCategorie").value.trim(),
     date_operation:$("financeDate").value,
-    description:$("financeDescription").value.trim()||null,
+    description:$("financeDescription").value.trim() || null,
     devise:"FCFA",
     entreprise_id:null
   };
 
-  try{
-    const {error}=await supabase.from("transactions_financieres").insert(donnees);
-    if(error)throw error;
+  try {
+    const {error} = await supabase
+      .from("transactions_financieres")
+      .insert(donnees);
+
+    if (error) throw error;
 
     $("financeForm").reset();
-    $("financeDate").value=new Date().toISOString().slice(0,10);
+    $("financeDate").value = new Date().toISOString().slice(0,10);
+
     afficherMessage("Transaction enregistrée.");
     await chargerFinances();
-  }catch(e){
-    afficherMessage("Erreur financière : "+e.message,true);
+  } catch (erreur) {
+    afficherMessage("Erreur financière : " + erreur.message,true);
+  } finally {
+    bouton.disabled = false;
   }
 });
 
-// Ajouter ou modifier un employé
-$("rhForm").addEventListener("submit",async evenement=>{
-  evenement.preventDefault();
-  if(!utilisateurAutorise)return;
+/* MENU MOBILE */
 
-  const donnees={
-    nom_complet:$("rhNom").value.trim(),
-    email:$("rhEmail").value.trim()||null,
-    poste:$("rhPoste").value.trim()||null,
-    marque_id:$("rhMarque").value?Number($("rhMarque").value):null,
-    salaire_mensuel:Number($("rhSalaire").value||0),
-    date_recrutement:$("rhDate").value||null,
-    statut:$("rhStatut").value,
-    entreprise_id:null
-  };
-
-  try{
-    const resultat=employeEnModification
-      ? await supabase.from("employes").update(donnees).eq("id",employeEnModification)
-      : await supabase.from("employes").insert(donnees);
-
-    if(resultat.error)throw resultat.error;
-
-    employeEnModification=null;
-    $("rhForm").reset();
-$("rhSalaire").value=e.salaire_mensuel||0;
-$("rhDate").value=e.date_recrutement||"";
-$("rhStatut").value=e.statut||"actif";
-$("rhFormTitle").textContent="Modifier l'employé";
-$("rhSaveBtn").textContent="Enregistrer les modifications";
-$("rhCancelBtn").hidden=false;
-$("rhForm").scrollIntoView({behavior:"smooth"});
+function fermerMenu() {
+  $("sidebar").classList.remove("open");
+  $("overlay").classList.remove("show");
 }
 
-if(supprimer){
-  if(!confirm("Supprimer cet employé ?"))return;
+$("mobileMenu").addEventListener("click",() => {
+  $("sidebar").classList.add("open");
+  $("overlay").classList.add("show");
+});
 
-  const {error}=await supabase
-    .from("employes")
-    .delete()
-    .eq("id",supprimer.dataset.employeeDelete);
+$("sidebarClose").addEventListener("click",fermerMenu);
+$("overlay").addEventListener("click",fermerMenu);
 
-  if(error){
-    afficherMessage(error.message,true);
+document.querySelectorAll(".menu a").forEach(lien => {
+  lien.addEventListener("click",() => {
+    fermerMenu();
+
+    document.querySelectorAll(".menu a").forEach(a => {
+      a.classList.remove("active");
+    });
+
+    lien.classList.add("active");
+  });
+});
+
+/* DÉCONNEXION */
+
+$("sidebarLogout").addEventListener("click",async () => {
+  if (!confirm("Voulez-vous vous déconnecter ?")) return;
+
+  const {error} = await supabase.auth.signOut();
+
+  if (error) {
+    afficherMessage("Erreur de déconnexion : " + error.message,true);
     return;
   }
 
-  afficherMessage("Employé supprimé.");
-  await chargerEmployes();
-  await chargerStatistiques();
-}
+  window.location.href = "connexion.html";
 });
 
-// Déconnexion
-$("sidebarLogout").addEventListener("click",async()=>{
-  if(!confirm("Voulez-vous vous déconnecter ?"))return;
+/* DÉMARRAGE */
 
-  const {error}=await supabase.auth.signOut();
+$("financeDate").value = new Date().toISOString().slice(0,10);
+$("currentYear").textContent = new Date().getFullYear();
 
-  if(error){
-    afficherMessage("Erreur de déconnexion : "+error.message,true);
-    return;
-  }
-
-  window.location.href="connexion.html";
-});
-
-// Date du formulaire financier
-$("financeDate").value=new Date().toISOString().slice(0,10);
-
-// Lancement du tableau de bord
 initialiserDashboard();
 
 </script>
