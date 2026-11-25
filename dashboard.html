@@ -136,7 +136,7 @@ overflow-y:auto;z-index:1000;transition:transform .3s
 <a href="#rh"><span>♧</span> Ressources humaines</a>
 <a href="#projets"><span>◈</span> Projets</a>
 <a href="#documents"><span>▧</span> Documents</a>
-<a href="#messages"><span>✉</span> Messages</a>
+<a href="messages.html"><span>✉</span> Messages reçus</a>
 <a href="contact.html"><span>✉</span> Contact</a>
 <a href="#parametres"><span>⚙</span> Paramètres</a>
 </nav>
@@ -270,84 +270,7 @@ overflow-y:auto;z-index:1000;transition:transform .3s
 <div class="field full"><label for="financeDescription">Description</label><textarea id="financeDescription" placeholder="Détails de l'opération"></textarea></div>
 </div>
 <div class="actions"><button class="btn btn-primary" id="financeSaveBtn" type="submit">Enregistrer l'opération</button></div>
-</form>
-<div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-<h3 style="color:#101f3c;margin-bottom:16px">Historique des opérations</h3>
-<div id="financeList" class="finance-list">Chargement des opérations...</div>
-</section>
-
-<section class="section" id="rh">
-<div class="section-heading"><h2>Gestion des ressources humaines</h2></div>
-<div class="finance-summary">
-<div class="finance-card"><p>Effectif total</p><h3 id="rhTotal">0</h3></div>
-<div class="finance-card"><p>Employés actifs</p><h3 id="rhActifs">0</h3></div>
-<div class="finance-card"><p>Masse salariale mensuelle</p><h3 id="rhSalaires">0 FCFA</h3></div>
-</div>
-<h3 id="rhFormTitle">Ajouter un employé</h3>
-<form id="rhForm">
-<div class="form-grid">
-<div class="field"><label for="rhNom">Nom complet *</label><input id="rhNom" type="text" required></div>
-<div class="field"><label for="rhEmail">Adresse e-mail</label><input id="rhEmail" type="email"></div>
-<div class="field"><label for="rhPoste">Poste occupé</label><input id="rhPoste" type="text"></div>
-<div class="field"><label for="rhMarque">Marque associée</label><select id="rhMarque"><option value="">Groupe ADDIBA</option></select></div>
-<div class="field"><label for="rhSalaire">Salaire mensuel (FCFA)</label><input id="rhSalaire" type="number" min="0" step="1" value="0"></div>
-<div class="field"><label for="rhDate">Date de recrutement</label><input id="rhDate" type="date"></div>
-<div class="field"><label for="rhStatut">Statut</label><select id="rhStatut"><option value="actif">Actif</option><option value="inactif">Inactif</option></select></div>
-</div>
-<div class="actions"><button class="btn btn-primary" id="rhSaveBtn" type="submit">Enregistrer l'employé</button><button class="btn btn-secondary" id="rhCancelBtn" type="button" hidden>Annuler</button></div>
-</form>
-<div style="border-top:1px solid #e5eaf1;margin:27px 0"></div>
-<h3>Liste du personnel</h3>
-<div id="rhList" class="brand-list"><div class="empty">Chargement des employés...</div></div>
-</section>
-
-<section class="section" id="autres-modules">
-<div class="section-heading"><h2>Autres modules de gestion</h2></div>
-<div class="modules">
-<a href="projets.html" class="module-card" id="projets" style="text-decoration:none;color:inherit">
-<div class="module-icon">◈</div>
-<h3>Projets</h3>
-<p>Création, organisation et suivi des projets du groupe.</p>
-<span class="module-status">Ouvrir la gestion</span>
-</a>
-<article class="module-card" id="documents"><div class="module-icon">▧</div><h3>Documents</h3><p>Centralisation des documents administratifs et professionnels.</p><span class="module-status">À développer</span></article>
-<article class="module-card" id="messages"><div class="module-icon">✉</div><h3>Messages</h3><p>Communication interne et gestion des messages du groupe.</p><span class="module-status">À développer</span></article>
-<article class="module-card" id="parametres"><div class="module-icon">⚙</div><h3>Paramètres</h3><p>Configuration et gestion des paramètres de l'administration.</p><span class="module-status">À développer</span></article>
-</div>
-</section>
-</main>
-<footer class="footer">© ADDIBA — Un groupe. Plusieurs marques. Une vision commune.</footer>
-</div>
-
-<script>
-(function(){
-const sidebar=document.getElementById("sidebar");
-const overlay=document.getElementById("overlay");
-function ouvrirMenu(){sidebar.classList.add("open");overlay.classList.add("show")}
-function fermerMenu(){sidebar.classList.remove("open");overlay.classList.remove("show")}
-document.getElementById("mobileMenu").addEventListener("click",ouvrirMenu);
-document.getElementById("sidebarClose").addEventListener("click",fermerMenu);
-overlay.addEventListener("click",fermerMenu);
-document.addEventListener("keydown",e=>{if(e.key==="Escape")fermerMenu()});
-document.querySelectorAll(".menu a").forEach(lien=>{
-lien.addEventListener("click",()=>{
-document.querySelectorAll(".menu a").forEach(a=>a.classList.remove("active"));
-lien.classList.add("active");fermerMenu();
-});
-});
-})();
-</script>
-
-<script type="module">
-import { supabase } from "./supabase.js";
-
-const $=id=>document.getElementById(id);
-const message=$("message");
-const brandList=$("brandList");
-const leaderList=$("leaderList");
-const financeList=$("financeList");
-
-let utilisateurAutorise=false;
+  </form>
 let marqueEnModification=null;
 let dirigeantEnModification=null;
 let marquesActuelles=[];
@@ -944,70 +867,45 @@ $("rhForm").addEventListener("submit",async evenement=>{
 
     employeEnModification=null;
     $("rhForm").reset();
-    $("rhSalaire").value="0";
-    $("rhFormTitle").textContent="Ajouter un employé";
-    $("rhSaveBtn").textContent="Enregistrer l'employé";
-    $("rhCancelBtn").hidden=true;
+$("rhSalaire").value=e.salaire_mensuel||0;
+$("rhDate").value=e.date_recrutement||"";
+$("rhStatut").value=e.statut||"actif";
+$("rhFormTitle").textContent="Modifier l'employé";
+$("rhSaveBtn").textContent="Enregistrer les modifications";
+$("rhCancelBtn").hidden=false;
+$("rhForm").scrollIntoView({behavior:"smooth"});
+}
 
-    afficherMessage("Employé enregistré.");
-    await chargerEmployes();
-    await chargerStatistiques();
-  }catch(e){
-    afficherMessage("Erreur RH : "+e.message,true);
-  }
-});
+if(supprimer){
+  if(!confirm("Supprimer cet employé ?"))return;
 
-let employeEnModification=null;
+  const {error}=await supabase
+    .from("employes")
+    .delete()
+    .eq("id",supprimer.dataset.employeeDelete);
 
-$("rhCancelBtn").addEventListener("click",()=>{
-  employeEnModification=null;
-  $("rhForm").reset();
-  $("rhSalaire").value="0";
-  $("rhFormTitle").textContent="Ajouter un employé";
-  $("rhSaveBtn").textContent="Enregistrer l'employé";
-  $("rhCancelBtn").hidden=true;
-});
-
-$("rhList").addEventListener("click",async evenement=>{
-  const modifier=evenement.target.closest("[data-employee-edit]");
-  const supprimer=evenement.target.closest("[data-employee-delete]");
-
-  if(modifier){
-    const e=(window.employesActuels||[]).find(x=>String(x.id)===modifier.dataset.employeeEdit);
-    if(!e)return;
-    employeEnModification=e.id;
-    $("rhNom").value=e.nom_complet||"";
-    $("rhEmail").value=e.email||"";
-    $("rhPoste").value=e.poste||"";
-    $("rhMarque").value=e.marque_id||"";
-    $("rhSalaire").value=e.salaire_mensuel||0;
-    $("rhDate").value=e.date_recrutement||"";
-    $("rhStatut").value=e.statut||"actif";
-    $("rhFormTitle").textContent="Modifier l'employé";
-    $("rhSaveBtn").textContent="Enregistrer les modifications";
-    $("rhCancelBtn").hidden=false;
-    $("rhForm").scrollIntoView({behavior:"smooth"});
+  if(error){
+    afficherMessage(error.message,true);
+    return;
   }
 
-  if(supprimer){
-    if(!confirm("Supprimer cet employé ?"))return;
-    const {error}=await supabase.from("employes")
-      .delete().eq("id",supprimer.dataset.employeeDelete);
-    if(error){afficherMessage(error.message,true);return;}
-    afficherMessage("Employé supprimé.");
-    await chargerEmployes();
-    await chargerStatistiques();
-  }
+  afficherMessage("Employé supprimé.");
+  await chargerEmployes();
+  await chargerStatistiques();
+}
 });
 
 // Déconnexion
 $("sidebarLogout").addEventListener("click",async()=>{
   if(!confirm("Voulez-vous vous déconnecter ?"))return;
+
   const {error}=await supabase.auth.signOut();
+
   if(error){
     afficherMessage("Erreur de déconnexion : "+error.message,true);
     return;
   }
+
   window.location.href="connexion.html";
 });
 
