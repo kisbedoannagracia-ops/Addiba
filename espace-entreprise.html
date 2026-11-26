@@ -96,7 +96,28 @@ th{color:var(--muted);background:#fafbfd}
 .section{display:none}.section.active{display:block}
 .mobile-menu{display:none}
 .empty{text-align:center;color:var(--muted);padding:25px;font-size:13px}
+
+/* Gestion financière */
+.finance-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:16px 0 20px}
+.finance-kpi{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;min-width:0}
+.finance-kpi small{display:block;color:var(--muted);font-size:12px}
+.finance-kpi strong{display:block;color:var(--navy);font-size:20px;margin-top:9px;overflow-wrap:anywhere}
+.finance-kpi.income strong{color:#16895c}
+.finance-kpi.expense strong{color:#c33}
+.finance-filters{display:grid;grid-template-columns:repeat(4,minmax(130px,1fr));gap:10px;align-items:end}
+.finance-filters .field{margin:0}
+.finance-currency-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.finance-currency-card{border:1px solid var(--border);border-radius:10px;padding:14px;background:#fbfcfe}
+.finance-currency-card h4{margin:0 0 10px;color:var(--navy)}
+.finance-currency-card p{font-size:13px;margin:7px 0;display:flex;justify-content:space-between;gap:8px}
+.finance-positive{color:#16895c;font-weight:700}
+.finance-negative{color:#c33;font-weight:700}
+.finance-toolbar{display:flex;gap:8px;flex-wrap:wrap}
 @media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){
+ .finance-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .finance-filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media(max-width:760px){
  .sidebar{transform:translateX(-100%);transition:.2s}
  .sidebar.open{transform:translateX(0)}
@@ -111,6 +132,9 @@ th{color:var(--muted);background:#fafbfd}
  .stat-card strong{font-size:21px}
  .panel{padding:14px}.form-grid{grid-template-columns:1fr}
  .login-card{padding:24px 19px}
+ .finance-kpi{padding:12px}
+ .finance-kpi strong{font-size:17px}
+ .finance-filters{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -238,27 +262,87 @@ th{color:var(--muted);background:#fafbfd}
    </section>
 
    <section id="finance" class="section">
-    <div class="page-title"><h1>Gestion financière</h1><p>Suivez les recettes et dépenses de votre entreprise.</p></div>
-    <div class="notice notice-warning">Ce module est un outil de suivi comptable. Il ne constitue pas un compte bancaire, un portefeuille électronique ou un service de paiement. Les montants sont conservés dans leur devise d'origine.</div>
+    <div class="page-title"><h1>Gestion financière</h1><p>Un espace de suivi financier plus complet pour votre entreprise.</p></div>
+
+    <div class="notice notice-warning">
+     ADDIBA Finance est un outil de suivi et de gestion. Il ne constitue pas un compte bancaire ni un service de paiement. Les opérations sont conservées dans leur devise d'origine. Les totaux de devises différentes ne sont jamais additionnés entre eux.
+    </div>
+
+    <div class="finance-kpis">
+     <div class="finance-kpi"><small>Transactions enregistrées</small><strong id="financeCount">0</strong></div>
+     <div class="finance-kpi income"><small>Recettes du mois</small><strong id="financeIncomeMonth">—</strong></div>
+     <div class="finance-kpi expense"><small>Dépenses du mois</small><strong id="financeExpenseMonth">—</strong></div>
+     <div class="finance-kpi"><small>Solde net du mois</small><strong id="financeNetMonth">—</strong></div>
+    </div>
+
     <div class="panel">
-     <div class="panel-header"><h3>Nouvelle transaction</h3></div>
+     <div class="panel-header"><h3>Analyse financière par devise</h3><span class="badge badge-green">Données enregistrées</span></div>
+     <div id="financeCurrencySummary" class="finance-currency-summary"><div class="empty">Chargement des indicateurs…</div></div>
+    </div>
+
+    <div class="panel">
+     <div class="panel-header"><h3>Enregistrer une opération</h3></div>
      <form id="financeForm">
       <div class="form-grid">
        <div class="field"><label>Libellé</label><input name="libelle" required maxlength="180"></div>
-       <div class="field"><label>Type</label><select name="type"><option value="depense">Dépense</option><option value="recette">Recette</option></select></div>
+       <div class="field"><label>Type d'opération</label><select name="type"><option value="depense">Dépense</option><option value="recette">Recette</option></select></div>
        <div class="field"><label>Montant</label><input name="montant" type="number" min="0.01" step="0.01" required></div>
-       <div class="field"><label>Devise</label><select name="devise" id="financeCurrency"><option value="XOF">XOF — Franc CFA BCEAO</option><option value="XAF">XAF — Franc CFA BEAC</option><option value="EUR">EUR — Euro</option><option value="USD">USD — Dollar américain</option><option value="GBP">GBP — Livre sterling</option><option value="NGN">NGN — Naira</option><option value="GHS">GHS — Cedi ghanéen</option><option value="MAD">MAD — Dirham marocain</option><option value="CNY">CNY — Yuan</option><option value="CAD">CAD — Dollar canadien</option></select></div>
-       <div class="field"><label>Catégorie</label><input name="categorie" maxlength="100"></div>
-       <div class="field"><label>Date de l'opération</label><input name="date_operation" type="date" required></div>
+       <div class="field">
+        <label>Devise</label>
+        <select name="devise" id="financeCurrency">
+         <option value="XOF">XOF — Franc CFA BCEAO</option>
+         <option value="XAF">XAF — Franc CFA BEAC</option>
+         <option value="EUR">EUR — Euro</option>
+         <option value="USD">USD — Dollar américain</option>
+         <option value="GBP">GBP — Livre sterling</option>
+         <option value="NGN">NGN — Naira nigérian</option>
+         <option value="GHS">GHS — Cedi ghanéen</option>
+         <option value="MAD">MAD — Dirham marocain</option>
+         <option value="CNY">CNY — Yuan chinois</option>
+         <option value="CAD">CAD — Dollar canadien</option>
+        </select>
+       </div>
+       <div class="field"><label>Catégorie</label>
+        <select name="categorie">
+         <option value="Ventes">Ventes</option>
+         <option value="Prestations">Prestations</option>
+         <option value="Salaires">Salaires</option>
+         <option value="Transport">Transport</option>
+         <option value="Loyer">Loyer</option>
+         <option value="Fournitures">Fournitures</option>
+         <option value="Marketing">Marketing</option>
+         <option value="Équipement">Équipement</option>
+         <option value="Impôts et taxes">Impôts et taxes</option>
+         <option value="Autre">Autre</option>
+        </select>
+       </div>
+       <div class="field"><label>Date de l'opération</label><input name="date_operation" type="date" id="financeDate" required></div>
       </div>
-      <div class="field"><label>Description</label><textarea name="description" rows="2"></textarea></div>
+      <div class="field"><label>Description ou référence</label><textarea name="description" rows="2" maxlength="2000" placeholder="Précisions, numéro de facture, référence..."></textarea></div>
       <button class="btn btn-primary" type="submit">Enregistrer la transaction</button>
      </form>
     </div>
+
     <div class="panel">
-     <div class="panel-header"><h3>Historique des transactions</h3><button class="btn btn-light" id="refreshFinance">Actualiser</button></div>
+     <div class="panel-header"><h3>Filtrer les opérations</h3></div>
+     <div class="finance-filters">
+      <div class="field"><label for="financeFilterType">Type</label><select id="financeFilterType"><option value="">Tous</option><option value="recette">Recettes</option><option value="depense">Dépenses</option></select></div>
+      <div class="field"><label for="financeFilterCurrency">Devise</label><select id="financeFilterCurrency"><option value="">Toutes les devises</option></select></div>
+      <div class="field"><label for="financeFilterFrom">Du</label><input id="financeFilterFrom" type="date"></div>
+      <div class="field"><label for="financeFilterTo">Au</label><input id="financeFilterTo" type="date"></div>
+     </div>
+     <div class="form-actions">
+      <button class="btn btn-light" id="clearFinanceFilters" type="button">Effacer les filtres</button>
+      <button class="btn btn-dark" id="exportFinanceCsv" type="button">Exporter en CSV</button>
+      <button class="btn btn-light" id="printFinanceReport" type="button">Imprimer le rapport</button>
+     </div>
+    </div>
+
+    <div class="panel">
+     <div class="panel-header"><h3>Journal des transactions</h3><button class="btn btn-light" id="refreshFinance">Actualiser</button></div>
      <div id="financeList" class="empty">Chargement…</div>
     </div>
+
     <div class="panel">
      <div class="panel-header"><h3>Taux de référence</h3><button class="btn btn-light" id="refreshRates">Actualiser les taux</button></div>
      <div id="ratesInfo" class="empty">Les taux de référence ne sont pas encore chargés.</div>
@@ -280,8 +364,8 @@ th{color:var(--muted);background:#fafbfd}
 "use strict";
 
 /* CONFIGURATION SUPABASE
-   Remplace la valeur ci-dessous par la clé anon/public
-   de ton projet. Ne mets JAMAIS une clé service_role ici. */
+   La clé publishable est prévue pour le navigateur.
+   Ne jamais placer une clé service_role dans ce fichier. */
 const SUPABASE_URL = "https://anvbmvrsvulcikkewzrz.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_jMVDUGXVl_9m5F0wHTyTmw_oQxNRq9-";
 
@@ -322,14 +406,14 @@ function setLoading(id,message="Chargement…"){
 function statusBadge(status){
  const s=String(status||"").toLowerCase();
  let cls="badge";
- if(["actif","approuvee","approuvée","termine","terminé"].includes(s))cls+=" badge-green";
+ if(["actif","approuvee","approuvée","termine","terminé","recette"].includes(s))cls+=" badge-green";
  else if(["en_attente","en_preparation","en_cours","suspendu"].includes(s))cls+=" badge-orange";
- else if(["refusee","refusée","inactif"].includes(s))cls+=" badge-red";
+ else if(["refusee","refusée","inactif","depense"].includes(s))cls+=" badge-red";
  return '<span class="'+cls+'">'+escapeHTML(status||"Non défini")+'</span>';
 }
 function ensureConfigured(){
  if(!window.supabase||!SUPABASE_ANON_KEY||SUPABASE_ANON_KEY.includes("REMPLACE")){
-  showMessage("loginMessage","Configuration incomplète : ajoute la clé anon publique de Supabase dans le code.");
+  showMessage("loginMessage","Configuration Supabase incomplète.");
   return false;
  }
  if(!db)db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
@@ -414,6 +498,7 @@ async function initializeWorkspace(){
   company=companyData;
   canManage=["proprietaire","owner","admin","administrateur","responsable"].includes(String(memberRole||"").toLowerCase());
   $("profileName").textContent=company.nom;
+  $("financeCurrency").value=company.devise_principale||"XOF";
   setLoginVisible(false);
   await loadAll();
  }catch(error){
@@ -423,9 +508,15 @@ async function initializeWorkspace(){
  }
 }
 async function loadAll(){
- await Promise.allSettled([
+ const results=await Promise.allSettled([
   loadEmployees(),loadProjects(),loadDocuments(),loadFinance()
  ]);
+ results.forEach((r)=>{
+  if(r.status==="rejected"){
+   console.error(r.reason);
+   showMessage("globalMessage","Certaines données n'ont pas pu être chargées : "+(r.reason?.message||"Erreur inconnue"));
+  }
+ });
  renderCompany();
  await loadRates();
 }
@@ -439,8 +530,7 @@ function renderCompany(){
   <p><strong>Statut :</strong> ${statusBadge(company.statut)}</p>
   <p><strong>Devise principale :</strong> ${escapeHTML(company.devise_principale||"XOF")}</p>`;
  $("companyInfo").innerHTML=html;
- $("settingsInfo").innerHTML=html+
-  "<p><strong>Rôle :</strong> "+escapeHTML(memberRole)+"</p>";
+ $("settingsInfo").innerHTML=html+"<p><strong>Rôle :</strong> "+escapeHTML(memberRole)+"</p>";
 }
 function updateStats(){
  $("statEmployees").textContent=cached.employees.length;
@@ -494,7 +584,9 @@ $("employeeForm").addEventListener("submit",async e=>{
  };
  const {error}=await db.from("employes").insert(row);
  if(error){showMessage("globalMessage",error.message);return}
- e.currentTarget.reset();showMessage("globalMessage","Employé enregistré.","success");await loadEmployees();
+ e.currentTarget.reset();
+ showMessage("globalMessage","Employé enregistré.","success");
+ await loadEmployees();
 });
 
 /* PROJETS */
@@ -524,7 +616,9 @@ $("projectForm").addEventListener("submit",async e=>{
  };
  const {error}=await db.from("projets").insert(row);
  if(error){showMessage("globalMessage",error.message);return}
- e.currentTarget.reset();showMessage("globalMessage","Projet créé.","success");await loadProjects();
+ e.currentTarget.reset();
+ showMessage("globalMessage","Projet créé.","success");
+ await loadProjects();
 });
 
 /* DOCUMENTS */
@@ -562,7 +656,9 @@ $("documentForm").addEventListener("submit",async e=>{
   await db.storage.from("addiba-documents").remove([path]);
   showMessage("globalMessage","Fichier téléversé mais enregistrement impossible : "+insertError.message);return;
  }
- e.currentTarget.reset();showMessage("globalMessage","Document ajouté.","success");await loadDocuments();
+ e.currentTarget.reset();
+ showMessage("globalMessage","Document ajouté.","success");
+ await loadDocuments();
 });
 async function openDocument(id){
  const doc=cached.documents.find(d=>String(d.id)===String(id));
@@ -572,27 +668,100 @@ async function openDocument(id){
  window.open(data.signedUrl,"_blank","noopener,noreferrer");
 }
 
-/* FINANCES */
+/* FINANCES : CALCULS SÉPARÉS PAR DEVISE */
+function financeCurrencyTotals(rows){
+ const totals={};
+ rows.forEach(t=>{
+  const code=String(t.devise||"XOF").toUpperCase();
+  if(!totals[code])totals[code]={income:0,expense:0,count:0};
+  const amount=Number(t.montant)||0;
+  if(String(t.type).toLowerCase()==="recette")totals[code].income+=amount;
+  else if(String(t.type).toLowerCase()==="depense")totals[code].expense+=amount;
+  totals[code].count++;
+ });
+ return totals;
+}
+function currentMonthRows(){
+ const now=new Date();
+ const prefix=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0");
+ return cached.finance.filter(t=>String(t.date_operation||"").startsWith(prefix));
+}
+function renderFinanceDashboard(){
+ const month=currentMonthRows();
+ const monthTotals=financeCurrencyTotals(month);
+ const allTotals=financeCurrencyTotals(cached.finance);
+ $("financeCount").textContent=String(cached.finance.length);
+
+ const summarize=(key)=>Object.entries(monthTotals)
+  .map(([code,v])=>formatMoney(v[key],code)).join(" · ")||"—";
+
+ $("financeIncomeMonth").textContent=summarize("income");
+ $("financeExpenseMonth").textContent=summarize("expense");
+ $("financeNetMonth").textContent=Object.entries(monthTotals)
+  .map(([code,v])=>formatMoney(v.income-v.expense,code)).join(" · ")||"—";
+
+ const cards=Object.entries(allTotals).sort((a,b)=>a[0].localeCompare(b[0]));
+ $("financeCurrencySummary").innerHTML=cards.length?cards.map(([code,v])=>{
+  const net=v.income-v.expense;
+  return '<div class="finance-currency-card"><h4>'+escapeHTML(code)+'</h4>'+
+   '<p><span>Recettes cumulées</span><strong class="finance-positive">'+formatMoney(v.income,code)+'</strong></p>'+
+   '<p><span>Dépenses cumulées</span><strong class="finance-negative">'+formatMoney(v.expense,code)+'</strong></p>'+
+   '<p><span>Solde net cumulé</span><strong class="'+(net>=0?"finance-positive":"finance-negative")+'">'+formatMoney(net,code)+'</strong></p>'+
+   '<p><span>Opérations</span><strong>'+v.count+'</strong></p></div>';
+ }).join(""):'<div class="empty">Les indicateurs apparaîtront après l’enregistrement des premières transactions.</div>';
+
+ const select=$("financeFilterCurrency");
+ const current=select.value;
+ const codes=[...new Set(cached.finance.map(t=>String(t.devise||"XOF").toUpperCase()))].sort();
+ select.innerHTML='<option value="">Toutes les devises</option>'+
+  codes.map(code=>'<option value="'+escapeHTML(code)+'">'+escapeHTML(code)+'</option>').join("");
+ select.value=codes.includes(current)?current:"";
+}
+function filteredFinanceRows(){
+ const type=$("financeFilterType").value;
+ const currency=$("financeFilterCurrency").value;
+ const from=$("financeFilterFrom").value;
+ const to=$("financeFilterTo").value;
+ return cached.finance.filter(t=>{
+  const date=String(t.date_operation||"");
+  return (!type||String(t.type).toLowerCase()===type)&&
+   (!currency||String(t.devise||"XOF").toUpperCase()===currency)&&
+   (!from||date>=from)&&(!to||date<=to);
+ });
+}
+function renderFinanceList(){
+ const rows=filteredFinanceRows();
+ $("financeList").innerHTML=rows.length?
+  '<div class="table-wrap"><table><thead><tr><th>Date</th><th>Libellé</th><th>Type</th><th>Montant</th><th>Catégorie</th><th>Description</th></tr></thead><tbody>'+
+  rows.map(t=>'<tr><td>'+formatDate(t.date_operation)+'</td><td><strong>'+escapeHTML(t.libelle)+'</strong></td><td>'+statusBadge(t.type)+'</td><td>'+formatMoney(t.montant,t.devise||"XOF")+'</td><td>'+escapeHTML(t.categorie||"—")+'</td><td>'+escapeHTML(t.description||"—")+'</td></tr>').join("")+
+  '</tbody></table></div><p class="subtitle">'+rows.length+' opération(s) affichée(s).</p>':
+  '<div class="empty">Aucune transaction ne correspond aux filtres.</div>';
+}
 async function loadFinance(){
  setLoading("financeList");
  const {data,error}=await db.from("transactions_financieres").select("*")
   .eq("entreprise_id",company.id).order("date_operation",{ascending:false});
  if(error)throw error;
  cached.finance=data||[];
- $("financeList").innerHTML=cached.finance.length?
-  '<div class="table-wrap"><table><thead><tr><th>Libellé</th><th>Type</th><th>Montant</th><th>Catégorie</th><th>Date</th></tr></thead><tbody>'+
-  cached.finance.map(t=>'<tr><td>'+escapeHTML(t.libelle)+'</td><td>'+statusBadge(t.type)+'</td><td>'+formatMoney(t.montant,t.devise||"XOF")+'</td><td>'+escapeHTML(t.categorie||"—")+'</td><td>'+formatDate(t.date_operation)+'</td></tr>').join("")+
-  '</tbody></table></div>':'<div class="empty">Aucune transaction enregistrée.</div>';
+ renderFinanceDashboard();
+ renderFinanceList();
  updateStats();
 }
 $("financeForm").addEventListener("submit",async e=>{
  e.preventDefault();if(!requireManager())return;
  const f=new FormData(e.currentTarget);
  const amount=Number(f.get("montant"));
- if(!Number.isFinite(amount)||amount<=0){showMessage("globalMessage","Le montant doit être supérieur à zéro.");return}
+ if(!Number.isFinite(amount)||amount<=0){
+  showMessage("globalMessage","Le montant doit être supérieur à zéro.");return;
+ }
+ const label=String(f.get("libelle")||"").trim();
+ if(!label){showMessage("globalMessage","Le libellé est obligatoire.");return}
  const row={
-  entreprise_id:company.id,libelle:String(f.get("libelle")).trim(),
-  type:f.get("type"),montant:amount,devise:f.get("devise"),
+  entreprise_id:company.id,
+  libelle:label,
+  type:f.get("type"),
+  montant:amount,
+  devise:f.get("devise"),
   categorie:String(f.get("categorie")||"").trim()||null,
   date_operation:f.get("date_operation"),
   description:String(f.get("description")||"").trim()||null
@@ -601,12 +770,43 @@ $("financeForm").addEventListener("submit",async e=>{
  if(error){showMessage("globalMessage",error.message);return}
  e.currentTarget.reset();
  $("financeCurrency").value=company.devise_principale||"XOF";
+ $("financeDate").value=new Date().toISOString().slice(0,10);
  showMessage("globalMessage","Transaction enregistrée dans sa devise d'origine.","success");
  await loadFinance();
 });
 
-/* TAUX DE REFERENCE
-   Les taux sont indicatifs. Ils ne modifient jamais les transactions. */
+/* FILTRES, EXPORT CSV ET IMPRESSION */
+["financeFilterType","financeFilterCurrency","financeFilterFrom","financeFilterTo"].forEach(id=>{
+ $(id).addEventListener("change",renderFinanceList);
+});
+$("clearFinanceFilters").addEventListener("click",()=>{
+ $("financeFilterType").value="";
+ $("financeFilterCurrency").value="";
+ $("financeFilterFrom").value="";
+ $("financeFilterTo").value="";
+ renderFinanceList();
+});
+$("exportFinanceCsv").addEventListener("click",()=>{
+ const rows=filteredFinanceRows();
+ if(!rows.length){showMessage("globalMessage","Aucune transaction à exporter.");return}
+ const fields=["date_operation","libelle","type","montant","devise","categorie","description"];
+ const csv=[fields.join(";"),...rows.map(row=>fields.map(key=>{
+  let value=String(row[key]??"").replace(/"/g,'""');
+  if(/^[=+@\-]/.test(value))value="'"+value;
+  return '"'+value+'"';
+ }).join(";"))].join("\r\n");
+ const blob=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download="ADDIBA-rapport-financier.csv";
+ document.body.appendChild(a);a.click();a.remove();
+ URL.revokeObjectURL(url);
+ showMessage("globalMessage","Export CSV préparé.","success");
+});
+$("printFinanceReport").addEventListener("click",()=>window.print());
+
+/* TAUX DE RÉFÉRENCE
+   Ces taux sont indicatifs et ne modifient aucune transaction. */
 async function loadRates(){
  const target=$("ratesInfo");
  target.textContent="Récupération des taux de référence…";
@@ -618,15 +818,18 @@ async function loadRates(){
   rates.forEach(r=>{map[r.quote]=Number(r.rate)});
   const codes=["USD","GBP","CAD","CHF","NGN","GHS","MAD","CNY","JPY","ZAR"];
   const rows=codes.filter(c=>map[c]).map(c=>
-   "<tr><td>"+c+"</td><td>"+(map[c]/map.EUR).toFixed(5)+"</td></tr>"
+   "<tr><td>"+c+"</td><td>"+(map[c]).toLocaleString("fr-FR",{maximumFractionDigits:5})+"</td></tr>"
   ).join("");
-  target.innerHTML='<p class="subtitle">Taux de référence calculés à partir de l’euro. Ils peuvent différer des taux proposés par les banques et opérateurs.</p><div class="table-wrap"><table><thead><tr><th>Devise</th><th>Unités pour 1 EUR</th></tr></thead><tbody><tr><td>EUR</td><td>1</td></tr><tr><td>XOF</td><td>655,957</td></tr><tr><td>XAF</td><td>655,957</td></tr>'+rows+'</tbody></table></div>';
+  target.innerHTML='<p class="subtitle">Taux de référence indicatifs : unités de chaque devise pour 1 EUR. Ils peuvent différer des taux proposés par les banques et opérateurs. Ils ne sont pas utilisés pour recalculer vos anciennes opérations.</p>'+
+   '<div class="table-wrap"><table><thead><tr><th>Devise</th><th>Unités pour 1 EUR</th></tr></thead><tbody>'+
+   '<tr><td>EUR</td><td>1</td></tr><tr><td>XOF</td><td>655,957</td></tr><tr><td>XAF</td><td>655,957</td></tr>'+rows+
+   '</tbody></table></div>';
  }catch(error){
   target.textContent="Impossible de récupérer les taux pour le moment. Les transactions restent enregistrées normalement.";
  }
 }
 
-/* ACTUALISATION ET EVENEMENTS */
+/* ACTUALISATION ET ÉVÉNEMENTS */
 $("refreshEmployees").addEventListener("click",()=>loadEmployees().catch(e=>showMessage("globalMessage",e.message)));
 $("refreshProjects").addEventListener("click",()=>loadProjects().catch(e=>showMessage("globalMessage",e.message)));
 $("refreshDocuments").addEventListener("click",()=>loadDocuments().catch(e=>showMessage("globalMessage",e.message)));
@@ -650,12 +853,16 @@ bindNavigation();
  currentUser=session?.user||null;
  if(currentUser)await initializeWorkspace();
  else setLoginVisible(true);
+
  db.auth.onAuthStateChange((event,session)=>{
   if(event==="SIGNED_OUT"){
    currentUser=null;company=null;setLoginVisible(true);
   }
  });
 })();
+
+/* Date par défaut du formulaire financier */
+$("financeDate").value=new Date().toISOString().slice(0,10);
 </script>
 </body>
 </html>
