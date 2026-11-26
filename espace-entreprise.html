@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101f3c">
+<title>Espace entreprise | ADDIBA</title>
+<style>
+:root {
+  --navy:#101f3c;
+  --navy2:#1b365c;
+  --green:#20bd83;
+  --bg:#f5f7fb;
+  --ink:#17243a;
+  --muted:#718096;
+  --line:#e5eaf1;
+  --white:#fff;
+  --red:#c24141;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:15px/1.5 Arial,sans-serif;
+}
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+.layout {
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:250px 1fr;
+}
+.sidebar {
+  background:var(--navy);
+  color:#fff;
+  padding:24px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+.brand {
+  font-size:22px;
+  font-weight:800;
+  padding:4px 10px;
+}
+.brand span { color:var(--green); }
+.company-pill {
+  background:#ffffff12;
+  border:1px solid #ffffff20;
+  padding:12px;
+  border-radius:12px;
+  color:#dce6f4;
+  font-size:13px;
+}
+.nav { display:grid; gap:7px; }
+.nav button {
+  border:0;
+  background:transparent;
+  color:#dce6f4;
+  text-align:left;
+  padding:12px;
+  border-radius:9px;
+}
+.nav button.active,.nav button:hover {
+  background:#ffffff18;
+  color:#fff;
+}
+.sidebar-foot {
+  margin-top:auto;
+  color:#aab9cc;
+  font-size:12px;
+  padding:8px;
+}
+.main { min-width:0; }
+.topbar {
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  padding:18px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.topbar h1 {
+  margin:0;
+  font-size:20px;
+  color:var(--navy);
+}
+.user { color:var(--muted); font-size:13px; }
+.content {
+  padding:28px;
+  max-width:1400px;
+  margin:auto;
+}
+.welcome {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:22px;
+}
+.welcome h2 { margin:0 0 5px; font-size:25px; }
+.muted { color:var(--muted); }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
+  margin-bottom:22px;
+}
+.stat,.panel {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:19px;
+  box-shadow:0 4px 15px #10203b08;
+}
+.stat small { color:var(--muted); }
+.stat strong {
+  display:block;
+  font-size:27px;
+  color:var(--navy);
+  margin-top:6px;
+}
+.panel { margin-bottom:18px; }
+.panel-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:15px;
+}
+.panel h3 { margin:0; color:var(--navy); }
+.btn {
+  border:0;
+  border-radius:9px;
+  padding:10px 15px;
+  background:var(--navy);
+  color:#fff;
+  font-weight:650;
+}
+.btn.green { background:var(--green); color:#052d20; }
+.btn.light { background:#edf2f8; color:var(--navy); }
+.btn:disabled { opacity:.55; cursor:not-allowed; }
+.row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.table-wrap { overflow:auto; }
+table {
+  border-collapse:collapse;
+  width:100%;
+  min-width:620px;
+}
+th,td {
+  text-align:left;
+  padding:12px 10px;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+th {
+  color:var(--muted);
+  font-weight:650;
+  background:#fafbfd;
+}
+.empty {
+  padding:22px;
+  text-align:center;
+  color:var(--muted);
+}
+.tag {
+  display:inline-block;
+  border-radius:20px;
+  padding:4px 9px;
+  background:#eef3f8;
+  color:#42546c;
+  font-size:12px;
+}
+.form-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.field { display:grid; gap:5px; }
+.field.full { grid-column:1/-1; }
+.field label {
+  font-size:13px;
+  color:#526176;
+  font-weight:650;
+}
+.field input,.field select,.field textarea {
+  width:100%;
+  border:1px solid #d9e1eb;
+  border-radius:8px;
+  padding:10px;
+  background:#fff;
+  color:var(--ink);
+}
+.field textarea { min-height:80px; resize:vertical; }
+.notice {
+  border-radius:10px;
+  padding:12px 14px;
+  background:#eef7ff;
+  color:#264a70;
+  margin-bottom:15px;
+  font-size:13px;
+}
+.notice.warn { background:#fff7e8; color:#855b16; }
+.notice.error { background:#fff0f0; color:#9d3030; }
+.notice.success { background:#eafaf3; color:#176744; }
+.hidden { display:none!important; }
+.section { display:none; }
+.section.active { display:block; }
+.auth {
+  max-width:480px;
+  margin:8vh auto;
+  padding:25px;
+}
+.auth h1 { color:var(--navy); }
+.auth input {
+  width:100%;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  margin:7px 0 12px;
+}
+@media(max-width:900px) {
+  .layout { grid-template-columns:1fr; }
+  .sidebar { padding:12px; gap:10px; }
+  .brand { padding:6px; }
+  .nav { display:flex; overflow:auto; }
+  .nav button { white-space:nowrap; padding:9px 12px; }
+  .sidebar-foot,.company-pill { display:none; }
+  .topbar { padding:15px 18px; }
+  .content { padding:18px; }
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:520px) {
+  .grid { grid-template-columns:1fr 1fr; gap:9px; }
+  .stat { padding:13px; }
+  .stat strong { font-size:22px; }
+  .content { padding:13px; }
+  .form-grid { grid-template-columns:1fr; }
+  .field.full { grid-column:auto; }
+  .welcome h2 { font-size:21px; }
+}
+</style>
+</head>
+<body>
+
+<div id="authScreen" class="auth panel">
+  <div class="brand" style="color:#101f3c">
+    ADDI<span>BA</span>
+  </div>
+  <h1>Connexion à l'espace entreprise</h1>
+  <p class="muted">
+    Connectez-vous avec le compte ADDIBA associé à votre entreprise.
+  </p>
+  <form id="loginForm">
+    <label for="email">Adresse e-mail</label>
+    <input id="email" type="email" autocomplete="username" required>
+
+    <label for="password">Mot de passe</label>
+    <input id="password" type="password" autocomplete="current-password" required>
+
+    <button class="btn green" style="width:100%">
+      Se connecter
+    </button>
+  </form>
+  <p id="authMessage" class="muted" role="status"></p>
+</div>
+
+<div id="app" class="layout hidden">
+  <aside class="sidebar">
+    <div class="brand">ADDI<span>BA</span></div>
+
+    <div class="company-pill">
+      <div style="opacity:.7">ESPACE PROFESSIONNEL</div>
+      <strong id="sideCompany">Entreprise</strong>
+    </div>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <button class="active" data-section="overview">▦ Vue générale</button>
+      <button data-section="employees">♙ Employés</button>
+      <button data-section="projects">▤ Projets</button>
+      <button data-section="documents">▣ Documents</button>
+      <button data-section="finance">₣ Finances</button>
+      <button data-section="settings">⚙ Paramètres</button>
+    </nav>
+
+    <div class="sidebar-foot">
+      ADDIBA · Gestion professionnelle<br>
+      Accès sécurisé par compte
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <h1 id="pageTitle">Tableau de bord</h1>
+      <div class="row">
+        <span id="userEmail" class="user"></span>
+        <button id="logoutBtn" class="btn light">Déconnexion</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <div id="globalMessage" class="notice hidden" role="status"></div>
+
+      <!-- TABLEAU DE BORD -->
+      <section id="overview" class="section active">
+        <div class="welcome">
+          <div>
+            <h2>Bienvenue dans votre espace</h2>
+            <div class="muted" id="companyMeta">
+              Chargement de votre entreprise…
+            </div>
+          </div>
+          <span class="tag">Espace privé</span>
+        </div>
+
+        <div class="grid">
+          <div class="stat">
+            <small>Employés</small>
+            <strong id="statEmployees">—</strong>
+          </div>
+          <div class="stat">
+            <small>Projets</small>
+            <strong id="statProjects">—</strong>
+          </div>
+          <div class="stat">
+            <small>Documents</small>
+            <strong id="statDocuments">—</strong>
+          </div>
+          <div class="stat">
+            <small>Opérations financières</small>
+            <strong id="statFinance">—</strong>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Activité récente</h3>
+            <button class="btn light" data-goto="projects">
+              Voir les projets
+            </button>
+          </div>
+          <p class="muted">
+            Retrouvez vos projets, collaborateurs, documents et opérations
+            financières dans les rubriques correspondantes.
+          </p>
+        </div>
+
+        <div class="notice warn">
+          Les paiements en ligne ne sont pas activés dans cette version.
+          Aucun paiement réel n'est effectué depuis cet espace.
+        </div>
+      </section>
+
+      <!-- EMPLOYÉS -->
+      <section id="employees" class="section">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Ajouter un employé</h3>
+          </div>
+
+          <form id="employeeForm" class="form-grid">
+            <div class="field">
+              <label>Nom complet</label>
+              <input name="nom_complet" required maxlength="120">
+            </div>
+
+            <div class="field">
+              <label>E-mail</label>
+              <input name="email" type="email">
+            </div>
+
+            <div class="field">
+              <label>Poste</label>
+              <input name="poste" maxlength="100">
+            </div>
+
+            <div class="field">
+              <label>Salaire mensuel (FCFA)</label>
+              <input name="salaire_mensuel" type="number"
+                     min="0" step="1" value="0">
+            </div>
+
+            <div class="field">
+              <label>Marque (facultatif)</label>
+              <select name="marque_id" id="employeeBrand">
+                <option value="">Aucune</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Date de recrutement</label>
+              <input name="date_recrutement" type="date">
+            </div>
+
+            <div class="field full">
+              <button class="btn green">Enregistrer l'employé</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Équipe</h3>
+            <button class="btn light" data-refresh="employees">
+              Actualiser
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Poste</th>
+                  <th>E-mail</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="employeesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJETS -->
+      <section id="projects" class="section">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Créer un projet</h3>
+          </div>
+
+          <form id="projectForm" class="form-grid">
+            <div class="field">
+              <label>Nom du projet</label>
+              <input name="nom" required maxlength="150">
+            </div>
+
+            <div class="field">
+              <label>Marque</label>
+              <select name="marque_id" id="projectBrand">
+                <option value="">Aucune</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Date de début</label>
+              <input name="date_debut" type="date">
+            </div>
+
+            <div class="field">
+              <label>Date de fin</label>
+              <input name="date_fin" type="date">
+            </div>
+
+            <div class="field full">
+              <label>Description</label>
+              <textarea name="description" maxlength="2000"></textarea>
+            </div>
+
+            <div class="field full">
+              <button class="btn green">Créer le projet privé</button>
+            </div>
+          </form>
+
+          <p class="muted" style="font-size:12px">
+            Les projets créés ici sont privés par défaut.
+            Leur publication reste soumise aux règles de gestion ADDIBA.
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Projets de l'entreprise</h3>
+            <button class="btn light" data-refresh="projects">
+              Actualiser
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Projet</th>
+                  <th>Statut</th>
+                  <th>Début</th>
+                  <th>Fin</th>
+                </tr>
+              </thead>
+              <tbody id="projectsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOCUMENTS -->
+      <section id="documents" class="section">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Ajouter un document</h3>
+          </div>
+
+          <form id="documentForm" class="form-grid">
+            <div class="field">
+              <label>Nom du document</label>
+              <input name="nom" required maxlength="150">
+            </div>
+
+            <div class="field">
+              <label>Catégorie</label>
+              <select name="categorie">
+                <option value="administratif">Administratif</option>
+                <option value="financier">Financier</option>
+                <option value="juridique">Juridique</option>
+                <option value="commercial">Commercial</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label>Description</label>
+              <textarea name="description" maxlength="1000"></textarea>
+            </div>
+
+            <div class="field full">
+              <label>Fichier (maximum 50 Mo)</label>
+              <input name="file" type="file" required>
+            </div>
+
+            <div class="field full">
+              <button class="btn green">Téléverser le document</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Documents enregistrés</h3>
+            <button class="btn light" data-refresh="documents">
+              Actualiser
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Document</th>
+                  <th>Catégorie</th>
+                  <th>Date</th>
+                  <th>Fichier</th>
+                </tr>
+              </thead>
+              <tbody id="documentsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINANCES -->
+      <section id="finance" class="section">
+        <div class="notice warn">
+          Ce module sert au suivi comptable interne.
+          Il ne constitue pas un compte bancaire, un portefeuille
+          électronique ni un service de transfert d'argent.
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Enregistrer une opération</h3>
+          </div>
+
+          <form id="financeForm" class="form-grid">
+            <div class="field">
+              <label>Libellé</label>
+              <input name="libelle" required maxlength="150">
+            </div>
+
+            <div class="field">
+              <label>Type</label>
+              <select name="type">
+                <option value="revenu">Revenu</option>
+                <option value="depense">Dépense</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Montant (FCFA)</label>
+              <input name="montant" type="number" min="1"
+                     step="1" required>
+            </div>
+
+            <div class="field">
+              <label>Catégorie</label>
+              <input name="categorie" maxlength="100"
+                     placeholder="Ex. Vente, transport…">
+            </div>
+
+            <div class="field">
+              <label>Date de l'opération</label>
+              <input name="date_operation" type="date" required>
+            </div>
+
+            <div class="field">
+              <label>Devise</label>
+              <input value="XOF — Franc CFA" disabled>
+            </div>
+
+            <div class="field full">
+              <label>Description</label>
+              <textarea name="description" maxlength="1000"></textarea>
+            </div>
+
+            <div class="field full">
+              <button class="btn green">Enregistrer l'opération</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Historique financier</h3>
+            <button class="btn light" data-refresh="finance">
+              Actualiser
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Libellé</th>
+                  <th>Type</th>
+                  <th>Montant</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="financeBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PARAMÈTRES -->
+      <section id="settings" class="section">
+        <div class="panel">
+          <h3>Informations de l'entreprise</h3>
+          <p class="muted">
+            Les informations ci-dessous proviennent de votre dossier ADDIBA.
+          </p>
+          <div id="settingsInfo" class="muted">Chargement…</div>
+        </div>
+
+        <div class="panel">
+          <h3>Sécurité et confidentialité</h3>
+          <p class="muted">
+            L'accès aux données est contrôlé par votre session et les
+            politiques de sécurité Supabase (RLS). Ne partagez jamais
+            votre mot de passe. Les clés privées de paiement ne doivent
+            jamais être placées dans ce fichier.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script type="module">
+import { supabase } from "./supabase.js";
+
+const $ = id => document.getElementById(id);
+
+let user = null;
+let company = null;
+let role = "";
+let brands = [];
+
+const titles = {
+  overview:"Tableau de bord",
+  employees:"Gestion des employés",
+  projects:"Gestion des projets",
+  documents:"Documents de l'entreprise",
+  finance:"Suivi financier",
+  settings:"Paramètres"
+};
+
+const money = n =>
+  new Intl.NumberFormat("fr-FR", {
+    maximumFractionDigits:0
+  }).format(Number(n || 0)) + " FCFA";
+
+const esc = value =>
+  String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+
+function message(text, kind="") {
+  const el = $("globalMessage");
+  el.textContent = text;
+  el.className = "notice" + (kind ? " " + kind : "");
+}
+
+function clearMessage() {
+  $("globalMessage").className = "notice hidden";
+}
+
+function showSection(name) {
+  document.querySelectorAll(".section").forEach(s => {
+    s.classList.toggle("active", s.id === name);
+  });
+
+  document.querySelectorAll(".nav button").forEach(b => {
+    b.classList.toggle("active", b.dataset.section === name);
+  });
+
+  $("pageTitle").textContent = titles[name] || "Espace entreprise";
+
+  if (name === "employees") loadEmployees();
+  if (name === "projects") loadProjects();
+  if (name === "documents") loadDocuments();
+  if (name === "finance") loadFinance();
+}
+
+function canManage() {
+  return [
+    "proprietaire",
+    "owner",
+    "admin",
+    "administrateur"
+  ].includes(String(role).toLowerCase());
+}
+
+function formData(form) {
+  return Object.fromEntries(new FormData(form).entries());
+}
+
+function setBusy(form, busy) {
+  const b = form.querySelector("button");
+  if (b) {
+    b.disabled = busy;
+    b.dataset.oldText ??= b.textContent;
+    b.textContent = busy ? "Enregistrement…" : b.dataset.oldText;
+  }
+}
+
+async function requireUser() {
+  const { data:{session}, error } =
+    await supabase.auth.getSession();
+
+  if (error) throw error;
+  if (!session) throw new Error("Aucune session active. Connectez-vous.");
+
+  user = session.user;
+  $("userEmail").textContent = user.email || "Compte connecté";
+}
+
+async function loadCompany() {
+  const { data:members, error } = await supabase
+    .from("membres_entreprises")
+    .select("entreprise_id,role,statut")
+    .eq("utilisateur_id", user.id)
+    .eq("statut", "actif");
+
+  if (error) throw error;
+
+  if (!members?.length) {
+    throw new Error(
+      "Aucune adhésion active à une entreprise n'a été trouvée pour ce compte."
+    );
+  }
+
+  let chosen = null;
+
+  for (const m of members) {
+    const { data:e, error:ee } = await supabase
+      .from("entreprises")
+      .select("id,nom,pays,secteur,email,telephone,statut")
+      .eq("id", m.entreprise_id)
+      .maybeSingle();
+
+    if (ee) throw ee;
+
+    if (e && String(e.statut).toLowerCase() === "approuvee") {
+      chosen = { ...e, role:m.role };
+      break;
+    }
+  }
+
+  if (!chosen) {
+    throw new Error(
+      "Votre entreprise n'est pas encore approuvée ou accessible. Contactez le fondateur ADDIBA."
+    );
+  }
+
+  company = chosen;
+  role = chosen.role;
+
+  $("sideCompany").textContent = company.nom;
+
+  $("companyMeta").textContent =
+    [company.pays, company.secteur].filter(Boolean).join(" · ") ||
+    "Entreprise approuvée";
+
+  $("settingsInfo").innerHTML = `
+    <p><b>Nom :</b> ${esc(company.nom)}</p>
+    <p><b>Pays :</b> ${esc(company.pays || "—")}</p>
+    <p><b>Secteur :</b> ${esc(company.secteur || "—")}</p>
+    <p><b>E-mail :</b> ${esc(company.email || "—")}</p>
+    <p><b>Téléphone :</b> ${esc(company.telephone || "—")}</p>
+    <p><b>Votre rôle :</b> ${esc(role)}</p>
+  `;
+
+  const { data, error:brandError } = await supabase
+    .from("marques")
+    .select("id,nom")
+    .eq("entreprise_id", company.id)
+    .order("nom");
+
+  if (brandError) throw brandError;
+
+  brands = data || [];
+
+  for (const id of ["employeeBrand", "projectBrand"]) {
+    $(id).innerHTML =
+      '<option value="">Aucune</option>' +
+      brands.map(b =>
+        `<option value="${esc(b.id)}">${esc(b.nom)}</option>`
+      ).join("");
+  }
+
+  document.querySelectorAll(
+    "#employeeForm,#projectForm,#documentForm,#financeForm"
+  ).forEach(f => {
+    f.classList.toggle("hidden", !canManage());
+  });
+}
+
+async function rows(table, fields, order="created_at") {
+  const { data, error } = await supabase
+    .from(table)
+    .select(fields)
+    .eq("entreprise_id", company.id)
+    .order(order, { ascending:false });
+
+  if (error) throw error;
+  return data || [];
+}
+
+function fillTable(id, items, columns) {
+  const body = $(id);
+
+  if (!items.length) {
+    body.innerHTML =
+      `<tr><td colspan="${columns.length}" class="empty">Aucune donnée pour le moment.</td></tr>`;
+    return;
+  }
+
+  body.innerHTML = items.map(item =>
+    "<tr>" +
+    columns.map(fn => `<td>${fn(item)}</td>`).join("") +
+    "</tr>"
+  ).join("");
+}
+
+async function loadEmployees() {
+  try {
+    const a = await rows(
+      "employes",
+      "nom_complet,poste,email,statut",
+      "created_at"
+    );
+
+    $("statEmployees").textContent = a.length;
+
+    fillTable("employeesBody", a, [
+      x => esc(x.nom_complet),
+      x => esc(x.poste || "—"),
+      x => esc(x.email || "—"),
+      x => `<span class="tag">${esc(x.statut || "Actif")}</span>`
+    ]);
+  } catch (e) {
+    message("Employés : " + e.message, "error");
+  }
+}
+
+async function loadProjects() {
+  try {
+    const a = await rows(
+      "projets",
+      "nom,statut,date_debut,date_fin",
+      "created_at"
+    );
+
+    $("statProjects").textContent = a.length;
+
+    fillTable("projectsBody", a, [
+      x => esc(x.nom),
+      x => `<span class="tag">${esc(x.statut || "En cours")}</span>`,
+      x => esc(x.date_debut || "—"),
+      x => esc(x.date_fin || "—")
+    ]);
+  } catch (e) {
+    message("Projets : " + e.message, "error");
+  }
+}
+
+async function loadDocuments() {
+  try {
+    const a = await rows(
+      "documents",
+      "id,nom,categorie,created_at,chemin_fichier",
+      "created_at"
+    );
+
+    $("statDocuments").textContent = a.length;
+
+    fillTable("documentsBody", a, [
+      x => esc(x.nom),
+      x => esc(x.categorie || "—"),
+      x => esc(
+        x.created_at
+          ? new Date(x.created_at).toLocaleDateString("fr-FR")
+          : "—"
+      ),
+      x =>
+        `<button class="btn light"
+          data-file="${esc(x.id)}"
+          data-path="${esc(x.chemin_fichier)}">Ouvrir</button>`
+    ]);
+  } catch (e) {
+    message("Documents : " + e.message, "error");
+  }
+}
+
+async function loadFinance() {
+  try {
+    const a = await rows(
+      "transactions_financieres",
+      "libelle,type,montant,date_operation",
+      "date_operation"
+    );
+
+    $("statFinance").textContent = a.length;
+
+    fillTable("financeBody", a, [
+      x => esc(x.libelle),
+      x => `<span class="tag">${esc(x.type)}</span>`,
+      x => money(x.montant),
+      x => esc(x.date_operation || "—")
+    ]);
+  } catch (e) {
+    message("Finances : " + e.message, "error");
+  }
+}
+
+async function refreshAll() {
+  await Promise.all([
+    loadEmployees(),
+    loadProjects(),
+    loadDocuments(),
+    loadFinance()
+  ]);
+}
+
+async function submit(form, work) {
+  form.addEventListener("submit", async ev => {
+    ev.preventDefault();
+
+    if (!canManage()) {
+      message("Votre rôle ne permet pas cette opération.", "error");
+      return;
+    }
+
+    setBusy(form, true);
+    clearMessage();
+
+    try {
+      await work(formData(form), form);
+      form.reset();
+      message("Enregistrement effectué.", "success");
+      await refreshAll();
+    } catch (e) {
+      message(e.message || "Une erreur est survenue.", "error");
+    } finally {
+      setBusy(form, false);
+    }
+  });
+}
+
+/* ENREGISTREMENT D'UN EMPLOYÉ */
+submit($("employeeForm"), async d => {
+  const payload = {
+    entreprise_id:company.id,
+    nom_complet:d.nom_complet,
+    email:d.email || null,
+    poste:d.poste || null,
+    salaire_mensuel:Number(d.salaire_mensuel || 0),
+    marque_id:d.marque_id || null,
+    date_recrutement:d.date_recrutement || null,
+    statut:"actif"
+  };
+
+  const { error } = await supabase
+    .from("employes")
+    .insert(payload);
+
+  if (error) throw error;
+});
+
+/* CRÉATION D'UN PROJET PRIVÉ */
+submit($("projectForm"), async d => {
+  const payload = {
+    entreprise_id:company.id,
+    nom:d.nom,
+    description:d.description || null,
+    marque_id:d.marque_id ? Number(d.marque_id) : null,
+    date_debut:d.date_debut || null,
+    date_fin:d.date_fin || null,
+    statut:"en_preparation",
+    priorite:"normale",
+    progression:0,
+    est_public:false
+  };
+
+  const { error } = await supabase
+    .from("projets")
+    .insert(payload);
+
+  if (error) throw error;
+});
+
+/* ENREGISTREMENT FINANCIER */
+submit($("financeForm"), async d => {
+  const payload = {
+    entreprise_id:company.id,
+    libelle:d.libelle,
+    type:d.type,
+    montant:Number(d.montant),
+    categorie:d.categorie || null,
+    date_operation:d.date_operation,
+    description:d.description || null,
+    devise:"XOF"
+  };
+
+  const { error } = await supabase
+    .from("transactions_financieres")
+    .insert(payload);
+
+  if (error) throw error;
+});
+
+/* TÉLÉVERSEMENT DE DOCUMENT */
+submit($("documentForm"), async (d, form) => {
+  const file = form.querySelector('input[type="file"]').files[0];
+
+  if (!file) throw new Error("Choisissez un fichier.");
+
+  if (file.size > 50 * 1024 * 1024) {
+    throw new Error("Le fichier dépasse 50 Mo.");
+  }
+
+  const safe = file.name
+    .normalize("NFKD")
+    .replace(/[^a-zA-Z0-9._-]/g, "_");
+
+  const path =
+    `${company.id}/${crypto.randomUUID()}-${safe}`;
+
+  const up = await supabase.storage
+    .from("addiba-documents")
+    .upload(path, file, {
+      upsert:false,
+      contentType:file.type || "application/octet-stream"
+    });
+
+  if (up.error) throw up.error;
+
+  const ins = await supabase
+    .from("documents")
+    .insert({
+      entreprise_id:company.id,
+      nom:d.nom,
+      description:d.description || null,
+      categorie:d.categorie,
+      chemin_fichier:path,
+      created_by:user.id
+    });
+
+  if (ins.error) {
+    await supabase.storage
+      .from("addiba-documents")
+      .remove([path]);
+
+    throw ins.error;
+  }
+});
+
+/* OUVERTURE SÉCURISÉE D'UN DOCUMENT */
+$("documentsBody").addEventListener("click", async ev => {
+  const b = ev.target.closest("button[data-path]");
+  if (!b) return;
+
+  const { data, error } = await supabase.storage
+    .from("addiba-documents")
+    .createSignedUrl(b.dataset.path, 120);
+
+  if (error) {
+    message(
+      "Impossible d'ouvrir le document : " + error.message,
+      "error"
+    );
+    return;
+  }
+
+  window.open(data.signedUrl, "_blank", "noopener");
+});
+
+/* NAVIGATION */
+document.querySelectorAll(".nav button").forEach(b => {
+  b.addEventListener("click", () => {
+    showSection(b.dataset.section);
+  });
+});
+
+document.querySelectorAll("[data-goto]").forEach(b => {
+  b.addEventListener("click", () => {
+    showSection(b.dataset.goto);
+  });
+});
+
+document.querySelectorAll("[data-refresh]").forEach(b => {
+  b.addEventListener("click", () => {
+    const actions = {
+      employees:loadEmployees,
+      projects:loadProjects,
+      documents:loadDocuments,
+      finance:loadFinance
+    };
+    actions[b.dataset.refresh]();
+  });
+});
+
+/* CONNEXION */
+$("loginForm").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  $("authMessage").textContent = "Connexion…";
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email:$("email").value,
+    password:$("password").value
+  });
+
+  if (error) {
+    $("authMessage").textContent = error.message;
+    return;
+  }
+
+  await start();
+});
+
+/* DÉCONNEXION */
+$("logoutBtn").addEventListener("click", async () => {
+  await supabase.auth.signOut();
+  location.reload();
+});
+
+/* INITIALISATION */
+async function start() {
+  try {
+    await requireUser();
+    await loadCompany();
+
+    $("authScreen").classList.add("hidden");
+    $("app").classList.remove("hidden");
+
+    await refreshAll();
+  } catch (e) {
+    $("authScreen").classList.remove("hidden");
+    $("app").classList.add("hidden");
+
+    $("authMessage").textContent =
+      e.message || "Impossible de charger l'espace entreprise.";
+  }
+}
+
+const { data:{session} } = await supabase.auth.getSession();
+
+if (session) {
+  await start();
+}
+</script>
+</body>
+</html>
