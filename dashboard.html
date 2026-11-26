@@ -179,7 +179,7 @@ button,input,textarea,select{font:inherit}
       <div class="field"><label for="companyName">Nom de l'entreprise *</label><input id="companyName" required></div>
       <div class="field"><label for="companyCountry">Pays *</label><input id="companyCountry" value="Burkina Faso" required></div>
       <div class="field"><label for="companySector">Secteur d'activité *</label><input id="companySector" required></div>
-      <div class="field"><label for="companyEmail">E-mail</label><input id="companyEmail" type="email"></div>
+      <div class="field"><label for="companyEmail">E-mail *</label><input id="companyEmail" type="email" required></div>
       <div class="field"><label for="companyPhone">Téléphone</label><input id="companyPhone" type="tel"></div>
       <div class="field"><label for="companyStatus">Statut initial</label><select id="companyStatus"><option value="en_attente">En attente</option><option value="approuvee">Approuvée</option></select></div>
     </div>
@@ -529,7 +529,8 @@ async function chargerFinances(){
       .order("date_operation",{ascending:false}),
 
     supabase.from("finances")
-      .select("id,type_operation,montant,devise,description,date_operation,marque_id")
+      .select("id,type_operation,montant,devise,description,date_operation,marque_id,entreprise_id")
+      .is("entreprise_id",null)
       .is("marque_id",null)
       .order("date_operation",{ascending:false})
   ]);
@@ -624,11 +625,19 @@ $("companyForm").addEventListener("submit",async evenement=>{
     if(erreurSession)throw erreurSession;
     if(!user)throw new Error("Session utilisateur absente.");
 
+    const email=$("companyEmail").value.trim();
+
+    if(!email){
+      afficherMessage("L'adresse e-mail de l'entreprise est obligatoire.",true);
+      bouton.disabled=false;
+      return;
+    }
+
     const {error}=await supabase.from("entreprises").insert({
       nom:$("companyName").value.trim(),
       pays:$("companyCountry").value.trim(),
       secteur:$("companySector").value.trim(),
-      email:$("companyEmail").value.trim()||null,
+      email:email,
       telephone:$("companyPhone").value.trim()||null,
       statut:$("companyStatus").value,
       created_by:user.id
@@ -892,12 +901,20 @@ $("rhForm").addEventListener("submit",async evenement=>{
   const bouton=$("rhSaveBtn");
   bouton.disabled=true;
 
+  const salaire=Number($("rhSalaire").value||0);
+
+  if(!Number.isFinite(salaire)||salaire<0){
+    afficherMessage("Le salaire doit être un nombre positif ou égal à zéro.",true);
+    bouton.disabled=false;
+    return;
+  }
+
   const donneesModification={
     nom_complet:$("rhNom").value.trim(),
     email:$("rhEmail").value.trim()||null,
     poste:$("rhPoste").value.trim()||null,
     marque_id:$("rhMarque").value?Number($("rhMarque").value):null,
-    salaire_mensuel:Number($("rhSalaire").value||0),
+    salaire_mensuel:salaire,
     date_recrutement:$("rhDate").value||null,
     statut:$("rhStatut").value
   };
@@ -975,12 +992,22 @@ $("financeForm").addEventListener("submit",async evenement=>{
   const bouton=$("financeSaveBtn");
   bouton.disabled=true;
 
+  const montant=Number($("financeMontant").value);
+  const categorie=$("financeCategorie").value.trim();
+  const date=$("financeDate").value;
+
+  if(!Number.isFinite(montant)||montant<=0||!categorie||!date){
+    afficherMessage("Vérifie le montant, la catégorie et la date de l'opération.",true);
+    bouton.disabled=false;
+    return;
+  }
+
   const donnees={
-    libelle:$("financeCategorie").value.trim(),
+    libelle:categorie,
     type:$("financeType").value,
-    montant:Number($("financeMontant").value),
-    categorie:$("financeCategorie").value.trim(),
-    date_operation:$("financeDate").value,
+    montant:montant,
+    categorie:categorie,
+    date_operation:date,
     description:$("financeDescription").value.trim()||null,
     devise:"FCFA",
     entreprise_id:null
