@@ -1,206 +1,343 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nos marques | ADDIBA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez ZAAMARKET, ALTEVA et TURINEX, les marques du groupe ADDIBA.">
+  <meta name="theme-color" content="#101f3c">
+  <title>Nos marques | ADDIBA</title>
 
-<style>
-:root {
-  --navy: #10243a;
-  --green: #16845b;
-  --light: #f4f7f6;
-  --white: #ffffff;
-  --text: #263746;
-}
+  <style>
+    :root {
+      --navy: #101f3c;
+      --navy2: #1b365c;
+      --green: #20bd83;
+      --light: #f5f7fb;
+      --white: #ffffff;
+      --text: #344054;
+      --muted: #667085;
+    }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  background: var(--light);
-  color: var(--text);
-  line-height: 1.6;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-header {
-  background: var(--navy);
-  color: white;
-  padding: 20px 7%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-.logo {
-  font-size: 27px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
+    a {
+      text-decoration: none;
+    }
 
-.logo span {
-  color: #39bd83;
-}
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
 
-header a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+    .logo {
+      color: white;
+      font-size: 27px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
 
-header nav {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+    .logo span,
+    .footer-brand span {
+      color: var(--green);
+    }
 
-header nav a:hover {
-  color: #39bd83;
-}
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
 
-.hero {
-  background: linear-gradient(135deg, #10243a, #176c54);
-  color: white;
-  text-align: center;
-  padding: 85px 20px;
-}
+    nav a {
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      transition: color .2s;
+    }
 
-.hero h1 {
-  font-size: 42px;
-  margin-bottom: 15px;
-}
+    nav a:hover {
+      color: var(--green);
+    }
 
-.hero p {
-  max-width: 680px;
-  margin: auto;
-  font-size: 17px;
-}
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--green);
+      outline-offset: 4px;
+    }
 
-.container {
-  width: 90%;
-  max-width: 1150px;
-  margin: auto;
-}
+    .hero {
+      background: linear-gradient(135deg, var(--navy), var(--navy2));
+      color: white;
+      text-align: center;
+      padding: 85px 20px;
+    }
 
-.intro {
-  text-align: center;
-  padding: 65px 15px 35px;
-}
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 46px);
+      margin-bottom: 15px;
+    }
 
-.intro h2 {
-  color: var(--navy);
-  font-size: 29px;
-  margin-bottom: 12px;
-}
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 17px;
+      color: #e1e8f2;
+    }
 
-.intro p {
-  max-width: 750px;
-  margin: auto;
-}
+    .container {
+      width: 90%;
+      max-width: 1150px;
+      margin: auto;
+    }
 
-.brands {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  padding: 25px 0 75px;
-}
+    .intro {
+      text-align: center;
+      padding: 65px 15px 35px;
+    }
 
-.brand-card {
-  background: white;
-  border-radius: 14px;
-  padding: 35px 25px;
-  text-align: center;
-  box-shadow: 0 5px 22px rgba(0,0,0,0.07);
-  border-top: 5px solid var(--green);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .intro h2 {
+      color: var(--navy);
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
 
-.brand-symbol {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background: #e5f4ed;
-  color: var(--green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 25px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
+    .intro p {
+      max-width: 750px;
+      margin: auto;
+      color: var(--muted);
+    }
 
-.brand-card h3 {
-  color: var(--navy);
-  font-size: 24px;
-  margin-bottom: 12px;
-}
+    .brands {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+      padding: 25px 0 75px;
+    }
 
-.brand-card p {
-  margin-bottom: 25px;
-  flex-grow: 1;
-}
+    .brand-card {
+      background: white;
+      border-radius: 14px;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 5px 22px rgba(16, 31, 60, .07);
+      border-top: 5px solid var(--green);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .25s, box-shadow .25s;
+    }
 
-.btn {
-  display: inline-block;
-  background: var(--green);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
+    .brand-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(16, 31, 60, .12);
+    }
 
-.btn:hover {
-  background: var(--navy);
-  transform: translateY(-2px);
-}
+    .brand-symbol {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background: #e5f7ef;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
 
-.group-message {
-  background: var(--navy);
-  color: white;
-  text-align: center;
-  padding: 55px 20px;
-}
+    .brand-card h3 {
+      color: var(--navy);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
 
-.group-message h2 {
-  margin-bottom: 12px;
-}
+    .brand-card p {
+      color: var(--muted);
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
 
-footer {
-  background: #0b1928;
-  color: white;
-  text-align: center;
-  padding: 25px 15px;
-  font-size: 14px;
-}
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: var(--navy);
+      padding: 12px 24px;
+      border-radius: 7px;
+      font-weight: bold;
+      transition: background .2s, color .2s;
+    }
 
-@media(max-width: 800px) {
-  .brands {
-    grid-template-columns: 1fr;
-  }
+    .btn:hover {
+      background: var(--navy);
+      color: white;
+    }
 
-  .hero h1 {
-    font-size: 32px;
-  }
+    .group-message {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 55px 20px;
+    }
 
-  header {
-    flex-direction: column;
-  }
+    .group-message h2 {
+      margin-bottom: 12px;
+      font-size: 28px;
+    }
 
-  header nav {
-    justify-content: center;
-  }
-}
-</style>
+    .group-message p {
+      max-width: 750px;
+      margin: auto;
+      color: #d5deeb;
+    }
+
+    footer {
+      background: #0b172d;
+      color: white;
+      padding: 45px 0 25px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-size: 27px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 23px;
+      margin: 0 auto 22px;
+      padding: 0 15px;
+    }
+
+    .footer-links a {
+      color: #d3dceb;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin: 22px 0;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      color: white;
+      background: rgba(255,255,255,.06);
+    }
+
+    .social-icon svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    .footer-slogan {
+      color: #aebbd0;
+      font-size: 14px;
+      margin: 20px 0 25px;
+    }
+
+    .social-notice {
+      color: #8998ae;
+      font-size: 12px;
+      margin: 0 15px 20px;
+    }
+
+    .footer-copy {
+      border-top: 1px solid rgba(255,255,255,.13);
+      padding-top: 20px;
+      color: #8998ae;
+      font-size: 12px;
+    }
+
+    @media (max-width: 800px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 13px 18px;
+      }
+
+      .brands {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: auto;
+      }
+
+      .hero {
+        padding: 65px 20px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      nav {
+        gap: 10px 13px;
+      }
+
+      nav a {
+        font-size: 13px;
+      }
+
+      .brand-card {
+        padding: 28px 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -208,86 +345,162 @@ footer {
 <header>
   <a href="index.html" class="logo">ADDI<span>BA</span></a>
 
-  <nav>
+  <nav aria-label="Navigation principale">
     <a href="index.html">Accueil</a>
     <a href="àpropos.html">À propos</a>
-    <a href="nos-marques.html">Nos marques</a>
-    <a href="projets.html">Projets</a>
+    <a href="index.html#vision">Vision et mission</a>
+    <a href="nos-marques.html" aria-current="page">Nos marques</a>
+    <a href="nos-projets.html">Projets</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<section class="hero">
-  <h1>Nos marques</h1>
-  <p>
-    Découvrez les marques qui incarnent la vision,
-    l'ambition et l'esprit entrepreneurial du groupe ADDIBA.
-  </p>
-</section>
+<main>
 
-<main class="container">
-
-  <section class="intro">
-    <h2>Un groupe, plusieurs ambitions</h2>
+  <section class="hero">
+    <h1>Nos marques</h1>
     <p>
-      ADDIBA développe des marques indépendantes et complémentaires,
-      chacune avec son identité, sa mission et ses objectifs.
-      Découvrez nos différents univers.
+      Découvrez les marques qui incarnent la vision,
+      l'ambition et l'esprit entrepreneurial du groupe ADDIBA.
     </p>
   </section>
 
-  <section class="brands">
+  <div class="container">
 
-    <article class="brand-card">
-      <div class="brand-symbol">Z</div>
-      <h3>ZAAMARKET</h3>
+    <section class="intro">
+      <h2>Un groupe, plusieurs ambitions</h2>
       <p>
-        Une marketplace tournée vers l'Afrique, qui ambitionne
-        de faciliter l'accès aux produits et de rapprocher
-        vendeurs et acheteurs.
+        ADDIBA développe des marques indépendantes et complémentaires,
+        chacune avec son identité, sa mission et ses objectifs.
+        Découvrez nos différents univers.
       </p>
-      <a href="zaamarket.html" class="btn">Découvrir ZAAMARKET</a>
-    </article>
+    </section>
 
-    <article class="brand-card">
-      <div class="brand-symbol">A</div>
-      <h3>ALTEVA</h3>
-      <p>
-        Une marque du groupe ADDIBA destinée à développer
-        des solutions et des initiatives innovantes,
-        avec une vision tournée vers l'avenir.
-      </p>
-      <a href="alteva.html" class="btn">Découvrir ALTEVA</a>
-    </article>
+    <section class="brands" aria-label="Les marques du groupe ADDIBA">
 
-    <article class="brand-card">
-      <div class="brand-symbol">T</div>
-      <h3>TURINEX</h3>
-      <p>
-        Une marque qui porte l'ambition de construire
-        de nouvelles opportunités et de contribuer
-        au développement de projets innovants.
-      </p>
-      <a href="turinex.html" class="btn">Découvrir TURINEX</a>
-    </article>
+      <article class="brand-card">
+        <div class="brand-symbol" aria-hidden="true">Z</div>
+        <h3>ZAAMARKET</h3>
+        <p>
+          Une marketplace tournée vers l'Afrique, qui ambitionne
+          de faciliter l'accès aux produits et de rapprocher
+          vendeurs et acheteurs.
+        </p>
+        <a href="zaamarket.html" class="btn">
+          Découvrir ZAAMARKET
+        </a>
+      </article>
 
+      <article class="brand-card">
+        <div class="brand-symbol" aria-hidden="true">A</div>
+        <h3>ALTEVA</h3>
+        <p>
+          Une marque du groupe ADDIBA destinée à développer
+          des solutions et des initiatives innovantes,
+          avec une vision tournée vers l'avenir.
+        </p>
+        <a href="alteva.html" class="btn">
+          Découvrir ALTEVA
+        </a>
+      </article>
+
+      <article class="brand-card">
+        <div class="brand-symbol" aria-hidden="true">T</div>
+        <h3>TURINEX</h3>
+        <p>
+          Une marque qui porte l'ambition de construire
+          de nouvelles opportunités et de contribuer
+          au développement de projets innovants.
+        </p>
+        <a href="turinex.html" class="btn">
+          Découvrir TURINEX
+        </a>
+      </article>
+
+    </section>
+  </div>
+
+  <section class="group-message">
+    <h2>La vision ADDIBA</h2>
+    <p>
+      Construire un groupe ambitieux, développer des marques fortes
+      et transformer les idées en réalisations concrètes.
+    </p>
   </section>
 
 </main>
 
-<section class="group-message">
-  <h2>La vision ADDIBA</h2>
-  <p>
-    Construire un groupe ambitieux, développer des marques fortes
-    et transformer les idées en réalisations concrètes.
-  </p>
-</section>
-
 <footer>
-  <p>© 2026 ADDIBA — Tous droits réservés.</p>
-  <p>Tout commence par une vision.</p>
+  <div class="container">
+
+    <div class="footer-brand">ADDI<span>BA</span></div>
+
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="nos-marques.html">Nos marques</a>
+      <a href="àpropos.html">À propos</a>
+      <a href="nos-projets.html">Projets</a>
+      <a href="contact.html">Contact</a>
+      <a href="connexion.html">Espace fondateur</a>
+      <a href="espace-entreprise.html">Espace entreprise</a>
+      <a href="inscription.html">Inscrire mon entreprise</a>
+    </div>
+
+    <div class="social-icons" aria-label="Réseaux sociaux">
+
+      <span class="social-icon" role="img" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8h3.4z"/>
+        </svg>
+      </span>
+
+      <span class="social-icon" role="img" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/>
+        </svg>
+      </span>
+
+      <span class="social-icon" role="img" aria-label="WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2a9.8 9.8 0 0 0-8.5 14.7L2 22l5.5-1.4A10 10 0 1 0 12 2zm0 2a7.9 7.9 0 0 1 0 15.8 7.8 7.8 0 0 1-4-.0l-.4-.2-2.7.7.7-2.6-.3-.5A7.9 7.9 0 0 1 12 4zm-3 3c-.3 0-.7.1-.9.5-.3.4-1 1-1 2.4s1 2.8 1.1 3c.2.2 2 3.2 5 4.3 2.5 1 3 .8 3.6.7.6-.1 1.8-.8 2-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.7-.4l-2-.9c-.3-.1-.5-.2-.7.2l-.9 1.1c-.2.2-.3.3-.7.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.4 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-.9-2c-.2-.5-.4-.5-.7-.5H9z"/>
+        </svg>
+      </span>
+
+      <span class="social-icon" role="img" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.2 3a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM3.3 9h3.8v12H3.3V9zm6.2 0h3.6v1.6h.1a4 4 0 0 1 3.6-2c3.9 0 4.6 2.5 4.6 5.7V21h-3.8v-5.9c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21H9.5V9z"/>
+        </svg>
+      </span>
+
+    </div>
+
+    <p class="social-notice">
+      Nos comptes officiels sur les réseaux sociaux seront communiqués prochainement.
+    </p>
+
+    <p class="footer-slogan">
+      Un groupe. Plusieurs marques. Une vision commune.
+    </p>
+
+    <div class="footer-copy">
+      © <span id="currentYear"></span> ADDIBA. Tous droits réservés.
+    </div>
+
+  </div>
 </footer>
 
+<script>
+(function () {
+  "use strict";
+
+  const year = document.getElementById("currentYear");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+})();
+</script>
+
 </body>
-  </html>
-  
+</html>
+      
