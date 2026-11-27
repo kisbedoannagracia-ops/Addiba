@@ -19,7 +19,11 @@
       --border: #e5eaf1;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     html {
       scroll-behavior: smooth;
@@ -34,8 +38,14 @@
       overflow-x: hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
 
     .container {
       width: min(1160px, calc(100% - 40px));
@@ -60,14 +70,18 @@
       position: relative;
     }
 
-    .logo, .footer-brand {
+    .logo,
+    .footer-brand {
       font-size: 29px;
       font-weight: 900;
       letter-spacing: 1px;
       white-space: nowrap;
     }
 
-    .logo span, .footer-brand span { color: var(--green); }
+    .logo span,
+    .footer-brand span {
+      color: var(--green);
+    }
 
     .nav-links {
       display: flex;
@@ -83,7 +97,9 @@
       transition: .2s;
     }
 
-    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover {
+      color: var(--green);
+    }
 
     .nav-links .nav-cta {
       background: var(--green);
@@ -117,7 +133,10 @@
       text-align: center;
     }
 
-    .hero-content { max-width: 850px; margin: auto; }
+    .hero-content {
+      max-width: 850px;
+      margin: auto;
+    }
 
     .hero-label {
       display: inline-block;
@@ -134,7 +153,9 @@
       margin-bottom: 24px;
     }
 
-    .hero h1 span { color: var(--green); }
+    .hero h1 span {
+      color: var(--green);
+    }
 
     .hero p {
       color: #d8e1ef;
@@ -163,7 +184,10 @@
       cursor: pointer;
     }
 
-    .btn-primary { background: var(--green); color: var(--navy); }
+    .btn-primary {
+      background: var(--green);
+      color: var(--navy);
+    }
 
     .btn-primary:hover {
       background: white;
@@ -175,9 +199,14 @@
       color: white;
     }
 
-    .btn-outline:hover { background: white; color: var(--navy); }
+    .btn-outline:hover {
+      background: white;
+      color: var(--navy);
+    }
 
-    section { padding: 85px 0; }
+    section {
+      padding: 85px 0;
+    }
 
     .section-heading {
       max-width: 720px;
@@ -246,14 +275,18 @@
       margin-bottom: 10px;
     }
 
-    .about-section { background: white; }
+    .about-section {
+      background: white;
+    }
 
     .about-content {
       text-align: center;
       width: 100%;
     }
 
-    .about-content h2 { margin: 12px 0 20px; }
+    .about-content h2 {
+      margin: 12px 0 20px;
+    }
 
     .about-content p {
       margin: 0 auto 16px;
@@ -286,12 +319,24 @@
       letter-spacing: 3px;
     }
 
-    .about-visual strong span { color: var(--green); }
-    .about-visual p { color: #d8e1ef; margin-top: 12px; }
+    .about-visual strong span {
+      color: var(--green);
+    }
 
-    .brands-section { background: var(--bg); }
+    .about-visual p {
+      color: #d8e1ef;
+      margin-top: 12px;
+    }
 
-    .brand-card { display: flex; flex-direction: column; min-height: 245px; }
+    .brands-section {
+      background: var(--bg);
+    }
+
+    .brand-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 245px;
+    }
 
     .brand-name {
       font-size: 25px;
@@ -300,7 +345,9 @@
       margin-bottom: 12px;
     }
 
-    .brand-card p { flex: 1; }
+    .brand-card p {
+      flex: 1;
+    }
 
     .brand-status {
       display: inline-block;
@@ -324,12 +371,22 @@
       font-weight: 800;
     }
 
-    .brand-discover span { color: var(--green); font-size: 20px; }
+    .brand-discover span {
+      color: var(--green);
+      font-size: 20px;
+    }
 
-    .brand-discover:hover { color: #11986a; }
+    .brand-discover:hover {
+      color: #11986a;
+    }
 
-    .projects-section { background: white; }
-    .project-card { border-left: 4px solid var(--green); }
+    .projects-section {
+      background: white;
+    }
+
+    .project-card {
+      border-left: 4px solid var(--green);
+    }
 
     .founder-section {
       background: var(--navy);
@@ -348,7 +405,9 @@
       margin: 0 auto 25px;
     }
 
-    .contact-section { background: var(--bg); }
+    .contact-section {
+      background: var(--bg);
+    }
 
     .contact-box {
       max-width: 780px;
@@ -366,7 +425,10 @@
       margin-bottom: 12px;
     }
 
-    .contact-box p { color: var(--muted); margin-bottom: 22px; }
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
 
     footer {
       background: #0b172d;
@@ -375,7 +437,9 @@
       text-align: center;
     }
 
-    .footer-brand { margin-bottom: 18px; }
+    .footer-brand {
+      margin-bottom: 18px;
+    }
 
     .footer-links {
       display: flex;
@@ -386,8 +450,14 @@
       margin: 0 auto 20px;
     }
 
-    .footer-links a { color: #d3dceb; font-size: 14px; }
-    .footer-links a:hover { color: var(--green); }
+    .footer-links a {
+      color: #d3dceb;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+    }
 
     .footer-slogan {
       color: #aebbd0;
@@ -403,14 +473,27 @@
     }
 
     @media(max-width:1050px) {
-      .nav-links { gap: 10px; }
-      .nav-links a { font-size: 12px; }
-      .container { width: min(100% - 36px,950px); }
+      .nav-links {
+        gap: 10px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .container {
+        width: min(calc(100% - 36px),950px);
+      }
     }
 
     @media(max-width:950px) {
-      .navbar { min-height: 70px; }
-      .menu-toggle { display: block; }
+      .navbar {
+        min-height: 70px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
 
       .nav-links {
         display: none;
@@ -426,7 +509,9 @@
         box-shadow: 0 12px 18px rgba(0,0,0,.15);
       }
 
-      .nav-links.active { display: flex; }
+      .nav-links.active {
+        display: flex;
+      }
 
       .nav-links a {
         font-size: 15px;
@@ -440,37 +525,80 @@
         border: 0;
       }
 
-      .cards-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-      section { padding: 70px 0; }
+      .cards-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+
+      section {
+        padding: 70px 0;
+      }
     }
 
     @media(max-width:600px) {
-      .container { width: calc(100% - 30px); }
-      .hero { padding: 78px 0 82px; }
-      .hero h1 { font-size: 39px; }
-      .hero p { font-size: 16px; }
+      .container {
+        width: calc(100% - 30px);
+      }
+
+      .hero {
+        padding: 78px 0 82px;
+      }
+
+      .hero h1 {
+        font-size: 39px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
 
       .hero-buttons {
         flex-direction: column;
         width: 100%;
       }
 
-      .hero-buttons .btn { width: 100%; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .about-visual { min-height: 230px; }
-      section { padding: 58px 0; }
-      .card { padding: 24px; }
-      .contact-box { padding: 32px 20px; }
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-visual {
+        min-height: 230px;
+      }
+
+      section {
+        padding: 58px 0;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .contact-box {
+        padding: 32px 20px;
+      }
     }
 
     @media(max-width:360px) {
-      .logo { font-size: 25px; }
-      .hero h1 { font-size: 33px; }
+      .logo {
+        font-size: 25px;
+      }
+
+      .hero h1 {
+        font-size: 33px;
+      }
     }
 
     @media(prefers-reduced-motion:reduce) {
-      html { scroll-behavior: auto; }
-      *,*::before,*::after { transition-duration: .01ms !important; }
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,*::before,*::after {
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
@@ -510,6 +638,7 @@
         Nous construisons et développons des entreprises,
         des marques et des projets tournés vers l'avenir.
       </p>
+
       <div class="hero-buttons">
         <a href="#marques" class="btn btn-primary">Découvrir nos marques</a>
         <a href="àpropos.html" class="btn btn-outline">Découvrir ADDIBA</a>
@@ -585,19 +714,19 @@
           <div class="brand-name">ALTEVA</div>
           <p>Une marque du groupe ADDIBA avec sa propre identité, ses activités et ses ambitions.</p>
           <span class="brand-status">Marque du groupe ADDIBA</span>
-          <a href="marques.html" class="brand-discover">Découvrir ALTEVA <span>→</span></a>
+          <a href="alteva.html" class="brand-discover">Découvrir ALTEVA <span>→</span></a>
         </article>
 
         <article class="card brand-card">
           <div class="brand-name">TURINEX</div>
           <p>Une marque du groupe ADDIBA avec sa propre identité, ses activités et ses ambitions.</p>
           <span class="brand-status">Marque du groupe ADDIBA</span>
-          <a href="marques.html" class="brand-discover">Découvrir TURINEX <span>→</span></a>
+          <a href="turinex.html" class="brand-discover">Découvrir TURINEX <span>→</span></a>
         </article>
       </div>
 
       <div style="text-align:center;margin-top:32px;">
-        <a href="marques.html" class="btn btn-primary">Voir toutes nos marques</a>
+        <a href="nos-marques.html" class="btn btn-primary">Voir toutes nos marques</a>
       </div>
     </div>
   </section>
@@ -631,7 +760,7 @@
       </div>
 
       <div style="text-align:center;margin-top:32px;">
-        <a href="projets.html" class="btn btn-primary">Découvrir nos projets</a>
+        <a href="nos-projets.html" class="btn btn-primary">Découvrir nos projets</a>
       </div>
     </div>
   </section>
@@ -662,9 +791,9 @@
 
     <div class="footer-links">
       <a href="index.html">Accueil</a>
-      <a href="marques.html">Nos marques</a>
+      <a href="nos-marques.html">Nos marques</a>
       <a href="àpropos.html">À propos</a>
-      <a href="projets.html">Projets</a>
+      <a href="nos-projets.html">Projets</a>
       <a href="contact.html">Contact</a>
       <a href="connexion.html">Espace fondateur</a>
       <a href="espace-entreprise.html">Espace entreprise</a>
@@ -696,8 +825,13 @@
 
     function toggleMenu() {
       const isOpen = navLinks.classList.toggle("active");
+
       menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Fermer le menu" : "Ouvrir le menu"
+      );
+
       menuToggle.textContent = isOpen ? "✕" : "☰";
     }
 
@@ -718,16 +852,23 @@
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") closeMenu();
+      if (event.key === "Escape") {
+        closeMenu();
+      }
     });
 
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 950) closeMenu();
+      if (window.innerWidth > 950) {
+        closeMenu();
+      }
     });
   }
 
   const year = document.getElementById("currentYear");
-  if (year) year.textContent = new Date().getFullYear();
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 })();
 </script>
 
