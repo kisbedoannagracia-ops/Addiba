@@ -4,424 +4,352 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101f3c">
-
+<meta name="description" content="Découvrez ADDIBA, son identité, sa vision, sa mission, ses valeurs et son ambition de développer plusieurs marques.">
 <title>À propos | ADDIBA</title>
-<meta name="description" content="Découvrez ADDIBA, sa vision, sa mission, ses valeurs et son ambition de développer plusieurs marques.">
 
 <style>
 :root {
-  --navy: #101f3c;
-  --navy-light: #1b365c;
-  --green: #20bd83;
-  --white: #fff;
-  --background: #f5f7fb;
-  --text: #17243b;
-  --muted: #657187;
+  --navy:#101f3c;
+  --navy-light:#1b365c;
+  --green:#20bd83;
+  --white:#fff;
+  --background:#f5f7fb;
+  --text:#17243b;
+  --muted:#657187;
 }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:Arial,sans-serif;
+  background:var(--background);
+  color:var(--text);
+  line-height:1.7;
 }
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: var(--background);
-  color: var(--text);
-  line-height: 1.7;
-}
-
-a {
-  text-decoration: none;
-}
+a{text-decoration:none}
+button{font:inherit}
 
 /* HEADER */
-header {
-  background: var(--navy);
-  padding: 12px 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 18px rgba(0,0,0,.12);
+header{
+  background:var(--navy);
+  padding:12px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 4px 18px rgba(0,0,0,.12);
 }
-
-.brand-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
+.brand-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:white;
 }
-
-.brand-logo svg {
-  width: 45px;
-  height: 45px;
+.brand-logo svg{width:45px;height:45px}
+.brand-logo strong{font-size:26px;letter-spacing:2px}
+.brand-logo strong span{color:var(--green)}
+nav{
+  display:flex;
+  align-items:center;
+  gap:20px;
 }
-
-.brand-logo strong {
-  font-size: 26px;
-  letter-spacing: 2px;
+nav a{
+  color:white;
+  font-size:13px;
+  font-weight:bold;
+  transition:.3s;
 }
-
-.brand-logo strong span {
-  color: var(--green);
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-}
-
-nav a {
-  color: white;
-  font-size: 13px;
-  font-weight: bold;
-  transition: .3s;
-}
-
-nav a:hover,
-nav a.active {
-  color: var(--green);
-}
-
-.menu-toggle {
-  display: none;
-  color: white;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,.4);
-  padding: 6px 11px;
-  font-size: 23px;
-  border-radius: 6px;
-  cursor: pointer;
+nav a:hover,nav a.active{color:var(--green)}
+.menu-toggle{
+  display:none;
+  color:white;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.4);
+  padding:6px 11px;
+  font-size:23px;
+  border-radius:6px;
+  cursor:pointer;
 }
 
 /* HERO */
-.hero {
+.hero{
   background:
-    radial-gradient(circle at 15% 20%, rgba(32,189,131,.15), transparent 30%),
-    linear-gradient(135deg, var(--navy), var(--navy-light));
-  color: white;
-  text-align: center;
-  padding: 85px 20px;
+    radial-gradient(circle at 15% 20%,rgba(32,189,131,.15),transparent 30%),
+    linear-gradient(135deg,var(--navy),var(--navy-light));
+  color:white;
+  text-align:center;
+  padding:85px 20px;
+}
+.hero .label{
+  color:var(--green);
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(34px,5vw,48px);
+  margin:15px 0;
+}
+.hero h1 span{color:var(--green)}
+.hero p{
+  max-width:750px;
+  margin:auto;
+  color:#dce5f3;
+  font-size:17px;
 }
 
-.hero .label {
-  color: var(--green);
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+/* SECTIONS */
+.section{padding:75px 7%}
+.section-title{
+  color:var(--navy);
+  font-size:clamp(27px,4vw,34px);
+  margin-bottom:18px;
+  text-align:center;
 }
-
-.hero h1 {
-  font-size: clamp(34px, 5vw, 48px);
-  margin: 15px 0;
+.section-label{
+  text-align:center;
+  color:#159c6b;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:8px;
 }
-
-.hero h1 span {
-  color: var(--green);
-}
-
-.hero p {
-  max-width: 750px;
-  margin: auto;
-  color: #dce5f3;
-  font-size: 17px;
-}
-
-/* GENERAL SECTIONS */
-.section {
-  padding: 75px 7%;
-}
-
-.section-title {
-  color: var(--navy);
-  font-size: clamp(27px, 4vw, 34px);
-  margin-bottom: 18px;
-  text-align: center;
-}
-
-.section-label {
-  text-align: center;
-  color: #159c6b;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.section-intro {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  color: var(--muted);
+.section-intro{
+  max-width:800px;
+  margin:0 auto;
+  text-align:center;
+  color:var(--muted);
 }
 
 /* PRESENTATION */
-.presentation {
-  background: white;
+.presentation{background:white}
+.presentation-content{
+  max-width:900px;
+  margin:auto;
+  text-align:center;
 }
-
-.presentation-content {
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-}
-
-.presentation-content p {
-  color: var(--muted);
-  margin-bottom: 16px;
+.presentation-content p{
+  color:var(--muted);
+  margin-bottom:16px;
 }
 
 /* OBJECTIFS */
-.objectives {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px;
-  max-width: 1050px;
-  margin: 40px auto 0;
+.objectives{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+  max-width:1050px;
+  margin:40px auto 0;
 }
-
-.objective-card {
-  background: white;
-  border-radius: 13px;
-  padding: 30px 23px;
-  text-align: center;
-  border-bottom: 4px solid var(--green);
-  box-shadow: 0 6px 22px rgba(16,31,60,.05);
-  transition: .3s;
+.objective-card{
+  background:white;
+  border-radius:13px;
+  padding:30px 23px;
+  text-align:center;
+  border-bottom:4px solid var(--green);
+  box-shadow:0 6px 22px rgba(16,31,60,.05);
+  transition:transform .3s;
 }
-
-.objective-card:hover {
-  transform: translateY(-6px);
+.objective-card:hover{transform:translateY(-6px)}
+.symbol{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:rgba(32,189,131,.12);
+  color:#159c6b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 15px;
+  font-size:22px;
+  font-weight:bold;
 }
-
-.symbol {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(32,189,131,.12);
-  color: #159c6b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 15px;
-  font-size: 22px;
-  font-weight: bold;
+.objective-card h3{
+  color:var(--navy);
+  margin-bottom:10px;
+  font-size:20px;
 }
-
-.objective-card h3 {
-  color: var(--navy);
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-
-.objective-card p {
-  color: var(--muted);
-  font-size: 14px;
-}
+.objective-card p{color:var(--muted);font-size:14px}
 
 /* ROLE */
-.role {
-  background: var(--navy);
-  color: white;
-  text-align: center;
+.role{
+  background:var(--navy);
+  color:white;
+  text-align:center;
 }
-
-.role .section-title {
-  color: white;
+.role .section-title{color:white}
+.role .section-intro{color:#dce5f3}
+.role-list{
+  max-width:800px;
+  margin:30px auto 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
 }
-
-.role .section-intro {
-  color: #dce5f3;
+.role-item{
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.05);
+  padding:20px;
+  border-radius:10px;
+  color:#e5edf8;
 }
-
-.role-list {
-  max-width: 800px;
-  margin: 30px auto 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-}
-
-.role-item {
-  border: 1px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.05);
-  padding: 20px;
-  border-radius: 10px;
-  color: #e5edf8;
-}
-
-.role-item span {
-  color: var(--green);
-  font-weight: bold;
-  margin-right: 7px;
+.role-item span{
+  color:var(--green);
+  font-weight:bold;
+  margin-right:7px;
 }
 
 /* VALEURS */
-.values {
-  background: white;
+.values{background:white}
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:18px;
+  max-width:1000px;
+  margin:35px auto 0;
 }
-
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 18px;
-  max-width: 1000px;
-  margin: 35px auto 0;
+.value-item{
+  text-align:center;
+  padding:22px 12px;
+  border:1px solid #e8edf3;
+  border-radius:10px;
+  color:var(--navy);
+  font-weight:bold;
 }
-
-.value-item {
-  text-align: center;
-  padding: 22px 12px;
-  border: 1px solid #e8edf3;
-  border-radius: 10px;
-  color: var(--navy);
-  font-weight: bold;
-}
-
-.value-item span {
-  display: block;
-  color: var(--green);
-  font-size: 25px;
-  margin-bottom: 8px;
+.value-item span{
+  display:block;
+  color:var(--green);
+  font-size:25px;
+  margin-bottom:8px;
 }
 
 /* CONCLUSION */
-.conclusion {
-  text-align: center;
-  padding: 70px 20px;
-  background: #edf7f3;
+.conclusion{
+  text-align:center;
+  padding:70px 20px;
+  background:#edf7f3;
 }
-
-.conclusion h2 {
-  color: var(--navy);
-  font-size: 29px;
-  margin-bottom: 12px;
+.conclusion h2{
+  color:var(--navy);
+  font-size:29px;
+  margin-bottom:12px;
 }
-
-.conclusion p {
-  max-width: 700px;
-  margin: 0 auto 25px;
-  color: var(--muted);
+.conclusion p{
+  max-width:700px;
+  margin:0 auto 25px;
+  color:var(--muted);
 }
-
-.button {
-  display: inline-block;
-  padding: 13px 26px;
-  background: var(--green);
-  color: var(--navy);
-  border-radius: 7px;
-  font-weight: bold;
-  transition: .3s;
+.button{
+  display:inline-block;
+  padding:13px 26px;
+  background:var(--green);
+  color:var(--navy);
+  border-radius:7px;
+  font-weight:bold;
+  transition:.3s;
 }
-
-.button:hover {
-  background: var(--navy);
-  color: white;
-  transform: translateY(-3px);
+.button:hover{
+  background:var(--navy);
+  color:white;
+  transform:translateY(-3px);
 }
 
 /* FOOTER */
-footer {
-  background: #0b172d;
-  color: #dce5f3;
-  text-align: center;
-  padding: 30px 15px;
-  font-size: 14px;
+footer{
+  background:#0b172d;
+  color:#dce5f3;
+  text-align:center;
+  padding:32px 15px;
+  font-size:14px;
+}
+footer strong{color:var(--green)}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  margin:15px 0;
+}
+.footer-links a{color:#dce5f3}
+.footer-links a:hover{color:var(--green)}
+footer .slogan{
+  color:#9eabc0;
+  font-size:13px;
+  margin-top:12px;
+}
+.social-links{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:17px;
+  margin:20px 0 12px;
+}
+.social-links span{
+  width:38px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:50%;
+  color:#dce5f3;
+}
+.social-links svg{
+  width:19px;
+  height:19px;
+  fill:currentColor;
 }
 
-footer strong {
-  color: var(--green);
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 15px 0;
-}
-
-.footer-links a {
-  color: #dce5f3;
-}
-
-.footer-links a:hover {
-  color: var(--green);
-}
-
-footer .slogan {
-  color: #9eabc0;
-  font-size: 13px;
+/* ACCESSIBILITE */
+a:focus-visible,button:focus-visible{
+  outline:3px solid var(--green);
+  outline-offset:4px;
 }
 
 /* MOBILE */
-@media(max-width: 850px) {
-  header {
-    padding: 12px 5%;
+@media(max-width:1000px){
+  header{padding:12px 5%}
+  nav{gap:12px}
+  nav a{font-size:12px}
+}
+@media(max-width:850px){
+  .menu-toggle{display:block}
+  nav{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:var(--navy);
+    padding:12px 5% 20px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
   }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--navy);
-    padding: 12px 5% 20px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  nav.open {
-    display: flex;
-  }
-
-  nav a {
-    padding: 12px 5px;
-    border-bottom: 1px solid rgba(255,255,255,.1);
+  nav.open{display:flex}
+  nav a{
+    padding:12px 5px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    font-size:14px;
   }
 }
-
-@media(max-width: 600px) {
-  .brand-logo svg {
-    width: 40px;
-    height: 40px;
-  }
-
-  .brand-logo strong {
-    font-size: 23px;
-  }
-
-  .hero {
-    padding: 65px 18px;
-  }
-
-  .hero p {
-    font-size: 15px;
-  }
-
-  .section {
-    padding: 55px 6%;
-  }
-
-  .objectives {
-    grid-template-columns: 1fr;
+@media(max-width:600px){
+  .brand-logo svg{width:40px;height:40px}
+  .brand-logo strong{font-size:23px}
+  .hero{padding:65px 18px}
+  .hero p{font-size:15px}
+  .section{padding:55px 6%}
+  .objectives{grid-template-columns:1fr}
+  .footer-links{gap:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    transition:none!important;
+    animation:none!important;
   }
 }
 </style>
@@ -430,7 +358,6 @@ footer .slogan {
 <body>
 
 <header>
-
   <a href="index.html" class="brand-logo" aria-label="ADDIBA - Accueil">
     <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Emblème ADDIBA">
       <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z" fill="#ffffff"/>
@@ -440,17 +367,24 @@ footer .slogan {
     <strong>ADDI<span>BA</span></strong>
   </a>
 
-  <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">☰</button>
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"
+    aria-label="Ouvrir le menu"
+    aria-expanded="false"
+    aria-controls="mainNav"
+  >☰</button>
 
   <nav id="mainNav">
-    <a href="index.html">Accueil</a
+    <a href="index.html">Accueil</a>
+    <a href="àpropos.html" class="active" aria-current="page">À propos</a>
+    <a href="index.html#vision">Vision et mission</a>
     <a href="nos-marques.html">Nos marques</a>
-    <a href="àpropos.html" class="active">À propos</a>
-    <a href="index.html#vision-mission">Vision et mission</a>
-    <a href="connexion.html">Espace fondateur</a>
+    <a href="nos-projets.html">Projets</a>
     <a href="contact.html">Contact</a>
+    <a href="connexion.html">Espace fondateur</a>
   </nav>
-
 </header>
 
 <main>
@@ -471,7 +405,7 @@ footer .slogan {
     <h2 class="section-title">Qui sommes-nous ?</h2>
 
     <p>
-      ADDIBA est une société mère qui porte une ambition :
+      ADDIBA est une structure qui porte une ambition :
       construire et développer un ensemble de marques
       complémentaires dans différents secteurs d'activité.
     </p>
@@ -499,7 +433,6 @@ footer .slogan {
   </p>
 
   <div class="objectives">
-
     <div class="objective-card">
       <div class="symbol">◎</div>
       <h3>Développer</h3>
@@ -526,7 +459,6 @@ footer .slogan {
         ambitieux et durable.
       </p>
     </div>
-
   </div>
 </section>
 
@@ -534,9 +466,8 @@ footer .slogan {
   <div class="section-label">Notre organisation</div>
   <h2 class="section-title">Le rôle de ADDIBA</h2>
   <p class="section-intro">
-    En tant que société mère, ADDIBA a vocation à donner
-    une direction commune à ses marques et à accompagner
-    leur développement.
+    ADDIBA a vocation à donner une direction commune à ses marques
+    et à accompagner leur développement.
   </p>
 
   <div class="role-list">
@@ -571,32 +502,68 @@ footer .slogan {
     Nous croyons au potentiel des idées, à la force
     de l'innovation et à la valeur des projets durables.
   </p>
-  <a href="index.html#marques" class="button">Découvrir nos marques</a>
+  <a href="nos-marques.html" class="button">Découvrir nos marques</a>
 </section>
 
 </main>
 
 <footer>
-  <p>© 2026 <strong>ADDIBA</strong>. Tous droits réservés.</p>
+  <p>© <span id="currentYear"></span> <strong>ADDIBA</strong>. Tous droits réservés.</p>
 
   <div class="footer-links">
     <a href="index.html">Accueil</a>
-    <a href="apropos.html">À propos</a>
-    <a href="index.html#marques">Nos marques</a>
+    <a href="àpropos.html">À propos</a>
+    <a href="nos-marques.html">Nos marques</a>
+    <a href="nos-projets.html">Projets</a>
     <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="social-links" aria-label="Réseaux sociaux ADDIBA">
+    <span aria-label="Facebook" title="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3V13h2.8v8z"/>
+      </svg>
+    </span>
+
+    <span aria-label="Instagram" title="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/>
+      </svg>
+    </span>
+
+    <span aria-label="WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2a9.8 9.8 0 0 0-8.4 14.8L2.3 22l5.4-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8.9-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.5l.4-.4.2-.4c.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1-.1 0-.2-.1-.4-.2z"/>
+      </svg>
+    </span>
+
+    <span aria-label="LinkedIn" title="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5.2 3a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM3.3 9h3.8v12H3.3zm6.2 0h3.6v1.6h.1a4 4 0 0 1 3.6-2c3.9 0 4.6 2.5 4.6 5.7V21h-3.8v-5.9c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21H9.5z"/>
+      </svg>
+    </span>
   </div>
 
   <p class="slogan">Un groupe. Plusieurs marques. Une vision commune.</p>
 </footer>
 
 <script>
+"use strict";
+
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
+const currentYear = document.getElementById("currentYear");
+
+currentYear.textContent = new Date().getFullYear();
 
 menuToggle.addEventListener("click", function() {
   const isOpen = mainNav.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", isOpen);
-  menuToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Fermer le menu" : "Ouvrir le menu"
+  );
   menuToggle.textContent = isOpen ? "✕" : "☰";
 });
 
@@ -612,4 +579,4 @@ mainNav.querySelectorAll("a").forEach(function(link) {
 
 </body>
 </html>
-
+  
