@@ -3,59 +3,346 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#11213f">
+<meta name="theme-color" content="#101f3c">
+<meta name="description" content="Contactez ADDIBA pour vos demandes d'information, partenariats, relations commerciales et institutionnelles.">
 <title>Contact | ADDIBA</title>
-<meta name="description" content="Contactez ADDIBA pour vos demandes d'information, partenariats et collaborations.">
 
 <style>
+:root{
+  --navy:#101f3c;
+  --navy2:#1b365c;
+  --green:#20bd83;
+  --bg:#f5f7fb;
+  --text:#17233b;
+  --muted:#647087;
+  --white:#fff;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:Arial,sans-serif;background:#f5f7fb;color:#17233b;line-height:1.7}
-header{background:#11213f;padding:18px 7%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:15px}
-.brand-logo{display:flex;align-items:center;gap:10px;color:white;text-decoration:none}
-.brand-logo svg{width:55px;height:55px;flex-shrink:0}
-.brand-logo strong{font-size:27px;letter-spacing:2px}
-.brand-logo strong span{color:#20bd83}
-nav{display:flex;gap:20px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;font-size:14px}
-nav a:hover{color:#20bd83}
-.hero{background:linear-gradient(135deg,#11213f,#1b365c);color:white;text-align:center;padding:75px 20px}
-.hero h1{font-size:42px;margin-bottom:15px}
-.hero p{max-width:650px;margin:auto;color:#dce5f3;font-size:17px}
-section{padding:65px 7%}
-.section-title{text-align:center;margin-bottom:35px}
-.section-title h2{color:#11213f;font-size:30px}
-.section-title span{display:block;width:55px;height:4px;background:#20bd83;margin:12px auto;border-radius:5px}
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;max-width:1000px;margin:auto}
-.contact-card{background:white;padding:28px;border-radius:13px;border-bottom:4px solid #20bd83;box-shadow:0 5px 22px rgba(17,33,63,.07)}
-.contact-card h3{color:#11213f;margin-bottom:10px}
-.contact-card p{color:#647087}
-.form-section{background:#edf1f7}
-.contact-form{max-width:750px;margin:auto;background:white;padding:32px;border-radius:14px;box-shadow:0 5px 22px rgba(17,33,63,.07)}
-.form-group{margin-bottom:20px}
-label{display:block;margin-bottom:7px;font-weight:bold;color:#11213f}
-input,select,textarea{width:100%;padding:13px;border:1px solid #d6deea;border-radius:7px;font-family:Arial,sans-serif;font-size:15px}
-input:focus,select:focus,textarea:focus{outline:2px solid #20bd83;border-color:#20bd83}
-textarea{min-height:140px;resize:vertical}
-button{width:100%;padding:14px;border:none;border-radius:7px;background:#20bd83;color:#10213f;font-weight:bold;font-size:16px;cursor:pointer}
-button:hover{background:#18a873}
-button:disabled{opacity:.65;cursor:not-allowed}
-.notice{margin-top:15px;color:#647087;font-size:13px}
-.form-result{display:none;margin-top:18px;padding:14px;border-radius:8px;font-size:14px;overflow-wrap:anywhere}
-.form-result.success{display:block;background:#e5f7ef;color:#116b45;border:1px solid #b8e6ce}
-.form-result.error{display:block;background:#fff0f0;color:#a32929;border:1px solid #f0c4c4}
-.back{text-align:center}
-.back a{display:inline-block;padding:13px 25px;background:#11213f;color:white;text-decoration:none;border-radius:7px;font-weight:bold}
-footer{background:#0b172d;color:#dce5f3;text-align:center;padding:30px 15px;font-size:14px}
-footer strong{color:#20bd83}
-@media(max-width:650px){
-header{justify-content:center}
-nav{justify-content:center}
-.hero h1{font-size:32px}
-section{padding:50px 6%}
-.contact-form{padding:22px}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+a{text-decoration:none}
+button,input,select,textarea{font:inherit}
+
+/* HEADER */
+header{
+  background:var(--navy);
+  padding:12px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 4px 18px rgba(0,0,0,.12);
+}
+.brand-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:white;
+  flex-shrink:0;
+}
 .brand-logo svg{width:45px;height:45px}
-.brand-logo strong{font-size:24px}
+.brand-logo strong{
+  font-size:26px;
+  letter-spacing:2px;
+}
+.brand-logo strong span{color:var(--green)}
+nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+nav a{
+  color:white;
+  font-size:13px;
+  font-weight:bold;
+  transition:.3s;
+}
+nav a:hover,nav a.active{color:var(--green)}
+.menu-toggle{
+  display:none;
+  color:white;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.4);
+  padding:6px 11px;
+  font-size:23px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  background:
+    radial-gradient(circle at 15% 20%,rgba(32,189,131,.15),transparent 30%),
+    linear-gradient(135deg,var(--navy),var(--navy2));
+  color:white;
+  text-align:center;
+  padding:80px 20px;
+}
+.hero h1{
+  font-size:clamp(32px,5vw,45px);
+  margin-bottom:15px;
+}
+.hero p{
+  max-width:700px;
+  margin:auto;
+  color:#dce5f3;
+  font-size:17px;
+}
+
+/* SECTIONS */
+section{padding:65px 7%}
+.section-title{
+  text-align:center;
+  margin-bottom:35px;
+}
+.section-title h2{
+  color:var(--navy);
+  font-size:clamp(25px,4vw,30px);
+}
+.section-title span{
+  display:block;
+  width:55px;
+  height:4px;
+  background:var(--green);
+  margin:12px auto;
+  border-radius:5px;
+}
+.section-title p{
+  color:var(--muted);
+  margin-top:10px;
+}
+
+/* CONTACT CATEGORIES */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+  max-width:1100px;
+  margin:auto;
+}
+.contact-card{
+  background:white;
+  padding:28px;
+  border-radius:13px;
+  border-bottom:4px solid var(--green);
+  box-shadow:0 5px 22px rgba(17,33,63,.06);
+  transition:transform .3s;
+}
+.contact-card:hover{transform:translateY(-4px)}
+.contact-card h3{
+  color:var(--navy);
+  margin-bottom:10px;
+  font-size:18px;
+}
+.contact-card p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* FORM */
+.form-section{background:#edf1f7}
+.contact-form{
+  max-width:750px;
+  margin:auto;
+  background:white;
+  padding:32px;
+  border-radius:14px;
+  box-shadow:0 5px 22px rgba(17,33,63,.07);
+}
+.form-group{margin-bottom:20px}
+label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:bold;
+  color:var(--navy);
+}
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #d6deea;
+  border-radius:7px;
+  background:white;
+  color:var(--text);
+  font-size:15px;
+}
+input:focus,select:focus,textarea:focus{
+  outline:2px solid var(--green);
+  border-color:var(--green);
+}
+textarea{
+  min-height:140px;
+  resize:vertical;
+}
+.submit-button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:7px;
+  background:var(--green);
+  color:var(--navy);
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+  transition:.3s;
+}
+.submit-button:hover{background:#18a873}
+.submit-button:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+}
+.notice{
+  margin-top:15px;
+  color:var(--muted);
+  font-size:13px;
+}
+.form-result{
+  display:none;
+  margin-top:18px;
+  padding:14px;
+  border-radius:8px;
+  font-size:14px;
+  overflow-wrap:anywhere;
+}
+.form-result.success{
+  display:block;
+  background:#e5f7ef;
+  color:#116b45;
+  border:1px solid #b8e6ce;
+}
+.form-result.error{
+  display:block;
+  background:#fff0f0;
+  color:#a32929;
+  border:1px solid #f0c4c4;
+}
+
+/* CHAMP ANTI-ROBOT */
+.hp-field{
+  position:absolute;
+  left:-10000px;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/* BACK */
+.back{text-align:center}
+.back a{
+  display:inline-block;
+  padding:13px 25px;
+  background:var(--navy);
+  color:white;
+  border-radius:7px;
+  font-weight:bold;
+  transition:.3s;
+}
+.back a:hover{
+  background:var(--navy2);
+  transform:translateY(-2px);
+}
+
+/* FOOTER */
+footer{
+  background:#0b172d;
+  color:#dce5f3;
+  text-align:center;
+  padding:32px 15px;
+  font-size:14px;
+}
+footer strong{color:var(--green)}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:18px;
+  margin:15px 0;
+}
+.footer-links a{color:#dce5f3}
+.footer-links a:hover{color:var(--green)}
+.social-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:17px;
+  margin:20px 0 12px;
+}
+.social-links span{
+  width:38px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:50%;
+  color:#dce5f3;
+}
+.social-links svg{
+  width:19px;
+  height:19px;
+  fill:currentColor;
+}
+.slogan{
+  color:#9eabc0;
+  font-size:13px;
+  margin-top:12px;
+}
+
+/* ACCESSIBILITE */
+a:focus-visible,button:focus-visible{
+  outline:3px solid var(--green);
+  outline-offset:4px;
+}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+  header{padding:12px 5%}
+  nav{gap:12px}
+  nav a{font-size:12px}
+}
+@media(max-width:850px){
+  .menu-toggle{display:block}
+  nav{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:var(--navy);
+    padding:12px 5% 20px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+  }
+  nav.open{display:flex}
+  nav a{
+    padding:12px 5px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    font-size:14px;
+  }
+}
+@media(max-width:600px){
+  .brand-logo svg{width:40px;height:40px}
+  .brand-logo strong{font-size:23px}
+  .hero{padding:65px 18px}
+  .hero p{font-size:15px}
+  section{padding:50px 6%}
+  .contact-form{padding:22px}
+  .footer-links{gap:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    transition:none!important;
+    animation:none!important;
+  }
 }
 </style>
 </head>
@@ -63,129 +350,282 @@ section{padding:50px 6%}
 <body>
 
 <header>
-<a href="index.html" class="brand-logo" aria-label="ADDIBA - Accueil">
-<svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
-<path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z" fill="#ffffff"/>
-<path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z" fill="#20bd83"/>
-<path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z" fill="#20bd83" fill-rule="evenodd"/>
-</svg>
-<strong>ADDI<span>BA</span></strong>
-</a>
+  <a href="index.html" class="brand-logo" aria-label="ADDIBA - Accueil">
+    <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Emblème ADDIBA">
+      <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z" fill="#ffffff"/>
+      <path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z" fill="#20bd83"/>
+      <path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z" fill="#20bd83" fill-rule="evenodd"/>
+    </svg>
+    <strong>ADDI<span>BA</span></strong>
+  </a>
 
-<nav>
-<a href="index.html">Accueil</a>
-<a href="zaamarket.html">ZAAMARKET</a>
-<a href="alteva.html">ALTEVA</a>
-<a href="turinex.html">TURINEX</a>
-</nav>
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"
+    aria-label="Ouvrir le menu"
+    aria-expanded="false"
+    aria-controls="mainNav"
+  >☰</button>
+
+  <nav id="mainNav">
+    <a href="index.html">Accueil</a>
+    <a href="àpropos.html">À propos</a>
+    <a href="index.html#vision">Vision et mission</a>
+    <a href="nos-marques.html">Nos marques</a>
+    <a href="nos-projets.html">Projets</a>
+    <a href="contact.html" class="active" aria-current="page">Contact</a>
+    <a href="connexion.html">Espace fondateur</a>
+  </nav>
 </header>
 
 <main>
 
 <section class="hero">
-<h1>Contactez ADDIBA</h1>
-<p>Nous sommes ouverts aux échanges, aux collaborations et aux opportunités qui contribuent à construire l'avenir.</p>
+  <h1>Contactez ADDIBA</h1>
+  <p>
+    Nous sommes ouverts aux échanges, aux collaborations et aux
+    opportunités qui contribuent à construire l'avenir.
+  </p>
 </section>
 
 <section>
-<div class="section-title">
-<h2>Entrons en contact</h2>
-<span></span>
-<p>Choisissez le domaine correspondant à votre demande.</p>
-</div>
+  <div class="section-title">
+    <h2>Entrons en contact</h2>
+    <span></span>
+    <p>Choisissez le domaine correspondant à votre demande.</p>
+  </div>
 
-<div class="contact-grid">
-<div class="contact-card">
-<h3>Informations générales</h3>
-<p>Pour toute question concernant le groupe ADDIBA et ses activités.</p>
-</div>
-<div class="contact-card">
-<h3>Partenariats</h3>
-<p>Pour les propositions de collaboration et les opportunités stratégiques.</p>
-</div>
-<div class="contact-card">
-<h3>Relations commerciales</h3>
-<p>Pour les échanges commerciaux et les opportunités d'affaires.</p>
-</div>
-<div class="contact-card">
-<h3>Relations institutionnelles</h3>
-<p>Pour les organisations, institutions et projets de développement.</p>
-</div>
-</div>
+  <div class="contact-grid">
+    <article class="contact-card">
+      <h3>Informations générales</h3>
+      <p>Pour toute question concernant le groupe ADDIBA et ses activités.</p>
+    </article>
+
+    <article class="contact-card">
+      <h3>Partenariats</h3>
+      <p>Pour les propositions de collaboration et les opportunités stratégiques.</p>
+    </article>
+
+    <article class="contact-card">
+      <h3>Relations commerciales</h3>
+      <p>Pour les échanges commerciaux et les opportunités d'affaires.</p>
+    </article>
+
+    <article class="contact-card">
+      <h3>Relations institutionnelles</h3>
+      <p>Pour les organisations, institutions et projets de développement.</p>
+    </article>
+  </div>
 </section>
 
 <section class="form-section">
-<div class="section-title">
-<h2>Contact</h2>
-<span></span>
-<p>Remplissez le formulaire pour transmettre votre demande à ADDIBA.</p>
-</div>
+  <div class="section-title">
+    <h2>Envoyer un message</h2>
+    <span></span>
+    <p>Remplissez le formulaire pour transmettre votre demande à ADDIBA.</p>
+  </div>
 
-<form class="contact-form" id="contactForm">
+  <form class="contact-form" id="contactForm">
 
-<div class="form-group">
-<label for="nom">Nom complet</label>
-<input type="text" id="nom" name="nom" placeholder="Votre nom complet" minlength="2" maxlength="120" autocomplete="name" required>
-</div>
+    <div class="form-group">
+      <label for="nom">Nom complet</label>
+      <input
+        type="text"
+        id="nom"
+        name="nom"
+        placeholder="Votre nom complet"
+        minlength="2"
+        maxlength="120"
+        autocomplete="name"
+        required
+      >
+    </div>
 
-<div class="form-group">
-<label for="email">Adresse e-mail</label>
-<input type="email" id="email" name="email" placeholder="Votre adresse e-mail" maxlength="254" autocomplete="email" required>
-</div>
+    <div class="form-group">
+      <label for="email">Adresse e-mail</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Votre adresse e-mail"
+        maxlength="254"
+        autocomplete="email"
+        required
+      >
+    </div>
 
-<div class="form-group">
-<label for="sujet">Objet de votre demande</label>
-<select id="sujet" name="sujet" required>
-<option value="">Choisir un sujet</option>
-<option value="Informations générales">Informations générales</option>
-<option value="Partenariat">Partenariat</option>
-<option value="Demande commerciale">Demande commerciale</option>
-<option value="Relations institutionnelles">Relations institutionnelles</option>
-<option value="Autre demande">Autre demande</option>
-</select>
-</div>
+    <div class="form-group">
+      <label for="sujet">Objet de votre demande</label>
+      <select id="sujet" name="sujet" required>
+        <option value="">Choisir un sujet</option>
+        <option value="Informations générales">Informations générales</option>
+        <option value="Partenariat">Partenariat</option>
+        <option value="Demande commerciale">Demande commerciale</option>
+        <option value="Relations institutionnelles">Relations institutionnelles</option>
+        <option value="Autre demande">Autre demande</option>
+      </select>
+    </div>
 
-<div class="form-group">
-<label for="message">Votre message</label>
-<textarea id="message" name="message" placeholder="Écrivez votre message..." minlength="5" maxlength="5000" required></textarea>
-</div>
+    <div class="form-group">
+      <label for="message">Votre message</label>
+      <textarea
+        id="message"
+        name="message"
+        placeholder="Écrivez votre message..."
+        minlength="5"
+        maxlength="5000"
+        required
+      ></textarea>
+    </div>
 
-<button type="submit" id="submitButton">Envoyer un message</button>
+    <div class="hp-field" aria-hidden="true">
+      <label for="website">Ne pas remplir ce champ</label>
+      <input
+        type="text"
+        id="website"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+      >
+    </div>
 
-<div id="formResult" class="form-result" role="status" aria-live="polite"></div>
+    <button type="submit" class="submit-button" id="submitButton">
+      Envoyer un message
+    </button>
 
-<p class="notice">Vos informations sont utilisées uniquement pour traiter votre demande auprès d'ADDIBA.</p>
+    <div
+      id="formResult"
+      class="form-result"
+      role="status"
+      aria-live="polite"
+    ></div>
 
-</form>
+    <p class="notice">
+      Vos informations sont utilisées uniquement pour traiter votre demande auprès d'ADDIBA.
+    </p>
+
+  </form>
 </section>
 
 <section class="back">
-<a href="index.html">Retourner sur ADDIBA</a>
+  <a href="index.html">Retourner sur ADDIBA</a>
 </section>
 
 </main>
 
 <footer>
-<p>© <span id="currentYear"></span> <strong>ADDIBA</strong>. Tous droits réservés.</p>
-<p>Un groupe. Plusieurs marques. Une vision commune.</p>
+  <p>© <span id="currentYear"></span> <strong>ADDIBA</strong>. Tous droits réservés.</p>
+
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="àpropos.html">À propos</a>
+    <a href="nos-marques.html">Nos marques</a>
+    <a href="nos-projets.html">Projets</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="social-links" aria-label="Réseaux sociaux ADDIBA">
+    <span aria-label="Facebook" title="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3V13h2.8v8z"/>
+      </svg>
+    </span>
+
+    <span aria-label="Instagram" title="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/>
+      </svg>
+    </span>
+
+    <span aria-label="WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2a9.8 9.8 0 0 0-8.4 14.8L2.3 22l5.4-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8.9-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.5l.4-.4.2-.4c.1-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1-.1 0-.2-.1-.4-.2z"/>
+      </svg>
+    </span>
+
+    <span aria-label="LinkedIn" title="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5.2 3a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM3.3 9h3.8v12H3.3zm6.2 0h3.6v1.6h.1a4 4 0 0 1 3.6-2c3.9 0 4.6 2.5 4.6 5.7V21h-3.8v-5.9c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21H9.5z"/>
+      </svg>
+    </span>
+  </div>
+
+  <p class="slogan">Un groupe. Plusieurs marques. Une vision commune.</p>
 </footer>
 
 <script type="module">
+import { supabase } from "./supabase.js";
+
+"use strict";
+
 const form = document.getElementById("contactForm");
 const button = document.getElementById("submitButton");
 const result = document.getElementById("formResult");
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
 
-document.getElementById("currentYear").textContent = new Date().getFullYear();
+document.getElementById("currentYear").textContent =
+  new Date().getFullYear();
 
 function showMessage(message,type){
   result.textContent = message;
   result.className = "form-result " + type;
 }
 
+menuToggle.addEventListener("click",function(){
+  const isOpen = mainNav.classList.toggle("open");
+
+  menuToggle.setAttribute("aria-expanded",String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Fermer le menu" : "Ouvrir le menu"
+  );
+  menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+mainNav.querySelectorAll("a").forEach(function(link){
+  link.addEventListener("click",function(){
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded","false");
+    menuToggle.setAttribute("aria-label","Ouvrir le menu");
+    menuToggle.textContent = "☰";
+  });
+});
+
 form.addEventListener("submit",async function(event){
   event.preventDefault();
 
   if(!form.reportValidity()) return;
+
+  if(button.disabled) return;
+
+  const nom = document.getElementById("nom").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const sujet = document.getElementById("sujet").value.trim();
+  const message = document.getElementById("message").value.trim();
+  const website = document.getElementById("website").value.trim();
+
+  if(website){
+    showMessage(
+      "Votre demande n'a pas pu être traitée.",
+      "error"
+    );
+    return;
+  }
+
+  if(
+    nom.length < 2 ||
+    email.length < 5 ||
+    sujet.length < 2 ||
+    message.length < 5
+  ){
+    showMessage(
+      "Veuillez vérifier les informations saisies.",
+      "error"
+    );
+    return;
+  }
 
   button.disabled = true;
   button.textContent = "Envoi en cours...";
@@ -193,20 +633,14 @@ form.addEventListener("submit",async function(event){
   result.textContent = "";
 
   try{
-    const {supabase} = await import("./supabase.js");
-
-    const nom = document.getElementById("nom").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const sujet = document.getElementById("sujet").value.trim();
-    const message = document.getElementById("message").value.trim();
-
-    if(nom.length < 2 || email.length < 5 || sujet.length < 2 || message.length < 5){
-      throw new Error("Veuillez vérifier les informations saisies.");
-    }
-
     const {error} = await supabase
       .from("contact_messages")
-      .insert([{nom,email,sujet,message}]);
+      .insert([{
+        nom:nom,
+        email:email,
+        sujet:sujet,
+        message:message
+      }]);
 
     if(error) throw error;
 
