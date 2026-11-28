@@ -1,567 +1,2481 @@
-<!DOCTYPE html>
+ <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#111111">
 
-<title>ZAAMARKET | Le commerce sans frontières</title>
-<meta name="description" content="ZAAMARKET, la marketplace africaine qui connecte les vendeurs et les acheteurs.">
+<title>ZAAMARKET — Le commerce sans frontières</title>
+<meta name="description" content="Découvrez les produits disponibles sur ZAAMARKET, la marketplace du groupe ADDIBA.">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root{
+  --black:#111;
+  --ink:#202020;
+  --muted:#707070;
+  --orange:#f5a623;
+  --cream:#fff8eb;
+  --line:#e9e9e9;
+  --bg:#f7f7f7;
+  --green:#16845b;
+  --red:#b42318;
+  --radius:16px;
+  --shadow:0 8px 28px #0000000c;
 }
 
-html {
-  scroll-behavior: smooth;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:#fff
 }
-
-body {
-  font-family: Arial, sans-serif;
-  background: #ffffff;
-  color: #171717;
-  line-height: 1.6;
+button,input,select,textarea{font:inherit}
+button,a{touch-action:manipulation}
+a{color:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.wrap{width:min(1180px,92%);margin:auto}
+.topnote{
+  background:#242424;
+  color:#eee;
+  text-align:center;
+  padding:7px 12px;
+  font-size:12px
 }
-
-/* EN-TÊTE */
-.main-header {
-  background: #111111;
-  color: white;
-  padding: 12px 5%;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  min-height: 78px;
+.topnote b{color:var(--orange)}
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#111;
+  color:#fff;
+  box-shadow:0 4px 20px #0002
 }
-
-.addiba-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  flex-shrink: 0;
+.head{
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  gap:18px
 }
-
-.addiba-logo svg {
-  width: 52px;
-  height: 52px;
+.brand{
+  font-size:25px;
+  font-weight:950;
+  letter-spacing:.5px;
+  text-decoration:none;
+  white-space:nowrap
 }
-
-.header-divider {
-  width: 2px;
-  height: 45px;
-  background: #555555;
-  flex-shrink: 0;
+.brand span{color:var(--orange)}
+.search{
+  flex:1;
+  display:flex;
+  max-width:520px
 }
-
-.zaamarket-logo {
-  color: white;
-  text-decoration: none;
-  font-size: 27px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  white-space: nowrap;
-  margin-right: auto;
+.search input{
+  width:100%;
+  border:0;
+  border-radius:9px 0 0 9px;
+  padding:12px 14px;
+  outline:none
 }
-
-.zaamarket-logo span {
-  color: #f5a623;
+.search button{
+  border:0;
+  background:var(--orange);
+  padding:0 18px;
+  border-radius:0 9px 9px 0;
+  font-weight:800
 }
-
-/* NAVIGATION */
-.main-header nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.head-actions{display:flex;gap:8px;align-items:center}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:8px;
+  border:0;
+  border-radius:9px;
+  padding:11px 16px;
+  font-weight:750;
+  text-decoration:none;
+  transition:.18s
 }
-
-.main-header nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
+.btn:hover{transform:translateY(-1px)}
+.primary{background:var(--orange);color:#171717}
+.dark{background:#222;color:#fff}
+.outline{border:1px solid #555;color:#fff;background:transparent}
+.light{background:#fff;border:1px solid var(--line);color:#222}
+.danger{background:#fff0ef;color:var(--red)}
+.small{padding:7px 11px;font-size:13px}
+.cartbtn{position:relative}
+.count{
+  background:var(--orange);
+  color:#111;
+  border-radius:99px;
+  padding:1px 7px;
+  font-size:11px
 }
-
-.main-header nav a:hover {
-  color: #f5a623;
-}
-
-/* MENU HAMBURGER */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 27px;
-  height: 3px;
-  background: white;
-  margin: 5px 0;
-  border-radius: 3px;
-}
-
-/* BANNIÈRE D'ACCUEIL */
-.hero {
+.nav{display:flex;gap:23px;padding:0 0 14px}
+.nav a{color:#ddd;text-decoration:none;font-size:13px}
+.nav a:hover{color:var(--orange)}
+.hero{
   background:
-    radial-gradient(circle at 85% 20%, rgba(245,166,35,.16), transparent 35%),
-    linear-gradient(135deg, #080808, #202020);
-  color: white;
-  text-align: center;
-  padding: 110px 20px;
-  position: relative;
-  overflow: hidden;
+    radial-gradient(circle at 80% 15%,#f5a62335,transparent 30%),
+    linear-gradient(120deg,#0c0c0c,#282828);
+  color:#fff;
+  padding:76px 0
 }
-
-.hero h1 {
-  font-size: 52px;
-  line-height: 1.2;
-  max-width: 850px;
-  margin: 0 auto 22px;
-  font-weight: 900;
-  letter-spacing: -1.5px;
+.hero-inner{max-width:800px}
+.eyebrow{
+  color:var(--orange);
+  font-weight:850;
+  text-transform:uppercase;
+  letter-spacing:1.6px;
+  font-size:12px
 }
-
-.hero h1 span {
-  color: #f5a623;
+.hero h1{
+  font-size:clamp(34px,5.2vw,58px);
+  line-height:1.08;
+  margin:12px 0 18px;
+  letter-spacing:-1.5px
 }
-
-.hero p {
-  max-width: 650px;
-  margin: auto;
-  color: #dddddd;
-  font-size: 18px;
-  line-height: 1.8;
+.hero p{max-width:620px;color:#ddd;font-size:17px}
+.hero-actions{
+  display:flex;
+  gap:12px;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  margin-top:26px
 }
-
-.hero a {
-  display: inline-block;
-  margin: 32px 7px 0;
-  background: #f5a623;
-  color: #111111;
-  padding: 15px 30px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: .3s;
+.hero-actions .btn{min-width:190px}
+.section{padding:54px 0}
+.section.alt{background:var(--bg)}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:16px;
+  margin-bottom:24px
 }
-
-.hero a:hover {
-  background: white;
-  transform: translateY(-3px);
+.section h2{font-size:clamp(24px,3vw,32px);margin:0}
+.sub{color:var(--muted);margin:5px 0 0}
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
 }
-
-/* SECTIONS */
-section {
-  padding: 70px 7%;
+.cat{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:14px;
+  padding:20px;
+  text-align:left;
+  cursor:pointer;
+  box-shadow:var(--shadow)
 }
-
-.section-title {
-  text-align: center;
-  margin-bottom: 35px;
+.cat:hover,.cat.active{border-color:var(--orange);background:var(--cream)}
+.cat .emoji{font-size:27px}
+.cat strong{display:block;margin-top:8px}
+.cat small{color:var(--muted)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.toolbar input,.toolbar select{
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:10px 12px;
+  background:#fff
 }
-
-.section-title h2 {
-  font-size: 30px;
+.toolbar select{min-width:170px}
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px
 }
-
-.section-title span {
-  display: block;
-  background: #f5a623;
-  width: 55px;
-  height: 4px;
-  margin: 12px auto;
-  border-radius: 5px;
+.product{
+  border:1px solid var(--line);
+  border-radius:15px;
+  overflow:hidden;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  box-shadow:var(--shadow)
 }
-
-.intro {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-  color: #666666;
-  font-size: 17px;
+.product-img{
+  height:205px;
+  background:linear-gradient(135deg,#f3f3f3,#fff7e9);
+  display:grid;
+  place-items:center;
+  overflow:hidden
 }
-
-/* CATÉGORIES */
-.categories {
-  background: #f6f6f6;
+.product-img img{width:100%;height:100%;object-fit:cover}
+.placeholder{font-size:52px}
+.product-body{
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  flex:1
 }
-
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 20px;
+.product-cat{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  color:var(--muted)
 }
-
-.category {
-  background: white;
-  padding: 28px 15px;
-  text-align: center;
-  border-radius: 12px;
-  border-bottom: 4px solid #f5a623;
-  box-shadow: 0 4px 18px rgba(0,0,0,.05);
-  transition: transform .3s, box-shadow .3s;
+.product h3{font-size:16px;line-height:1.35;margin:0}
+.price{font-size:19px;font-weight:900}
+.meta{font-size:12px;color:var(--muted)}
+.product-actions{display:flex;gap:8px;margin-top:auto;padding-top:8px}
+.product-actions .btn{flex:1}
+.empty{
+  padding:35px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed #ccc;
+  border-radius:14px;
+  grid-column:1/-1
 }
-
-.category:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 9px 22px rgba(0,0,0,.09);
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.trust article{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px
 }
-
-.category-icon {
-  font-size: 34px;
-  display: block;
-  margin-bottom: 12px;
+.trust h3{margin:8px 0}
+.trust p{color:var(--muted);margin:0;font-size:13px}
+.panel{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px;
+  margin:14px 0
 }
-
-.category h3 {
-  font-size: 17px;
+.panel h3{margin:0 0 12px}
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px
 }
-
-.category p {
-  color: #777777;
-  font-size: 13px;
-  margin-top: 8px;
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.field label{font-size:13px;font-weight:750}
+.field input,.field select,.field textarea{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  background:#fff
 }
-
-/* AVANTAGES */
-.advantages {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 22px;
-  margin-top: 30px;
+.field textarea{min-height:90px;resize:vertical}
+.notice{
+  padding:12px 14px;
+  border-radius:10px;
+  background:#fff6e5;
+  color:#684300;
+  margin:12px 0;
+  font-size:13px
 }
-
-.advantage {
-  text-align: center;
-  padding: 25px;
+.success{background:#eaf8f1;color:#116342}
+.error{background:#fff0ef;color:#9b1c14}
+.muted{color:var(--muted)}
+.row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap
 }
-
-.advantage h3 {
-  margin-bottom: 10px;
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tabs button.active{
+  background:var(--orange);
+  color:#111;
+  border-color:var(--orange)
 }
-
-.advantage p {
-  color: #666666;
-  font-size: 14px;
+.tablewrap{overflow:auto}
+table{border-collapse:collapse;width:100%;min-width:650px}
+th,td{
+  text-align:left;
+  padding:11px;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+  vertical-align:top
 }
-
-/* BLOC FINAL */
-.cta {
-  background: #171717;
-  color: white;
-  text-align: center;
+th{background:#fafafa}
+.badge{
+  display:inline-block;
+  border-radius:99px;
+  padding:3px 8px;
+  background:#f2f2f2;
+  font-size:11px
 }
-
-.cta p {
-  color: #dddddd;
-  margin-top: 12px;
+.badge.good{background:#e7f6ef;color:#116342}
+.badge.wait{background:#fff2d9;color:#815300}
+.modal{
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:60;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:16px
 }
-
-.cta a {
-  display: inline-block;
-  margin-top: 25px;
-  background: #f5a623;
-  color: #111111;
-  padding: 12px 25px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
+.modal.open{display:flex}
+.dialog{
+  background:#fff;
+  border-radius:16px;
+  width:min(560px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:22px;
+  box-shadow:0 20px 70px #0005
 }
-
-/* PIED DE PAGE */
-footer {
-  background: #0b0b0b;
-  color: white;
-  text-align: center;
-  padding: 25px 15px;
-  font-size: 13px;
+.dialog-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px
 }
-
-footer a {
-  color: #f5a623;
-  text-decoration: none;
+.x{
+  border:0;
+  background:#eee;
+  border-radius:50%;
+  width:34px;
+  height:34px;
+  font-size:19px
 }
-
-/* VERSION MOBILE */
-@media(max-width: 850px) {
-  .main-header {
-    flex-wrap: wrap;
-    padding: 12px 5%;
-  }
-
-  .zaamarket-logo {
-    margin-right: auto;
-    font-size: 23px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .main-header nav {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px 5px;
-  }
-
-  .main-header nav.active {
-    display: flex;
-  }
-
-  .hero {
-    padding: 65px 18px;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  section {
-    padding: 55px 6%;
-  }
+.cartline{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  border-bottom:1px solid var(--line);
+  padding:12px 0
 }
+.qty{display:flex;gap:8px;align-items:center}
+.qty button{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:7px;
+  padding:3px 9px
+}
+.stars{color:#d88900;letter-spacing:2px}
+.review{border-bottom:1px solid var(--line);padding:12px 0}
+.footer{background:#101010;color:#ddd;padding:36px 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}
+.footer a{color:#ddd;text-decoration:none}
+.footer p{color:#aaa;font-size:13px}
+.mobile-only{display:none}
 
-@media(max-width: 380px) {
-  .addiba-logo svg {
-    width: 42px;
-    height: 42px;
-  }
-
-  .zaamarket-logo {
-    font-size: 19px;
-  }
-
-  .header-divider {
-    height: 38px;
-  }
+@media(max-width:900px){
+  .products{grid-template-columns:repeat(3,1fr)}
+  .categories{grid-template-columns:repeat(2,1fr)}
+  .head{flex-wrap:wrap;padding:12px 0}
+  .search{order:3;max-width:none;flex-basis:100%}
+  .head-actions{margin-left:auto}
+  .nav{overflow:auto;white-space:nowrap}
+  .hero{padding:58px 0}
+}
+@media(max-width:600px){
+  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .product-img{height:155px}
+  .product-body{padding:10px}
+  .product h3{font-size:14px}
+  .price{font-size:16px}
+  .product-actions{flex-direction:column}
+  .product-actions .btn{width:100%}
+  .categories{gap:9px}
+  .cat{padding:14px}
+  .trust,.grid2{grid-template-columns:1fr}
+  .section{padding:40px 0}
+  .section-head{align-items:start;flex-direction:column}
+  .head-actions .outline{display:none}
+  .brand{font-size:22px}
+  .hero-actions .btn{width:100%}
+  .footer-grid{grid-template-columns:1fr}
+  .hero p{font-size:15px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- EN-TÊTE -->
-<header class="main-header">
+<div class="topnote">
+  ZAAMARKET <b>•</b> Le commerce sans frontières
+  <b>•</b> Une marque du groupe ADDIBA
+</div>
 
-  <a href="index.html" class="addiba-logo" aria-label="Retour au site ADDIBA">
-    <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 195 L112 24 Q130 -8 149 25 L285 195 H237 L132 65 L62 195 Z" fill="#ffffff"/>
+<header>
+  <div class="wrap">
+    <div class="head">
+      <a class="brand" href="#accueil">ZAA<span>MARKET</span></a>
 
-      <path d="M18 157 C64 189 115 181 155 142 C196 103 219 54 285 34 C240 63 211 105 184 147 C152 198 91 216 42 188 C31 181 23 169 18 157 Z" fill="#20bd83"/>
+      <form class="search" id="searchForm">
+        <input id="searchInput" placeholder="Rechercher un produit…" aria-label="Rechercher">
+        <button type="submit">Rechercher</button>
+      </form>
 
-      <path d="M193 148 C221 133 257 145 270 174 C282 201 261 224 231 218 C202 213 180 183 193 148 Z M213 160 C203 179 220 199 240 199 C258 198 264 183 253 168 C242 153 225 151 213 160 Z" fill="#20bd83" fill-rule="evenodd"/>
-    </svg>
-  </a>
+      <div class="head-actions">
+        <button class="btn outline small" id="authBtn">Connexion</button>
+        <button class="btn primary cartbtn" id="cartBtn">
+          Panier <span class="count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
 
-  <span class="header-divider"></span>
-
-  <a href="#accueil" class="zaamarket-logo">
-    ZAA<span>MARKET</span>
-  </a>
-
-  <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <nav id="mainNav">
-    <a href="#accueil">Accueil</a>
-    <a href="#apropos">À propos</a>
-    <a href="#categories">Catégories</a>
-    <a href="#avantages">Nos avantages</a>
-    <a href="index.html">Groupe ADDIBA</a>
-  </nav>
-
+    <nav class="nav">
+      <a href="#accueil">Accueil</a>
+      <a href="#categories">Catégories</a>
+      <a href="#boutique">Boutique</a>
+      <a href="#vendeurs">Devenir vendeur</a>
+      <a href="#compte">Mon compte</a>
+      <a href="index.html">Groupe ADDIBA</a>
+    </nav>
+  </div>
 </header>
 
 <main>
 
-<!-- ACCUEIL -->
 <section class="hero" id="accueil">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">La marketplace du groupe ADDIBA</div>
+    <h1>Le commerce africain, <span style="color:var(--orange)">sans frontières.</span></h1>
+    <p>Découvrez des produits proposés par des vendeurs partenaires et commandez simplement depuis votre téléphone.</p>
 
-  <h1>
-    Le commerce africain entre dans une nouvelle dimension avec
-    <span>ZAAMARKET</span>.
-  </h1>
+    <div class="hero-actions">
+      <a class="btn primary" href="#boutique">Découvrir la boutique</a>
+      <a class="btn outline" href="#vendeurs">Vendre sur ZAAMARKET</a>
+    </div>
 
-  <p>
-    Découvrez une marketplace qui connecte les vendeurs
-    et les acheteurs, rassemble plusieurs univers de produits
-    et rend le commerce plus accessible à tous.
-  </p>
-
-  <a href="#categories">Découvrir nos catégories</a>
-  <a href="#apropos">En savoir plus</a>
-
+    <div class="notice" style="display:inline-block;margin-top:22px;background:#ffffff16;color:#fff">
+      Les produits affichés sont ceux effectivement publiés dans le catalogue.
+    </div>
+  </div>
 </section>
 
-<!-- À PROPOS -->
-<section id="apropos">
-
-  <div class="section-title">
-    <h2>À propos de ZAAMARKET</h2>
-    <span></span>
+<section class="section" id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Explorer</div>
+        <h2>Nos catégories</h2>
+        <p class="sub">Choisissez votre univers de produits.</p>
+      </div>
+    </div>
+    <div class="categories" id="categoryGrid">
+      <div class="empty">Chargement des catégories…</div>
+    </div>
   </div>
-
-  <p class="intro">
-    ZAAMARKET est une marketplace africaine
-    développée au sein du groupe ADDIBA.
-    Notre ambition est de faciliter le commerce,
-    rendre les produits plus accessibles
-    et connecter les opportunités à travers l'Afrique.
-  </p>
-
 </section>
 
-<!-- CATÉGORIES -->
-<section class="categories" id="categories">
+<section class="section alt" id="boutique">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Catalogue réel</div>
+        <h2>La boutique ZAAMARKET</h2>
+        <p class="sub" id="catalogStatus">Chargement du catalogue…</p>
+      </div>
+      <button class="btn light small" id="refreshBtn">Actualiser</button>
+    </div>
 
-  <div class="section-title">
-    <h2>Nos catégories</h2>
-    <span></span>
-    <p>Un univers de produits pour tous.</p>
+    <div class="toolbar">
+      <select id="categoryFilter">
+        <option value="">Toutes les catégories</option>
+      </select>
+
+      <select id="sortFilter">
+        <option value="recent">Plus récents</option>
+        <option value="priceAsc">Prix croissant</option>
+        <option value="priceDesc">Prix décroissant</option>
+        <option value="name">Nom A–Z</option>
+      </select>
+
+      <select id="conditionFilter">
+        <option value="">Tous les états</option>
+        <option value="neuf">Neuf</option>
+        <option value="occasion">Occasion</option>
+      </select>
+    </div>
+
+    <div class="products" id="productGrid">
+      <div class="empty">Connexion au catalogue…</div>
+    </div>
   </div>
-
-  <div class="category-grid">
-
-    <div class="category">
-      <span class="category-icon">👗</span>
-      <h3>Mode et vêtements</h3>
-      <p>Vêtements et accessoires.</p>
-    </div>
-
-    <div class="category">
-      <span class="category-icon">👟</span>
-      <h3>Chaussures</h3>
-      <p>Des styles pour tous.</p>
-    </div>
-
-    <div class="category">
-      <span class="category-icon">✨</span>
-      <h3>Beauté et soins</h3>
-      <p>Beauté et bien-être.</p>
-    </div>
-
-    <div class="category">
-      <span class="category-icon">📱</span>
-      <h3>Téléphones</h3>
-      <p>Téléphones et accessoires.</p>
-    </div>
-
-    <div class="category">
-      <span class="category-icon">🏠</span>
-      <h3>Maison et cuisine</h3>
-      <p>Équipez votre quotidien.</p>
-    </div>
-
-    <div class="category">
-      <span class="category-icon">💻</span>
-      <h3>Électronique</h3>
-      <p>Technologies et équipements.</p>
-    </div>
-
-  </div>
-
 </section>
 
-<!-- AVANTAGES -->
-<section id="avantages">
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Notre engagement</div>
+        <h2>Une expérience claire et responsable</h2>
+      </div>
+    </div>
 
-  <div class="section-title">
-    <h2>Pourquoi ZAAMARKET ?</h2>
-    <span></span>
+    <div class="trust">
+      <article>
+        <div class="emoji">🔎</div>
+        <h3>Produits contrôlés</h3>
+        <p>Les produits des partenaires sont soumis à validation avant publication.</p>
+      </article>
+
+      <article>
+        <div class="emoji">🛍️</div>
+        <h3>Commande sécurisée</h3>
+        <p>Les commandes sont enregistrées par le système de commande sécurisé de ZAAMARKET.</p>
+      </article>
+
+      <article>
+        <div class="emoji">⭐</div>
+        <h3>Avis vérifiés</h3>
+        <p>Les avis ne peuvent être déposés qu'après livraison confirmée de l'article.</p>
+      </article>
+    </div>
   </div>
-
-  <div class="advantages">
-
-    <div class="advantage">
-      <h3>Prix accessibles</h3>
-      <p>Des produits pour différents budgets.</p>
-    </div>
-
-    <div class="advantage">
-      <h3>Grand choix</h3>
-      <p>Plusieurs catégories réunies au même endroit.</p>
-    </div>
-
-    <div class="advantage">
-      <h3>Confiance</h3>
-      <p>Une marketplace qui valorise la confiance.</p>
-    </div>
-
-    <div class="advantage">
-      <h3>Ambition africaine</h3>
-      <p>Connecter les opportunités commerciales en Afrique.</p>
-    </div>
-
-  </div>
-
 </section>
 
-<!-- RETOUR VERS ADDIBA -->
-<section class="cta">
+<section class="section alt" id="vendeurs">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Partenaires professionnels</div>
+        <h2>Vendre sur ZAAMARKET</h2>
+        <p class="sub">Les entreprises doivent être approuvées par ADDIBA avant de publier des produits.</p>
+      </div>
+    </div>
 
-  <h2>Le commerce sans frontières.</h2>
+    <div class="panel">
+      <div id="sellerGate">
+        <p>Connectez-vous avec le compte de votre entreprise pour demander un partenariat ZAAMARKET.</p>
+        <button class="btn primary" id="sellerLoginBtn">Me connecter</button>
+      </div>
 
-  <p>ZAAMARKET, une marque du groupe ADDIBA.</p>
+      <div id="sellerArea" class="hidden">
+        <div class="tabs">
+          <button class="btn light small active" data-sellertab="apply">Partenariat</button>
+          <button class="btn light small" data-sellertab="products">Mes produits</button>
+          <button class="btn light small" data-sellertab="new">Proposer un produit</button>
+        </div>
+        <div id="sellerContent"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="index.html">Découvrir ADDIBA</a>
+<section class="section" id="compte">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Espace personnel</div>
+        <h2>Mon compte</h2>
+        <p class="sub">Retrouvez vos commandes et vos avis.</p>
+      </div>
+    </div>
 
+    <div class="panel" id="accountPanel">
+      <p>Connectez-vous pour accéder à votre espace client.</p>
+      <button class="btn primary" id="accountLoginBtn">Connexion / Inscription</button>
+    </div>
+
+    <div id="founderPanel" class="panel hidden">
+      <h3>Administration ZAAMARKET — Fondateur</h3>
+
+      <div class="tabs">
+        <button class="btn light small active" data-admintab="products">Produits à examiner</button>
+        <button class="btn light small" data-admintab="reviews">Avis à modérer</button>
+        <button class="btn light small" data-admintab="orders">Commandes</button>
+        <button class="btn light small" data-admintab="reports">Signalements</button>
+      </div>
+
+      <div id="adminContent"></div>
+    </div>
+  </div>
 </section>
 
 </main>
 
-<!-- PIED DE PAGE -->
-<footer>
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="brand" href="#accueil">ZAA<span>MARKET</span></a>
+      <p>Le commerce sans frontières. Une marque du groupe ADDIBA.</p>
+      <p>© <span id="year"></span> ZAAMARKET. Tous droits réservés.</p>
+    </div>
 
-  <p>© 2026 ZAAMARKET. Tous droits réservés.</p>
+    <div>
+      <b>Navigation</b>
+      <p><a href="#boutique">Boutique</a></p>
+      <p><a href="#vendeurs">Devenir vendeur</a></p>
+      <p><a href="index.html">ADDIBA</a></p>
+    </div>
 
-  <p>
-    Une marque du groupe
-    <a href="index.html">ADDIBA</a>.
-  </p>
-
+    <div>
+      <b>Information</b>
+      <p>Les frais et délais de livraison sont confirmés avant traitement de la commande.</p>
+      <p>Le paiement Mobile Money sera activé après configuration et validation du prestataire.</p>
+    </div>
+  </div>
 </footer>
 
-<!-- MENU MOBILE -->
-<script>
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
+<!-- MODALE AUTHENTIFICATION -->
+<div class="modal" id="authModal">
+  <div class="dialog">
+    <div class="dialog-head">
+      <h3 id="authTitle">Connexion</h3>
+      <button class="x" data-close="authModal">×</button>
+    </div>
 
-menuToggle.addEventListener("click", function() {
-  mainNav.classList.toggle("active");
+    <div class="tabs">
+      <button class="btn light small active" data-authmode="login">Connexion</button>
+      <button class="btn light small" data-authmode="signup">Créer un compte</button>
+    </div>
 
-  const isOpen = mainNav.classList.contains("active");
+    <form id="authForm">
+      <div class="field">
+        <label for="authEmail">Adresse e-mail</label>
+        <input id="authEmail" type="email" required autocomplete="email">
+      </div>
 
-  menuToggle.setAttribute("aria-expanded", isOpen);
-  menuToggle.setAttribute(
-    "aria-label",
-    isOpen ? "Fermer le menu" : "Ouvrir le menu"
+      <div class="field">
+        <label for="authPassword">Mot de passe</label>
+        <input id="authPassword" type="password" required minlength="8" autocomplete="current-password">
+      </div>
+
+      <div class="field hidden" id="confirmField">
+        <label for="authName">Nom complet</label>
+        <input id="authName" maxlength="120">
+      </div>
+
+      <button class="btn primary" type="submit" id="authSubmit">Se connecter</button>
+      <div id="authMessage" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
+<!-- MODALE PANIER -->
+<div class="modal" id="cartModal">
+  <div class="dialog">
+    <div class="dialog-head">
+      <h3>Votre panier</h3>
+      <button class="x" data-close="cartModal">×</button>
+    </div>
+
+    <div id="cartLines"></div>
+
+    <div class="row" style="padding:15px 0">
+      <b>Total produits</b>
+      <b id="cartTotal">0 FCFA</b>
+    </div>
+
+    <button class="btn primary" style="width:100%" id="checkoutBtn">Passer la commande</button>
+    <p class="muted" style="font-size:12px">Les frais de livraison seront confirmés par l'équipe avant traitement.</p>
+  </div>
+</div>
+
+<!-- MODALE COMMANDE -->
+<div class="modal" id="checkoutModal">
+  <div class="dialog">
+    <div class="dialog-head">
+      <h3>Finaliser la commande</h3>
+      <button class="x" data-close="checkoutModal">×</button>
+    </div>
+
+    <form id="checkoutForm">
+      <div class="grid2">
+        <div class="field">
+          <label>Nom du destinataire</label>
+          <input name="nom" required minlength="2" maxlength="120">
+        </div>
+        <div class="field">
+          <label>Téléphone</label>
+          <input name="telephone" required minlength="8" maxlength="30" placeholder="Ex. 70 00 00 00">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Pays</label>
+          <input name="pays" value="Burkina Faso" required>
+        </div>
+        <div class="field">
+          <label>Ville</label>
+          <input name="ville" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Secteur / quartier</label>
+        <input name="secteur" required>
+      </div>
+
+      <div class="field">
+        <label>Adresse détaillée</label>
+        <textarea name="details" required minlength="5"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Note (facultatif)</label>
+        <textarea name="note" maxlength="1000"></textarea>
+      </div>
+
+      <div class="notice">
+        Mode disponible actuellement : paiement à la livraison.
+        Le Mobile Money n'est pas encore activé.
+      </div>
+
+      <button class="btn primary" style="width:100%" type="submit">Confirmer ma commande</button>
+      <div id="checkoutMessage"></div>
+    </form>
+  </div>
+</div>
+
+<!-- MODALE PRODUIT -->
+<div class="modal" id="productModal">
+  <div class="dialog">
+    <div class="dialog-head">
+      <h3 id="productModalTitle">Produit</h3>
+      <button class="x" data-close="productModal">×</button>
+    </div>
+    <div id="productDetails"></div>
+  </div>
+</div>
+
+<!-- MODALE AVIS -->
+<div class="modal" id="reviewModal">
+  <div class="dialog">
+    <div class="dialog-head">
+      <h3>Donner mon avis</h3>
+      <button class="x" data-close="reviewModal">×</button>
+    </div>
+
+    <form id="reviewForm">
+      <input type="hidden" name="product_id">
+      <input type="hidden" name="order_item_id">
+
+      <div class="field">
+        <label>Note</label>
+        <select name="note" required>
+          <option value="5">5 étoiles — Excellent</option>
+          <option value="4">4 étoiles — Très bien</option>
+          <option value="3">3 étoiles — Bien</option>
+          <option value="2">2 étoiles — Moyen</option>
+          <option value="1">1 étoile — Décevant</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Votre commentaire</label>
+        <textarea name="commentaire" minlength="5" maxlength="2000" required></textarea>
+      </div>
+
+      <div class="notice">
+        Votre avis sera soumis à modération et ne sera publié qu'après validation.
+      </div>
+
+      <button class="btn primary" type="submit">Envoyer mon avis</button>
+      <div id="reviewMessage"></div>
+    </form>
+  </div>
+</div>
+
+<!-- MODALE SIGNALEMENT -->
+<div class="modal" id="reportModal">
+  <div class="dialog">
+    <div class="dialog-head">
+      <h3>Signaler cet avis</h3>
+      <button class="x" data-close="reportModal">×</button>
+    </div>
+
+    <form id="reportForm">
+      <input type="hidden" name="review_id">
+
+      <div class="field">
+        <label>Motif du signalement</label>
+        <textarea name="motif" minlength="5" maxlength="1000" required></textarea>
+      </div>
+
+      <button class="btn primary" type="submit">Envoyer le signalement</button>
+      <div id="reportMessage"></div>
+    </form>
+  </div>
+</div>
+
+<!-- MODALE ENTREPRISE -->
+<div class="modal" id="sellerCompanyModal">
+  <div class="dialog">
+    <div class="dialog-head">
+      <h3>Entreprise partenaire</h3>
+      <button class="x" data-close="sellerCompanyModal">×</button>
+    </div>
+
+    <form id="companyForm">
+      <div class="field">
+        <label>Nom de l'entreprise</label>
+        <input name="nom" required maxlength="180">
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Pays</label>
+          <input name="pays" value="Burkina Faso" required>
+        </div>
+        <div class="field">
+          <label>Secteur d'activité</label>
+          <input name="secteur" required>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>E-mail professionnel</label>
+          <input name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label>Téléphone</label>
+          <input name="telephone" maxlength="40">
+        </div>
+      </div>
+
+      <button class="btn primary" type="submit">Envoyer la demande d'inscription</button>
+      <div id="companyMessage"></div>
+    </form>
+  </div>
+</div>
+
+<script type="module">
+
+import { supabase } from './supabase.js';
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+const fmt = n =>
+  new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0})
+    .format(Number(n||0))+' FCFA';
+
+const esc = s =>
+  String(s??'').replace(/[&<>"']/g,c=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[c]));
+
+const state = {
+  user:null,
+  profile:null,
+  categories:[],
+  products:[],
+  cart:{},
+  selectedCategory:'',
+  sellerCompany:null,
+  brandId:null,
+  checkoutKey:null
+};
+
+try{
+  const savedCart = JSON.parse(localStorage.getItem('za_cart_v1')||'{}');
+  if(savedCart && typeof savedCart==='object' && !Array.isArray(savedCart)){
+    state.cart=savedCart;
+  }
+}catch{
+  state.cart={};
+}
+
+const show = id => $('#'+id).classList.add('open');
+const hide = id => $('#'+id).classList.remove('open');
+
+function msg(el,text,type='notice'){
+  el.innerHTML=`<div class="${type}">${esc(text)}</div>`;
+}
+
+function saveCart(){
+  localStorage.setItem('za_cart_v1',JSON.stringify(state.cart));
+  updateCartCount();
+}
+
+function updateCartCount(){
+  $('#cartCount').textContent=
+    Object.values(state.cart).reduce((a,x)=>a+Number(x.quantity||0),0);
+}
+
+function catIcon(slug){
+  return ({
+    vetements:'👗',
+    chaussures:'👟',
+    cosmetiques:'✨',
+    'accessoires-telephoniques':'📱'
+  })[slug]||'🛍️';
+}
+
+/* CATEGORIES */
+
+async function loadCategories(){
+  const {data,error}=await supabase
+    .from('za_categories')
+    .select('id,nom,slug,description,ordre')
+    .eq('active',true)
+    .order('ordre');
+
+  if(error) throw error;
+
+  state.categories=data||[];
+
+  $('#categoryGrid').innerHTML=state.categories.map(c=>`
+    <button class="cat ${state.selectedCategory===c.id?'active':''}" data-cat="${c.id}">
+      <span class="emoji">${catIcon(c.slug)}</span>
+      <strong>${esc(c.nom)}</strong>
+      <small>${esc(c.description||'Explorer les produits')}</small>
+    </button>
+  `).join('')||'<div class="empty">Aucune catégorie disponible.</div>';
+
+  $('#categoryFilter').innerHTML=
+    '<option value="">Toutes les catégories</option>'+
+    state.categories.map(c=>
+      `<option value="${c.id}">${esc(c.nom)}</option>`
+    ).join('');
+}
+
+/* CATALOGUE */
+
+async function loadProducts(){
+  $('#catalogStatus').textContent='Chargement…';
+
+  let q=supabase
+    .from('za_products')
+    .select('id,category_id,nom,slug,description,prix,devise,etat,stock_disponible,created_at,za_categories(nom,slug)')
+    .eq('statut','publie')
+    .order('created_at',{ascending:false});
+
+  if(state.selectedCategory){
+    q=q.eq('category_id',state.selectedCategory);
+  }
+
+  if($('#conditionFilter').value){
+    q=q.eq('etat',$('#conditionFilter').value);
+  }
+
+  const term=$('#searchInput').value.trim();
+
+  if(term){
+    q=q.ilike('nom',`%${term.replace(/[%_,]/g,' ')}%`);
+  }
+
+  const sort=$('#sortFilter').value;
+
+  if(sort==='priceAsc') q=q.order('prix',{ascending:true});
+  if(sort==='priceDesc') q=q.order('prix',{ascending:false});
+  if(sort==='name') q=q.order('nom',{ascending:true});
+
+  const {data,error}=await q.limit(60);
+
+  if(error){
+    $('#catalogStatus').textContent='Erreur de chargement du catalogue.';
+    $('#productGrid').innerHTML=
+      `<div class="empty">${esc(error.message)}</div>`;
+    return;
+  }
+
+  state.products=data||[];
+
+  $('#catalogStatus').textContent=
+    `${state.products.length} produit(s) actuellement publié(s)`;
+
+  await renderProducts();
+}
+
+/*
+  Les photos sont laissées avec leur visuel de remplacement.
+  L'accès aux images privées doit être raccordé à la fonction
+  serveur et aux autorisations Storage correspondantes.
+*/
+
+async function renderProducts(){
+  const grid=$('#productGrid');
+
+  if(!state.products.length){
+    grid.innerHTML=
+      '<div class="empty">Aucun produit publié ne correspond à votre recherche pour le moment.</div>';
+    return;
+  }
+
+  grid.innerHTML=state.products.map(p=>`
+    <article class="product">
+      <div class="product-img" id="img-${p.id}">
+        <span class="placeholder">${catIcon(p.za_categories?.slug)}</span>
+      </div>
+
+      <div class="product-body">
+        <div class="product-cat">${esc(p.za_categories?.nom||'ZAAMARKET')}</div>
+        <h3>${esc(p.nom)}</h3>
+        <div class="price">${fmt(p.prix)}</div>
+        <div class="meta">
+          ${p.etat==='neuf'?'Neuf':'Occasion'} ·
+          ${Number(p.stock_disponible)>0?'Disponible':'Stock limité'}
+        </div>
+
+        <div class="product-actions">
+          <button class="btn light small" data-details="${p.id}">Détails</button>
+          <button class="btn primary small" data-add="${p.id}" ${Number(p.stock_disponible)<=0?'disabled':''}>
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+/* PANIER */
+
+function addToCart(id){
+  const p=state.products.find(x=>x.id===id);
+  if(!p)return;
+
+  const line=state.cart[id]||{
+    quantity:0,
+    name:p.nom,
+    price:Number(p.prix)
+  };
+
+  if(line.quantity+1>Math.min(Number(p.stock_disponible),20)){
+    alert('Quantité supérieure au stock actuellement déclaré.');
+    return;
+  }
+
+  line.quantity++;
+  state.cart[id]=line;
+  saveCart();
+}
+
+function renderCart(){
+  const lines=Object.entries(state.cart);
+
+  $('#cartLines').innerHTML=lines.length
+    ?lines.map(([id,x])=>`
+      <div class="cartline">
+        <div>
+          <b>${esc(x.name)}</b>
+          <div class="muted">${fmt(x.price)} / unité</div>
+        </div>
+        <div class="qty">
+          <button data-dec="${id}">−</button>
+          <b>${x.quantity}</b>
+          <button data-inc="${id}">+</button>
+          <button class="btn danger small" data-remove="${id}">×</button>
+        </div>
+      </div>
+    `).join('')
+    :'<div class="empty">Votre panier est vide.</div>';
+
+  $('#cartTotal').textContent=
+    fmt(lines.reduce((a,[,x])=>a+x.price*x.quantity,0));
+
+  $('#checkoutBtn').disabled=!lines.length;
+}
+
+/* AUTHENTIFICATION ET PROFIL */
+
+async function refreshUser(){
+  const {data:{user}}=await supabase.auth.getUser();
+
+  state.user=user||null;
+  state.profile=null;
+  state.sellerCompany=null;
+
+  if(user){
+    const {data}=await supabase
+      .from('profils')
+      .select('id,nom_complet,role')
+      .eq('id',user.id)
+      .maybeSingle();
+
+    state.profile=data;
+
+    if(data?.role==='fondateur'){
+      $('#founderPanel').classList.remove('hidden');
+    }else{
+      $('#founderPanel').classList.add('hidden');
+    }
+
+    $('#authBtn').textContent='Mon espace';
+    $('#sellerGate').classList.add('hidden');
+    $('#sellerArea').classList.remove('hidden');
+
+    await findSellerCompany();
+
+  }else{
+    $('#authBtn').textContent='Connexion';
+    $('#founderPanel').classList.add('hidden');
+    $('#sellerGate').classList.remove('hidden');
+    $('#sellerArea').classList.add('hidden');
+  }
+
+  await renderAccount();
+}
+
+async function findSellerCompany(){
+  const {data,error}=await supabase
+    .from('entreprises')
+    .select('id,nom,statut,created_by')
+    .eq('created_by',state.user.id)
+    .limit(10);
+
+  if(error){
+    console.error('Erreur de recherche de l’entreprise :',error);
+    state.sellerCompany=null;
+    return;
+  }
+
+  state.sellerCompany=(data||[]).find(
+    x=>x.created_by===state.user.id
+  )||null;
+}
+
+async function renderAccount(){
+  if(!state.user){
+    $('#accountPanel').innerHTML=`
+      <p>Connectez-vous pour consulter vos commandes et vos avis.</p>
+      <button class="btn primary" id="accountLoginBtn">Connexion / Inscription</button>
+    `;
+    return;
+  }
+
+  $('#accountPanel').innerHTML=`
+    <div class="row">
+      <div>
+        <b>${esc(state.profile?.nom_complet||state.user.email)}</b>
+        <div class="muted">${esc(state.user.email)}</div>
+      </div>
+      <button class="btn light small" id="logoutBtn">Se déconnecter</button>
+    </div>
+
+    <div class="tabs">
+      <button class="btn light small active" data-accounttab="orders">Mes commandes</button>
+      <button class="btn light small" data-accounttab="reviews">Mes avis</button>
+    </div>
+
+    <div id="accountContent">Chargement…</div>
+  `;
+
+  await renderMyOrders();
+}
+
+/* COMMANDES CLIENT */
+
+async function renderMyOrders(){
+  const target=$('#accountContent');
+  if(!target || !state.user)return;
+
+  const {data,error}=await supabase
+    .from('za_orders')
+    .select('id,reference,statut,total,devise,created_at,za_seller_orders(id,statut,za_order_items(id,product_id,nom_produit,quantite))')
+    .eq('buyer_id',state.user.id)
+    .order('created_at',{ascending:false})
+    .limit(30);
+
+  if(error){
+    target.textContent='Impossible de charger vos commandes.';
+    return;
+  }
+
+  target.innerHTML=(data||[]).map(o=>`
+    <div class="panel">
+      <div class="row">
+        <b>${esc(o.reference)}</b>
+        <span class="badge ${o.statut==='livree'?'good':'wait'}">${esc(o.statut)}</span>
+      </div>
+
+      <div class="muted">
+        ${new Date(o.created_at).toLocaleDateString('fr-FR')} · ${fmt(o.total)}
+      </div>
+
+      ${(o.za_seller_orders||[])
+        .flatMap(s=>s.za_order_items||[])
+        .map(i=>`
+          <div class="row" style="padding:8px 0">
+            <span>${esc(i.nom_produit)} × ${i.quantite}</span>
+            ${o.statut==='livree'?`
+              <button class="btn light small" data-review="${i.product_id}" data-item="${i.id}">
+                Donner mon avis
+              </button>
+            `:''}
+          </div>
+        `).join('')}
+    </div>
+  `).join('')||'<div class="empty">Aucune commande pour le moment.</div>';
+}
+
+async function renderMyReviews(){
+  const {data,error}=await supabase
+    .from('za_reviews')
+    .select('id,note,commentaire,statut,created_at,za_products(nom)')
+    .eq('author_id',state.user.id)
+    .order('created_at',{ascending:false})
+    .limit(30);
+
+  $('#accountContent').innerHTML=error
+    ?'Impossible de charger les avis.'
+    :(data||[]).map(r=>`
+      <div class="review">
+        <b>${esc(r.za_products?.nom||'Produit')}</b>
+        <span class="stars">${'★'.repeat(r.note)}${'☆'.repeat(5-r.note)}</span>
+        <div>${esc(r.commentaire)}</div>
+        <span class="badge">${esc(r.statut)}</span>
+      </div>
+    `).join('')||'<div class="empty">Vous n’avez pas encore publié d’avis.</div>';
+}
+
+/* ESPACE VENDEUR */
+
+async function loadSeller(tab='apply'){
+  if(!state.user)return;
+
+  $$('[data-sellertab]').forEach(b=>
+    b.classList.toggle('active',b.dataset.sellertab===tab)
   );
+
+  const c=$('#sellerContent');
+
+  if(tab==='apply'){
+    const {data:partnership}=state.sellerCompany
+      ?await supabase
+        .from('demandes_partenariat_marques')
+        .select('id,statut,created_at')
+        .eq('entreprise_id',state.sellerCompany.id)
+        .eq('marque_id',state.brandId)
+        .maybeSingle()
+      :{data:null};
+
+    c.innerHTML=state.sellerCompany
+      ?`
+        <p>
+          <b>${esc(state.sellerCompany.nom)}</b> —
+          statut entreprise :
+          <span class="badge">${esc(state.sellerCompany.statut)}</span>
+        </p>
+
+        <p>
+          Partenariat ZAAMARKET :
+          <span class="badge ${partnership?.statut==='approuvee'?'good':'wait'}">
+            ${esc(partnership?.statut||'Non demandé')}
+          </span>
+        </p>
+
+        ${!partnership?`
+          <button class="btn primary" id="requestPartnership">
+            Demander le partenariat ZAAMARKET
+          </button>
+        `:''}
+      `
+      :`
+        <p>Aucune entreprise associée à votre compte.</p>
+        <button class="btn primary" id="newCompany">Enregistrer mon entreprise</button>
+      `;
+
+    return;
+  }
+
+  if(tab==='products'){
+    if(!state.sellerCompany){
+      c.innerHTML='<p>Enregistrez d’abord votre entreprise.</p>';
+      return;
+    }
+
+    const {data,error}=await supabase
+      .from('za_products')
+      .select('id,nom,prix,statut,stock_disponible')
+      .eq('seller_company_id',state.sellerCompany.id)
+      .order('created_at',{ascending:false});
+
+    c.innerHTML=error
+      ?'Erreur de chargement.'
+      :(data||[]).map(p=>`
+        <div class="row panel">
+          <div>
+            <b>${esc(p.nom)}</b>
+            <div>${fmt(p.prix)} · Stock ${p.stock_disponible}</div>
+          </div>
+          <span class="badge">${esc(p.statut)}</span>
+        </div>
+      `).join('')||'<div class="empty">Aucun produit soumis.</div>';
+
+    return;
+  }
+
+  if(tab==='new'){
+    if(!state.sellerCompany || state.sellerCompany.statut!=='approuvee'){
+      c.innerHTML='<div class="notice">Votre entreprise doit être approuvée avant de proposer des produits.</div>';
+      return;
+    }
+
+    c.innerHTML=`
+      <form id="sellerProductForm">
+        <div class="field">
+          <label>Nom du produit</label>
+          <input name="nom" required maxlength="180">
+        </div>
+
+        <div class="field">
+          <label>Catégorie</label>
+          <select name="category_id" required>
+            ${state.categories.map(x=>`
+              <option value="${x.id}">${esc(x.nom)}</option>
+            `).join('')}
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <textarea name="description" maxlength="4000"></textarea>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label>Prix (FCFA)</label>
+            <input name="prix" type="number" min="1" step="1" required>
+          </div>
+          <div class="field">
+            <label>Stock disponible</label>
+            <input name="stock" type="number" min="0" step="1" value="1" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>État</label>
+          <select name="etat">
+            <option value="neuf">Neuf</option>
+            <option value="occasion">Occasion</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Photo du produit (JPEG, PNG ou WebP, 5 Mo maximum)</label>
+          <input name="photo" type="file" accept="image/jpeg,image/png,image/webp">
+        </div>
+
+        <button class="btn primary">Soumettre à validation</button>
+        <div id="sellerProductMessage"></div>
+      </form>
+    `;
+  }
+}
+
+/* ADMINISTRATION FONDATEUR */
+
+async function loadAdmin(tab='products'){
+  if(state.profile?.role!=='fondateur')return;
+
+  $$('[data-admintab]').forEach(b=>
+    b.classList.toggle('active',b.dataset.admintab===tab)
+  );
+
+  const c=$('#adminContent');
+
+  if(tab==='products'){
+    const {data,error}=await supabase
+      .from('za_products')
+      .select('id,nom,prix,statut,created_at')
+      .in('statut',['en_attente','modifications_requises'])
+      .order('created_at');
+
+    c.innerHTML=`
+      <form id="founderProductForm" class="panel">
+        <h3>Ajouter un produit géré par ZAAMARKET</h3>
+
+        <div class="field">
+          <label>Nom</label>
+          <input name="nom" required maxlength="180">
+        </div>
+
+        <div class="field">
+          <label>Catégorie</label>
+          <select name="category_id" required>
+            ${state.categories.map(x=>`
+              <option value="${x.id}">${esc(x.nom)}</option>
+            `).join('')}
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <textarea name="description"></textarea>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label>Prix (FCFA)</label>
+            <input name="prix" type="number" min="1" required>
+          </div>
+          <div class="field">
+            <label>Stock</label>
+            <input name="stock" type="number" min="0" value="1" required>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label>État</label>
+            <select name="etat">
+              <option value="neuf">Neuf</option>
+              <option value="occasion">Occasion</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Photo (5 Mo max.)</label>
+            <input name="photo" type="file" accept="image/jpeg,image/png,image/webp">
+          </div>
+        </div>
+
+        <button class="btn primary">Enregistrer le produit</button>
+        <div id="founderProductMessage"></div>
+      </form>
+    `+(error
+      ?'<div class="empty">Erreur de chargement.</div>'
+      :(data||[]).map(p=>`
+        <div class="panel">
+          <div class="row">
+            <div>
+              <b>${esc(p.nom)}</b>
+              <div>${fmt(p.prix)} · ${esc(p.statut)}</div>
+            </div>
+            <div class="row">
+              <button class="btn primary small" data-approve="${p.id}">Publier</button>
+              <button class="btn light small" data-reject="${p.id}">Refuser</button>
+            </div>
+          </div>
+        </div>
+      `).join('')||'<div class="empty">Aucun produit en attente.</div>'
+    );
+
+    return;
+  }
+
+  if(tab==='reviews'){
+    const {data,error}=await supabase
+      .from('za_reviews')
+      .select('id,note,commentaire,created_at,za_products(nom)')
+      .eq('statut','en_attente')
+      .order('created_at');
+
+    c.innerHTML=error
+      ?'Erreur de chargement.'
+      :(data||[]).map(r=>`
+        <div class="panel">
+          <b>${esc(r.za_products?.nom||'Produit')}</b>
+          <span class="stars">${'★'.repeat(r.note)}</span>
+          <p>${esc(r.commentaire)}</p>
+          <button class="btn primary small" data-reviewapprove="${r.id}">Approuver</button>
+          <button class="btn danger small" data-reviewreject="${r.id}">Refuser</button>
+        </div>
+      `).join('')||'<div class="empty">Aucun avis en attente.</div>';
+
+    return;
+  }
+
+  if(tab==='reports'){
+    const {data,error}=await supabase
+      .from('za_review_reports')
+      .select('id,motif,statut,created_at,za_reviews(commentaire)')
+      .eq('statut','a_traiter')
+      .order('created_at');
+
+    c.innerHTML=error
+      ?'Erreur de chargement.'
+      :(data||[]).map(r=>`
+        <div class="panel">
+          <p>${esc(r.motif)}</p>
+          <blockquote>${esc(r.za_reviews?.commentaire||'Avis indisponible')}</blockquote>
+          <button class="btn primary small" data-reportdone="${r.id}">Traité</button>
+        </div>
+      `).join('')||'<div class="empty">Aucun signalement en attente.</div>';
+
+    return;
+  }
+
+  if(tab==='orders'){
+    const {data,error}=await supabase
+      .from('za_orders')
+      .select('id,reference,statut,total,created_at')
+      .order('created_at',{ascending:false})
+      .limit(60);
+
+    c.innerHTML=error
+      ?'Erreur de chargement.'
+      :`
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Référence</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              ${(data||[]).map(o=>`
+                <tr>
+                  <td>${esc(o.reference)}</td>
+                  <td>${new Date(o.created_at).toLocaleDateString('fr-FR')}</td>
+                  <td>${esc(o.statut)}</td>
+                  <td>${fmt(o.total)}</td>
+                  <td>
+                    <select data-nextstatus="${o.id}">
+                      <option value="">Changer…</option>
+                      <option value="confirmee">Confirmée</option>
+                      <option value="en_preparation">En préparation</option>
+                      <option value="expediee">Expédiée</option>
+                      <option value="livree">Livrée</option>
+                      <option value="annulee">Annulée</option>
+                    </select>
+                    <button class="btn primary small" data-orderstatus="${o.id}">Valider</button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+    return;
+  }
+}
+
+/* INITIALISATION */
+
+async function init(){
+  $('#year').textContent=new Date().getFullYear();
+
+  updateCartCount();
+
+  const {data:brands,error:brandError}=await supabase
+    .from('marques')
+    .select('id,nom,statut')
+    .ilike('nom','ZAAMARKET')
+    .limit(1);
+
+  if(brandError)throw brandError;
+
+  state.brandId=brands?.[0]?.id||null;
+
+  await loadCategories();
+  await loadProducts();
+  await refreshUser();
+}
+
+/* AUTHENTIFICATION */
+
+let authMode='login';
+
+function setAuthMode(m){
+  authMode=m;
+
+  $$('[data-authmode]').forEach(b=>
+    b.classList.toggle('active',b.dataset.authmode===m)
+  );
+
+  $('#authTitle').textContent=
+    m==='login'?'Connexion':'Créer un compte';
+
+  $('#authSubmit').textContent=
+    m==='login'?'Se connecter':'Créer mon compte';
+
+  $('#confirmField').classList.toggle('hidden',m==='login');
+  $('#authName').required=m==='signup';
+
+  $('#authPassword').autocomplete=
+    m==='login'?'current-password':'new-password';
+}
+
+/* BOUTONS PRINCIPAUX */
+
+$('#authBtn').onclick=()=>{
+  if(state.user){
+    document.querySelector('#compte').scrollIntoView();
+  }else{
+    show('authModal');
+  }
+};
+
+$('#accountLoginBtn').onclick=()=>show('authModal');
+$('#sellerLoginBtn').onclick=()=>show('authModal');
+
+$('#cartBtn').onclick=()=>{
+  renderCart();
+  show('cartModal');
+};
+
+$('#refreshBtn').onclick=loadProducts;
+
+/* RECHERCHE ET FILTRES */
+
+$('#searchForm').onsubmit=e=>{
+  e.preventDefault();
+  loadProducts();
+};
+
+$('#categoryGrid').onclick=e=>{
+  const b=e.target.closest('[data-cat]');
+  if(!b)return;
+
+  state.selectedCategory=b.dataset.cat;
+  $('#categoryFilter').value=state.selectedCategory;
+
+  loadCategories();
+  loadProducts();
+};
+
+$('#categoryFilter').onchange=e=>{
+  state.selectedCategory=e.target.value;
+  loadCategories();
+  loadProducts();
+};
+
+$('#sortFilter').onchange=loadProducts;
+$('#conditionFilter').onchange=loadProducts;
+
+/* ACTIONS SUR LES PRODUITS */
+
+$('#productGrid').onclick=async e=>{
+  const add=e.target.closest('[data-add]');
+
+  if(add){
+    addToCart(add.dataset.add);
+    return;
+  }
+
+  const d=e.target.closest('[data-details]');
+
+  if(d){
+    const p=state.products.find(x=>x.id===d.dataset.details);
+    if(!p)return;
+
+    $('#productModalTitle').textContent=p.nom;
+
+    const {data:reviews}=await supabase
+      .from('za_reviews')
+      .select('id,note,commentaire,created_at')
+      .eq('product_id',p.id)
+      .eq('statut','approuve')
+      .order('created_at',{ascending:false})
+      .limit(10);
+
+    $('#productDetails').innerHTML=`
+      <p class="price">${fmt(p.prix)}</p>
+      <p>${esc(p.description||'Aucune description fournie.')}</p>
+      <p class="muted">
+        ${esc(p.za_categories?.nom||'')} ·
+        ${p.etat==='neuf'?'Neuf':'Occasion'}
+      </p>
+
+      <button class="btn primary" id="detailAdd">Ajouter au panier</button>
+
+      <h4>Avis clients</h4>
+
+      ${(reviews||[]).map(r=>`
+        <div class="review">
+          <span class="stars">${'★'.repeat(r.note)}${'☆'.repeat(5-r.note)}</span>
+          <p>${esc(r.commentaire)}</p>
+          <button class="btn light small" data-report="${r.id}">Signaler</button>
+        </div>
+      `).join('')||'<p class="muted">Aucun avis publié.</p>'}
+    `;
+
+    $('#detailAdd').onclick=()=>{
+      addToCart(p.id);
+      hide('productModal');
+    };
+
+    show('productModal');
+  }
+};
+
+/* MODIFICATION DU PANIER */
+
+$('#cartLines').onclick=e=>{
+  const b=e.target.closest('button');
+  if(!b)return;
+
+  const id=b.dataset.inc||b.dataset.dec||b.dataset.remove;
+  if(!id)return;
+
+  if(b.dataset.remove){
+    delete state.cart[id];
+  }else if(b.dataset.inc){
+    const p=state.products.find(x=>x.id===id);
+
+    if(state.cart[id].quantity>=Math.min(20,Number(p?.stock_disponible||20))){
+      alert('Stock maximum atteint.');
+      return;
+    }
+
+    state.cart[id].quantity++;
+  }else{
+    state.cart[id].quantity--;
+
+    if(state.cart[id].quantity<=0){
+      delete state.cart[id];
+    }
+  }
+
+  saveCart();
+  renderCart();
+};
+
+/* PASSAGE DE COMMANDE */
+
+$('#checkoutBtn').onclick=async()=>{
+  if(!state.user){
+    hide('cartModal');
+    show('authModal');
+    return;
+  }
+
+  hide('cartModal');
+  show('checkoutModal');
+};
+
+$('#checkoutForm').onsubmit=async e=>{
+  e.preventDefault();
+
+  if(!state.user){
+    msg($('#checkoutMessage'),'Connectez-vous avant de commander.','error');
+    return;
+  }
+
+  const f=new FormData(e.target);
+
+  const items=Object.entries(state.cart).map(([product_id,x])=>({
+    product_id,
+    quantity:x.quantity
+  }));
+
+  if(!items.length)return;
+
+  const address={
+    pays:f.get('pays'),
+    ville:f.get('ville'),
+    secteur:f.get('secteur'),
+    details:f.get('details')
+  };
+
+  if(!state.checkoutKey){
+    state.checkoutKey=crypto.randomUUID();
+  }
+
+  const submit=e.target.querySelector('button[type="submit"]');
+  submit.disabled=true;
+
+  try{
+    const {data,error}=await supabase.rpc('za_checkout',{
+      p_checkout_key:state.checkoutKey,
+      p_items:items,
+      p_adresse:address,
+      p_destinataire_nom:f.get('nom'),
+      p_destinataire_telephone:f.get('telephone'),
+      p_methode_paiement:'paiement_livraison',
+      p_note:f.get('note')||null
+    });
+
+    if(error){
+      msg($('#checkoutMessage'),error.message,'error');
+      return;
+    }
+
+    state.cart={};
+    state.checkoutKey=null;
+
+    saveCart();
+    e.target.reset();
+
+    msg(
+      $('#checkoutMessage'),
+      `Commande enregistrée : ${data.reference}. Total ${fmt(data.total)}. Vous serez contacté pour confirmer la livraison.`,
+      'success'
+    );
+
+    await refreshUser();
+
+    setTimeout(()=>hide('checkoutModal'),4500);
+
+  }catch(error){
+    console.error(error);
+    msg($('#checkoutMessage'),'Une erreur est survenue. Vérifiez votre connexion puis réessayez.','error');
+  }finally{
+    submit.disabled=false;
+  }
+};
+
+/* FORMULAIRE DE CONNEXION */
+
+$('#authForm').onsubmit=async e=>{
+  e.preventDefault();
+
+  const email=$('#authEmail').value.trim();
+  const password=$('#authPassword').value;
+
+  $('#authSubmit').disabled=true;
+
+  let result;
+
+  try{
+    if(authMode==='login'){
+      result=await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+    }else{
+      result=await supabase.auth.signUp({
+        email,
+        password,
+        options:{
+          data:{
+            nom_complet:$('#authName').value.trim()
+          },
+          emailRedirectTo:location.origin+location.pathname
+        }
+      });
+    }
+
+    if(result.error){
+      msg($('#authMessage'),result.error.message,'error');
+      return;
+    }
+
+    if(authMode==='signup'&&!result.data.session){
+      msg(
+        $('#authMessage'),
+        'Compte créé. Vérifiez votre e-mail pour confirmer votre adresse avant de vous connecter.',
+        'success'
+      );
+      return;
+    }
+
+    msg($('#authMessage'),'Connexion réussie.','success');
+
+    await refreshUser();
+
+    setTimeout(()=>hide('authModal'),700);
+
+  }catch(error){
+    console.error(error);
+    msg($('#authMessage'),'Une erreur est survenue. Réessayez.','error');
+  }finally{
+    $('#authSubmit').disabled=false;
+  }
+};
+
+$$('[data-authmode]').forEach(b=>{
+  b.onclick=()=>setAuthMode(b.dataset.authmode);
 });
 
-mainNav.querySelectorAll("a").forEach(function(link) {
-  link.addEventListener("click", function() {
-    mainNav.classList.remove("active");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+$$('[data-close]').forEach(b=>{
+  b.onclick=()=>hide(b.dataset.close);
+});
+
+$$('.modal').forEach(m=>{
+  m.addEventListener('click',e=>{
+    if(e.target===m)hide(m.id);
   });
 });
+
+/* COMPTE CLIENT */
+
+$('#accountPanel').onclick=async e=>{
+  if(e.target.id==='logoutBtn'){
+    await supabase.auth.signOut();
+    await refreshUser();
+    return;
+  }
+
+  const t=e.target.closest('[data-accounttab]');
+
+  if(t){
+    $$('[data-accounttab]').forEach(b=>
+      b.classList.toggle('active',b===t)
+    );
+
+    if(t.dataset.accounttab==='orders'){
+      renderMyOrders();
+    }else{
+      renderMyReviews();
+    }
+
+    return;
+  }
+
+  const r=e.target.closest('[data-review]');
+
+  if(r){
+    $('#reviewForm').elements.product_id.value=r.dataset.review;
+    $('#reviewForm').elements.order_item_id.value=r.dataset.item;
+    show('reviewModal');
+  }
+};
+
+/* ENVOI D'UN AVIS */
+
+$('#reviewForm').onsubmit=async e=>{
+  e.preventDefault();
+
+  if(!state.user){
+    msg($('#reviewMessage'),'Connectez-vous pour envoyer un avis.','error');
+    return;
+  }
+
+  const f=new FormData(e.target);
+
+  const {error}=await supabase
+    .from('za_reviews')
+    .insert({
+      product_id:f.get('product_id'),
+      order_item_id:f.get('order_item_id'),
+      author_id:state.user.id,
+      note:Number(f.get('note')),
+      commentaire:f.get('commentaire'),
+      statut:'en_attente'
+    });
+
+  if(error){
+    msg($('#reviewMessage'),error.message,'error');
+    return;
+  }
+
+  msg($('#reviewMessage'),'Avis transmis pour modération. Merci !','success');
+
+  e.target.reset();
+
+  setTimeout(()=>hide('reviewModal'),1800);
+};
+
+/* SIGNALEMENT D'UN AVIS */
+
+$('#productDetails').onclick=e=>{
+  const b=e.target.closest('[data-report]');
+
+  if(b){
+    $('#reportForm').elements.review_id.value=b.dataset.report;
+    show('reportModal');
+  }
+};
+
+$('#reportForm').onsubmit=async e=>{
+  e.preventDefault();
+
+  if(!state.user){
+    msg($('#reportMessage'),'Connectez-vous pour signaler un avis.','error');
+    return;
+  }
+
+  const f=new FormData(e.target);
+
+  const {error}=await supabase
+    .from('za_review_reports')
+    .insert({
+      review_id:f.get('review_id'),
+      reporter_id:state.user.id,
+      motif:f.get('motif')
+    });
+
+  if(error){
+    msg($('#reportMessage'),error.message,'error');
+    return;
+  }
+
+  msg($('#reportMessage'),'Signalement envoyé.','success');
+
+  setTimeout(()=>hide('reportModal'),1400);
+};
+
+/* NAVIGATION VENDEUR */
+
+$$('[data-sellertab]').forEach(b=>{
+  b.onclick=()=>loadSeller(b.dataset.sellertab);
+});
+
+$('#sellerContent').onclick=async e=>{
+  if(e.target.id==='newCompany'){
+    show('sellerCompanyModal');
+  }
+
+  if(e.target.id==='requestPartnership'){
+    if(!state.sellerCompany||!state.brandId)return;
+
+    const {error}=await supabase
+      .from('demandes_partenariat_marques')
+      .insert({
+        marque_id:state.brandId,
+        entreprise_id:state.sellerCompany.id,
+        demandeur_id:state.user.id,
+        statut:'en_attente',
+        message:'Demande de partenariat vendeur ZAAMARKET'
+      });
+
+    if(error){
+      alert(error.message);
+    }else{
+      alert('Demande envoyée à ADDIBA pour examen.');
+      loadSeller('apply');
+    }
+  }
+};
+
+/* INSCRIPTION ENTREPRISE */
+
+$('#companyForm').onsubmit=async e=>{
+  e.preventDefault();
+
+  const f=new FormData(e.target);
+
+  const {data,error}=await supabase
+    .from('entreprises')
+    .insert({
+      nom:f.get('nom'),
+      pays:f.get('pays'),
+      secteur:f.get('secteur'),
+      email:f.get('email'),
+      telephone:f.get('telephone')||null,
+      created_by:state.user.id,
+      statut:'en_attente'
+    })
+    .select('id,nom,statut,created_by')
+    .single();
+
+  if(error){
+    msg($('#companyMessage'),error.message,'error');
+    return;
+  }
+
+  state.sellerCompany=data;
+
+  msg(
+    $('#companyMessage'),
+    'Entreprise enregistrée en attente de validation.',
+    'success'
+  );
+
+  setTimeout(()=>{
+    hide('sellerCompanyModal');
+    loadSeller('apply');
+  },1400);
+};
+
+/* SOUMISSION D'UN PRODUIT PAR UN VENDEUR */
+
+$('#sellerContent').onsubmit=async e=>{
+  if(e.target.id!=='sellerProductForm')return;
+
+  e.preventDefault();
+
+  const f=new FormData(e.target);
+  const nom=f.get('nom').trim();
+
+  const slug=
+    nom.toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-|-$/g,'')
+    +'-'+crypto.randomUUID().slice(0,8);
+
+  const photo=f.get('photo');
+
+  if(photo&&photo.size>5*1024*1024){
+    msg($('#sellerProductMessage'),'La photo dépasse 5 Mo.','error');
+    return;
+  }
+
+  if(photo&&photo.size&&!['image/jpeg','image/png','image/webp'].includes(photo.type)){
+    msg($('#sellerProductMessage'),'Format de photo non accepté.','error');
+    return;
+  }
+
+  const {data:product,error}=await supabase
+    .from('za_products')
+    .insert({
+      brand_id:state.brandId,
+      category_id:f.get('category_id'),
+      seller_company_id:state.sellerCompany.id,
+      created_by:state.user.id,
+      nom,
+      slug,
+      description:f.get('description'),
+      prix:Number(f.get('prix')),
+      devise:'XOF',
+      etat:f.get('etat'),
+      stock_disponible:Number(f.get('stock')),
+      statut:'en_attente'
+    })
+    .select('id')
+    .single();
+
+  if(error){
+    msg($('#sellerProductMessage'),error.message,'error');
+    return;
+  }
+
+  if(photo&&photo.size){
+    const ext=
+      photo.type==='image/jpeg'?'jpg':
+      photo.type==='image/png'?'png':'webp';
+
+    const path=`products/${product.id}/${crypto.randomUUID()}.${ext}`;
+
+    const up=await supabase.storage
+      .from('zaamarket-media')
+      .upload(path,photo,{
+        contentType:photo.type,
+        upsert:false
+      });
+
+    if(up.error){
+      msg(
+        $('#sellerProductMessage'),
+        'Produit soumis mais échec de la photo : '+up.error.message,
+        'error'
+      );
+      return;
+    }
+
+    const im=await supabase
+      .from('za_product_images')
+      .insert({
+        product_id:product.id,
+        storage_path:path,
+        texte_alternatif:nom,
+        ordre:0,
+        created_by:state.user.id
+      });
+
+    if(im.error){
+      msg(
+        $('#sellerProductMessage'),
+        'Produit soumis mais métadonnées photo non enregistrées : '+im.error.message,
+        'error'
+      );
+      return;
+    }
+  }
+
+  msg(
+    $('#sellerProductMessage'),
+    'Produit soumis. Il sera visible après validation par ADDIBA.',
+    'success'
+  );
+
+  e.target.reset();
+};
+
+/* AJOUT D'UN PRODUIT PAR LE FONDATEUR */
+
+$('#adminContent').onsubmit=async e=>{
+  if(e.target.id!=='founderProductForm')return;
+
+  e.preventDefault();
+
+  const f=new FormData(e.target);
+  const nom=f.get('nom').trim();
+
+  const slug=
+    nom.toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-|-$/g,'')
+    +'-'+crypto.randomUUID().slice(0,8);
+
+  const photo=f.get('photo');
+
+  if(photo&&photo.size>5*1024*1024){
+    msg($('#founderProductMessage'),'La photo dépasse 5 Mo.','error');
+    return;
+  }
+
+  if(photo&&photo.size&&!['image/jpeg','image/png','image/webp'].includes(photo.type)){
+    msg($('#founderProductMessage'),'Format de photo non accepté.','error');
+    return;
+  }
+
+  const {data:p,error}=await supabase
+    .from('za_products')
+    .insert({
+      brand_id:state.brandId,
+      category_id:f.get('category_id'),
+      seller_company_id:null,
+      created_by:state.user.id,
+      nom,
+      slug,
+      description:f.get('description'),
+      prix:Number(f.get('prix')),
+      devise:'XOF',
+      etat:f.get('etat'),
+      stock_disponible:Number(f.get('stock')),
+      statut:'publie'
+    })
+    .select('id')
+    .single();
+
+  if(error){
+    msg($('#founderProductMessage'),error.message,'error');
+    return;
+  }
+
+  if(photo&&photo.size){
+    const ext=
+      photo.type==='image/jpeg'?'jpg':
+      photo.type==='image/png'?'png':'webp';
+
+    const path=`products/${p.id}/${crypto.randomUUID()}.${ext}`;
+
+    const up=await supabase.storage
+      .from('zaamarket-media')
+      .upload(path,photo,{
+        contentType:photo.type,
+        upsert:false
+      });
+
+    if(up.error){
+      msg(
+        $('#founderProductMessage'),
+        'Produit créé, mais photo non envoyée : '+up.error.message,
+        'error'
+      );
+      return;
+    }
+
+    const im=await supabase
+      .from('za_product_images')
+      .insert({
+        product_id:p.id,
+        storage_path:path,
+        texte_alternatif:nom,
+        ordre:0,
+        created_by:state.user.id
+      });
+
+    if(im.error){
+      msg(
+        $('#founderProductMessage'),
+        'Produit créé, mais métadonnées photo non enregistrées : '+im.error.message,
+        'error'
+      );
+      return;
+    }
+  }
+
+  msg(
+    $('#founderProductMessage'),
+    'Produit enregistré avec succès.',
+    'success'
+  );
+
+  e.target.reset();
+
+  await loadAdmin('products');
+};
+
+/* ACTIONS D'ADMINISTRATION */
+
+$('#adminContent').onclick=async e=>{
+
+  const approve=e.target.closest('[data-approve]');
+
+  if(approve){
+    const {error}=await supabase
+      .from('za_products')
+      .update({statut:'publie'})
+      .eq('id',approve.dataset.approve);
+
+    if(error){
+      alert('Erreur lors de la publication : '+error.message);
+      return;
+    }
+
+    alert('Produit publié.');
+    await loadAdmin('products');
+    await loadProducts();
+    return;
+  }
+
+  const reject=e.target.closest('[data-reject]');
+
+  if(reject){
+    const {error}=await supabase
+      .from('za_products')
+      .update({statut:'refuse'})
+      .eq('id',reject.dataset.reject);
+
+    if(error){
+      alert('Erreur lors du refus : '+error.message);
+      return;
+    }
+
+    alert('Produit refusé.');
+    await loadAdmin('products');
+    return;
+  }
+
+  const reviewApprove=e.target.closest('[data-reviewapprove]');
+
+  if(reviewApprove){
+    const {error}=await supabase
+      .from('za_reviews')
+      .update({
+        statut:'approuve',
+        moderated_at:new Date().toISOString(),
+        moderated_by:state.user.id
+      })
+      .eq('id',reviewApprove.dataset.reviewapprove);
+
+    if(error){
+      alert('Erreur : '+error.message);
+      return;
+    }
+
+    alert('Avis approuvé.');
+    await loadAdmin('reviews');
+    return;
+  }
+
+  const reviewReject=e.target.closest('[data-reviewreject]');
+
+  if(reviewReject){
+    const {error}=await supabase
+      .from('za_reviews')
+      .update({
+        statut:'refuse',
+        moderated_at:new Date().toISOString(),
+        moderated_by:state.user.id,
+        motif_moderation:'Avis refusé par la modération.'
+      })
+      .eq('id',reviewReject.dataset.reviewreject);
+
+    if(error){
+      alert('Erreur : '+error.message);
+      return;
+    }
+
+    alert('Avis refusé.');
+    await loadAdmin('reviews');
+    return;
+  }
+
+  const reportDone=e.target.closest('[data-reportdone]');
+
+  if(reportDone){
+    const {error}=await supabase
+      .from('za_review_reports')
+      .update({statut:'traite'})
+      .eq('id',reportDone.dataset.reportdone);
+
+    if(error){
+      alert('Erreur : '+error.message);
+      return;
+    }
+
+    alert('Signalement marqué comme traité.');
+    await loadAdmin('reports');
+    return;
+  }
+
+  const orderButton=e.target.closest('[data-orderstatus]');
+
+  if(orderButton){
+    const id=orderButton.dataset.orderstatus;
+    const select=$(`[data-nextstatus="${id}"]`);
+    const status=select?.value;
+
+    if(!status){
+      alert('Choisis d’abord le nouveau statut.');
+      return;
+    }
+
+    const {error}=await supabase.rpc(
+      'za_founder_update_order_status',
+      {
+        p_order_id:id,
+        p_status:status
+      }
+    );
+
+    if(error){
+      alert('Impossible de modifier la commande : '+error.message);
+      return;
+    }
+
+    alert('Statut de la commande mis à jour.');
+    await loadAdmin('orders');
+    return;
+  }
+};
+
+/* CHANGEMENT D'ONGLET ADMINISTRATEUR */
+
+$$('[data-admintab]').forEach(b=>{
+  b.onclick=()=>loadAdmin(b.dataset.admintab);
+});
+
+/* CHANGEMENT D'ONGLET VENDEUR */
+
+$$('[data-sellertab]').forEach(b=>{
+  b.onclick=()=>loadSeller(b.dataset.sellertab);
+});
+
+/* ÉVÉNEMENTS DE SESSION SUPABASE */
+
+supabase.auth.onAuthStateChange(async(event,session)=>{
+  state.user=session?.user||null;
+
+  if(
+    event==='SIGNED_IN'||
+    event==='SIGNED_OUT'||
+    event==='USER_UPDATED'
+  ){
+    try{
+      await refreshUser();
+
+      if(state.profile?.role==='fondateur'){
+        await loadAdmin('products');
+      }
+    }catch(error){
+      console.error('Erreur de mise à jour de session :',error);
+    }
+  }
+});
+
+/* DÉMARRAGE DE ZAAMARKET */
+
+try{
+  await init();
+
+  if(state.profile?.role==='fondateur'){
+    await loadAdmin('products');
+  }
+
+}catch(error){
+  console.error('Erreur au démarrage de ZAAMARKET :',error);
+
+  $('#catalogStatus').textContent=
+    'Le catalogue n’a pas pu être chargé.';
+
+  $('#productGrid').innerHTML=`
+    <div class="empty">
+      Une erreur est survenue lors du chargement de ZAAMARKET.
+      Réessaie plus tard.
+    </div>
+  `;
+
+  $('#categoryGrid').innerHTML=`
+    <div class="empty">
+      Les catégories sont temporairement indisponibles.
+    </div>
+  `;
+}
+
 </script>
 
 </body>
-  </html>
-      
+</html>
