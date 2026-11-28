@@ -1,10 +1,9 @@
- <!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#111111">
-
 <title>ZAAMARKET — Le commerce sans frontières</title>
 <meta name="description" content="Découvrez les produits disponibles sur ZAAMARKET, la marketplace du groupe ADDIBA.">
 
@@ -20,86 +19,29 @@
   --green:#16845b;
   --red:#b42318;
   --radius:16px;
-  --shadow:0 8px 28px #0000000c;
+  --shadow:0 8px 28px #0000000c
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--ink);
-  background:#fff
-}
+body{margin:0;font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:#fff}
 button,input,select,textarea{font:inherit}
 button,a{touch-action:manipulation}
 a{color:inherit}
 button{cursor:pointer}
+button:disabled{opacity:.55;cursor:not-allowed;transform:none}
 .hidden{display:none!important}
 .wrap{width:min(1180px,92%);margin:auto}
-.topnote{
-  background:#242424;
-  color:#eee;
-  text-align:center;
-  padding:7px 12px;
-  font-size:12px
-}
+.topnote{background:#242424;color:#eee;text-align:center;padding:7px 12px;font-size:12px}
 .topnote b{color:var(--orange)}
-header{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:#111;
-  color:#fff;
-  box-shadow:0 4px 20px #0002
-}
-.head{
-  min-height:74px;
-  display:flex;
-  align-items:center;
-  gap:18px
-}
-.brand{
-  font-size:25px;
-  font-weight:950;
-  letter-spacing:.5px;
-  text-decoration:none;
-  white-space:nowrap
-}
+header{position:sticky;top:0;z-index:20;background:#111;color:#fff;box-shadow:0 4px 20px #0002}
+.head{min-height:74px;display:flex;align-items:center;gap:18px}
+.brand{font-size:25px;font-weight:950;letter-spacing:.5px;text-decoration:none;white-space:nowrap}
 .brand span{color:var(--orange)}
-.search{
-  flex:1;
-  display:flex;
-  max-width:520px
-}
-.search input{
-  width:100%;
-  border:0;
-  border-radius:9px 0 0 9px;
-  padding:12px 14px;
-  outline:none
-}
-.search button{
-  border:0;
-  background:var(--orange);
-  padding:0 18px;
-  border-radius:0 9px 9px 0;
-  font-weight:800
-}
+.search{flex:1;display:flex;max-width:520px}
+.search input{width:100%;border:0;border-radius:9px 0 0 9px;padding:12px 14px;outline:none}
+.search button{border:0;background:var(--orange);padding:0 18px;border-radius:0 9px 9px 0;font-weight:800}
 .head-actions{display:flex;gap:8px;align-items:center}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  gap:8px;
-  border:0;
-  border-radius:9px;
-  padding:11px 16px;
-  font-weight:750;
-  text-decoration:none;
-  transition:.18s
-}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:8px;border:0;border-radius:9px;padding:11px 16px;font-weight:750;text-decoration:none;transition:.18s}
 .btn:hover{transform:translateY(-1px)}
 .primary{background:var(--orange);color:#171717}
 .dark{background:#222;color:#fff}
@@ -108,264 +50,83 @@ header{
 .danger{background:#fff0ef;color:var(--red)}
 .small{padding:7px 11px;font-size:13px}
 .cartbtn{position:relative}
-.count{
-  background:var(--orange);
-  color:#111;
-  border-radius:99px;
-  padding:1px 7px;
-  font-size:11px
-}
+.count{background:var(--orange);color:#111;border-radius:99px;padding:1px 7px;font-size:11px}
 .nav{display:flex;gap:23px;padding:0 0 14px}
 .nav a{color:#ddd;text-decoration:none;font-size:13px}
 .nav a:hover{color:var(--orange)}
-.hero{
-  background:
-    radial-gradient(circle at 80% 15%,#f5a62335,transparent 30%),
-    linear-gradient(120deg,#0c0c0c,#282828);
-  color:#fff;
-  padding:76px 0
-}
+.hero{background:radial-gradient(circle at 80% 15%,#f5a62335,transparent 30%),linear-gradient(120deg,#0c0c0c,#282828);color:#fff;padding:76px 0}
 .hero-inner{max-width:800px}
-.eyebrow{
-  color:var(--orange);
-  font-weight:850;
-  text-transform:uppercase;
-  letter-spacing:1.6px;
-  font-size:12px
-}
-.hero h1{
-  font-size:clamp(34px,5.2vw,58px);
-  line-height:1.08;
-  margin:12px 0 18px;
-  letter-spacing:-1.5px
-}
+.eyebrow{color:var(--orange);font-weight:850;text-transform:uppercase;letter-spacing:1.6px;font-size:12px}
+.hero h1{font-size:clamp(34px,5.2vw,58px);line-height:1.08;margin:12px 0 18px;letter-spacing:-1.5px}
 .hero p{max-width:620px;color:#ddd;font-size:17px}
-.hero-actions{
-  display:flex;
-  gap:12px;
-  justify-content:flex-start;
-  flex-wrap:wrap;
-  margin-top:26px
-}
+.hero-actions{display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap;margin-top:26px}
 .hero-actions .btn{min-width:190px}
 .section{padding:54px 0}
 .section.alt{background:var(--bg)}
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:16px;
-  margin-bottom:24px
-}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px}
 .section h2{font-size:clamp(24px,3vw,32px);margin:0}
 .sub{color:var(--muted);margin:5px 0 0}
-.categories{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px
-}
-.cat{
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:14px;
-  padding:20px;
-  text-align:left;
-  cursor:pointer;
-  box-shadow:var(--shadow)
-}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cat{border:1px solid var(--line);background:#fff;border-radius:14px;padding:20px;text-align:left;cursor:pointer;box-shadow:var(--shadow)}
 .cat:hover,.cat.active{border-color:var(--orange);background:var(--cream)}
 .cat .emoji{font-size:27px}
 .cat strong{display:block;margin-top:8px}
 .cat small{color:var(--muted)}
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.toolbar input,.toolbar select{
-  border:1px solid var(--line);
-  border-radius:9px;
-  padding:10px 12px;
-  background:#fff
-}
+.toolbar input,.toolbar select{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#fff}
 .toolbar select{min-width:170px}
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px
-}
-.product{
-  border:1px solid var(--line);
-  border-radius:15px;
-  overflow:hidden;
-  background:#fff;
-  display:flex;
-  flex-direction:column;
-  min-width:0;
-  box-shadow:var(--shadow)
-}
-.product-img{
-  height:205px;
-  background:linear-gradient(135deg,#f3f3f3,#fff7e9);
-  display:grid;
-  place-items:center;
-  overflow:hidden
-}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.product{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff;display:flex;flex-direction:column;min-width:0;box-shadow:var(--shadow)}
+.product-img{height:205px;background:linear-gradient(135deg,#f3f3f3,#fff7e9);display:grid;place-items:center;overflow:hidden}
 .product-img img{width:100%;height:100%;object-fit:cover}
 .placeholder{font-size:52px}
-.product-body{
-  padding:14px;
-  display:flex;
-  flex-direction:column;
-  gap:7px;
-  flex:1
-}
-.product-cat{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.7px;
-  color:var(--muted)
-}
+.product-body{padding:14px;display:flex;flex-direction:column;gap:7px;flex:1}
+.product-cat{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted)}
 .product h3{font-size:16px;line-height:1.35;margin:0}
 .price{font-size:19px;font-weight:900}
 .meta{font-size:12px;color:var(--muted)}
 .product-actions{display:flex;gap:8px;margin-top:auto;padding-top:8px}
 .product-actions .btn{flex:1}
-.empty{
-  padding:35px;
-  text-align:center;
-  color:var(--muted);
-  border:1px dashed #ccc;
-  border-radius:14px;
-  grid-column:1/-1
-}
+.empty{padding:35px;text-align:center;color:var(--muted);border:1px dashed #ccc;border-radius:14px;grid-column:1/-1}
 .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.trust article{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:20px
-}
+.trust article{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
 .trust h3{margin:8px 0}
 .trust p{color:var(--muted);margin:0;font-size:13px}
-.panel{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:20px;
-  margin:14px 0
-}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:14px 0}
 .panel h3{margin:0 0 12px}
-.grid2{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px
-}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
 .field label{font-size:13px;font-weight:750}
-.field input,.field select,.field textarea{
-  width:100%;
-  padding:11px 12px;
-  border:1px solid #ddd;
-  border-radius:9px;
-  background:#fff
-}
+.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #ddd;border-radius:9px;background:#fff}
 .field textarea{min-height:90px;resize:vertical}
-.notice{
-  padding:12px 14px;
-  border-radius:10px;
-  background:#fff6e5;
-  color:#684300;
-  margin:12px 0;
-  font-size:13px
-}
-.success{background:#eaf8f1;color:#116342}
-.error{background:#fff0ef;color:#9b1c14}
+.notice{padding:12px 14px;border-radius:10px;background:#fff6e5;color:#684300;margin:12px 0;font-size:13px}
+.success{background:#eaf8f1;color:#116342;padding:12px;border-radius:9px;margin:10px 0}
+.error{background:#fff0ef;color:#9b1c14;padding:12px;border-radius:9px;margin:10px 0}
 .muted{color:var(--muted)}
-.row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap
-}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.tabs button.active{
-  background:var(--orange);
-  color:#111;
-  border-color:var(--orange)
-}
+.tabs button.active{background:var(--orange);color:#111;border-color:var(--orange)}
 .tablewrap{overflow:auto}
 table{border-collapse:collapse;width:100%;min-width:650px}
-th,td{
-  text-align:left;
-  padding:11px;
-  border-bottom:1px solid var(--line);
-  font-size:13px;
-  vertical-align:top
-}
+th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
 th{background:#fafafa}
-.badge{
-  display:inline-block;
-  border-radius:99px;
-  padding:3px 8px;
-  background:#f2f2f2;
-  font-size:11px
-}
+.badge{display:inline-block;border-radius:99px;padding:3px 8px;background:#f2f2f2;font-size:11px}
 .badge.good{background:#e7f6ef;color:#116342}
 .badge.wait{background:#fff2d9;color:#815300}
-.modal{
-  position:fixed;
-  inset:0;
-  background:#0009;
-  z-index:60;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:16px
-}
+.modal{position:fixed;inset:0;background:#0009;z-index:60;display:none;align-items:center;justify-content:center;padding:16px}
 .modal.open{display:flex}
-.dialog{
-  background:#fff;
-  border-radius:16px;
-  width:min(560px,100%);
-  max-height:90vh;
-  overflow:auto;
-  padding:22px;
-  box-shadow:0 20px 70px #0005
-}
-.dialog-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px
-}
-.x{
-  border:0;
-  background:#eee;
-  border-radius:50%;
-  width:34px;
-  height:34px;
-  font-size:19px
-}
-.cartline{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:12px;
-  border-bottom:1px solid var(--line);
-  padding:12px 0
-}
+.dialog{background:#fff;border-radius:16px;width:min(560px,100%);max-height:90vh;overflow:auto;padding:22px;box-shadow:0 20px 70px #0005}
+.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.x{border:0;background:#eee;border-radius:50%;width:34px;height:34px;font-size:19px}
+.cartline{display:grid;grid-template-columns:1fr auto;gap:12px;border-bottom:1px solid var(--line);padding:12px 0}
 .qty{display:flex;gap:8px;align-items:center}
-.qty button{
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:7px;
-  padding:3px 9px
-}
+.qty button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 9px}
 .stars{color:#d88900;letter-spacing:2px}
 .review{border-bottom:1px solid var(--line);padding:12px 0}
 .footer{background:#101010;color:#ddd;padding:36px 0}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}
 .footer a{color:#ddd;text-decoration:none}
 .footer p{color:#aaa;font-size:13px}
-.mobile-only{display:none}
-
 @media(max-width:900px){
   .products{grid-template-columns:repeat(3,1fr)}
   .categories{grid-template-columns:repeat(2,1fr)}
@@ -398,30 +159,21 @@ th{background:#fafafa}
 </head>
 
 <body>
-
-<div class="topnote">
-  ZAAMARKET <b>•</b> Le commerce sans frontières
-  <b>•</b> Une marque du groupe ADDIBA
-</div>
+<div class="topnote">ZAAMARKET <b>•</b> Le commerce sans frontières <b>•</b> Une marque du groupe ADDIBA</div>
 
 <header>
   <div class="wrap">
     <div class="head">
       <a class="brand" href="#accueil">ZAA<span>MARKET</span></a>
-
       <form class="search" id="searchForm">
         <input id="searchInput" placeholder="Rechercher un produit…" aria-label="Rechercher">
         <button type="submit">Rechercher</button>
       </form>
-
       <div class="head-actions">
         <button class="btn outline small" id="authBtn">Connexion</button>
-        <button class="btn primary cartbtn" id="cartBtn">
-          Panier <span class="count" id="cartCount">0</span>
-        </button>
+        <button class="btn primary cartbtn" id="cartBtn">Panier <span class="count" id="cartCount">0</span></button>
       </div>
     </div>
-
     <nav class="nav">
       <a href="#accueil">Accueil</a>
       <a href="#categories">Catégories</a>
@@ -434,102 +186,59 @@ th{background:#fafafa}
 </header>
 
 <main>
-
 <section class="hero" id="accueil">
   <div class="wrap hero-inner">
     <div class="eyebrow">La marketplace du groupe ADDIBA</div>
     <h1>Le commerce africain, <span style="color:var(--orange)">sans frontières.</span></h1>
     <p>Découvrez des produits proposés par des vendeurs partenaires et commandez simplement depuis votre téléphone.</p>
-
     <div class="hero-actions">
       <a class="btn primary" href="#boutique">Découvrir la boutique</a>
       <a class="btn outline" href="#vendeurs">Vendre sur ZAAMARKET</a>
     </div>
-
-    <div class="notice" style="display:inline-block;margin-top:22px;background:#ffffff16;color:#fff">
-      Les produits affichés sont ceux effectivement publiés dans le catalogue.
-    </div>
+    <div class="notice" style="display:inline-block;margin-top:22px;background:#ffffff16;color:#fff">Les produits affichés sont ceux effectivement publiés dans le catalogue.</div>
   </div>
 </section>
 
 <section class="section" id="categories">
   <div class="wrap">
     <div class="section-head">
-      <div>
-        <div class="eyebrow">Explorer</div>
-        <h2>Nos catégories</h2>
-        <p class="sub">Choisissez votre univers de produits.</p>
-      </div>
+      <div><div class="eyebrow">Explorer</div><h2>Nos catégories</h2><p class="sub">Choisissez votre univers de produits.</p></div>
     </div>
-    <div class="categories" id="categoryGrid">
-      <div class="empty">Chargement des catégories…</div>
-    </div>
+    <div class="categories" id="categoryGrid"><div class="empty">Chargement des catégories…</div></div>
   </div>
 </section>
 
 <section class="section alt" id="boutique">
   <div class="wrap">
     <div class="section-head">
-      <div>
-        <div class="eyebrow">Catalogue réel</div>
-        <h2>La boutique ZAAMARKET</h2>
-        <p class="sub" id="catalogStatus">Chargement du catalogue…</p>
-      </div>
+      <div><div class="eyebrow">Catalogue réel</div><h2>La boutique ZAAMARKET</h2><p class="sub" id="catalogStatus">Chargement du catalogue…</p></div>
       <button class="btn light small" id="refreshBtn">Actualiser</button>
     </div>
-
     <div class="toolbar">
-      <select id="categoryFilter">
-        <option value="">Toutes les catégories</option>
-      </select>
-
+      <select id="categoryFilter"><option value="">Toutes les catégories</option></select>
       <select id="sortFilter">
         <option value="recent">Plus récents</option>
         <option value="priceAsc">Prix croissant</option>
         <option value="priceDesc">Prix décroissant</option>
         <option value="name">Nom A–Z</option>
       </select>
-
       <select id="conditionFilter">
         <option value="">Tous les états</option>
         <option value="neuf">Neuf</option>
         <option value="occasion">Occasion</option>
       </select>
     </div>
-
-    <div class="products" id="productGrid">
-      <div class="empty">Connexion au catalogue…</div>
-    </div>
+    <div class="products" id="productGrid"><div class="empty">Connexion au catalogue…</div></div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">Notre engagement</div>
-        <h2>Une expérience claire et responsable</h2>
-      </div>
-    </div>
-
+    <div class="section-head"><div><div class="eyebrow">Notre engagement</div><h2>Une expérience claire et responsable</h2></div></div>
     <div class="trust">
-      <article>
-        <div class="emoji">🔎</div>
-        <h3>Produits contrôlés</h3>
-        <p>Les produits des partenaires sont soumis à validation avant publication.</p>
-      </article>
-
-      <article>
-        <div class="emoji">🛍️</div>
-        <h3>Commande sécurisée</h3>
-        <p>Les commandes sont enregistrées par le système de commande sécurisé de ZAAMARKET.</p>
-      </article>
-
-      <article>
-        <div class="emoji">⭐</div>
-        <h3>Avis vérifiés</h3>
-        <p>Les avis ne peuvent être déposés qu'après livraison confirmée de l'article.</p>
-      </article>
+      <article><div class="emoji">🔎</div><h3>Produits contrôlés</h3><p>Les produits des partenaires sont soumis à validation avant publication.</p></article>
+      <article><div class="emoji">🛍️</div><h3>Commande sécurisée</h3><p>Les commandes sont enregistrées par le système de commande sécurisé de ZAAMARKET.</p></article>
+      <article><div class="emoji">⭐</div><h3>Avis vérifiés</h3><p>Les avis ne peuvent être déposés qu'après livraison confirmée de l'article.</p></article>
     </div>
   </div>
 </section>
@@ -537,19 +246,13 @@ th{background:#fafafa}
 <section class="section alt" id="vendeurs">
   <div class="wrap">
     <div class="section-head">
-      <div>
-        <div class="eyebrow">Partenaires professionnels</div>
-        <h2>Vendre sur ZAAMARKET</h2>
-        <p class="sub">Les entreprises doivent être approuvées par ADDIBA avant de publier des produits.</p>
-      </div>
+      <div><div class="eyebrow">Partenaires professionnels</div><h2>Vendre sur ZAAMARKET</h2><p class="sub">Les entreprises doivent être approuvées par ADDIBA avant de publier des produits.</p></div>
     </div>
-
     <div class="panel">
       <div id="sellerGate">
         <p>Connectez-vous avec le compte de votre entreprise pour demander un partenariat ZAAMARKET.</p>
         <button class="btn primary" id="sellerLoginBtn">Me connecter</button>
       </div>
-
       <div id="sellerArea" class="hidden">
         <div class="tabs">
           <button class="btn light small active" data-sellertab="apply">Partenariat</button>
@@ -564,34 +267,23 @@ th{background:#fafafa}
 
 <section class="section" id="compte">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">Espace personnel</div>
-        <h2>Mon compte</h2>
-        <p class="sub">Retrouvez vos commandes et vos avis.</p>
-      </div>
-    </div>
-
+    <div class="section-head"><div><div class="eyebrow">Espace personnel</div><h2>Mon compte</h2><p class="sub">Retrouvez vos commandes et vos avis.</p></div></div>
     <div class="panel" id="accountPanel">
       <p>Connectez-vous pour accéder à votre espace client.</p>
       <button class="btn primary" id="accountLoginBtn">Connexion / Inscription</button>
     </div>
-
     <div id="founderPanel" class="panel hidden">
       <h3>Administration ZAAMARKET — Fondateur</h3>
-
       <div class="tabs">
         <button class="btn light small active" data-admintab="products">Produits à examiner</button>
         <button class="btn light small" data-admintab="reviews">Avis à modérer</button>
         <button class="btn light small" data-admintab="orders">Commandes</button>
         <button class="btn light small" data-admintab="reports">Signalements</button>
       </div>
-
       <div id="adminContent"></div>
     </div>
   </div>
 </section>
-
 </main>
 
 <footer class="footer">
@@ -601,157 +293,73 @@ th{background:#fafafa}
       <p>Le commerce sans frontières. Une marque du groupe ADDIBA.</p>
       <p>© <span id="year"></span> ZAAMARKET. Tous droits réservés.</p>
     </div>
-
-    <div>
-      <b>Navigation</b>
-      <p><a href="#boutique">Boutique</a></p>
-      <p><a href="#vendeurs">Devenir vendeur</a></p>
-      <p><a href="index.html">ADDIBA</a></p>
-    </div>
-
-    <div>
-      <b>Information</b>
-      <p>Les frais et délais de livraison sont confirmés avant traitement de la commande.</p>
-      <p>Le paiement Mobile Money sera activé après configuration et validation du prestataire.</p>
-    </div>
+    <div><b>Navigation</b><p><a href="#boutique">Boutique</a></p><p><a href="#vendeurs">Devenir vendeur</a></p><p><a href="index.html">ADDIBA</a></p></div>
+    <div><b>Information</b><p>Les frais et délais de livraison sont confirmés avant traitement de la commande.</p><p>Le paiement Mobile Money sera activé après configuration et validation du prestataire.</p></div>
   </div>
 </footer>
 
-<!-- MODALE AUTHENTIFICATION -->
 <div class="modal" id="authModal">
   <div class="dialog">
-    <div class="dialog-head">
-      <h3 id="authTitle">Connexion</h3>
-      <button class="x" data-close="authModal">×</button>
-    </div>
-
+    <div class="dialog-head"><h3 id="authTitle">Connexion</h3><button class="x" data-close="authModal">×</button></div>
     <div class="tabs">
       <button class="btn light small active" data-authmode="login">Connexion</button>
       <button class="btn light small" data-authmode="signup">Créer un compte</button>
     </div>
-
     <form id="authForm">
-      <div class="field">
-        <label for="authEmail">Adresse e-mail</label>
-        <input id="authEmail" type="email" required autocomplete="email">
-      </div>
-
-      <div class="field">
-        <label for="authPassword">Mot de passe</label>
-        <input id="authPassword" type="password" required minlength="8" autocomplete="current-password">
-      </div>
-
-      <div class="field hidden" id="confirmField">
-        <label for="authName">Nom complet</label>
-        <input id="authName" maxlength="120">
-      </div>
-
+      <div class="field"><label for="authEmail">Adresse e-mail</label><input id="authEmail" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="authPassword">Mot de passe</label><input id="authPassword" type="password" required minlength="8" autocomplete="current-password"></div>
+      <div class="field hidden" id="confirmField"><label for="authName">Nom complet</label><input id="authName" maxlength="120"></div>
       <button class="btn primary" type="submit" id="authSubmit">Se connecter</button>
       <div id="authMessage" aria-live="polite"></div>
     </form>
   </div>
 </div>
 
-<!-- MODALE PANIER -->
 <div class="modal" id="cartModal">
   <div class="dialog">
-    <div class="dialog-head">
-      <h3>Votre panier</h3>
-      <button class="x" data-close="cartModal">×</button>
-    </div>
-
+    <div class="dialog-head"><h3>Votre panier</h3><button class="x" data-close="cartModal">×</button></div>
     <div id="cartLines"></div>
-
-    <div class="row" style="padding:15px 0">
-      <b>Total produits</b>
-      <b id="cartTotal">0 FCFA</b>
-    </div>
-
+    <div class="row" style="padding:15px 0"><b>Total produits</b><b id="cartTotal">0 FCFA</b></div>
     <button class="btn primary" style="width:100%" id="checkoutBtn">Passer la commande</button>
     <p class="muted" style="font-size:12px">Les frais de livraison seront confirmés par l'équipe avant traitement.</p>
   </div>
 </div>
 
-<!-- MODALE COMMANDE -->
 <div class="modal" id="checkoutModal">
   <div class="dialog">
-    <div class="dialog-head">
-      <h3>Finaliser la commande</h3>
-      <button class="x" data-close="checkoutModal">×</button>
-    </div>
-
+    <div class="dialog-head"><h3>Finaliser la commande</h3><button class="x" data-close="checkoutModal">×</button></div>
     <form id="checkoutForm">
       <div class="grid2">
-        <div class="field">
-          <label>Nom du destinataire</label>
-          <input name="nom" required minlength="2" maxlength="120">
-        </div>
-        <div class="field">
-          <label>Téléphone</label>
-          <input name="telephone" required minlength="8" maxlength="30" placeholder="Ex. 70 00 00 00">
-        </div>
+        <div class="field"><label>Nom du destinataire</label><input name="nom" required minlength="2" maxlength="120"></div>
+        <div class="field"><label>Téléphone</label><input name="telephone" required minlength="8" maxlength="30" placeholder="Ex. 70 00 00 00"></div>
       </div>
-
       <div class="grid2">
-        <div class="field">
-          <label>Pays</label>
-          <input name="pays" value="Burkina Faso" required>
-        </div>
-        <div class="field">
-          <label>Ville</label>
-          <input name="ville" required>
-        </div>
+        <div class="field"><label>Pays</label><input name="pays" value="Burkina Faso" required></div>
+        <div class="field"><label>Ville</label><input name="ville" required></div>
       </div>
-
-      <div class="field">
-        <label>Secteur / quartier</label>
-        <input name="secteur" required>
-      </div>
-
-      <div class="field">
-        <label>Adresse détaillée</label>
-        <textarea name="details" required minlength="5"></textarea>
-      </div>
-
-      <div class="field">
-        <label>Note (facultatif)</label>
-        <textarea name="note" maxlength="1000"></textarea>
-      </div>
-
-      <div class="notice">
-        Mode disponible actuellement : paiement à la livraison.
-        Le Mobile Money n'est pas encore activé.
-      </div>
-
+      <div class="field"><label>Secteur / quartier</label><input name="secteur" required></div>
+      <div class="field"><label>Adresse détaillée</label><textarea name="details" required minlength="5"></textarea></div>
+      <div class="field"><label>Note (facultatif)</label><textarea name="note" maxlength="1000"></textarea></div>
+      <div class="notice">Mode disponible actuellement : paiement à la livraison. Le Mobile Money n'est pas encore activé.</div>
       <button class="btn primary" style="width:100%" type="submit">Confirmer ma commande</button>
       <div id="checkoutMessage"></div>
     </form>
   </div>
 </div>
 
-<!-- MODALE PRODUIT -->
 <div class="modal" id="productModal">
   <div class="dialog">
-    <div class="dialog-head">
-      <h3 id="productModalTitle">Produit</h3>
-      <button class="x" data-close="productModal">×</button>
-    </div>
+    <div class="dialog-head"><h3 id="productModalTitle">Produit</h3><button class="x" data-close="productModal">×</button></div>
     <div id="productDetails"></div>
   </div>
 </div>
 
-<!-- MODALE AVIS -->
 <div class="modal" id="reviewModal">
   <div class="dialog">
-    <div class="dialog-head">
-      <h3>Donner mon avis</h3>
-      <button class="x" data-close="reviewModal">×</button>
-    </div>
-
+    <div class="dialog-head"><h3>Donner mon avis</h3><button class="x" data-close="reviewModal">×</button></div>
     <form id="reviewForm">
       <input type="hidden" name="product_id">
       <input type="hidden" name="order_item_id">
-
       <div class="field">
         <label>Note</label>
         <select name="note" required>
@@ -762,80 +370,39 @@ th{background:#fafafa}
           <option value="1">1 étoile — Décevant</option>
         </select>
       </div>
-
-      <div class="field">
-        <label>Votre commentaire</label>
-        <textarea name="commentaire" minlength="5" maxlength="2000" required></textarea>
-      </div>
-
-      <div class="notice">
-        Votre avis sera soumis à modération et ne sera publié qu'après validation.
-      </div>
-
+      <div class="field"><label>Votre commentaire</label><textarea name="commentaire" minlength="5" maxlength="2000" required></textarea></div>
+      <div class="notice">Votre avis sera soumis à modération et ne sera publié qu'après validation.</div>
       <button class="btn primary" type="submit">Envoyer mon avis</button>
       <div id="reviewMessage"></div>
     </form>
   </div>
 </div>
 
-<!-- MODALE SIGNALEMENT -->
 <div class="modal" id="reportModal">
   <div class="dialog">
-    <div class="dialog-head">
-      <h3>Signaler cet avis</h3>
-      <button class="x" data-close="reportModal">×</button>
-    </div>
-
+    <div class="dialog-head"><h3>Signaler cet avis</h3><button class="x" data-close="reportModal">×</button></div>
     <form id="reportForm">
       <input type="hidden" name="review_id">
-
-      <div class="field">
-        <label>Motif du signalement</label>
-        <textarea name="motif" minlength="5" maxlength="1000" required></textarea>
-      </div>
-
+      <div class="field"><label>Motif du signalement</label><textarea name="motif" minlength="5" maxlength="1000" required></textarea></div>
       <button class="btn primary" type="submit">Envoyer le signalement</button>
       <div id="reportMessage"></div>
     </form>
   </div>
 </div>
 
-<!-- MODALE ENTREPRISE -->
 <div class="modal" id="sellerCompanyModal">
   <div class="dialog">
-    <div class="dialog-head">
-      <h3>Entreprise partenaire</h3>
-      <button class="x" data-close="sellerCompanyModal">×</button>
-    </div>
-
+    <div class="dialog-head"><h3>Entreprise partenaire</h3><button class="x" data-close="sellerCompanyModal">×</button></div>
     <form id="companyForm">
-      <div class="field">
-        <label>Nom de l'entreprise</label>
-        <input name="nom" required maxlength="180">
-      </div>
-
+      <div class="field"><label>Nom de l'entreprise</label><input name="nom" required maxlength="180"></div>
       <div class="grid2">
-        <div class="field">
-          <label>Pays</label>
-          <input name="pays" value="Burkina Faso" required>
-        </div>
-        <div class="field">
-          <label>Secteur d'activité</label>
-          <input name="secteur" required>
-        </div>
+        <div class="field"><label>Pays</label><input name="pays" value="Burkina Faso" required></div>
+        <div class="field"><label>Secteur d'activité</label><input name="secteur" required></div>
       </div>
-
       <div class="grid2">
-        <div class="field">
-          <label>E-mail professionnel</label>
-          <input name="email" type="email" required>
-        </div>
-        <div class="field">
-          <label>Téléphone</label>
-          <input name="telephone" maxlength="40">
-        </div>
+        <div class="field"><label>E-mail professionnel</label><input name="email" type="email" required></div>
+        <div class="field"><label>Téléphone</label><input name="telephone" maxlength="40"></div>
       </div>
-
       <button class="btn primary" type="submit">Envoyer la demande d'inscription</button>
       <div id="companyMessage"></div>
     </form>
@@ -843,24 +410,16 @@ th{background:#fafafa}
 </div>
 
 <script type="module">
-
 import { supabase } from './supabase.js';
 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 
-const fmt = n =>
-  new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0})
-    .format(Number(n||0))+' FCFA';
+const fmt = n => new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0}).format(Number(n||0))+' FCFA';
 
-const esc = s =>
-  String(s??'').replace(/[&<>"']/g,c=>({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#39;'
-  }[c]));
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({
+  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[c]));
 
 const state = {
   user:null,
@@ -875,18 +434,25 @@ const state = {
 };
 
 try{
-  const savedCart = JSON.parse(localStorage.getItem('za_cart_v1')||'{}');
-  if(savedCart && typeof savedCart==='object' && !Array.isArray(savedCart)){
+  const savedCart=JSON.parse(localStorage.getItem('za_cart_v1')||'{}');
+  if(savedCart&&typeof savedCart==='object'&&!Array.isArray(savedCart)){
     state.cart=savedCart;
   }
 }catch{
   state.cart={};
 }
 
-const show = id => $('#'+id).classList.add('open');
-const hide = id => $('#'+id).classList.remove('open');
+try{
+  state.checkoutKey=sessionStorage.getItem('za_checkout_key_v1')||null;
+}catch{
+  state.checkoutKey=null;
+}
+
+const show=id=>$('#'+id).classList.add('open');
+const hide=id=>$('#'+id).classList.remove('open');
 
 function msg(el,text,type='notice'){
+  if(!el)return;
   el.innerHTML=`<div class="${type}">${esc(text)}</div>`;
 }
 
@@ -896,8 +462,7 @@ function saveCart(){
 }
 
 function updateCartCount(){
-  $('#cartCount').textContent=
-    Object.values(state.cart).reduce((a,x)=>a+Number(x.quantity||0),0);
+  $('#cartCount').textContent=Object.values(state.cart).reduce((a,x)=>a+Number(x.quantity||0),0);
 }
 
 function catIcon(slug){
@@ -909,7 +474,7 @@ function catIcon(slug){
   })[slug]||'🛍️';
 }
 
-/* CATEGORIES */
+/* CATÉGORIES */
 
 async function loadCategories(){
   const {data,error}=await supabase
@@ -918,7 +483,7 @@ async function loadCategories(){
     .eq('active',true)
     .order('ordre');
 
-  if(error) throw error;
+  if(error)throw error;
 
   state.categories=data||[];
 
@@ -932,9 +497,9 @@ async function loadCategories(){
 
   $('#categoryFilter').innerHTML=
     '<option value="">Toutes les catégories</option>'+
-    state.categories.map(c=>
-      `<option value="${c.id}">${esc(c.nom)}</option>`
-    ).join('');
+    state.categories.map(c=>`<option value="${c.id}">${esc(c.nom)}</option>`).join('');
+
+  $('#categoryFilter').value=state.selectedCategory;
 }
 
 /* CATALOGUE */
@@ -948,55 +513,37 @@ async function loadProducts(){
     .eq('statut','publie')
     .order('created_at',{ascending:false});
 
-  if(state.selectedCategory){
-    q=q.eq('category_id',state.selectedCategory);
-  }
-
-  if($('#conditionFilter').value){
-    q=q.eq('etat',$('#conditionFilter').value);
-  }
+  if(state.selectedCategory)q=q.eq('category_id',state.selectedCategory);
+  if($('#conditionFilter').value)q=q.eq('etat',$('#conditionFilter').value);
 
   const term=$('#searchInput').value.trim();
-
-  if(term){
-    q=q.ilike('nom',`%${term.replace(/[%_,]/g,' ')}%`);
-  }
+  if(term)q=q.ilike('nom',`%${term.replace(/[%_,]/g,' ')}%`);
 
   const sort=$('#sortFilter').value;
-
-  if(sort==='priceAsc') q=q.order('prix',{ascending:true});
-  if(sort==='priceDesc') q=q.order('prix',{ascending:false});
-  if(sort==='name') q=q.order('nom',{ascending:true});
+  if(sort==='priceAsc')q=q.order('prix',{ascending:true});
+  if(sort==='priceDesc')q=q.order('prix',{ascending:false});
+  if(sort==='name')q=q.order('nom',{ascending:true});
 
   const {data,error}=await q.limit(60);
 
   if(error){
     $('#catalogStatus').textContent='Erreur de chargement du catalogue.';
-    $('#productGrid').innerHTML=
-      `<div class="empty">${esc(error.message)}</div>`;
+    $('#productGrid').innerHTML=`<div class="empty">${esc(error.message)}</div>`;
     return;
   }
 
   state.products=data||[];
-
-  $('#catalogStatus').textContent=
-    `${state.products.length} produit(s) actuellement publié(s)`;
-
+  $('#catalogStatus').textContent=`${state.products.length} produit(s) actuellement publié(s)`;
   await renderProducts();
 }
 
-/*
-  Les photos sont laissées avec leur visuel de remplacement.
-  L'accès aux images privées doit être raccordé à la fonction
-  serveur et aux autorisations Storage correspondantes.
-*/
+/* AFFICHAGE DES PRODUITS ET DE LEURS PHOTOS */
 
 async function renderProducts(){
   const grid=$('#productGrid');
 
   if(!state.products.length){
-    grid.innerHTML=
-      '<div class="empty">Aucun produit publié ne correspond à votre recherche pour le moment.</div>';
+    grid.innerHTML='<div class="empty">Aucun produit publié ne correspond à votre recherche pour le moment.</div>';
     return;
   }
 
@@ -1005,7 +552,6 @@ async function renderProducts(){
       <div class="product-img" id="img-${p.id}">
         <span class="placeholder">${catIcon(p.za_categories?.slug)}</span>
       </div>
-
       <div class="product-body">
         <div class="product-cat">${esc(p.za_categories?.nom||'ZAAMARKET')}</div>
         <h3>${esc(p.nom)}</h3>
@@ -1014,22 +560,67 @@ async function renderProducts(){
           ${p.etat==='neuf'?'Neuf':'Occasion'} ·
           ${Number(p.stock_disponible)>0?'Disponible':'Stock limité'}
         </div>
-
         <div class="product-actions">
           <button class="btn light small" data-details="${p.id}">Détails</button>
-          <button class="btn primary small" data-add="${p.id}" ${Number(p.stock_disponible)<=0?'disabled':''}>
-            Ajouter
-          </button>
+          <button class="btn primary small" data-add="${p.id}" ${Number(p.stock_disponible)<=0?'disabled':''}>Ajouter</button>
         </div>
       </div>
     </article>
   `).join('');
+
+  await loadProductImages();
+}
+
+async function loadProductImages(){
+  const ids=state.products.map(p=>p.id);
+  if(!ids.length)return;
+
+  const {data,error}=await supabase
+    .from('za_product_images')
+    .select('product_id,storage_path,texte_alternatif,ordre')
+    .in('product_id',ids)
+    .order('ordre',{ascending:true});
+
+  if(error){
+    console.warn('Photos produits indisponibles :',error.message);
+    return;
+  }
+
+  const firstImages=new Map();
+
+  for(const item of data||[]){
+    if(!firstImages.has(item.product_id))firstImages.set(item.product_id,item);
+  }
+
+  for(const [productId,item] of firstImages){
+    const target=$('#img-'+productId);
+    if(!target)continue;
+
+    try{
+      const {data:signed,error:signedError}=await supabase
+        .storage
+        .from('zaamarket-media')
+        .createSignedUrl(item.storage_path,3600);
+
+      if(signedError||!signed?.signedUrl)continue;
+
+      const img=document.createElement('img');
+      img.src=signed.signedUrl;
+      img.alt=item.texte_alternatif||'Photo du produit';
+      img.loading='lazy';
+      img.onerror=()=>img.remove();
+
+      target.replaceChildren(img);
+    }catch(error){
+      console.warn('Impossible de charger une photo :',error);
+    }
+  }
 }
 
 /* PANIER */
 
 function addToCart(id){
-  const p=state.products.find(x=>x.id===id);
+  const p=state.products.find(x=>String(x.id)===String(id));
   if(!p)return;
 
   const line=state.cart[id]||{
@@ -1060,7 +651,7 @@ function renderCart(){
         </div>
         <div class="qty">
           <button data-dec="${id}">−</button>
-          <b>${x.quantity}</b>
+          <b>${Number(x.quantity)||0}</b>
           <button data-inc="${id}">+</button>
           <button class="btn danger small" data-remove="${id}">×</button>
         </div>
@@ -1068,42 +659,38 @@ function renderCart(){
     `).join('')
     :'<div class="empty">Votre panier est vide.</div>';
 
-  $('#cartTotal').textContent=
-    fmt(lines.reduce((a,[,x])=>a+x.price*x.quantity,0));
-
+  $('#cartTotal').textContent=fmt(lines.reduce((a,[,x])=>a+Number(x.price)*Number(x.quantity),0));
   $('#checkoutBtn').disabled=!lines.length;
 }
 
 /* AUTHENTIFICATION ET PROFIL */
 
 async function refreshUser(){
-  const {data:{user}}=await supabase.auth.getUser();
+  const {data,error:authError}=await supabase.auth.getUser();
+  if(authError)throw authError;
 
-  state.user=user||null;
+  const user=data?.user||null;
+
+  state.user=user;
   state.profile=null;
   state.sellerCompany=null;
 
   if(user){
-    const {data}=await supabase
+    const {data:profile,error:profileError}=await supabase
       .from('profils')
       .select('id,nom_complet,role')
       .eq('id',user.id)
       .maybeSingle();
 
-    state.profile=data;
+    if(profileError)console.warn('Profil non chargé :',profileError.message);
+    state.profile=profile||null;
 
-    if(data?.role==='fondateur'){
-      $('#founderPanel').classList.remove('hidden');
-    }else{
-      $('#founderPanel').classList.add('hidden');
-    }
-
+    $('#founderPanel').classList.toggle('hidden',state.profile?.role!=='fondateur');
     $('#authBtn').textContent='Mon espace';
     $('#sellerGate').classList.add('hidden');
     $('#sellerArea').classList.remove('hidden');
 
     await findSellerCompany();
-
   }else{
     $('#authBtn').textContent='Connexion';
     $('#founderPanel').classList.add('hidden');
@@ -1119,7 +706,9 @@ async function findSellerCompany(){
     .from('entreprises')
     .select('id,nom,statut,created_by')
     .eq('created_by',state.user.id)
-    .limit(10);
+    .order('created_at',{ascending:false})
+    .limit(1)
+    .maybeSingle();
 
   if(error){
     console.error('Erreur de recherche de l’entreprise :',error);
@@ -1127,9 +716,7 @@ async function findSellerCompany(){
     return;
   }
 
-  state.sellerCompany=(data||[]).find(
-    x=>x.created_by===state.user.id
-  )||null;
+  state.sellerCompany=data||null;
 }
 
 async function renderAccount(){
@@ -1149,12 +736,10 @@ async function renderAccount(){
       </div>
       <button class="btn light small" id="logoutBtn">Se déconnecter</button>
     </div>
-
     <div class="tabs">
       <button class="btn light small active" data-accounttab="orders">Mes commandes</button>
       <button class="btn light small" data-accounttab="reviews">Mes avis</button>
     </div>
-
     <div id="accountContent">Chargement…</div>
   `;
 
@@ -1165,7 +750,7 @@ async function renderAccount(){
 
 async function renderMyOrders(){
   const target=$('#accountContent');
-  if(!target || !state.user)return;
+  if(!target||!state.user)return;
 
   const {data,error}=await supabase
     .from('za_orders')
@@ -1176,6 +761,7 @@ async function renderMyOrders(){
 
   if(error){
     target.textContent='Impossible de charger vos commandes.';
+    console.error(error);
     return;
   }
 
@@ -1185,28 +771,23 @@ async function renderMyOrders(){
         <b>${esc(o.reference)}</b>
         <span class="badge ${o.statut==='livree'?'good':'wait'}">${esc(o.statut)}</span>
       </div>
-
-      <div class="muted">
-        ${new Date(o.created_at).toLocaleDateString('fr-FR')} · ${fmt(o.total)}
-      </div>
-
-      ${(o.za_seller_orders||[])
-        .flatMap(s=>s.za_order_items||[])
-        .map(i=>`
-          <div class="row" style="padding:8px 0">
-            <span>${esc(i.nom_produit)} × ${i.quantite}</span>
-            ${o.statut==='livree'?`
-              <button class="btn light small" data-review="${i.product_id}" data-item="${i.id}">
-                Donner mon avis
-              </button>
-            `:''}
-          </div>
-        `).join('')}
+      <div class="muted">${new Date(o.created_at).toLocaleDateString('fr-FR')} · ${fmt(o.total)}</div>
+      ${(o.za_seller_orders||[]).flatMap(s=>s.za_order_items||[]).map(i=>`
+        <div class="row" style="padding:8px 0">
+          <span>${esc(i.nom_produit)} × ${i.quantite}</span>
+          ${o.statut==='livree'?`
+            <button class="btn light small" data-review="${i.product_id}" data-item="${i.id}">Donner mon avis</button>
+          `:''}
+        </div>
+      `).join('')}
     </div>
   `).join('')||'<div class="empty">Aucune commande pour le moment.</div>';
 }
 
 async function renderMyReviews(){
+  const target=$('#accountContent');
+  if(!target||!state.user)return;
+
   const {data,error}=await supabase
     .from('za_reviews')
     .select('id,note,commentaire,statut,created_at,za_products(nom)')
@@ -1214,7 +795,7 @@ async function renderMyReviews(){
     .order('created_at',{ascending:false})
     .limit(30);
 
-  $('#accountContent').innerHTML=error
+  target.innerHTML=error
     ?'Impossible de charger les avis.'
     :(data||[]).map(r=>`
       <div class="review">
@@ -1231,42 +812,35 @@ async function renderMyReviews(){
 async function loadSeller(tab='apply'){
   if(!state.user)return;
 
-  $$('[data-sellertab]').forEach(b=>
-    b.classList.toggle('active',b.dataset.sellertab===tab)
-  );
+  $$('[data-sellertab]').forEach(b=>b.classList.toggle('active',b.dataset.sellertab===tab));
 
   const c=$('#sellerContent');
 
   if(tab==='apply'){
-    const {data:partnership}=state.sellerCompany
-      ?await supabase
+    let partnership=null;
+    let partnershipError=null;
+
+    if(state.sellerCompany&&state.brandId){
+      const result=await supabase
         .from('demandes_partenariat_marques')
         .select('id,statut,created_at')
         .eq('entreprise_id',state.sellerCompany.id)
         .eq('marque_id',state.brandId)
-        .maybeSingle()
-      :{data:null};
+        .order('created_at',{ascending:false})
+        .limit(1)
+        .maybeSingle();
+
+      partnership=result.data;
+      partnershipError=result.error;
+    }
+
+    if(partnershipError)console.warn('Demande de partenariat :',partnershipError.message);
 
     c.innerHTML=state.sellerCompany
       ?`
-        <p>
-          <b>${esc(state.sellerCompany.nom)}</b> —
-          statut entreprise :
-          <span class="badge">${esc(state.sellerCompany.statut)}</span>
-        </p>
-
-        <p>
-          Partenariat ZAAMARKET :
-          <span class="badge ${partnership?.statut==='approuvee'?'good':'wait'}">
-            ${esc(partnership?.statut||'Non demandé')}
-          </span>
-        </p>
-
-        ${!partnership?`
-          <button class="btn primary" id="requestPartnership">
-            Demander le partenariat ZAAMARKET
-          </button>
-        `:''}
+        <p><b>${esc(state.sellerCompany.nom)}</b> — statut entreprise : <span class="badge">${esc(state.sellerCompany.statut)}</span></p>
+        <p>Partenariat ZAAMARKET : <span class="badge ${partnership?.statut==='approuvee'?'good':'wait'}">${esc(partnership?.statut||'Non demandé')}</span></p>
+        ${!partnership?'<button class="btn primary" id="requestPartnership">Demander le partenariat ZAAMARKET</button>':''}
       `
       :`
         <p>Aucune entreprise associée à votre compte.</p>
@@ -1292,10 +866,7 @@ async function loadSeller(tab='apply'){
       ?'Erreur de chargement.'
       :(data||[]).map(p=>`
         <div class="row panel">
-          <div>
-            <b>${esc(p.nom)}</b>
-            <div>${fmt(p.prix)} · Stock ${p.stock_disponible}</div>
-          </div>
+          <div><b>${esc(p.nom)}</b><div>${fmt(p.prix)} · Stock ${p.stock_disponible}</div></div>
           <span class="badge">${esc(p.statut)}</span>
         </div>
       `).join('')||'<div class="empty">Aucun produit soumis.</div>';
@@ -1304,56 +875,33 @@ async function loadSeller(tab='apply'){
   }
 
   if(tab==='new'){
-    if(!state.sellerCompany || state.sellerCompany.statut!=='approuvee'){
+    if(!state.sellerCompany||state.sellerCompany.statut!=='approuvee'){
       c.innerHTML='<div class="notice">Votre entreprise doit être approuvée avant de proposer des produits.</div>';
       return;
     }
 
     c.innerHTML=`
       <form id="sellerProductForm">
-        <div class="field">
-          <label>Nom du produit</label>
-          <input name="nom" required maxlength="180">
-        </div>
-
+        <div class="field"><label>Nom du produit</label><input name="nom" required maxlength="180"></div>
         <div class="field">
           <label>Catégorie</label>
           <select name="category_id" required>
-            ${state.categories.map(x=>`
-              <option value="${x.id}">${esc(x.nom)}</option>
-            `).join('')}
+            ${state.categories.map(x=>`<option value="${x.id}">${esc(x.nom)}</option>`).join('')}
           </select>
         </div>
-
-        <div class="field">
-          <label>Description</label>
-          <textarea name="description" maxlength="4000"></textarea>
-        </div>
-
+        <div class="field"><label>Description</label><textarea name="description" maxlength="4000"></textarea></div>
         <div class="grid2">
-          <div class="field">
-            <label>Prix (FCFA)</label>
-            <input name="prix" type="number" min="1" step="1" required>
-          </div>
-          <div class="field">
-            <label>Stock disponible</label>
-            <input name="stock" type="number" min="0" step="1" value="1" required>
-          </div>
+          <div class="field"><label>Prix (FCFA)</label><input name="prix" type="number" min="1" step="1" required></div>
+          <div class="field"><label>Stock disponible</label><input name="stock" type="number" min="0" step="1" value="1" required></div>
         </div>
-
         <div class="field">
           <label>État</label>
-          <select name="etat">
-            <option value="neuf">Neuf</option>
-            <option value="occasion">Occasion</option>
-          </select>
+          <select name="etat"><option value="neuf">Neuf</option><option value="occasion">Occasion</option></select>
         </div>
-
         <div class="field">
           <label>Photo du produit (JPEG, PNG ou WebP, 5 Mo maximum)</label>
           <input name="photo" type="file" accept="image/jpeg,image/png,image/webp">
         </div>
-
         <button class="btn primary">Soumettre à validation</button>
         <div id="sellerProductMessage"></div>
       </form>
@@ -1366,9 +914,7 @@ async function loadSeller(tab='apply'){
 async function loadAdmin(tab='products'){
   if(state.profile?.role!=='fondateur')return;
 
-  $$('[data-admintab]').forEach(b=>
-    b.classList.toggle('active',b.dataset.admintab===tab)
-  );
+  $$('[data-admintab]').forEach(b=>b.classList.toggle('active',b.dataset.admintab===tab));
 
   const c=$('#adminContent');
 
@@ -1382,51 +928,25 @@ async function loadAdmin(tab='products'){
     c.innerHTML=`
       <form id="founderProductForm" class="panel">
         <h3>Ajouter un produit géré par ZAAMARKET</h3>
-
-        <div class="field">
-          <label>Nom</label>
-          <input name="nom" required maxlength="180">
-        </div>
-
+        <div class="field"><label>Nom</label><input name="nom" required maxlength="180"></div>
         <div class="field">
           <label>Catégorie</label>
           <select name="category_id" required>
-            ${state.categories.map(x=>`
-              <option value="${x.id}">${esc(x.nom)}</option>
-            `).join('')}
+            ${state.categories.map(x=>`<option value="${x.id}">${esc(x.nom)}</option>`).join('')}
           </select>
         </div>
-
-        <div class="field">
-          <label>Description</label>
-          <textarea name="description"></textarea>
-        </div>
-
+        <div class="field"><label>Description</label><textarea name="description"></textarea></div>
         <div class="grid2">
-          <div class="field">
-            <label>Prix (FCFA)</label>
-            <input name="prix" type="number" min="1" required>
-          </div>
-          <div class="field">
-            <label>Stock</label>
-            <input name="stock" type="number" min="0" value="1" required>
-          </div>
+          <div class="field"><label>Prix (FCFA)</label><input name="prix" type="number" min="1" required></div>
+          <div class="field"><label>Stock</label><input name="stock" type="number" min="0" value="1" required></div>
         </div>
-
         <div class="grid2">
           <div class="field">
             <label>État</label>
-            <select name="etat">
-              <option value="neuf">Neuf</option>
-              <option value="occasion">Occasion</option>
-            </select>
+            <select name="etat"><option value="neuf">Neuf</option><option value="occasion">Occasion</option></select>
           </div>
-          <div class="field">
-            <label>Photo (5 Mo max.)</label>
-            <input name="photo" type="file" accept="image/jpeg,image/png,image/webp">
-          </div>
+          <div class="field"><label>Photo (5 Mo max.)</label><input name="photo" type="file" accept="image/jpeg,image/png,image/webp"></div>
         </div>
-
         <button class="btn primary">Enregistrer le produit</button>
         <div id="founderProductMessage"></div>
       </form>
@@ -1435,10 +955,7 @@ async function loadAdmin(tab='products'){
       :(data||[]).map(p=>`
         <div class="panel">
           <div class="row">
-            <div>
-              <b>${esc(p.nom)}</b>
-              <div>${fmt(p.prix)} · ${esc(p.statut)}</div>
-            </div>
+            <div><b>${esc(p.nom)}</b><div>${fmt(p.prix)} · ${esc(p.statut)}</div></div>
             <div class="row">
               <button class="btn primary small" data-approve="${p.id}">Publier</button>
               <button class="btn light small" data-reject="${p.id}">Refuser</button>
@@ -1505,16 +1022,7 @@ async function loadAdmin(tab='products'){
       :`
         <div class="tablewrap">
           <table>
-            <thead>
-              <tr>
-                <th>Référence</th>
-                <th>Date</th>
-                <th>Statut</th>
-                <th>Total</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
+            <thead><tr><th>Référence</th><th>Date</th><th>Statut</th><th>Total</th><th>Action</th></tr></thead>
             <tbody>
               ${(data||[]).map(o=>`
                 <tr>
@@ -1539,8 +1047,6 @@ async function loadAdmin(tab='products'){
           </table>
         </div>
       `;
-
-    return;
   }
 }
 
@@ -1548,7 +1054,6 @@ async function loadAdmin(tab='products'){
 
 async function init(){
   $('#year').textContent=new Date().getFullYear();
-
   updateCartCount();
 
   const {data:brands,error:brandError}=await supabase
@@ -1560,6 +1065,10 @@ async function init(){
   if(brandError)throw brandError;
 
   state.brandId=brands?.[0]?.id||null;
+
+  if(!state.brandId){
+    throw new Error('La marque ZAAMARKET est introuvable dans la table marques.');
+  }
 
   await loadCategories();
   await loadProducts();
@@ -1573,21 +1082,13 @@ let authMode='login';
 function setAuthMode(m){
   authMode=m;
 
-  $$('[data-authmode]').forEach(b=>
-    b.classList.toggle('active',b.dataset.authmode===m)
-  );
+  $$('[data-authmode]').forEach(b=>b.classList.toggle('active',b.dataset.authmode===m));
 
-  $('#authTitle').textContent=
-    m==='login'?'Connexion':'Créer un compte';
-
-  $('#authSubmit').textContent=
-    m==='login'?'Se connecter':'Créer mon compte';
-
+  $('#authTitle').textContent=m==='login'?'Connexion':'Créer un compte';
+  $('#authSubmit').textContent=m==='login'?'Se connecter':'Créer mon compte';
   $('#confirmField').classList.toggle('hidden',m==='login');
   $('#authName').required=m==='signup';
-
-  $('#authPassword').autocomplete=
-    m==='login'?'current-password':'new-password';
+  $('#authPassword').autocomplete=m==='login'?'current-password':'new-password';
 }
 
 /* BOUTONS PRINCIPAUX */
@@ -1600,7 +1101,6 @@ $('#authBtn').onclick=()=>{
   }
 };
 
-$('#accountLoginBtn').onclick=()=>show('authModal');
 $('#sellerLoginBtn').onclick=()=>show('authModal');
 
 $('#cartBtn').onclick=()=>{
@@ -1623,7 +1123,6 @@ $('#categoryGrid').onclick=e=>{
 
   state.selectedCategory=b.dataset.cat;
   $('#categoryFilter').value=state.selectedCategory;
-
   loadCategories();
   loadProducts();
 };
@@ -1650,12 +1149,12 @@ $('#productGrid').onclick=async e=>{
   const d=e.target.closest('[data-details]');
 
   if(d){
-    const p=state.products.find(x=>x.id===d.dataset.details);
+    const p=state.products.find(x=>String(x.id)===String(d.dataset.details));
     if(!p)return;
 
     $('#productModalTitle').textContent=p.nom;
 
-    const {data:reviews}=await supabase
+    const {data:reviews,error}=await supabase
       .from('za_reviews')
       .select('id,note,commentaire,created_at')
       .eq('product_id',p.id)
@@ -1663,18 +1162,14 @@ $('#productGrid').onclick=async e=>{
       .order('created_at',{ascending:false})
       .limit(10);
 
+    if(error)console.warn('Avis indisponibles :',error.message);
+
     $('#productDetails').innerHTML=`
       <p class="price">${fmt(p.prix)}</p>
       <p>${esc(p.description||'Aucune description fournie.')}</p>
-      <p class="muted">
-        ${esc(p.za_categories?.nom||'')} ·
-        ${p.etat==='neuf'?'Neuf':'Occasion'}
-      </p>
-
+      <p class="muted">${esc(p.za_categories?.nom||'')} · ${p.etat==='neuf'?'Neuf':'Occasion'}</p>
       <button class="btn primary" id="detailAdd">Ajouter au panier</button>
-
       <h4>Avis clients</h4>
-
       ${(reviews||[]).map(r=>`
         <div class="review">
           <span class="stars">${'★'.repeat(r.note)}${'☆'.repeat(5-r.note)}</span>
@@ -1705,20 +1200,19 @@ $('#cartLines').onclick=e=>{
   if(b.dataset.remove){
     delete state.cart[id];
   }else if(b.dataset.inc){
-    const p=state.products.find(x=>x.id===id);
+    const p=state.products.find(x=>String(x.id)===String(id));
+    const current=Number(state.cart[id]?.quantity||0);
+    const stock=Number(p?.stock_disponible||0);
 
-    if(state.cart[id].quantity>=Math.min(20,Number(p?.stock_disponible||20))){
-      alert('Stock maximum atteint.');
+    if(!p||current>=Math.min(20,stock)){
+      alert('Stock maximum atteint ou produit indisponible.');
       return;
     }
 
     state.cart[id].quantity++;
   }else{
     state.cart[id].quantity--;
-
-    if(state.cart[id].quantity<=0){
-      delete state.cart[id];
-    }
+    if(state.cart[id].quantity<=0)delete state.cart[id];
   }
 
   saveCart();
@@ -1727,7 +1221,7 @@ $('#cartLines').onclick=e=>{
 
 /* PASSAGE DE COMMANDE */
 
-$('#checkoutBtn').onclick=async()=>{
+$('#checkoutBtn').onclick=()=>{
   if(!state.user){
     hide('cartModal');
     show('authModal');
@@ -1750,10 +1244,13 @@ $('#checkoutForm').onsubmit=async e=>{
 
   const items=Object.entries(state.cart).map(([product_id,x])=>({
     product_id,
-    quantity:x.quantity
+    quantity:Number(x.quantity)
   }));
 
-  if(!items.length)return;
+  if(!items.length){
+    msg($('#checkoutMessage'),'Votre panier est vide.','error');
+    return;
+  }
 
   const address={
     pays:f.get('pays'),
@@ -1764,6 +1261,7 @@ $('#checkoutForm').onsubmit=async e=>{
 
   if(!state.checkoutKey){
     state.checkoutKey=crypto.randomUUID();
+    try{sessionStorage.setItem('za_checkout_key_v1',state.checkoutKey);}catch{}
   }
 
   const submit=e.target.querySelector('button[type="submit"]');
@@ -1788,6 +1286,8 @@ $('#checkoutForm').onsubmit=async e=>{
     state.cart={};
     state.checkoutKey=null;
 
+    try{sessionStorage.removeItem('za_checkout_key_v1');}catch{}
+
     saveCart();
     e.target.reset();
 
@@ -1798,7 +1298,6 @@ $('#checkoutForm').onsubmit=async e=>{
     );
 
     await refreshUser();
-
     setTimeout(()=>hide('checkoutModal'),4500);
 
   }catch(error){
@@ -1819,22 +1318,17 @@ $('#authForm').onsubmit=async e=>{
 
   $('#authSubmit').disabled=true;
 
-  let result;
-
   try{
+    let result;
+
     if(authMode==='login'){
-      result=await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
+      result=await supabase.auth.signInWithPassword({email,password});
     }else{
       result=await supabase.auth.signUp({
         email,
         password,
         options:{
-          data:{
-            nom_complet:$('#authName').value.trim()
-          },
+          data:{nom_complet:$('#authName').value.trim()},
           emailRedirectTo:location.origin+location.pathname
         }
       });
@@ -1846,18 +1340,12 @@ $('#authForm').onsubmit=async e=>{
     }
 
     if(authMode==='signup'&&!result.data.session){
-      msg(
-        $('#authMessage'),
-        'Compte créé. Vérifiez votre e-mail pour confirmer votre adresse avant de vous connecter.',
-        'success'
-      );
+      msg($('#authMessage'),'Compte créé. Vérifiez votre e-mail pour confirmer votre adresse avant de vous connecter.','success');
       return;
     }
 
     msg($('#authMessage'),'Connexion réussie.','success');
-
     await refreshUser();
-
     setTimeout(()=>hide('authModal'),700);
 
   }catch(error){
@@ -1868,13 +1356,8 @@ $('#authForm').onsubmit=async e=>{
   }
 };
 
-$$('[data-authmode]').forEach(b=>{
-  b.onclick=()=>setAuthMode(b.dataset.authmode);
-});
-
-$$('[data-close]').forEach(b=>{
-  b.onclick=()=>hide(b.dataset.close);
-});
+$$('[data-authmode]').forEach(b=>b.onclick=()=>setAuthMode(b.dataset.authmode));
+$$('[data-close]').forEach(b=>b.onclick=()=>hide(b.dataset.close));
 
 $$('.modal').forEach(m=>{
   m.addEventListener('click',e=>{
@@ -1885,8 +1368,17 @@ $$('.modal').forEach(m=>{
 /* COMPTE CLIENT */
 
 $('#accountPanel').onclick=async e=>{
+  if(e.target.id==='accountLoginBtn'){
+    show('authModal');
+    return;
+  }
+
   if(e.target.id==='logoutBtn'){
-    await supabase.auth.signOut();
+    const {error}=await supabase.auth.signOut();
+    if(error){
+      alert('Erreur de déconnexion : '+error.message);
+      return;
+    }
     await refreshUser();
     return;
   }
@@ -1894,15 +1386,10 @@ $('#accountPanel').onclick=async e=>{
   const t=e.target.closest('[data-accounttab]');
 
   if(t){
-    $$('[data-accounttab]').forEach(b=>
-      b.classList.toggle('active',b===t)
-    );
+    $$('[data-accounttab]').forEach(b=>b.classList.toggle('active',b===t));
 
-    if(t.dataset.accounttab==='orders'){
-      renderMyOrders();
-    }else{
-      renderMyReviews();
-    }
+    if(t.dataset.accounttab==='orders')await renderMyOrders();
+    else await renderMyReviews();
 
     return;
   }
@@ -1945,9 +1432,7 @@ $('#reviewForm').onsubmit=async e=>{
   }
 
   msg($('#reviewMessage'),'Avis transmis pour modération. Merci !','success');
-
   e.target.reset();
-
   setTimeout(()=>hide('reviewModal'),1800);
 };
 
@@ -1957,6 +1442,12 @@ $('#productDetails').onclick=e=>{
   const b=e.target.closest('[data-report]');
 
   if(b){
+    if(!state.user){
+      hide('productModal');
+      show('authModal');
+      return;
+    }
+
     $('#reportForm').elements.review_id.value=b.dataset.report;
     show('reportModal');
   }
@@ -1986,7 +1477,7 @@ $('#reportForm').onsubmit=async e=>{
   }
 
   msg($('#reportMessage'),'Signalement envoyé.','success');
-
+  e.target.reset();
   setTimeout(()=>hide('reportModal'),1400);
 };
 
@@ -1999,10 +1490,11 @@ $$('[data-sellertab]').forEach(b=>{
 $('#sellerContent').onclick=async e=>{
   if(e.target.id==='newCompany'){
     show('sellerCompanyModal');
+    return;
   }
 
   if(e.target.id==='requestPartnership'){
-    if(!state.sellerCompany||!state.brandId)return;
+    if(!state.sellerCompany||!state.brandId||!state.user)return;
 
     const {error}=await supabase
       .from('demandes_partenariat_marques')
@@ -2018,7 +1510,7 @@ $('#sellerContent').onclick=async e=>{
       alert(error.message);
     }else{
       alert('Demande envoyée à ADDIBA pour examen.');
-      loadSeller('apply');
+      await loadSeller('apply');
     }
   }
 };
@@ -2027,6 +1519,11 @@ $('#sellerContent').onclick=async e=>{
 
 $('#companyForm').onsubmit=async e=>{
   e.preventDefault();
+
+  if(!state.user){
+    msg($('#companyMessage'),'Connectez-vous avant d’enregistrer une entreprise.','error');
+    return;
+  }
 
   const f=new FormData(e.target);
 
@@ -2051,17 +1548,57 @@ $('#companyForm').onsubmit=async e=>{
 
   state.sellerCompany=data;
 
-  msg(
-    $('#companyMessage'),
-    'Entreprise enregistrée en attente de validation.',
-    'success'
-  );
+  msg($('#companyMessage'),'Entreprise enregistrée en attente de validation.','success');
 
   setTimeout(()=>{
     hide('sellerCompanyModal');
     loadSeller('apply');
   },1400);
 };
+
+/* UTILITAIRE DE CRÉATION DE SLUG */
+
+function createSlug(value){
+  return value.toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-|-$/g,'')
+    +'-'+crypto.randomUUID().slice(0,8);
+}
+
+function validPhoto(photo){
+  if(!photo||!photo.size)return true;
+  if(photo.size>5*1024*1024)return false;
+  return ['image/jpeg','image/png','image/webp'].includes(photo.type);
+}
+
+async function uploadProductPhoto(productId,photo,nom,userId){
+  if(!photo||!photo.size)return {ok:true};
+
+  const ext=photo.type==='image/jpeg'?'jpg':photo.type==='image/png'?'png':'webp';
+  const path=`products/${productId}/${crypto.randomUUID()}.${ext}`;
+
+  const upload=await supabase.storage
+    .from('zaamarket-media')
+    .upload(path,photo,{contentType:photo.type,upsert:false});
+
+  if(upload.error)return {ok:false,message:upload.error.message};
+
+  const image=await supabase
+    .from('za_product_images')
+    .insert({
+      product_id:productId,
+      storage_path:path,
+      texte_alternatif:nom,
+      ordre:0,
+      created_by:userId
+    });
+
+  if(image.error)return {ok:false,message:image.error.message};
+
+  return {ok:true};
+}
 
 /* SOUMISSION D'UN PRODUIT PAR UN VENDEUR */
 
@@ -2070,103 +1607,69 @@ $('#sellerContent').onsubmit=async e=>{
 
   e.preventDefault();
 
+  if(!state.user||!state.sellerCompany||!state.brandId){
+    msg($('#sellerProductMessage'),'Votre compte ou votre entreprise n’est pas disponible.','error');
+    return;
+  }
+
+  if(state.sellerCompany.statut!=='approuvee'){
+    msg($('#sellerProductMessage'),'Votre entreprise doit être approuvée avant de proposer des produits.','error');
+    return;
+  }
+
   const f=new FormData(e.target);
-  const nom=f.get('nom').trim();
-
-  const slug=
-    nom.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g,'')
-      .replace(/[^a-z0-9]+/g,'-')
-      .replace(/^-|-$/g,'')
-    +'-'+crypto.randomUUID().slice(0,8);
-
+  const nom=String(f.get('nom')||'').trim();
   const photo=f.get('photo');
 
-  if(photo&&photo.size>5*1024*1024){
-    msg($('#sellerProductMessage'),'La photo dépasse 5 Mo.','error');
+  if(!validPhoto(photo)){
+    msg($('#sellerProductMessage'),'La photo doit être au format JPEG, PNG ou WebP et ne pas dépasser 5 Mo.','error');
     return;
   }
 
-  if(photo&&photo.size&&!['image/jpeg','image/png','image/webp'].includes(photo.type)){
-    msg($('#sellerProductMessage'),'Format de photo non accepté.','error');
-    return;
-  }
+  const submit=e.target.querySelector('button[type="submit"],button:not([type])');
+  if(submit)submit.disabled=true;
 
-  const {data:product,error}=await supabase
-    .from('za_products')
-    .insert({
-      brand_id:state.brandId,
-      category_id:f.get('category_id'),
-      seller_company_id:state.sellerCompany.id,
-      created_by:state.user.id,
-      nom,
-      slug,
-      description:f.get('description'),
-      prix:Number(f.get('prix')),
-      devise:'XOF',
-      etat:f.get('etat'),
-      stock_disponible:Number(f.get('stock')),
-      statut:'en_attente'
-    })
-    .select('id')
-    .single();
-
-  if(error){
-    msg($('#sellerProductMessage'),error.message,'error');
-    return;
-  }
-
-  if(photo&&photo.size){
-    const ext=
-      photo.type==='image/jpeg'?'jpg':
-      photo.type==='image/png'?'png':'webp';
-
-    const path=`products/${product.id}/${crypto.randomUUID()}.${ext}`;
-
-    const up=await supabase.storage
-      .from('zaamarket-media')
-      .upload(path,photo,{
-        contentType:photo.type,
-        upsert:false
-      });
-
-    if(up.error){
-      msg(
-        $('#sellerProductMessage'),
-        'Produit soumis mais échec de la photo : '+up.error.message,
-        'error'
-      );
-      return;
-    }
-
-    const im=await supabase
-      .from('za_product_images')
+  try{
+    const {data:product,error}=await supabase
+      .from('za_products')
       .insert({
-        product_id:product.id,
-        storage_path:path,
-        texte_alternatif:nom,
-        ordre:0,
-        created_by:state.user.id
-      });
+        brand_id:state.brandId,
+        category_id:f.get('category_id'),
+        seller_company_id:state.sellerCompany.id,
+        created_by:state.user.id,
+        nom,
+        slug:createSlug(nom),
+        description:f.get('description'),
+        prix:Number(f.get('prix')),
+        devise:'XOF',
+        etat:f.get('etat'),
+        stock_disponible:Number(f.get('stock')),
+        statut:'en_attente'
+      })
+      .select('id')
+      .single();
 
-    if(im.error){
-      msg(
-        $('#sellerProductMessage'),
-        'Produit soumis mais métadonnées photo non enregistrées : '+im.error.message,
-        'error'
-      );
+    if(error){
+      msg($('#sellerProductMessage'),error.message,'error');
       return;
     }
+
+    const imageResult=await uploadProductPhoto(product.id,photo,nom,state.user.id);
+
+    if(!imageResult.ok){
+      msg($('#sellerProductMessage'),'Produit soumis, mais la photo n’a pas été enregistrée : '+imageResult.message,'error');
+      return;
+    }
+
+    msg($('#sellerProductMessage'),'Produit soumis. Il sera visible après validation par ADDIBA.','success');
+    e.target.reset();
+
+  }catch(error){
+    console.error(error);
+    msg($('#sellerProductMessage'),'Une erreur est survenue lors de la soumission du produit.','error');
+  }finally{
+    if(submit)submit.disabled=false;
   }
-
-  msg(
-    $('#sellerProductMessage'),
-    'Produit soumis. Il sera visible après validation par ADDIBA.',
-    'success'
-  );
-
-  e.target.reset();
 };
 
 /* AJOUT D'UN PRODUIT PAR LE FONDATEUR */
@@ -2176,110 +1679,73 @@ $('#adminContent').onsubmit=async e=>{
 
   e.preventDefault();
 
+  if(state.profile?.role!=='fondateur'||!state.user||!state.brandId){
+    msg($('#founderProductMessage'),'Action réservée au fondateur.','error');
+    return;
+  }
+
   const f=new FormData(e.target);
-  const nom=f.get('nom').trim();
-
-  const slug=
-    nom.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g,'')
-      .replace(/[^a-z0-9]+/g,'-')
-      .replace(/^-|-$/g,'')
-    +'-'+crypto.randomUUID().slice(0,8);
-
+  const nom=String(f.get('nom')||'').trim();
   const photo=f.get('photo');
 
-  if(photo&&photo.size>5*1024*1024){
-    msg($('#founderProductMessage'),'La photo dépasse 5 Mo.','error');
+  if(!validPhoto(photo)){
+    msg($('#founderProductMessage'),'La photo doit être au format JPEG, PNG ou WebP et ne pas dépasser 5 Mo.','error');
     return;
   }
 
-  if(photo&&photo.size&&!['image/jpeg','image/png','image/webp'].includes(photo.type)){
-    msg($('#founderProductMessage'),'Format de photo non accepté.','error');
-    return;
-  }
+  const submit=e.target.querySelector('button[type="submit"],button:not([type])');
+  if(submit)submit.disabled=true;
 
-  const {data:p,error}=await supabase
-    .from('za_products')
-    .insert({
-      brand_id:state.brandId,
-      category_id:f.get('category_id'),
-      seller_company_id:null,
-      created_by:state.user.id,
-      nom,
-      slug,
-      description:f.get('description'),
-      prix:Number(f.get('prix')),
-      devise:'XOF',
-      etat:f.get('etat'),
-      stock_disponible:Number(f.get('stock')),
-      statut:'publie'
-    })
-    .select('id')
-    .single();
-
-  if(error){
-    msg($('#founderProductMessage'),error.message,'error');
-    return;
-  }
-
-  if(photo&&photo.size){
-    const ext=
-      photo.type==='image/jpeg'?'jpg':
-      photo.type==='image/png'?'png':'webp';
-
-    const path=`products/${p.id}/${crypto.randomUUID()}.${ext}`;
-
-    const up=await supabase.storage
-      .from('zaamarket-media')
-      .upload(path,photo,{
-        contentType:photo.type,
-        upsert:false
-      });
-
-    if(up.error){
-      msg(
-        $('#founderProductMessage'),
-        'Produit créé, mais photo non envoyée : '+up.error.message,
-        'error'
-      );
-      return;
-    }
-
-    const im=await supabase
-      .from('za_product_images')
+  try{
+    const {data:p,error}=await supabase
+      .from('za_products')
       .insert({
-        product_id:p.id,
-        storage_path:path,
-        texte_alternatif:nom,
-        ordre:0,
-        created_by:state.user.id
-      });
+        brand_id:state.brandId,
+        category_id:f.get('category_id'),
+        seller_company_id:null,
+        created_by:state.user.id,
+        nom,
+        slug:createSlug(nom),
+        description:f.get('description'),
+        prix:Number(f.get('prix')),
+        devise:'XOF',
+        etat:f.get('etat'),
+        stock_disponible:Number(f.get('stock')),
+        statut:'publie'
+      })
+      .select('id')
+      .single();
 
-    if(im.error){
-      msg(
-        $('#founderProductMessage'),
-        'Produit créé, mais métadonnées photo non enregistrées : '+im.error.message,
-        'error'
-      );
+    if(error){
+      msg($('#founderProductMessage'),error.message,'error');
       return;
     }
+
+    const imageResult=await uploadProductPhoto(p.id,photo,nom,state.user.id);
+
+    if(!imageResult.ok){
+      msg($('#founderProductMessage'),'Produit créé, mais photo non enregistrée : '+imageResult.message,'error');
+      return;
+    }
+
+    msg($('#founderProductMessage'),'Produit enregistré avec succès.','success');
+    e.target.reset();
+
+    await loadAdmin('products');
+    await loadProducts();
+
+  }catch(error){
+    console.error(error);
+    msg($('#founderProductMessage'),'Une erreur est survenue lors de la création du produit.','error');
+  }finally{
+    if(submit)submit.disabled=false;
   }
-
-  msg(
-    $('#founderProductMessage'),
-    'Produit enregistré avec succès.',
-    'success'
-  );
-
-  e.target.reset();
-
-  await loadAdmin('products');
 };
 
 /* ACTIONS D'ADMINISTRATION */
 
 $('#adminContent').onclick=async e=>{
+  if(state.profile?.role!=='fondateur')return;
 
   const approve=e.target.closest('[data-approve]');
 
@@ -2393,13 +1859,10 @@ $('#adminContent').onclick=async e=>{
       return;
     }
 
-    const {error}=await supabase.rpc(
-      'za_founder_update_order_status',
-      {
-        p_order_id:id,
-        p_status:status
-      }
-    );
+    const {error}=await supabase.rpc('za_founder_update_order_status',{
+      p_order_id:id,
+      p_status:status
+    });
 
     if(error){
       alert('Impossible de modifier la commande : '+error.message);
@@ -2408,7 +1871,6 @@ $('#adminContent').onclick=async e=>{
 
     alert('Statut de la commande mis à jour.');
     await loadAdmin('orders');
-    return;
   }
 };
 
@@ -2418,31 +1880,23 @@ $$('[data-admintab]').forEach(b=>{
   b.onclick=()=>loadAdmin(b.dataset.admintab);
 });
 
-/* CHANGEMENT D'ONGLET VENDEUR */
-
-$$('[data-sellertab]').forEach(b=>{
-  b.onclick=()=>loadSeller(b.dataset.sellertab);
-});
-
 /* ÉVÉNEMENTS DE SESSION SUPABASE */
 
-supabase.auth.onAuthStateChange(async(event,session)=>{
+supabase.auth.onAuthStateChange((event,session)=>{
   state.user=session?.user||null;
 
-  if(
-    event==='SIGNED_IN'||
-    event==='SIGNED_OUT'||
-    event==='USER_UPDATED'
-  ){
-    try{
-      await refreshUser();
+  if(['SIGNED_IN','SIGNED_OUT','USER_UPDATED'].includes(event)){
+    queueMicrotask(async()=>{
+      try{
+        await refreshUser();
 
-      if(state.profile?.role==='fondateur'){
-        await loadAdmin('products');
+        if(state.profile?.role==='fondateur'){
+          await loadAdmin('products');
+        }
+      }catch(error){
+        console.error('Erreur de mise à jour de session :',error);
       }
-    }catch(error){
-      console.error('Erreur de mise à jour de session :',error);
-    }
+    });
   }
 });
 
@@ -2458,8 +1912,7 @@ try{
 }catch(error){
   console.error('Erreur au démarrage de ZAAMARKET :',error);
 
-  $('#catalogStatus').textContent=
-    'Le catalogue n’a pas pu être chargé.';
+  $('#catalogStatus').textContent='Le catalogue n’a pas pu être chargé.';
 
   $('#productGrid').innerHTML=`
     <div class="empty">
@@ -2474,8 +1927,6 @@ try{
     </div>
   `;
 }
-
 </script>
-
 </body>
 </html>
