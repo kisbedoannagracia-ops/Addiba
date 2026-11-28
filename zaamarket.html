@@ -395,8 +395,7 @@ th{background:#fafafa}
   .hero p{font-size:15px}
 }
 </style>
-</head>
-
+  </head>
 <body>
 
 <div class="topnote">
@@ -800,6 +799,47 @@ th{background:#fafafa}
   </div>
 </div>
 
+<!-- MODALE ENTREPRISE -->
+<div class="modal" id="sellerCompanyModal">
+  <div class="dialog">
+    <div class="dialog-head">
+      <h3>Entreprise partenaire</h3>
+      <button class="x" data-close="sellerCompanyModal">×</button>
+    </div>
+
+    <form id="companyForm">
+      <div class="field">
+        <label>Nom de l'entreprise</label>
+        <input name="nom" required maxlength="180">
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Pays</label>
+          <input name="pays" value="Burkina Faso" required>
+        </div>
+        <div class="field">
+          <label>Secteur d'activité</label>
+          <input name="secteur" required>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>E-mail professionnel</label>
+          <input name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label>Téléphone</label>
+          <input name="telephone" maxlength="40">
+        </div>
+      </div>
+
+      <button class="btn primary" type="submit">Envoyer la demande d'inscription</button>
+      <div id="companyMessage"></div>
+    </form>
+  </div>
+ </div>
 <!-- MODALE ENTREPRISE -->
 <div class="modal" id="sellerCompanyModal">
   <div class="dialog">
@@ -2479,4 +2519,3 @@ try{
 
 </body>
 </html>
- 
